@@ -10,9 +10,8 @@
  */
  require 'vendor/autoload.php';
  include_once plugin_dir_path(__FILE__).'utils/wp_odm_solr_utils.php';
- include_once plugin_dir_path(__FILE__).'utils/wp_odm_solr_options.php';
-
- $GLOBALS['wp_odm_solr_options'] = new WpOdmSolr_Options();
+ include_once plugin_dir_path(__FILE__).'utils/solr-wp-manager.php';
+ include_once plugin_dir_path(__FILE__).'utils/solr-ckan-manager.php';
 
 if (!class_exists('WpOdmSolr')) {
     class WpOdmSolr
@@ -37,16 +36,14 @@ if (!class_exists('WpOdmSolr')) {
         }
 
         function check_requirements(){
-          $solr_host = $GLOBALS['wp_odm_solr_options']->get_option('wp_odm_solr_setting_solr_host');
-          $solr_port = $GLOBALS['wp_odm_solr_options']->get_option('wp_odm_solr_setting_solr_port');
-          $solr_scheme = $GLOBALS['wp_odm_solr_options']->get_option('wp_odm_solr_setting_solr_scheme');
-          $solr_path = $GLOBALS['wp_odm_solr_options']->get_option('wp_odm_solr_setting_solr_path');
-          $solr_core = $GLOBALS['wp_odm_solr_options']->get_option('wp_odm_solr_setting_solr_core');
-          $solr_user = $GLOBALS['wp_odm_solr_options']->get_option('wp_odm_solr_setting_solr_user');
-          $solr_pwd = $GLOBALS['wp_odm_solr_options']->get_option('wp_odm_solr_setting_solr_pwd');
-          // if (!wp_odm_solr_validate_settings_read($solr_host,$solr_port,$solr_path,$solr_core,$solr_scheme,$solr_user,$solr_pwd)):
-          //   echo '<div class="error"><p>wp-odm_solr seems to be unresponsive or missconfigured, please check.</p></div>';
-          // endif;
+
+          if (!WP_Odm_Solr_WP_Manager()->ping_server()):
+            echo '<div class="error"><p>WP index seems to be unresponsive or missconfigured, please check.</p></div>';
+          endif;
+
+          if (!WP_Odm_Solr_CKAN_Manager()->ping_server()):
+            echo '<div class="error"><p>CKAN index seems to be unresponsive or missconfigured, please check.</p></div>';
+          endif;
         }
 
         public function wp_odm_solr_register_plugin_styles($hook)
@@ -57,6 +54,9 @@ if (!class_exists('WpOdmSolr')) {
 
         public function wp_odm_solr_save_post($post_ID)
         {
+          $post = get_post($post_ID);
+
+          WP_Odm_Solr_WP_Manager()->index_post($post);
         }
 
         public function wp_odm_solr_edit_post($post_ID)
@@ -114,10 +114,13 @@ if (!class_exists('WpOdmSolr')) {
             register_setting('wp_odm_solr-group', 'wp_odm_solr_setting_solr_host');
             register_setting('wp_odm_solr-group', 'wp_odm_solr_setting_solr_port');
             register_setting('wp_odm_solr-group', 'wp_odm_solr_setting_solr_path');
-            register_setting('wp_odm_solr-group', 'wp_odm_solr_setting_solr_core');
+            register_setting('wp_odm_solr-group', 'wp_odm_solr_setting_solr_core_wp');
+            register_setting('wp_odm_solr-group', 'wp_odm_solr_setting_solr_core_ckan');
             register_setting('wp_odm_solr-group', 'wp_odm_solr_setting_solr_schema');
             register_setting('wp_odm_solr-group', 'wp_odm_solr_setting_solr_user');
             register_setting('wp_odm_solr-group', 'wp_odm_solr_setting_solr_scheme');
+            register_setting('wp_odm_solr-group', 'wp_odm_solr_setting_log_path');
+            register_setting('wp_odm_solr-group', 'wp_odm_solr_setting_log_enabled');
         }
 
         /**
