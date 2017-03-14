@@ -1,0 +1,12 @@
+{
+  "uploadOnSave": true,
+  "hostname": "192.168.33.10",
+  "port": "22",
+  "target": "/home/vagrant/webapps/wp/wp-content/plugins/wp-odm_solr/",
+  "ignore": [
+    ".git/**"
+  ],
+  "username": "vagrant",
+  "password": "vagrant",
+  "transport": "scp"
+}
