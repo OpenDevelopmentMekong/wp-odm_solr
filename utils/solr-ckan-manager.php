@@ -14,7 +14,6 @@ class WP_Odm_Solr_CKAN_Manager {
 
   var $client = null;
   var $server_config = null;
-  var $configured = false;
 
 	function __construct() {
 
@@ -55,10 +54,10 @@ class WP_Odm_Solr_CKAN_Manager {
 
     wp_odm_solr_log('solr-ckan-manager ping_server');
 
-    if (!$this->configured):
+    if (!isset($this->client)):
       return false;
     endif;
-    
+
     try {
       $ping = $this->client->createPing();
       $result = $this->client->ping($ping);
