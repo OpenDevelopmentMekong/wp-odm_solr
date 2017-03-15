@@ -18,8 +18,8 @@
             $logging_path = WP_ODM_SOLR_DEFAULT_LOG_PATH;
           endif;
           $logging_enabled = $GLOBALS['wp_odm_solr_options']->get_option('wp_odm_solr_setting_log_enabled');
-          $valid_connection_wp= WP_Odm_Solr_WP_Manager()->ping_server();
-          $valid_connection_ckan= WP_Odm_Solr_CKAN_Manager()->ping_server();
+          $valid_connection_wp= isset($solr_host) ? WP_Odm_Solr_WP_Manager()->ping_server() : false;
+          $valid_connection_ckan= isset($solr_host) ? WP_Odm_Solr_CKAN_Manager()->ping_server() : false;
         ?>
 
         <table class="form-table">
