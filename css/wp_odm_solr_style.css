@@ -2,3 +2,7 @@
 	background: @almost-white;
 	padding: 10px;
 }
+
+.search_field{
+	width: 100%;
+}

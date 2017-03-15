@@ -9,12 +9,14 @@
 		<div class="row">
       <div class="four columns">
 
-        <!-- code filters here -->
+        <h2><i class="fa fa-filter"></i> Filters</h2>
+
 
   		</div>
 
 			<div class="twelve columns">
-				<div id="accordion">
+        <input type="text" class="search_field" id="search_field" value="<?php echo $_GET["s"] ?> "></input>
+        <div id="accordion">
 
 					<?php
 						$supported_ckan_types = array(
@@ -99,11 +101,21 @@
 	</section>
 
 	<script>
-		jQuery( function() {
-			jQuery( "#accordion" ).accordion({
+
+    jQuery(document).ready(function() {
+
+      jQuery( "#accordion" ).accordion({
 				collapsible: true, active: false
 			});
-		} );
+
+      jQuery('#search_field').keydown(function(event) {
+        if (event.keyCode == 13) {
+            window.location.href = "/?s=" + jQuery('#search_field').val();
+            return false;
+         }
+      });
+    });
+
 	</script>
 
 <?php get_footer(); ?>
