@@ -24,7 +24,6 @@ if (!class_exists('WpOdmSolr')) {
             add_action('admin_init', array(&$this, 'wp_odm_solr_admin_init'));
             add_action('admin_menu', array(&$this, 'wp_odm_solr_add_menu'));
             add_action('admin_enqueue_scripts', array(&$this, 'wp_odm_solr_register_plugin_styles'));
-            add_action('edit_post', array(&$this, 'wp_odm_solr_edit_post'));
             add_action('save_post', array(&$this, 'wp_odm_solr_save_post'));
             add_action('admin_notices', array($this, 'check_requirements'));
             add_action('init', array($this, 'load_text_domain'));
@@ -54,32 +53,13 @@ if (!class_exists('WpOdmSolr')) {
 
         public function wp_odm_solr_save_post($post_ID)
         {
+          wp_odm_solr_log('wp_odm_solr_save_post');
+
           $post = get_post($post_ID);
 
-          WP_Odm_Solr_WP_Manager()->index_post($post);
-        }
-
-        public function wp_odm_solr_edit_post($post_ID)
-        {
-
-          // If this is an autosave, our form has not been submitted,
-          //     so we don't want to do anything.
-          if (defined('DOING_AUTOSAVE') && DOING_AUTOSAVE) {
-              return $post_ID;
-          }
-
-          // Check the user's permissions.
-          if (isset($_POST['post_type']) && 'page' == $_POST['post_type']) {
-              if (!current_user_can('edit_page', $post_ID)) {
-                  return $post_ID;
-              }
-          } else {
-              if (!current_user_can('edit_post', $post_ID)) {
-                  return $post_ID;
-              }
-          }
-
-
+          if ($post->post_status == "publish"):
+            WP_Odm_Solr_WP_Manager()->index_post($post);
+          endif;
         }
 
         /**

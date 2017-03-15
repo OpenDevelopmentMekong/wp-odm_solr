@@ -63,7 +63,7 @@ class WP_Odm_Solr_CKAN_Manager {
 
 	function query($text, $typeFilter = null){
 
-    wp_odm_solr_log('solr-ckan-manager query');
+    wp_odm_solr_log('solr-ckan-manager query' . $text);
 
 		$query = $this->client->createSelect();
 		$query->setQuery($text);

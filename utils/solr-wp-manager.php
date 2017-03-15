@@ -65,7 +65,7 @@ class WP_Odm_Solr_WP_Manager {
 
 	function index_post($post){
 
-    wp_odm_solr_log('solr-wp-manager index_post');
+    wp_odm_solr_log('solr-wp-manager index_post ' . print_r($post, true));
 
     $update = $this->client->createUpdate();
 
@@ -111,7 +111,7 @@ class WP_Odm_Solr_WP_Manager {
 
 	function query($text, $typeFilter = null){
 
-    wp_odm_solr_log('solr-wp-manager query');
+    wp_odm_solr_log('solr-wp-manager query ' . $text);
 
 		$query = $this->client->createSelect();
 		$query->setQuery($text);
