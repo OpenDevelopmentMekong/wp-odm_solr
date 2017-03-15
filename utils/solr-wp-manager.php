@@ -40,11 +40,14 @@ class WP_Odm_Solr_WP_Manager {
       )
   	);
 
-		$this->client = new \Solarium\Client($this->server_config);
-
-		$options = get_option('odm_options');
-		$solr_config = $options['solr_config'];
-    $this->client->getEndpoint()->setAuthentication($solr_config['solr_user'],$solr_config['solr_pwd']);
+    try {
+  		$this->client = new \Solarium\Client($this->server_config);
+  		$options = get_option('odm_options');
+  		$solr_config = $options['solr_config'];
+      $this->client->getEndpoint()->setAuthentication($solr_config['solr_user'],$solr_config['solr_pwd']);
+    } catch (Solarium\Exception $e) {
+      wp_odm_solr_log('solr-wp-manager __construct Error: ' . print_r($e));
+    }
 
 	}
 
@@ -52,11 +55,11 @@ class WP_Odm_Solr_WP_Manager {
 
     wp_odm_solr_log('solr-wp-manager ping_server');
 
-    $ping = $this->client->createPing();
-
     try {
+      $ping = $this->client->createPing();
       $result = $this->client->ping($ping);
     } catch (Solarium\Exception $e) {
+      wp_odm_solr_log('solr-wp-manager ping_server Error: ' . print_r($e));
       return false;
     }
 
@@ -67,27 +70,33 @@ class WP_Odm_Solr_WP_Manager {
 
     wp_odm_solr_log('solr-wp-manager index_post ' . print_r($post, true));
 
-    $update = $this->client->createUpdate();
+    $result = null;
 
-		$doc = $update->createDocument();
-		$doc->id = $post->ID;
-		$doc->blogid = get_current_blog_id();
-		$doc->blogdomain = get_site_url();
-		$doc->title = $post->post_title;
-		$doc->permalink = get_permalink($post);
-		$doc->author = $post->post_author;
-		$doc->content = $post->post_content;
-		$doc->excerpt = $post->post_excerpt;
-		$doc->type = $post->post_type;
-		$doc->categories = wp_get_post_categories($post->ID, array('fields' => 'names'));
-		$doc->tags = wp_get_post_tags($post->ID, array('fields' => 'names'));
-		$date = new DateTime($post->post_date);
-		$doc->date = $date->format('Y-m-d\TH:i:s\Z');
-		$modified = new DateTime($post->post_modified);
-		$doc->modified = $modified->format('Y-m-d\TH:i:s\Z');
-		$update->addDocument($doc);
-		$update->addCommit();
-		$result = $this->client->update($update);
+    try {
+      $update = $this->client->createUpdate();
+
+  		$doc = $update->createDocument();
+  		$doc->id = $post->ID;
+  		$doc->blogid = get_current_blog_id();
+  		$doc->blogdomain = get_site_url();
+  		$doc->title = $post->post_title;
+  		$doc->permalink = get_permalink($post);
+  		$doc->author = $post->post_author;
+  		$doc->content = $post->post_content;
+  		$doc->excerpt = $post->post_excerpt;
+  		$doc->type = $post->post_type;
+  		$doc->categories = wp_get_post_categories($post->ID, array('fields' => 'names'));
+  		$doc->tags = wp_get_post_tags($post->ID, array('fields' => 'names'));
+  		$date = new DateTime($post->post_date);
+  		$doc->date = $date->format('Y-m-d\TH:i:s\Z');
+  		$modified = new DateTime($post->post_modified);
+  		$doc->modified = $modified->format('Y-m-d\TH:i:s\Z');
+  		$update->addDocument($doc);
+  		$update->addCommit();
+  		$result = $this->client->update($update);
+    } catch (Solarium\Exception $e) {
+      wp_odm_solr_log('solr-wp-manager index_post Error: ' . print_r($e));
+    }
 
     return $result;
   }
@@ -96,15 +105,17 @@ class WP_Odm_Solr_WP_Manager {
 
     wp_odm_solr_log('solr-wp-manager clear_index');
 
-		// get an update query instance
-		$update = $this->client->createUpdate();
+    $result = null;
 
-		// add the delete query and a commit command to the update query
-		$update->addDeleteQuery('title:*');
-		$update->addCommit();
+    try {
+  		$update = $this->client->createUpdate();
+  		$update->addDeleteQuery('title:*');
+  		$update->addCommit();
 
-		// this executes the query and returns the result
-		$result = $this->client->update($update);
+  		$result = $this->client->update($update);
+    } catch (Solarium\Exception $e) {
+      wp_odm_solr_log('solr-wp-manager clear_index Error: ' . print_r($e));
+    }
 
 		return $result;
   }
@@ -113,22 +124,29 @@ class WP_Odm_Solr_WP_Manager {
 
     wp_odm_solr_log('solr-wp-manager query ' . $text);
 
-		$query = $this->client->createSelect();
-		$query->setQuery($text);
-		if (isset($typeFilter)):
-			$query->createFilterQuery('type')->setQuery('type:' . $typeFilter);
-		endif;
+    $resultset = null;
 
-    $current_country = odm_country_manager()->get_current_country();
-    if ( $current_country != "mekong"):
-			$query->createFilterQuery('country_site')->setQuery('country_site:' . $current_country);
-		endif;
+    try {
+      $query = $this->client->createSelect();
+  		$query->setQuery($text);
+  		if (isset($typeFilter)):
+  			$query->createFilterQuery('type')->setQuery('type:' . $typeFilter);
+  		endif;
 
-    $dismax = $query->getDisMax();
-    $dismax->setQueryFields('title content categories tags');
-    $dismax->setQueryFields('categories^3 title^2 content^1');
+      $current_country = odm_country_manager()->get_current_country();
+      if ( $current_country != "mekong"):
+  			$query->createFilterQuery('country_site')->setQuery('country_site:' . $current_country);
+  		endif;
 
-		$resultset = $this->client->select($query);
+      $dismax = $query->getDisMax();
+      $dismax->setQueryFields('title content categories tags');
+      $dismax->setQueryFields('categories^3 title^2 content^1');
+
+  		$resultset = $this->client->select($query);
+    } catch (Solarium\Exception $e) {
+      wp_odm_solr_log('solr-wp-manager clear_index Error: ' . print_r($e));
+    }
+
 		return $resultset;
 	}
 

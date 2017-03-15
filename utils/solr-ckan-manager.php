@@ -39,22 +39,26 @@ class WP_Odm_Solr_CKAN_Manager {
       )
   	);
 
-		$this->client = new \Solarium\Client($this->server_config);
+    try {
+      $this->client = new \Solarium\Client($this->server_config);
+  		$options = get_option('odm_options');
+  		$solr_config = $options['solr_config'];
+      $this->client->getEndpoint()->setAuthentication($solr_config['solr_user'],$solr_config['solr_pwd']);
+    } catch (Solarium\Exception $e) {
+      wp_odm_solr_log('solr-wp-manager __construct Error: ' . print_r($e));
+    }
 
-		$options = get_option('odm_options');
-		$solr_config = $options['solr_config'];
-    $this->client->getEndpoint()->setAuthentication($solr_config['solr_user'],$solr_config['solr_pwd']);
 	}
 
   function ping_server(){
 
     wp_odm_solr_log('solr-ckan-manager ping_server');
 
-    $ping = $this->client->createPing();
-
     try {
+      $ping = $this->client->createPing();
       $result = $this->client->ping($ping);
     } catch (Solarium\Exception $e) {
+      wp_odm_solr_log('solr-wp-manager ping_server Error: ' . print_r($e));
       return false;
     }
 
@@ -65,23 +69,30 @@ class WP_Odm_Solr_CKAN_Manager {
 
     wp_odm_solr_log('solr-ckan-manager query' . $text);
 
-		$query = $this->client->createSelect();
-		$query->setQuery($text);
-		if (isset($typeFilter)):
-			$query->createFilterQuery('dataset_type')->setQuery('type:' . $typeFilter);
-		endif;
+    $resultset = null;
 
-    $current_country = odm_country_manager()->get_current_country();
-    if ( $current_country != "mekong"):
-      $current_country_code = odm_country_manager()->get_current_country_code();
-			$query->createFilterQuery('extras_odm_spatial_range')->setQuery('extras_odm_spatial_range:' . $current_country_code);
-		endif;
+    try {
+      $query = $this->client->createSelect();
+  		$query->setQuery($text);
+  		if (isset($typeFilter)):
+  			$query->createFilterQuery('dataset_type')->setQuery('type:' . $typeFilter);
+  		endif;
 
-    $dismax = $query->getDisMax();
-    $dismax->setQueryFields('title notes tags');
-    $dismax->setQueryFields('tags^3 title^2 notes^1');
+      $current_country = odm_country_manager()->get_current_country();
+      if ( $current_country != "mekong"):
+        $current_country_code = odm_country_manager()->get_current_country_code();
+  			$query->createFilterQuery('extras_odm_spatial_range')->setQuery('extras_odm_spatial_range:' . $current_country_code);
+  		endif;
 
-		$resultset = $this->client->select($query);
+      $dismax = $query->getDisMax();
+      $dismax->setQueryFields('title notes tags');
+      $dismax->setQueryFields('tags^3 title^2 notes^1');
+
+  		$resultset = $this->client->select($query);
+    } catch (Solarium\Exception $e) {
+      wp_odm_solr_log('solr-wp-manager ping_server Error: ' . print_r($e));
+    }
+
 		return $resultset;
 	}
 
