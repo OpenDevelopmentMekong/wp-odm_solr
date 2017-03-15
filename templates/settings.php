@@ -76,7 +76,7 @@
           <tr valign="top">
               <th scope="row"><label for="wp_odm_solr_setting_solr_pwd"><?php _e('Password','wp-odm_solr') ?></label></th>
               <td>
-                <input class="full-width" type="password" name="wp_odm_solr_setting_solr_pwd" id="wp_odm_solr_setting_solr_pwd" value="<?php echo $solr_pwd ?>"/>
+                <input class="full-width" type="text" name="wp_odm_solr_setting_solr_pwd" id="wp_odm_solr_setting_solr_pwd" value="<?php echo $solr_pwd ?>"/>
                 <p class="description"><?php _e('Password for authentication','wp-odm_solr') ?>.</p>
               </td>
           </tr>
