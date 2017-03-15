@@ -15,7 +15,7 @@
     if (!empty($GLOBALS['wp_odm_solr_options']->get_option('wp_odm_solr_setting_log_path')))
       Analog::handler(Handler\File::init ($GLOBALS['wp_odm_solr_options']->get_option('wp_odm_solr_setting_log_path')));
     else
-      Analog::handler(Handler\File::init (WPCKAN_DEFAULT_LOG_PATH));
+      Analog::handler(Handler\File::init (WP_ODM_SOLR_DEFAULT_LOG_PATH));
 
     Analog::log ( "[ " . $caller['file'] . " | " . $caller['line'] . " ] " . $text );
   }
