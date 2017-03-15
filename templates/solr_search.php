@@ -39,8 +39,8 @@
 
 								<div id="solr_results">
 									<div class="solr_result">
-										<h4><a href="<?php echo wpckan_get_link_to_dataset($document->id) ?>"><?php echo $document->title ?></a></h4>
-										<p><?php echo strip_tags(substr($document->notes,0,400)) ?></p>
+										<h4><a href="<?php echo wpckan_get_link_to_dataset($document->id) ?>"><?php echo wp_odm_solr_highlight_search_words($s,$document->title) ?></a></h4>
+										<p><?php echo strip_tags(substr(wp_odm_solr_highlight_search_words($s,$document->notes),0,400)) ?></p>
 										<p><?php echo "<b>contry</b>: " . $document->extras_odm_spatial_range ?> <?php echo "<b>language</b>: " . $document->extras_odm_language ?> <?php echo "<b>topics</b>: " . $document->extras_taxonomy ?></p>
 										<p></p>
 										<p></p>
@@ -69,7 +69,7 @@
 					);
 
 					foreach( $supported_wp_types as $key => $value):
-						$resultset = WP_Odm_Solr_CKAN_Manager()->query($s,$key);
+						$resultset = WP_Odm_Solr_WP_Manager()->query($s,$key);
 					?>
 
 						<h3><?php echo $value . " (" . $resultset->getNumFound() . ")" ?></h3>
@@ -81,8 +81,8 @@
 
 								<div id="solr_results">
 									<div class="solr_result">
-										<h4><a href="<?php echo $document->permalink ?>"><?php echo $document->title ?></a></h4>
-										<p><?php echo strip_tags(substr($document->content,0,400)) ?></p>
+										<h4><a href="<?php echo $document->permalink ?>"><?php echo wp_odm_solr_highlight_search_words($s,$document->title) ?></a></h4>
+										<p><?php echo strip_tags(substr(wp_odm_solr_highlight_search_words($s,$document->content),0,400)) ?></p>
 										<p><?php if (isset($document->country_site)) echo "<b>country</b>: " . $document->country_site ?> <?php if (is_array($document->odm_language)) echo "<b>language</b>: " . implode(", ",$document->odm_language)  ?> <?php if (is_array($document->categories)) echo "<b>topics</b>: " . implode(", ",$document->categories) ?></p>
 									</div>
 								</div>
