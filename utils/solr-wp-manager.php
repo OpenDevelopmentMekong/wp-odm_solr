@@ -15,6 +15,7 @@ class WP_Odm_Solr_WP_Manager {
 
   var $client = null;
   var $server_config = null;
+  var $configured = false;
 
 	function __construct() {
 
@@ -45,6 +46,7 @@ class WP_Odm_Solr_WP_Manager {
   		$options = get_option('odm_options');
   		$solr_config = $options['solr_config'];
       $this->client->getEndpoint()->setAuthentication($solr_config['solr_user'],$solr_config['solr_pwd']);
+      $configured = true;
     } catch (Solarium\Exception $e) {
       wp_odm_solr_log('solr-wp-manager __construct Error: ' . print_r($e));
     }
@@ -54,6 +56,10 @@ class WP_Odm_Solr_WP_Manager {
   function ping_server(){
 
     wp_odm_solr_log('solr-wp-manager ping_server');
+
+    if (!$this->configured):
+      return false;
+    endif;
 
     try {
       $ping = $this->client->createPing();
@@ -111,7 +117,6 @@ class WP_Odm_Solr_WP_Manager {
   		$update = $this->client->createUpdate();
   		$update->addDeleteQuery('title:*');
   		$update->addCommit();
-
   		$result = $this->client->update($update);
     } catch (Solarium\Exception $e) {
       wp_odm_solr_log('solr-wp-manager clear_index Error: ' . print_r($e));
