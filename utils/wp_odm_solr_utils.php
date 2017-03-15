@@ -9,13 +9,14 @@
 
     $splitted_words = explode(" ",$search_query);
 
+    $highlighted = $to_highlight;
     foreach ($splitted_words as $word):
-      if (strpos($to_highlight,$word) !== FALSE):
-        $to_highlight = str_replace($word,"<b>" . $word . "</b>",$to_highlight);
+      if (!empty($word) && strpos($to_highlight,$word) !== FALSE):
+        $highlighted = str_replace($word,"<b>" . $word . "</b>",$highlighted);
       endif;
     endforeach;
 
-    return $to_highlight;
+    return $highlighted;
   }
 
   function wp_odm_solr_log($text) {
