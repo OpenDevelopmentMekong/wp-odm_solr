@@ -3,6 +3,7 @@
   "version": "0.9.0",
   "description": "ODI Internal Wordpress plugin for indexing created/updated WP contents automatically into a solr index",
   "require": {
-    "solarium/solarium": "^3.8"
+    "solarium/solarium": "^3.8",
+    "analog/analog": "dev-master"
   }
 }

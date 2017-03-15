@@ -1,32 +1,23 @@
 <?php
 
-  use Solarium\Solarium;
-  use Solarium\QueryType\Select\Query\Query as Select;
+  use Analog\Analog;
+  use Analog\Handler;
 
-  function wp_odm_solr_validate_settings_read($solr_host,$solr_port,$solr_path,$solr_core,$solr_scheme,$solr_user,$solr_pwd){
+  define("WP_ODM_SOLR_DEFAULT_LOG_PATH","/tmp/wp_odm_solr.log");
 
-    $server_config = array(
-      'endpoint' => array(
-          'localhost' => array(
-              'host' => $solr_host,
-              'port' => $solr_port,
-              'path' => $solr_path,
-  						'core' => $solr_core,
-  						'scheme' => $solr_scheme
-          )
-      )
-  	);
+  function wp_odm_solr_log($text) {
 
-    try {
-      $client = new \Solarium\Client($server_config);
-      $client->getEndpoint()->setAuthentication($solr_user,$solr_pwd);
-      $ping = $client->createPing();
-      $result = $client->ping($ping);
-    } catch (Solarium\Exception $e) {
-      return false;
-    }
+    if (!$GLOBALS['wp_odm_solr_options']->get_option('wpckan_setting_log_enabled')) return;
 
-    return true;
+    $bt = debug_backtrace();
+    $caller = array_shift($bt);
+
+    if (!empty($GLOBALS['wp_odm_solr_options']->get_option('wp_odm_solr_setting_log_path')))
+      Analog::handler(Handler\File::init ($GLOBALS['wp_odm_solr_options']->get_option('wp_odm_solr_setting_log_path')));
+    else
+      Analog::handler(Handler\File::init (WPCKAN_DEFAULT_LOG_PATH));
+
+    Analog::log ( "[ " . $caller['file'] . " | " . $caller['line'] . " ] " . $text );
   }
 
 ?>
