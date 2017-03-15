@@ -3,7 +3,7 @@
  * Plugin Name: wp-odm_solr
  * Plugin URI: http://github.com/OpenDevelopmentMekong/wp-odm_solr
  * Description: ODI Internal Wordpress plugin for indexing created/updated WP contents automatically into a solr index
- * Version: 0.9.0
+ * Version: 0.9.9
  * Author: Alex Corbi (mail@lifeformapps.com)
  * Author URI: http://www.lifeformapps.com
  * License: GPLv3
@@ -27,6 +27,30 @@ if (!class_exists('WpOdmSolr')) {
             add_action('save_post', array(&$this, 'wp_odm_solr_save_post'));
             add_action('admin_notices', array($this, 'check_requirements'));
             add_action('init', array($this, 'load_text_domain'));
+            add_filter('template_include',array($this,'wp_odm_solr_search_template'));
+            add_action('export_wp', array($this,'wp_odm_solr_increase_export_memory_limit'));
+            add_shortcode( 'admin_scripts_reindex_wp_contents', array($this,'reindex_wp_contents'));
+        }
+
+        function reindex_wp_contents() {
+          ob_start();
+          include( dirname(__FILE__) . '/admin-scripts/reindex-wp-contents.php' );
+          $output = ob_get_contents();
+          ob_end_clean();
+          return $output;
+        }
+
+        public function wp_odm_solr_increase_export_memory_limit() {
+          ini_set('memory_limit', '1024M');
+        }
+
+        public function wp_odm_solr_search_template($template){
+            global $wp_query;
+            if (!$wp_query->is_search):
+                return $template;
+            endif;
+
+            return dirname( __FILE__ ) . '/templates/solr_search.php';
         }
 
         public function load_text_domain()
