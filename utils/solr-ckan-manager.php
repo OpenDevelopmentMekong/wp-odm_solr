@@ -41,9 +41,7 @@ class WP_Odm_Solr_CKAN_Manager {
 
     try {
       $this->client = new \Solarium\Client($this->server_config);
-  		$options = get_option('odm_options');
-  		$solr_config = $options['solr_config'];
-      $this->client->getEndpoint()->setAuthentication($solr_config['solr_user'],$solr_config['solr_pwd']);
+  		$this->client->getEndpoint()->setAuthentication($solr_user,$solr_pwd);
     } catch (Solarium\Exception $e) {
       wp_odm_solr_log('solr-wp-manager __construct Error: ' . print_r($e));
     }
