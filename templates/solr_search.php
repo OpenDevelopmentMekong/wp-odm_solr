@@ -81,7 +81,7 @@
   					);
 
   					foreach( $supported_wp_types as $key => $value):
-  						$resultset = WP_Odm_Solr_CKAN_Manager()->query($s,$key);
+  						$resultset = WP_Odm_Solr_WP_Manager()->query($s,$key);
   					?>
 
   						<h3><?php echo $value . " (" . $resultset->getNumFound() . ")" ?></h3>
