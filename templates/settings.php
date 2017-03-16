@@ -18,8 +18,8 @@
             $logging_path = WP_ODM_SOLR_DEFAULT_LOG_PATH;
           endif;
           $logging_enabled = $GLOBALS['wp_odm_solr_options']->get_option('wp_odm_solr_setting_log_enabled');
-          $valid_connection_wp= isset($solr_host) ? WP_Odm_Solr_WP_Manager()->ping_server() : false;
-          $valid_connection_ckan= isset($solr_host) ? WP_Odm_Solr_CKAN_Manager()->ping_server() : false;
+          //$valid_connection_wp= isset($solr_host) ? WP_Odm_Solr_WP_Manager()->ping_server() : false;
+          //$valid_connection_ckan= isset($solr_host) ? WP_Odm_Solr_CKAN_Manager()->ping_server() : false;
         ?>
 
         <table class="form-table">
@@ -79,23 +79,7 @@
                 <input class="full-width" type="password" name="wp_odm_solr_setting_solr_pwd" id="wp_odm_solr_setting_solr_pwd" value="<?php echo $solr_pwd ?>"/>
                 <p class="description"><?php _e('Password for authentication','wp-odm_solr') ?>.</p>
               </td>
-          </tr>
-          <!-- Connection status -->
-          <tr valign="top">
-            <th scope="row"><label><?php _e('Connection status','wp-odm_solr') ?></label></th>
-            <td>
-              <?php if ($valid_connection_wp){ ?>
-                <p class="ok"><?php _e('Ping to WP index succeded.','wp-odm_solr') ?></p>
-              <?php } else { ?>
-                <p class="error"><?php _e('Problem connecting to WP index. Please, check the specified config.','wp-odm_solr') ?></p>
-              <?php } ?>
-              <?php if ($valid_connection_ckan){ ?>
-                <p class="ok"><?php _e('Ping to CKAN index succeded.','wp-odm_solr') ?></p>
-              <?php } else { ?>
-                <p class="error"><?php _e('Problem connecting to CKAN index. Please, check the specified config.','wp-odm_solr') ?></p>
-              <?php } ?>
-            </td>
-          </tr>
+          </tr>          
           <!-- Logging -->
           <th scope="row"><label><h3><?php _e('Logging','wp_odm_solr') ?></h3></label></th>
           <tr valign="top">
