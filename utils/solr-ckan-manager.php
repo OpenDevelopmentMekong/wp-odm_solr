@@ -91,8 +91,8 @@ class WP_Odm_Solr_CKAN_Manager {
   		endif;
 
       $dismax = $query->getDisMax();
-      $dismax->setQueryFields('title notes tags');
-      $dismax->setQueryFields('tags^3 title^2 notes^1');
+      $dismax->setQueryFields('title notes tags extras_odm_keywords');
+      $dismax->setQueryFields('extras_odm_keywords^4 tags^3 title^2 notes^1');
 
   		$resultset = $this->client->select($query);
     } catch (HttpException $e) {
