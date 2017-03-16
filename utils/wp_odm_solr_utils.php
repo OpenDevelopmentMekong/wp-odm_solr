@@ -4,6 +4,7 @@
   use Analog\Handler;
 
   define("WP_ODM_SOLR_DEFAULT_LOG_PATH","/tmp/wp_odm_solr.log");
+  define("WP_ODM_SOLR_CHECK_REQS",True);
 
   function wp_odm_solr_log($text) {
 

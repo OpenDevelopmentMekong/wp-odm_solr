@@ -25,7 +25,7 @@ if (!class_exists('WpOdmSolr')) {
             add_action('admin_menu', array(&$this, 'wp_odm_solr_add_menu'));
             add_action('admin_enqueue_scripts', array(&$this, 'wp_odm_solr_register_plugin_styles'));
             add_action('save_post', array(&$this, 'wp_odm_solr_save_post'));
-            //add_action('admin_notices', array($this, 'check_requirements'));
+            add_action('admin_notices', array($this, 'check_requirements'));
             add_action('init', array($this, 'load_text_domain'));
             add_filter('template_include',array($this,'wp_odm_solr_search_template'));
             add_action('export_wp', array($this,'wp_odm_solr_increase_export_memory_limit'));
@@ -59,14 +59,17 @@ if (!class_exists('WpOdmSolr')) {
         }
 
         function check_requirements(){
-
-          if (!WP_Odm_Solr_WP_Manager()->ping_server()):
-            echo '<div class="error"><p>WP index seems to be unresponsive or missconfigured, please check.</p></div>';
-          endif;
-
-          if (!WP_Odm_Solr_CKAN_Manager()->ping_server()):
-            echo '<div class="error"><p>CKAN index seems to be unresponsive or missconfigured, please check.</p></div>';
-          endif;
+          
+          if (WP_ODM_SOLR_CHECK_REQS == True):
+            if (!WP_Odm_Solr_CKAN_Manager()->ping_server()):
+              echo '<div class="error"><p>CKAN index seems to be unresponsive or missconfigured, please check.</p></div>';
+            endif;
+            
+            if (!WP_Odm_Solr_WP_Manager()->ping_server()):
+              echo '<div class="error"><p>WP index seems to be unresponsive or missconfigured, please check.</p></div>';
+            endif;     
+          endif;             
+            
         }
 
         public function wp_odm_solr_register_plugin_styles($hook)

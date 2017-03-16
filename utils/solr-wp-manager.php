@@ -1,6 +1,8 @@
 <?php
 
  use Solarium\Solarium;
+ use Solarium\Exception;
+ use Solarium\Exception\HttpException;
  use Solarium\QueryType\Select\Query\Query as Select;
 
  include_once plugin_dir_path(__FILE__).'wp_odm_solr_options.php';
@@ -30,21 +32,22 @@ class WP_Odm_Solr_WP_Manager {
 
     $this->server_config = array(
       'endpoint' => array(
-          'localhost' => array(
+          $solr_host => array(
               'host' => $solr_host,
               'port' => $solr_port,
               'path' => $solr_path,
   						'core' => $solr_core_wp,
-  						'scheme' => $solr_scheme
+  						'scheme' => $solr_scheme,
+              'username' => $solr_user,
+              'password' => $solr_pwd
           )
       )
   	);
 
     try {
-  		$this->client = new \Solarium\Client($this->server_config);  		
-      $this->client->getEndpoint()->setAuthentication($solr_user,$solr_pwd);
-    } catch (Solarium\Exception $e) {
-      wp_odm_solr_log('solr-wp-manager __construct Error: ' . print_r($e));
+  		$this->client = new \Solarium\Client($this->server_config);
+    } catch (HttpException $e) {
+      wp_odm_solr_log('solr-wp-manager __construct Error: ' . $e);
     }
 
 	}
@@ -60,8 +63,8 @@ class WP_Odm_Solr_WP_Manager {
     try {
       $ping = $this->client->createPing();
       $result = $this->client->ping($ping);
-    } catch (Solarium\Exception $e) {
-      wp_odm_solr_log('solr-wp-manager ping_server Error: ' . print_r($e));
+    } catch (HttpException $e) {
+      wp_odm_solr_log('solr-wp-manager ping_server Error: ' . $e);
       return false;
     }
 
@@ -96,7 +99,7 @@ class WP_Odm_Solr_WP_Manager {
   		$update->addDocument($doc);
   		$update->addCommit();
   		$result = $this->client->update($update);
-    } catch (Solarium\Exception $e) {
+    } catch (HttpException $e) {
       wp_odm_solr_log('solr-wp-manager index_post Error: ' . print_r($e));
     }
 
@@ -114,7 +117,7 @@ class WP_Odm_Solr_WP_Manager {
   		$update->addDeleteQuery('title:*');
   		$update->addCommit();
   		$result = $this->client->update($update);
-    } catch (Solarium\Exception $e) {
+    } catch (HttpException $e) {
       wp_odm_solr_log('solr-wp-manager clear_index Error: ' . print_r($e));
     }
 
@@ -144,7 +147,7 @@ class WP_Odm_Solr_WP_Manager {
       $dismax->setQueryFields('categories^3 title^2 content^1');
 
   		$resultset = $this->client->select($query);
-    } catch (Solarium\Exception $e) {
+    } catch (HttpException $e) {
       wp_odm_solr_log('solr-wp-manager clear_index Error: ' . print_r($e));
     }
 
