@@ -100,7 +100,7 @@ class WP_Odm_Solr_WP_Manager {
   		$update->addCommit();
   		$result = $this->client->update($update);
     } catch (HttpException $e) {
-      wp_odm_solr_log('solr-wp-manager index_post Error: ' . print_r($e));
+      wp_odm_solr_log('solr-wp-manager index_post Error: ' . $e);
     }
 
     return $result;
@@ -118,7 +118,7 @@ class WP_Odm_Solr_WP_Manager {
   		$update->addCommit();
   		$result = $this->client->update($update);
     } catch (HttpException $e) {
-      wp_odm_solr_log('solr-wp-manager clear_index Error: ' . print_r($e));
+      wp_odm_solr_log('solr-wp-manager clear_index Error: ' . $e);
     }
 
 		return $result;
@@ -148,7 +148,7 @@ class WP_Odm_Solr_WP_Manager {
 
   		$resultset = $this->client->select($query);
     } catch (HttpException $e) {
-      wp_odm_solr_log('solr-wp-manager clear_index Error: ' . print_r($e));
+      wp_odm_solr_log('solr-wp-manager clear_index Error: ' . $e);
     }
 
 		return $resultset;

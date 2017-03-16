@@ -47,7 +47,7 @@ class WP_Odm_Solr_CKAN_Manager {
     try {
       $this->client = new \Solarium\Client($this->server_config);
     } catch (HttpException $e) {
-      //wp_odm_solr_log('solr-wp-manager __construct Error: ' . print_r($e));
+      wp_odm_solr_log('solr-wp-manager __construct Error: ' . $e);
     }
 
 	}
@@ -96,7 +96,7 @@ class WP_Odm_Solr_CKAN_Manager {
 
   		$resultset = $this->client->select($query);
     } catch (HttpException $e) {
-      wp_odm_solr_log('solr-wp-manager ping_server Error: ' . print_r($e));
+      wp_odm_solr_log('solr-wp-manager ping_server Error: ' . $e);
     }
 
 		return $resultset;
