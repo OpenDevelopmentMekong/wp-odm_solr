@@ -1,6 +1,6 @@
 <?php
 
-require_once dirname(dirname(__FILE__)) . '/utils/wp_od_solr_utils.php';
+require_once dirname(dirname(__FILE__)) . '/utils/wp_odm_solr_utils.php';
 
 class UtilsTest extends PHPUnit_Framework_TestCase
 {
