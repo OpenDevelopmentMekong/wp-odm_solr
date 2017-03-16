@@ -144,7 +144,7 @@ class WP_Odm_Solr_WP_Manager {
 
       $dismax = $query->getDisMax();
       $dismax->setQueryFields('title content categories tags');
-      $dismax->setQueryFields('categories^3 title^2 content^1');
+      $dismax->setQueryFields('tags^4 categories^3 title^2 content^1');
 
   		$resultset = $this->client->select($query);
     } catch (HttpException $e) {
