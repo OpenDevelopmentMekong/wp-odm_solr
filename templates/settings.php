@@ -18,10 +18,6 @@
             $logging_path = WP_ODM_SOLR_DEFAULT_LOG_PATH;
           endif;
           $logging_enabled = $GLOBALS['wp_odm_solr_options']->get_option('wp_odm_solr_setting_log_enabled');
-          if (WP_ODM_SOLR_CHECK_REQS):
-            $valid_connection_wp= isset($solr_host) ? WP_Odm_Solr_WP_Manager()->ping_server() : false;
-            $valid_connection_ckan= isset($solr_host) ? WP_Odm_Solr_CKAN_Manager()->ping_server() : false;
-          endif;
         ?>
 
         <table class="form-table">
@@ -88,12 +84,12 @@
             <tr valign="top">
               <th scope="row"><label><?php _e('Connection status','wp-odm_solr') ?></label></th>
               <td>
-                <?php if ($valid_connection_wp){ ?>
+                <?php if (WP_Odm_Solr_WP_Manager()->ping_server()){ ?>
                   <p class="ok"><?php _e('Ping to WP index succeded.','wp-odm_solr') ?></p>
                 <?php } else { ?>
                   <p class="error"><?php _e('Problem connecting to WP index. Please, check the specified config.','wp-odm_solr') ?></p>
                 <?php } ?>
-                <?php if ($valid_connection_ckan){ ?>
+                <?php if (WP_Odm_Solr_CKAN_Manager()->ping_server()){ ?>
                   <p class="ok"><?php _e('Ping to CKAN index succeded.','wp-odm_solr') ?></p>
                 <?php } else { ?>
                   <p class="error"><?php _e('Problem connecting to CKAN index. Please, check the specified config.','wp-odm_solr') ?></p>
