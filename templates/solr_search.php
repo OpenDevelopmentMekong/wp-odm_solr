@@ -19,95 +19,108 @@
       ?>
      
   		<div class="row">
-        <div class="four columns">
+        <!-- =========== Filters ================ -->
+        <div class="four columns data-advanced-filters">
 
           <h2><i class="fa fa-filter"></i> Filters</h2>
+          
+          <!-- TAXONOMY FILTER -->
+          <div class="single-filter">
+            <label for="taxonomy"><?php _e('Topic', 'odm'); ?></label>
+            <select name="taxonomy" id="taxonomy">
+              <option value="all" selected><?php _e('All','odm') ?></option>
+            </select>
+          </div>
+          <!-- TAXONOMY FILTER -->
 
+          <div class="single-filter">
+            <input class="button" type="submit" value="<?php _e('Search Filter', 'odm'); ?>"/>
+          </div>
 
     		</div>
+        <!-- =========== End of Filters ================ -->
 
-  			<div class="twelve columns">
-          <input type="text" class="search_field" id="search_field" value="<?php echo $_GET["s"] ?> "></input>
+  			<div class="eleven columns">
+          <!-- Full Width Search box --> 
+          <div class="search_bar">
+            <input type="text" class="full-width-search-box" id="search_field" name="query" placeholder="<?php _e('Type your search here', 'odm'); ?>" value="<?php echo $_GET["s"] ?>" />
+          </div>
+
+          <!-- ================ Accordian ================= --> 
           <div id="accordion">
 
   					<?php
-  						$supported_ckan_types = array(
-  							'dataset' => 'Datasets',
-  							'library_record' => 'Library publications',
-  							'laws_record' => 'Laws',
-  							'agreement' => 'Agreements'
+  						$supported_search_types = array(
+                'ckan' => array(
+                  'dataset' => 'Datasets',
+                  'library_record' => 'Library publications',
+                  'laws_record' => 'Laws',
+                  'agreement' => 'Agreements'
+                ),
+                'wp' => array(
+                  'map-layer' => 'Maps',
+                  'news-article' => 'News articles',
+                  'topic' => 'Topics',
+                  'profiles' => 'Profiles',
+                  'story' => 'Story',
+                  'announcement' => 'Announcements',
+                  'site-update' => 'Site updates'
+                )
   						);
+            ?>
+            <?php 
+              foreach ($supported_search_types as $type => $search_types): 
+                foreach ($search_types as $key => $value): 
 
-  						foreach( $supported_ckan_types as $key => $value):
-  							$resultset = WP_Odm_Solr_CKAN_Manager()->query($s,$key);
-  					?>
+                  if ($type == 'ckan') {
+                    $resultset = WP_Odm_Solr_CKAN_Manager()->query($s,$key);
+                  } else {
+                    $resultset = WP_Odm_Solr_WP_Manager()->query($s,$key);
+                  }
 
-  						<h3><?php echo $value . " (" . $resultset->getNumFound() . ")" ?></h3>
-  						<div>
-  						<?php
-  							foreach ($resultset as $document):
+                  $resultcount = ($resultset) ? $resultset->getNumFound() : 0;
+                  
+                  if ($resultcount > 0): 
+            ?>
+                    <h3><?php echo $value . " (" . $resultcount . ")" ?></h3>
+                    <div class=".single_content_result">
+            <?php
+                      foreach ($resultset as $document):
+            ?>
+                        <!-- RESULT LIST -->
+                        <div id="solr_results">
+                          <div class="solr_result">
+                            <?php if ($type == 'ckan'): ?>
 
-  								?>
+                              <!-- CKAN RESULT -->
+                              <h4><a href="<?php echo wpckan_get_link_to_dataset($document->id) ?>"><?php echo $document->title ?></a></h4>
+                              <p><?php echo strip_tags(substr($document->notes,0,400)) ?></p>
+                              <p><?php echo "<b>contry</b>: " . $document->extras_odm_spatial_range ?> <?php echo "<b>language</b>: " . $document->extras_odm_language ?> <?php echo "<b>topics</b>: " . $document->extras_taxonomy ?> <?php echo "<b>keywords</b>: " . $document->extras_odm_keywords ?></p>
+                            
+                            <?php else: ?>
 
-  								<div id="solr_results">
-  									<div class="solr_result">
-  										<h4><a href="<?php echo wpckan_get_link_to_dataset($document->id) ?>"><?php echo $document->title ?></a></h4>
-  										<p><?php echo strip_tags(substr($document->notes,0,400)) ?></p>
-  										<p><?php echo "<b>contry</b>: " . $document->extras_odm_spatial_range ?> <?php echo "<b>language</b>: " . $document->extras_odm_language ?> <?php echo "<b>topics</b>: " . $document->extras_taxonomy ?> <?php echo "<b>keywords</b>: " . $document->extras_odm_keywords ?></p>
-  										<p></p>
-  										<p></p>
-  									</div>
-  								</div>
+                                <!-- WP RESULT -->
+                                <h4><a href="<?php echo $document->permalink ?>"><?php echo $document->title ?></a></h4>
+                                <p><?php echo strip_tags(substr($document->content,0,400)) ?></p>
+                                <p><?php if (isset($document->country_site)) echo "<b>country</b>: " . $document->country_site ?> <?php if (is_array($document->odm_language)) echo "<b>language</b>: " . implode(", ",$document->odm_language)  ?> <?php if (is_array($document->categories)) echo "<b>topics</b>: " . implode(", ",$document->categories) ?> <?php if (is_array($document->tags)) echo "<b>keywords</b>: " . implode(", ",$document->tags) ?></p>
 
-  								<?php
-  							endforeach;
-  						 ?>
-  					 </div>
+                            <?php endif; ?>
+                          </div>
+                        </div>
+            <?php
+                      endforeach;
+            ?>
+                    </div>
+            <?php 
+                  endif; 
+          
+                endforeach; 
+            
+              endforeach; 
+            ?>
 
-  					<?php
-   						endforeach;
-   			 		?>
-
-  					<?php
-
-  					$supported_wp_types = array(
-  						'map-layer' => 'Maps',
-  						'news-article' => 'News articles',
-  						'topic' => 'Topics',
-  						'profiles' => 'Profiles',
-  						'story' => 'Story',
-  						'announcement' => 'Announcements',
-  						'site-update' => 'Site updates'
-  					);
-
-  					foreach( $supported_wp_types as $key => $value):
-  						$resultset = WP_Odm_Solr_WP_Manager()->query($s,$key);
-  					?>
-
-  						<h3><?php echo $value . " (" . $resultset->getNumFound() . ")" ?></h3>
-  						<div>
-  						<?php
-  							foreach ($resultset as $document):
-
-  								?>
-
-  								<div id="solr_results">
-  									<div class="solr_result">
-  										<h4><a href="<?php echo $document->permalink ?>"><?php echo $document->title ?></a></h4>
-  										<p><?php echo strip_tags(substr($document->content,0,400)) ?></p>
-  										<p><?php if (isset($document->country_site)) echo "<b>country</b>: " . $document->country_site ?> <?php if (is_array($document->odm_language)) echo "<b>language</b>: " . implode(", ",$document->odm_language)  ?> <?php if (is_array($document->categories)) echo "<b>topics</b>: " . implode(", ",$document->categories) ?> <?php if (is_array($document->tags)) echo "<b>keywords</b>: " . implode(", ",$document->tags) ?></p>
-  									</div>
-  								</div>
-
-  								<?php
-  							endforeach;
-  						 ?>
-  					 </div>
-
-  					<?php
-  					endforeach;
-  					?>
   				</div>
+          <!-- End of Accordian -->
   			</div>
   		</div>
     
