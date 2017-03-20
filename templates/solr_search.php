@@ -6,18 +6,18 @@
  ?>
 
 <section class="container">
-  
-  <?php     
+
+  <?php
     if (!WP_Odm_Solr_WP_Manager()->ping_server() || !WP_Odm_Solr_CKAN_Manager()->ping_server()):  ?>
     <div class="row">
       <div class="sixteen columns">
           <p class="error"><?php _e("wp-odm_solr plugin is not properly configured. Please contact the system's administrator","wp-odm_solr"); ?></p>
       </div>
     </div>
-    <?php 
-    else: 
+    <?php
+    else:
       ?>
-     
+
   		<div class="row">
         <div class="four columns">
 
@@ -51,9 +51,9 @@
 
   								<div id="solr_results">
   									<div class="solr_result">
-  										<h4><a href="<?php echo wpckan_get_link_to_dataset($document->id) ?>"><?php echo $document->title ?></a></h4>
-  										<p><?php echo strip_tags(substr($document->notes,0,400)) ?></p>
-  										<p><?php echo "<b>contry</b>: " . $document->extras_odm_spatial_range ?> <?php echo "<b>language</b>: " . $document->extras_odm_language ?> <?php echo "<b>topics</b>: " . $document->extras_taxonomy ?> <?php echo "<b>keywords</b>: " . $document->extras_odm_keywords ?></p>
+  										<h4><a href="<?php echo wpckan_get_link_to_dataset($document->id) ?>"><?php echo wp_odm_solr_highlight_search_words($s,$document->title) ?></a></h4>
+                      <p><?php echo substr(wp_odm_solr_highlight_search_words($s,strip_tags($document->notes)),0,400) ?></p>
+                      <p><?php echo "<b>contry</b>: " . $document->extras_odm_spatial_range ?> <?php echo "<b>language</b>: " . $document->extras_odm_language ?> <?php echo "<b>topics</b>: " . $document->extras_taxonomy ?> <?php echo "<b>keywords</b>: " . $document->extras_odm_keywords ?></p>
   										<p></p>
   										<p></p>
   									</div>
@@ -93,9 +93,9 @@
 
   								<div id="solr_results">
   									<div class="solr_result">
-  										<h4><a href="<?php echo $document->permalink ?>"><?php echo $document->title ?></a></h4>
-  										<p><?php echo strip_tags(substr($document->content,0,400)) ?></p>
-  										<p><?php if (isset($document->country_site)) echo "<b>country</b>: " . $document->country_site ?> <?php if (is_array($document->odm_language)) echo "<b>language</b>: " . implode(", ",$document->odm_language)  ?> <?php if (is_array($document->categories)) echo "<b>topics</b>: " . implode(", ",$document->categories) ?> <?php if (is_array($document->tags)) echo "<b>keywords</b>: " . implode(", ",$document->tags) ?></p>
+  										<h4><a href="<?php echo $document->permalink ?>"><?php echo wp_odm_solr_highlight_search_words($s,$document->title) ?></a></h4>
+                      <p><?php echo substr(wp_odm_solr_highlight_search_words($s,strip_tags($document->content)),0,400) ?></p>
+                      <p><?php if (isset($document->country_site)) echo "<b>country</b>: " . $document->country_site ?> <?php if (is_array($document->odm_language)) echo "<b>language</b>: " . implode(", ",$document->odm_language)  ?> <?php if (is_array($document->categories)) echo "<b>topics</b>: " . implode(", ",$document->categories) ?> <?php if (is_array($document->tags)) echo "<b>keywords</b>: " . implode(", ",$document->tags) ?></p>
   									</div>
   								</div>
 
@@ -110,8 +110,8 @@
   				</div>
   			</div>
   		</div>
-    
-    <?php 
+
+    <?php
       endif; ?>
 	</section>
 
