@@ -75,7 +75,12 @@ class WP_Odm_Solr_CKAN_Manager {
 
     wp_odm_solr_log('solr-ckan-manager query ' . $text);
 
-    $resultset = null;
+    $result = array(
+      "resultset" => null,
+      "facets" => array(
+        "vocab_taxonomy" => array()
+      ),
+    );
 
     try {
       $query = $this->client->createSelect();
@@ -91,15 +96,29 @@ class WP_Odm_Solr_CKAN_Manager {
   		endif;
 
       $dismax = $query->getDisMax();
-      $dismax->setQueryFields('title notes tags extras_odm_keywords');
-      $dismax->setQueryFields('extras_odm_keywords^4 tags^3 title^2 notes^1');
+      $dismax->setQueryFields('title notes vocab_taxonomy extras_odm_keywords');
+      $dismax->setQueryFields('extras_odm_keywords^4 vocab_taxonomy^3 title^2 notes^1');
+
+      $facetSet = $query->getFacetSet();
+      $facetSet->createFacetField('vocab_taxonomy')->setField('vocab_taxonomy');
 
   		$resultset = $this->client->select($query);
+      $result["resultset"] = $resultset;
+
+      foreach ($result["facets"] as $key => $objects):
+        $facet = $resultset->getFacetSet()->getFacet($key);
+        if (isset($facet)):
+          foreach($facet as $value => $count) {
+            array_push($result["facets"][$key],array($value => $count));
+          }
+        endif;
+      endforeach;
+
     } catch (HttpException $e) {
       wp_odm_solr_log('solr-wp-manager ping_server Error: ' . $e);
     }
 
-		return $resultset;
+		return $result;
 	}
 
 }

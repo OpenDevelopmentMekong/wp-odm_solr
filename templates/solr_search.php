@@ -39,7 +39,8 @@
   						);
 
   						foreach( $supported_ckan_types as $key => $value):
-  							$resultset = WP_Odm_Solr_CKAN_Manager()->query($s,$key);
+  							$result = WP_Odm_Solr_CKAN_Manager()->query($s,$key);
+                $resultset = $result["resultset"];
   					?>
 
   						<h3><?php echo $value . " (" . $resultset->getNumFound() . ")" ?></h3>
@@ -53,7 +54,7 @@
   									<div class="solr_result">
   										<h4><a href="<?php echo wpckan_get_link_to_dataset($document->id) ?>"><?php echo wp_odm_solr_highlight_search_words($s,$document->title) ?></a></h4>
                       <p><?php echo substr(wp_odm_solr_highlight_search_words($s,strip_tags($document->notes)),0,400) ?></p>
-                      <p><?php echo "<b>contry</b>: " . $document->extras_odm_spatial_range ?> <?php echo "<b>language</b>: " . $document->extras_odm_language ?> <?php echo "<b>topics</b>: " . $document->extras_taxonomy ?> <?php echo "<b>keywords</b>: " . $document->extras_odm_keywords ?></p>
+                      <p><?php echo "<b>contry</b>: " . $document->extras_odm_spatial_range ?> <?php echo "<b>language</b>: " . $document->extras_odm_language ?> <?php echo "<b>topics</b>: " . $document->vocab_taxonomy ?> <?php echo "<b>keywords</b>: " . $document->extras_odm_keywords ?></p>
   										<p></p>
   										<p></p>
   									</div>
@@ -81,7 +82,8 @@
   					);
 
   					foreach( $supported_wp_types as $key => $value):
-  						$resultset = WP_Odm_Solr_WP_Manager()->query($s,$key);
+  						$result = WP_Odm_Solr_WP_Manager()->query($s,$key);
+              $resultset = $result["resultset"];
   					?>
 
   						<h3><?php echo $value . " (" . $resultset->getNumFound() . ")" ?></h3>

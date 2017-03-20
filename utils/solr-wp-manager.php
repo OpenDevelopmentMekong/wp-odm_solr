@@ -128,7 +128,12 @@ class WP_Odm_Solr_WP_Manager {
 
     wp_odm_solr_log('solr-wp-manager query ' . $text);
 
-    $resultset = null;
+    $result = array(
+      "resultset" => null,
+      "facets" => array(
+        "categories" => array()
+      ),
+    );
 
     try {
       $query = $this->client->createSelect();
@@ -146,12 +151,26 @@ class WP_Odm_Solr_WP_Manager {
       $dismax->setQueryFields('title content categories tags');
       $dismax->setQueryFields('tags^4 categories^3 title^2 content^1');
 
+      $facetSet = $query->getFacetSet();
+      $facetSet->createFacetField('categories')->setField('categories');
+
   		$resultset = $this->client->select($query);
+      $result["resultset"] = $resultset;
+
+      foreach ($result["facets"] as $key => $objects):
+        $facet = $resultset->getFacetSet()->getFacet($key);
+        if (isset($facet)):
+          foreach($facet as $value => $count) {
+            array_push($result["facets"][$key],array($value => $count));
+          }
+        endif;
+      endforeach;
+
     } catch (HttpException $e) {
       wp_odm_solr_log('solr-wp-manager clear_index Error: ' . $e);
     }
 
-		return $resultset;
+		return $result;
 	}
 
 }
