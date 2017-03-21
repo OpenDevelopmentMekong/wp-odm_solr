@@ -54,7 +54,7 @@
   									<div class="solr_result">
   										<h4><a href="<?php echo wpckan_get_link_to_dataset($document->id) ?>"><?php echo wp_odm_solr_highlight_search_words($s,$document->title) ?></a></h4>
                       <p><?php echo substr(wp_odm_solr_highlight_search_words($s,strip_tags($document->notes)),0,400) ?></p>
-                      <p><?php echo "<b>contry</b>: " . $document->extras_odm_spatial_range ?> <?php echo "<b>language</b>: " . $document->extras_odm_language ?> <?php echo "<b>topics</b>: " . $document->vocab_taxonomy ?> <?php echo "<b>keywords</b>: " . $document->extras_odm_keywords ?></p>
+                      <p><?php echo "<b>contry</b>: " . $document->extras_odm_spatial_range ?> <?php echo "<b>language</b>: " . $document->extras_odm_language ?> <?php echo "<b>topics</b>: " . implode(", ",$document->vocab_taxonomy) ?> <?php echo "<b>keywords</b>: " . $document->extras_odm_keywords ?></p>
   										<p></p>
   										<p></p>
   									</div>
