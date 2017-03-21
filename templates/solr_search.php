@@ -97,7 +97,10 @@
   								<div id="solr_results">
   									<div class="solr_result">
   										<h4><a href="<?php echo $document->permalink ?>"><?php echo wp_odm_solr_highlight_search_words($s,$document->title) ?></a></h4>
-                      <p><?php echo substr(wp_odm_solr_highlight_search_words($s,strip_tags($document->content)),0,400) ?></p>
+                      <?php
+                        $description = wp_odm_solr_parse_multilingual_wp_content($document->content,odm_language_manager()->get_current_language(),$document->content);
+                       ?>
+                      <p><?php echo substr(wp_odm_solr_highlight_search_words($s,strip_tags($description)),0,400) ?></p>
                       <p><?php if (isset($document->country_site)) echo "<b>country</b>: " . $document->country_site ?> <?php if (is_array($document->odm_language)) echo "<b>language</b>: " . implode(", ",$document->odm_language)  ?> <?php if (is_array($document->categories)) echo "<b>topics</b>: " . implode(", ",$document->categories) ?> <?php if (is_array($document->tags)) echo "<b>keywords</b>: " . implode(", ",$document->tags) ?></p>
   									</div>
   								</div>
