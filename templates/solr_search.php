@@ -53,10 +53,11 @@
   								<div id="solr_results">
   									<div class="solr_result">
   										<h4><a href="<?php echo wpckan_get_link_to_dataset($document->id) ?>"><?php echo wp_odm_solr_highlight_search_words($s,$document->title) ?></a></h4>
-                      <p><?php echo substr(wp_odm_solr_highlight_search_words($s,strip_tags($document->notes)),0,400) ?></p>
+                      <?php
+                        $description = wp_odm_solr_parse_multilingual_ckan_content($document->notes_translated,odm_language_manager()->get_current_language(),$document->notes);
+                       ?>
+                      <p><?php echo substr(wp_odm_solr_highlight_search_words($s,strip_tags($description)),0,400) ?></p>
                       <p><?php echo "<b>contry</b>: " . $document->extras_odm_spatial_range ?> <?php echo "<b>language</b>: " . $document->extras_odm_language ?> <?php echo "<b>topics</b>: " . implode(", ",$document->vocab_taxonomy) ?> <?php echo "<b>keywords</b>: " . $document->extras_odm_keywords ?></p>
-  										<p></p>
-  										<p></p>
   									</div>
   								</div>
 
