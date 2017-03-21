@@ -15,62 +15,95 @@
       </div>
     </div>
     <?php
-    else:
-      ?>
+    else: ?>
 
-  		<div class="row">
-        <div class="four columns">
+		<div class="row">
+      <div class="four columns">
 
-          <h2><i class="fa fa-filter"></i> Filters</h2>
+        <h2><i class="fa fa-filter"></i> Filters</h2>
 
+  		</div>
 
-    		</div>
+			<div class="twelve columns">
+        <input type="text" class="search_field" id="search_field" value="<?php echo $_GET["s"] ?> "></input>
+        <div id="accordion" class="solr_results">
+					<?php
+						$supported_ckan_types = array(
+							'dataset' => 'Datasets',
+							'library_record' => 'Library publications',
+							'laws_record' => 'Laws',
+							'agreement' => 'Agreements'
+						);
 
-  			<div class="twelve columns">
-          <input type="text" class="search_field" id="search_field" value="<?php echo $_GET["s"] ?> "></input>
-          <div id="accordion">
+						foreach( $supported_ckan_types as $key => $value):
+							$result = WP_Odm_Solr_CKAN_Manager()->query($s,$key);
+              $resultset = $result["resultset"]; ?>
 
-  					<?php
-  						$supported_ckan_types = array(
-  							'dataset' => 'Datasets',
-  							'library_record' => 'Library publications',
-  							'laws_record' => 'Laws',
-  							'agreement' => 'Agreements'
-  						);
-
-  						foreach( $supported_ckan_types as $key => $value):
-  							$result = WP_Odm_Solr_CKAN_Manager()->query($s,$key);
-                $resultset = $result["resultset"];
-  					?>
-
-  						<h3><?php echo $value . " (" . $resultset->getNumFound() . ")" ?></h3>
-  						<div>
-  						<?php
+						<h3><?php echo $value . " (" . $resultset->getNumFound() . ")" ?></h3>
+            <div>
+						<?php
+              if ($resultset->getNumFound() == 0): ?>
+                <div class="solr_no_result">
+                  <?php _e("No record found","wp-odm_solr"); ?>
+                </div>
+              <?php
+              else:
   							foreach ($resultset as $document):
-
   								?>
-
-  								<div id="solr_results">
   									<div class="solr_result">
-  										<h4><a href="<?php echo wpckan_get_link_to_dataset($document->id) ?>"><?php echo wp_odm_solr_highlight_search_words($s,$document->title) ?></a></h4>
+                      <?php
+                        $title = wp_odm_solr_parse_multilingual_ckan_content($document->title_translated,odm_language_manager()->get_current_language(),$document->title);
+                        $title = wp_odm_solr_highlight_search_words($s,$title);
+                       ?>
+  										<h4>
+                        <a href="<?php echo wpckan_get_link_to_dataset($document->id) ?>">
+                          <?php echo $title ?>
+                        </a>
+                      </h4>
                       <?php
                         $description = wp_odm_solr_parse_multilingual_ckan_content($document->notes_translated,odm_language_manager()->get_current_language(),$document->notes);
-                       ?>
-                      <p><?php echo substr(wp_odm_solr_highlight_search_words($s,strip_tags($description)),0,400) ?></p>
-                      <p><?php echo "<b>contry</b>: " . $document->extras_odm_spatial_range ?> <?php echo "<b>language</b>: " . $document->extras_odm_language ?> <?php echo "<b>topics</b>: " . implode(", ",$document->vocab_taxonomy) ?> <?php echo "<b>keywords</b>: " . $document->extras_odm_keywords ?></p>
-  									</div>
-  								</div>
+                        $description = strip_tags($description);
+                        $description = substr($description,0,400);
+                        $description = wp_odm_solr_highlight_search_words($s,$description);
 
+                       ?>
+                      <p>
+                      <?php
+                        echo $description;
+                        if (strlen($description) == 400):
+                          echo "...";
+                        endif;
+                        ?>
+                      </p>
+                      <p>
+                        <?php
+                          if (!empty($document->extras_odm_spatial_range)): ?>
+                            <b><?php _e("Country", "wp-odm_solr") ?></b>: <?php _e($document->extras_odm_spatial_range, "wp-odm_solr") ?>
+                        <?php
+                          endif;
+                          if (!empty($document->extras_odm_language)): ?>
+                            <b><?php _e("Language", "wp-odm_solr") ?></b>: <?php echo $document->extras_odm_language ?>
+                        <?php
+                          endif;
+                          if (!empty($document->vocab_taxonomy)): ?>
+                            <b><?php _e("Topics", "wp-odm_solr") ?></b>: <?php echo implode(", ",$document->vocab_taxonomy)?>
+                        <?php
+                          endif;
+                          if (!empty($document->extras_odm_keywords)): ?>
+                            <b><?php _e("Keywords", "wp-odm_solr") ?></b>: <?php echo implode(", ",$document->extras_odm_keywords)?>
+                        <?php
+                          endif;?>
+                      </p>
+  									</div>
   								<?php
   							endforeach;
-  						 ?>
-  					 </div>
+              endif; ?>
+              </div>
+            <?php
+ 						endforeach;
+ 			 		?>
 
-  					<?php
-   						endforeach;
-   			 		?>
-
-  					<?php
+					<?php
 
   					$supported_wp_types = array(
   						'map-layer' => 'Maps',
@@ -88,35 +121,71 @@
   					?>
 
   						<h3><?php echo $value . " (" . $resultset->getNumFound() . ")" ?></h3>
-  						<div>
+              <div>
   						<?php
-  							foreach ($resultset as $document):
-
-  								?>
-
-  								<div id="solr_results">
+                if ($resultset->getNumFound() == 0): ?>
+                  <div class="solr_no_result">
+                    <?php _e("No record found","wp-odm_solr"); ?>
+                  </div>
+                <?php
+                else:
+    							foreach ($resultset as $document):
+    								?>
   									<div class="solr_result">
-  										<h4><a href="<?php echo $document->permalink ?>"><?php echo wp_odm_solr_highlight_search_words($s,$document->title) ?></a></h4>
+                      <?php
+                        $title = wp_odm_solr_parse_multilingual_wp_content($document->title,odm_language_manager()->get_current_language(),$document->title);
+                        $title = wp_odm_solr_highlight_search_words($s,$title);
+                       ?>
+  										<h4>
+                        <a href="<?php echo $document->permalink ?>">
+                          <?php echo $title ?>
+                        </a>
+                      </h4>
                       <?php
                         $description = wp_odm_solr_parse_multilingual_wp_content($document->content,odm_language_manager()->get_current_language(),$document->content);
                         $description = strip_shortcodes($description);
+                        $description = strip_tags($description);
+                        $description = substr($description,0,400);
+                        $description = wp_odm_solr_highlight_search_words($s,$description);
                        ?>
-                      <p><?php echo substr(wp_odm_solr_highlight_search_words($s,strip_tags($description)),0,400) ?></p>
-                      <p><?php if (isset($document->country_site)) echo "<b>country</b>: " . $document->country_site ?> <?php if (is_array($document->odm_language)) echo "<b>language</b>: " . implode(", ",$document->odm_language)  ?> <?php if (is_array($document->categories)) echo "<b>topics</b>: " . implode(", ",$document->categories) ?> <?php if (is_array($document->tags)) echo "<b>keywords</b>: " . implode(", ",$document->tags) ?></p>
-  									</div>
-  								</div>
-
-  								<?php
-  							endforeach;
-  						 ?>
-  					 </div>
-
-  					<?php
+                      <p>
+                        <?php
+                        echo $description;
+                        if (strlen($description) == 400):
+                          echo "...";
+                        endif;
+                        ?>
+                      </p>
+                      <p>
+                        <?php
+                          if (!empty($document->country_site)): ?>
+                            <b><?php _e("Country", "wp-odm_solr") ?></b>: <?php _e($document->country_site, "wp-odm_solr") ?>
+                        <?php
+                          endif;
+                          if (!empty($document->odm_language)): ?>
+                            <b><?php _e("Language", "wp-odm_solr") ?></b>: <?php echo implode(", ",$document->odm_language)?>
+                        <?php
+                          endif;
+                          if (!empty($document->categories)): ?>
+                            <b><?php _e("Topics", "wp-odm_solr") ?></b>: <?php echo implode(", ",$document->categories)?>
+                        <?php
+                          endif;
+                          if (!empty($document->tags)): ?>
+                            <b><?php _e("Keywords", "wp-odm_solr") ?></b>: <?php echo implode(", ",$document->tags)?>
+                        <?php
+                          endif;?>
+                      </p>
+        						</div>
+    								<?php
+    							endforeach;
+                endif; ?>
+                </div>
+              <?php 
   					endforeach;
   					?>
-  				</div>
-  			</div>
-  		</div>
+				</div>
+			</div>
+		</div>
 
     <?php
       endif; ?>
@@ -127,8 +196,8 @@
     jQuery(document).ready(function() {
 
       jQuery( "#accordion" ).accordion({
-				collapsible: true, active: false
-			});
+        collapsible: true, active: false, header: "h3"
+      });
 
       jQuery('#search_field').keydown(function(event) {
         if (event.keyCode == 13) {
