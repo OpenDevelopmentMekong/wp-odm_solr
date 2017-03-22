@@ -78,7 +78,10 @@ class WP_Odm_Solr_CKAN_Manager {
     $result = array(
       "resultset" => null,
       "facets" => array(
-        "vocab_taxonomy" => array()
+        "vocab_taxonomy" => array(),
+        "extras_odm_keywords" => array(),
+        "extras_odm_spatial_range" => array(),
+        "extras_odm_language" => array()
       ),
     );
 
@@ -100,7 +103,9 @@ class WP_Odm_Solr_CKAN_Manager {
       $dismax->setQueryFields('extras_odm_keywords^4 vocab_taxonomy^3 title^2 notes^1');
 
       $facetSet = $query->getFacetSet();
-      $facetSet->createFacetField('vocab_taxonomy')->setField('vocab_taxonomy');
+      foreach ($result["facets"] as $key => $objects):
+        $facetSet->createFacetField($key)->setField($key);
+      endforeach;
 
   		$resultset = $this->client->select($query);
       $result["resultset"] = $resultset;

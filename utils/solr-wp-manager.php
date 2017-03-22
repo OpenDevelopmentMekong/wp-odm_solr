@@ -131,7 +131,10 @@ class WP_Odm_Solr_WP_Manager {
     $result = array(
       "resultset" => null,
       "facets" => array(
-        "categories" => array()
+        "categories" => array(),
+        "tags" => array(),
+        "country_site" => array(),
+        "odm_language" => array()
       ),
     );
 
@@ -152,7 +155,9 @@ class WP_Odm_Solr_WP_Manager {
       $dismax->setQueryFields('tags^4 categories^3 title^2 content^1');
 
       $facetSet = $query->getFacetSet();
-      $facetSet->createFacetField('categories')->setField('categories');
+      foreach ($result["facets"] as $key => $objects):
+        $facetSet->createFacetField($key)->setField($key);
+      endforeach;
 
   		$resultset = $this->client->select($query);
       $result["resultset"] = $resultset;
