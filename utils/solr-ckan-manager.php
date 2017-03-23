@@ -99,7 +99,6 @@ class WP_Odm_Solr_CKAN_Manager {
   		endif;
 
       $dismax = $query->getDisMax();
-      $dismax->setQueryFields('title notes vocab_taxonomy extras_odm_keywords');
       $dismax->setQueryFields('extras_odm_keywords^4 vocab_taxonomy^3 title^2 notes^1');
 
       $facetSet = $query->getFacetSet();

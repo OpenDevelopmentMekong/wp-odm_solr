@@ -150,8 +150,7 @@ class WP_Odm_Solr_WP_Manager {
   			$query->createFilterQuery('country_site')->setQuery('country_site:' . $current_country);
   		endif;
 
-      $dismax = $query->getDisMax();
-      $dismax->setQueryFields('title content categories tags');
+      $dismax = $query->getDisMax();      
       $dismax->setQueryFields('tags^4 categories^3 title^2 content^1');
 
       $facetSet = $query->getFacetSet();

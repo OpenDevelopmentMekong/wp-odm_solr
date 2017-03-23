@@ -25,7 +25,7 @@
   		</div>
 
 			<div class="twelve columns">
-        <input type="text" class="search_field" id="search_field" value="<?php echo $_GET["s"] ?> "></input>
+        <input type="text" class="search_field" id="search_field" value="<?php echo $_GET["s"]?>" data-solr-host="<?php echo $GLOBALS['wp_odm_solr_options']->get_option('wp_odm_solr_setting_solr_host'); ?>" data-solr-scheme="<?php echo $GLOBALS['wp_odm_solr_options']->get_option('wp_odm_solr_setting_solr_scheme'); ?>" data-solr-path="<?php echo $GLOBALS['wp_odm_solr_options']->get_option('wp_odm_solr_setting_solr_path'); ?>" data-solr-core-wp="<?php echo $GLOBALS['wp_odm_solr_options']->get_option('wp_odm_solr_setting_solr_core_wp'); ?>" data-solr-core-ckan="<?php echo $GLOBALS['wp_odm_solr_options']->get_option('wp_odm_solr_setting_solr_core_ckan'); ?>"></input>
         <div id="accordion" class="solr_results">
 					<?php
 						$supported_ckan_types = array(
@@ -65,7 +65,6 @@
                         $description = strip_tags($description);
                         $description = substr($description,0,400);
                         $description = wp_odm_solr_highlight_search_words($s,$description);
-
                        ?>
                       <p>
                       <?php
@@ -205,6 +204,67 @@
             return false;
          }
       });
+      
+      jQuery('#search_field').autocomplete({
+        source: function( request, response ) {
+          var host = jQuery('#search_field').data("solr-host");
+          var scheme = jQuery('#search_field').data("solr-scheme");
+          var path = jQuery('#search_field').data("solr-path");
+          var core_wp = jQuery('#search_field').data("solr-core-wp");
+          var core_ckan = jQuery('#search_field').data("solr-core-ckan");
+          var url = scheme + "://" + host  + path + core_wp + "/suggest"; 
+        
+          $.ajax({
+            url: url,
+            data: {'wt':'json', 'q':request.term, 'json.wrf': 'callback'},
+            dataType: "jsonp",
+            jsonpCallback: 'callback',
+            contentType: "application/json",
+            success: function( data ) {
+              var options = [];
+              if (data){
+                if(data.spellcheck){                  
+                  var spellcheck = data.spellcheck;
+                  if (spellcheck.suggestions){
+                    var suggestions = spellcheck.suggestions;                    
+                    if (suggestions[1]){
+                      var suggestionObject = suggestions[1];
+                      options = suggestionObject.suggestion;
+                    }
+                  }
+                }
+              }
+              response( options );
+            }
+          });
+        },
+        minLength: 2
+      });
+      
+      /*function returnSuggestions(query, callback) {
+        var host = jQuery('#search_field').data("solr-host");
+        var scheme = jQuery('#search_field').data("solr-scheme");
+        var path = jQuery('#search_field').data("solr-path");
+        var core_wp = jQuery('#search_field').data("solr-core-wp");
+        var core_ckan = jQuery('#search_field').data("solr-core-ckan");        
+        var url = scheme + "://" + host  + path + core_wp + "/suggest?wt=json&q=" + query;        
+        $.get( url , function( data ) {
+          var response = [];
+          if (data){
+            if(data["spellcheck"]){
+              var spellcheck = data["spellcheck"];
+              if (spellcheck["suggestions"]){
+                var suggestion = spellcheck["suggestions"];
+                if (suggestions["suggestion"]){
+                  response = suggestions["suggestion"];
+                }
+              }
+            }
+          }
+          callback(response);
+        });
+        
+      }*/
     });
 
 	</script>
