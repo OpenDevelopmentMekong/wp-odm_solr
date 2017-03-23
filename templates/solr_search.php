@@ -223,10 +223,10 @@
             success: function( data ) {
               var options = [];
               if (data){
-                if(data.spellcheck){                  
+                if(data.spellcheck){
                   var spellcheck = data.spellcheck;
                   if (spellcheck.suggestions){
-                    var suggestions = spellcheck.suggestions;                    
+                    var suggestions = spellcheck.suggestions;
                     if (suggestions[1]){
                       var suggestionObject = suggestions[1];
                       options = suggestionObject.suggestion;
@@ -240,31 +240,6 @@
         },
         minLength: 2
       });
-      
-      /*function returnSuggestions(query, callback) {
-        var host = jQuery('#search_field').data("solr-host");
-        var scheme = jQuery('#search_field').data("solr-scheme");
-        var path = jQuery('#search_field').data("solr-path");
-        var core_wp = jQuery('#search_field').data("solr-core-wp");
-        var core_ckan = jQuery('#search_field').data("solr-core-ckan");        
-        var url = scheme + "://" + host  + path + core_wp + "/suggest?wt=json&q=" + query;        
-        $.get( url , function( data ) {
-          var response = [];
-          if (data){
-            if(data["spellcheck"]){
-              var spellcheck = data["spellcheck"];
-              if (spellcheck["suggestions"]){
-                var suggestion = spellcheck["suggestions"];
-                if (suggestions["suggestion"]){
-                  response = suggestions["suggestion"];
-                }
-              }
-            }
-          }
-          callback(response);
-        });
-        
-      }*/
     });
 
 	</script>
