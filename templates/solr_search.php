@@ -69,7 +69,7 @@
                       <p>
                       <?php
                         echo $description;
-                        if (strlen($description) == 400):
+                        if (strlen($description) >= 400):
                           echo "...";
                         endif;
                         ?>
@@ -77,19 +77,31 @@
                       <p>
                         <?php
                           if (!empty($document->extras_odm_spatial_range)): ?>
-                            <b><?php _e("Country", "wp-odm_solr") ?></b>: <?php _e($document->extras_odm_spatial_range, "wp-odm_solr") ?>
+                            <b><?php _e("Country", "wp-odm_solr") ?></b>:
+                            <?php
+                              $hihglighted_value = wp_odm_solr_highlight_search_words($s,$document->extras_odm_spatial_range);
+                              _e($hihglighted_value, "wp-odm_solr") ?>
                         <?php
                           endif;
                           if (!empty($document->extras_odm_language)): ?>
-                            <b><?php _e("Language", "wp-odm_solr") ?></b>: <?php echo $document->extras_odm_language ?>
+                            <b><?php _e("Language", "wp-odm_solr") ?></b>:
+                            <?php
+                              $hihglighted_value = wp_odm_solr_highlight_search_words($s,$document->extras_odm_language);
+                              _e($hihglighted_value, "wp-odm_solr") ?>
                         <?php
                           endif;
                           if (!empty($document->vocab_taxonomy)): ?>
-                            <b><?php _e("Topics", "wp-odm_solr") ?></b>: <?php echo implode(", ",$document->vocab_taxonomy)?>
+                            <b><?php _e("Topics", "wp-odm_solr") ?></b>:
+                            <?php
+                              $hihglighted_value = wp_odm_solr_highlight_search_words($s,implode(", ",$document->vocab_taxonomy));
+                              _e($hihglighted_value, "wp-odm_solr") ?>
                         <?php
                           endif;
                           if (!empty($document->extras_odm_keywords)): ?>
-                            <b><?php _e("Keywords", "wp-odm_solr") ?></b>: <?php echo implode(", ",$document->extras_odm_keywords)?>
+                            <b><?php _e("Keywords", "wp-odm_solr") ?></b>:
+                            <?php
+                              $hihglighted_value = wp_odm_solr_highlight_search_words($s,implode(", ",$document->extras_odm_keywords));
+                              _e($hihglighted_value, "wp-odm_solr") ?>
                         <?php
                           endif;?>
                       </p>
@@ -150,7 +162,7 @@
                       <p>
                         <?php
                         echo $description;
-                        if (strlen($description) == 400):
+                        if (strlen($description) >= 400):
                           echo "...";
                         endif;
                         ?>
@@ -158,19 +170,31 @@
                       <p>
                         <?php
                           if (!empty($document->country_site)): ?>
-                            <b><?php _e("Country", "wp-odm_solr") ?></b>: <?php _e($document->country_site, "wp-odm_solr") ?>
+                            <b><?php _e("Country", "wp-odm_solr") ?></b>:
+                            <?php
+                              $hihglighted_value = wp_odm_solr_highlight_search_words($s,$document->country_site);
+                              _e($hihglighted_value, "wp-odm_solr") ?>
                         <?php
                           endif;
                           if (!empty($document->odm_language)): ?>
-                            <b><?php _e("Language", "wp-odm_solr") ?></b>: <?php echo implode(", ",$document->odm_language)?>
+                            <b><?php _e("Language", "wp-odm_solr") ?></b>:
+                            <?php
+                              $hihglighted_value = wp_odm_solr_highlight_search_words($s,implode(", ",$document->odm_language));
+                              _e($hihglighted_value, "wp-odm_solr") ?>
                         <?php
                           endif;
                           if (!empty($document->categories)): ?>
-                            <b><?php _e("Topics", "wp-odm_solr") ?></b>: <?php echo implode(", ",$document->categories)?>
+                            <b><?php _e("Topics", "wp-odm_solr") ?></b>:
+                            <?php
+                              $hihglighted_value = wp_odm_solr_highlight_search_words($s,implode(", ",$document->categories));
+                              _e($hihglighted_value, "wp-odm_solr") ?>
                         <?php
                           endif;
                           if (!empty($document->tags)): ?>
-                            <b><?php _e("Keywords", "wp-odm_solr") ?></b>: <?php echo implode(", ",$document->tags)?>
+                            <b><?php _e("Keywords", "wp-odm_solr") ?></b>:
+                            <?php
+                              $hihglighted_value = wp_odm_solr_highlight_search_words($s,implode(", ",$document->tags));
+                              _e($hihglighted_value, "wp-odm_solr") ?>
                         <?php
                           endif;?>
                       </p>
