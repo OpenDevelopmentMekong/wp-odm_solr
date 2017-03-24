@@ -179,7 +179,7 @@
     							endforeach;
                 endif; ?>
                 </div>
-              <?php 
+              <?php
   					endforeach;
   					?>
 				</div>
@@ -204,7 +204,7 @@
             return false;
          }
       });
-      
+
       jQuery('#search_field').autocomplete({
         source: function( request, response ) {
           var host = jQuery('#search_field').data("solr-host");
@@ -212,9 +212,9 @@
           var path = jQuery('#search_field').data("solr-path");
           var core_wp = jQuery('#search_field').data("solr-core-wp");
           var core_ckan = jQuery('#search_field').data("solr-core-ckan");
-          var url = scheme + "://" + host  + path + core_wp + "/suggest"; 
-        
-          $.ajax({
+          var url = scheme + "://" + host  + path + core_wp + "/suggest";
+
+          jQuery.ajax({
             url: url,
             data: {'wt':'json', 'q':request.term, 'json.wrf': 'callback'},
             dataType: "jsonp",
