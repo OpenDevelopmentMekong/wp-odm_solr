@@ -126,7 +126,7 @@ class WP_Odm_Solr_WP_Manager {
 
 	function query($text, $attrs = null){
 
-    wp_odm_solr_log('solr-wp-manager query ' . $text);
+    wp_odm_solr_log('solr-wp-manager query: ' . $text . " attrs: " . serialize($attrs));
 
     $result = array(
       "resultset" => null,
