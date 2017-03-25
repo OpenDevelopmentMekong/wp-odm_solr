@@ -151,7 +151,7 @@ class WP_Odm_Solr_WP_Manager {
   		endif;
 
       $dismax = $query->getDisMax();      
-      $dismax->setQueryFields('tags^4 categories^3 title^2 content^1');
+      $dismax->setQueryFields('tags^5 categories^4 title^2 content^1');
 
       $facetSet = $query->getFacetSet();
       foreach ($result["facets"] as $key => $objects):

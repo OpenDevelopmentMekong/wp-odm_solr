@@ -98,7 +98,7 @@ class WP_Odm_Solr_CKAN_Manager {
   			$query->createFilterQuery('extras_odm_spatial_range')->setQuery('extras_odm_spatial_range:' . $current_country_code);
   		endif;
 
-      $fields_to_query = 'extras_odm_keywords^4 vocab_taxonomy^3 title^2 notes^1 extras_odm_spatial_range^1 extras_odm_province^1';
+      $fields_to_query = 'extras_odm_keywords^5 vocab_taxonomy^6 title^2 extras_title_translated^2 extras_notes_translated^1 notes^1 extras_odm_spatial_range^1 extras_odm_province^1';
       if ($typeFilter == 'library_record'):
         $fields_to_query .= ' extras_document_type^1 extras_extras_marc21_260c^1 extras_marc21_020^1 extras_marc21_022^1';
       elseif ($typeFilter == 'laws_record'):

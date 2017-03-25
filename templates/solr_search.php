@@ -37,7 +37,9 @@
 
 						foreach( $supported_ckan_types as $key => $value):
 							$result = WP_Odm_Solr_CKAN_Manager()->query($s,$key);
-              $resultset = $result["resultset"]; ?>
+              $resultset = $result["resultset"]; 
+              if (isset($resultset)):
+            ?>
 
 						<h3><?php echo $value . " (" . $resultset->getNumFound() . ")" ?></h3>
             <div>
@@ -111,6 +113,7 @@
               endif; ?>
               </div>
             <?php
+              endif;
  						endforeach;
  			 		?>
 
@@ -129,6 +132,7 @@
   					foreach( $supported_wp_types as $key => $value):
   						$result = WP_Odm_Solr_WP_Manager()->query($s,$key);
               $resultset = $result["resultset"];
+              if (isset($resultset)):
   					?>
 
   						<h3><?php echo $value . " (" . $resultset->getNumFound() . ")" ?></h3>
@@ -204,8 +208,9 @@
                 endif; ?>
                 </div>
               <?php
+              endif;
   					endforeach;
-  					?>
+					?>
 				</div>
 			</div>
 		</div>
@@ -262,7 +267,15 @@
             }
           });
         },
-        minLength: 2
+        minLength: 2,
+        select: function( event, ui ) {
+          var terms = this.value.split(" ");
+          terms.pop();        
+          terms.push( ui.item.value );          
+          this.value = terms.join( " " );
+
+          return false;
+        }
       });
     });
 
