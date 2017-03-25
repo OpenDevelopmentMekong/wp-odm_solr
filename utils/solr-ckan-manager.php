@@ -71,7 +71,7 @@ class WP_Odm_Solr_CKAN_Manager {
     return true;
   }
 
-	function query($text, $typeFilter = null){
+	function query($text, $attrs = null){
 
     wp_odm_solr_log('solr-ckan-manager query ' . $text);
 
@@ -87,10 +87,13 @@ class WP_Odm_Solr_CKAN_Manager {
 
     try {
       $query = $this->client->createSelect();
-  		$query->setQuery($text);
-  		if (isset($typeFilter)):
-  			$query->createFilterQuery('dataset_type')->setQuery('type:' . $typeFilter);
-  		endif;
+  		$query->setQuery(isset($text) ? $text : "*:*");
+      
+      if (isset($attrs)):
+        foreach ($attrs as $key => $value):
+          $query->createFilterQuery($key)->setQuery($key . ':' . $value);
+        endforeach;
+      endif;
 
       $current_country = odm_country_manager()->get_current_country();
       if ( $current_country != "mekong"):
@@ -99,12 +102,15 @@ class WP_Odm_Solr_CKAN_Manager {
   		endif;
 
       $fields_to_query = 'extras_odm_keywords^5 vocab_taxonomy^6 title^2 extras_title_translated^2 extras_notes_translated^1 notes^1 extras_odm_spatial_range^1 extras_odm_province^1';
-      if ($typeFilter == 'library_record'):
-        $fields_to_query .= ' extras_document_type^1 extras_extras_marc21_260c^1 extras_marc21_020^1 extras_marc21_022^1';
-      elseif ($typeFilter == 'laws_record'):
-        $fields_to_query .= ' extras_odm_document_type^1 extras_odm_promulgation_date^1';
-      elseif ($typeFilter == 'agreement'):
-        $fields_to_query .= ' extras_odm_agreement_signature_date^1';
+      if (isset($attrs["dataset_type"])):
+        $typeFilter = $attrs["dataset_type"];
+        if ($typeFilter == 'library_record'):
+          $fields_to_query .= ' extras_document_type^1 extras_extras_marc21_260c^1 extras_marc21_020^1 extras_marc21_022^1';
+        elseif ($typeFilter == 'laws_record'):
+          $fields_to_query .= ' extras_odm_document_type^1 extras_odm_promulgation_date^1';
+        elseif ($typeFilter == 'agreement'):
+          $fields_to_query .= ' extras_odm_agreement_signature_date^1';
+        endif;
       endif;
 
       $dismax = $query->getDisMax();

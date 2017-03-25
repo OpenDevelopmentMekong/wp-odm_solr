@@ -36,7 +36,10 @@
 						);
 
 						foreach( $supported_ckan_types as $key => $value):
-							$result = WP_Odm_Solr_CKAN_Manager()->query($s,$key);
+              $attrs = array(
+                "dataset_type" => $key
+              );
+							$result = WP_Odm_Solr_CKAN_Manager()->query($s,$attrs);
               $resultset = $result["resultset"]; 
               if (isset($resultset)):
             ?>
@@ -130,7 +133,10 @@
   					);
 
   					foreach( $supported_wp_types as $key => $value):
-  						$result = WP_Odm_Solr_WP_Manager()->query($s,$key);
+              $attrs = array(
+                "type" => $key
+              );
+  						$result = WP_Odm_Solr_WP_Manager()->query($s,$attrs);
               $resultset = $result["resultset"];
               if (isset($resultset)):
   					?>

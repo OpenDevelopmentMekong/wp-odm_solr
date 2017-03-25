@@ -124,7 +124,7 @@ class WP_Odm_Solr_WP_Manager {
 		return $result;
   }
 
-	function query($text, $typeFilter = null){
+	function query($text, $attrs = null){
 
     wp_odm_solr_log('solr-wp-manager query ' . $text);
 
@@ -140,10 +140,13 @@ class WP_Odm_Solr_WP_Manager {
 
     try {
       $query = $this->client->createSelect();
-  		$query->setQuery($text);
-  		if (isset($typeFilter)):
-  			$query->createFilterQuery('type')->setQuery('type:' . $typeFilter);
-  		endif;
+  		$query->setQuery(isset($text) ? $text : "*:*");
+  		
+      if (isset($attrs)):
+        foreach ($attrs as $key => $value):
+          $query->createFilterQuery($key)->setQuery($key . ':' . $value);
+        endforeach;
+      endif;      
 
       $current_country = odm_country_manager()->get_current_country();
       if ( $current_country != "mekong"):
