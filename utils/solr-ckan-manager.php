@@ -132,6 +132,10 @@ class WP_Odm_Solr_CKAN_Manager {
         $facetSet->createFacetField($key)->setField($key);
       endforeach;
 
+      if (isset($control_attrs["sorting"])):
+        $query->addSort($control_attrs["sorting"], 'desc');
+      endif;
+
   		$resultset = $this->client->select($query);
       $result["resultset"] = $resultset;
 
