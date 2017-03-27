@@ -179,6 +179,8 @@ class WP_Odm_Solr_WP_Manager {
       if (isset($control_attrs["sorting"])):
         $query->addSort($control_attrs["sorting"], 'desc');
       endif;
+      
+      wp_odm_solr_log('solr-wp-manager executing query: ' . serialize($query));
 
   		$resultset = $this->client->select($query);
       $result["resultset"] = $resultset;
