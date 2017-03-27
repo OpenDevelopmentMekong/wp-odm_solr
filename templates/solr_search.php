@@ -6,8 +6,8 @@
  ?>
  
  <?php
-  // get following variables from URL for filtering
-  $param_query = !empty($_GET['query']) ? $_GET['query'] : null;
+
+  $param_query = !empty($_GET['s']) ? $_GET['s'] : null;
   $param_license = !empty($_GET['license']) ? $_GET['license'] : null;
   $param_taxonomy = isset($_GET['taxonomy']) ? $_GET['taxonomy'] : null;
   $param_language = isset($_GET['language']) ? $_GET['language'] : null;
@@ -23,7 +23,12 @@
   $license_list = wpckan_get_license_list();
 
   //================ Build Filters ===================== //
-
+  
+  $attrs = [];
+  $control_attrs = array(
+    "sorting" => $param_sorting
+  );
+  
   //Taxonomy
   if (!empty($param_taxonomy) && $param_taxonomy != 'all') {
     $attrs["extras_taxonomy"] = $param_taxonomy;
@@ -46,6 +51,92 @@
   
 ?>
 
+<?php
+
+  //================ Search types ===================== //
+  
+  $supported_search_types = array(
+    'ckan' => array(
+      'dataset' => array(
+        'title' => 'Datasets',
+        'icon' => 'fa fa-database'
+      ),
+      'library_record' => array(
+        'title' =>'Library publications',
+        'icon' => 'fa fa-book'
+      ),
+      'laws_record' => array(
+        'title' =>'Laws',
+        'icon' => 'fa fa-gavel'
+      ),
+      'agreement' => array(
+        'title' =>'Agreements',
+        'icon' => 'fa fa-handshake-o'
+      )
+    ),
+    'wp' => array(
+      'map-layer' => array(
+        'title' => 'Maps',
+        'icon' => 'fa fa-map-marker'
+      ), 
+      'news-article' => array(
+        'title' => 'News articles',
+        'icon' => 'fa fa-newspaper-o'
+      ), 
+      'topic' => array(
+        'title' => 'Topics',
+        'icon' => 'fa fa-list'
+      ), 
+      'profiles' => array(
+        'title' => 'Profiles',
+        'icon' => 'fa fa-briefcase'
+      ), 
+      'story' => array(
+        'title' => 'Story',
+        'icon' => 'fa fa-lightbulb-o'
+      ), 
+      'announcement' => array(
+        'title' => 'Announcements',
+        'icon' => 'fa fa-bullhorn'
+      ), 
+      'site-update' => array(
+        'title' => 'Site updates',
+        'icon' => 'fa fa-flag'
+      ),
+    )
+  ); ?>
+  
+  <?php 
+    $results = [];
+    $facets = [];
+    foreach ($supported_search_types as $type => $search_types):
+      foreach ($search_types as $key => $value): 
+        $result = null;
+        if ($type == 'ckan'):
+          $attrs["dataset_type"] = $key;
+          $attrs["capacity"] = "public";
+          $result = WP_Odm_Solr_CKAN_Manager()->query($s,$attrs);        
+        else:
+          $attrs["type"] = $key;
+          $result = WP_Odm_Solr_WP_Manager()->query($s,$attrs);      
+        endif;      
+      
+        $results[$key] = $result["resultset"];            
+        foreach ($result["facets"] as $facet_key => $facet):         
+          if (!isset($facets[$facet_key])):
+            $facets[$facet_key] = [];
+          endif;
+          foreach ($facet as $facet_value => $count):
+            if (!isset($facets[$facet_key][$facet_value])):
+              $facets[$facet_key][$facet_value] = 0;
+            endif;
+            $facets[$facet_key][$facet_value] += $count;
+          endforeach;
+        endforeach;
+      endforeach;
+    endforeach;
+  ?>
+
 <section class="container">
 
   <?php
@@ -60,7 +151,7 @@
 
 		<div class="row">
       <div class="four columns data-advanced-filters">
-
+        <form>
         <h2><i class="fa fa-filter"></i> Filters</h2>
         
         <!-- TAXONOMY FILTER -->
@@ -170,84 +261,21 @@
 				<!-- END OF LICENSE FILTER -->
 
         <div class="single-filter">
-          <input class="button" type="submit" value="<?php _e('Search Filter', 'odm'); ?>"/>
+          <input class="button" type="submit" value="<?php _e('Search Filter', 'odm'); ?>"/>          
         </div>
 
   		</div>
 
 			<div class="eleven columns">
-        <input type="text" class="search_field" id="search_field" value="<?php echo $_GET["s"]?>" data-solr-host="<?php echo $GLOBALS['wp_odm_solr_options']->get_option('wp_odm_solr_setting_solr_host'); ?>" data-solr-scheme="<?php echo $GLOBALS['wp_odm_solr_options']->get_option('wp_odm_solr_setting_solr_scheme'); ?>" data-solr-path="<?php echo $GLOBALS['wp_odm_solr_options']->get_option('wp_odm_solr_setting_solr_path'); ?>" data-solr-core-wp="<?php echo $GLOBALS['wp_odm_solr_options']->get_option('wp_odm_solr_setting_solr_core_wp'); ?>" data-solr-core-ckan="<?php echo $GLOBALS['wp_odm_solr_options']->get_option('wp_odm_solr_setting_solr_core_ckan'); ?>"></input>
-        <div id="accordion" class="solr_results">
-				<?php
-					$supported_search_types = array(
-            'ckan' => array(
-              'dataset' => array(
-                'title' => 'Datasets',
-                'icon' => 'fa fa-database'
-              ),
-              'library_record' => array(
-                'title' =>'Library publications',
-                'icon' => 'fa fa-book'
-              ),
-              'laws_record' => array(
-                'title' =>'Laws',
-                'icon' => 'fa fa-gavel'
-              ),
-              'agreement' => array(
-                'title' =>'Agreements',
-                'icon' => 'fa fa-handshake-o'
-              )
-            ),
-            'wp' => array(
-              'map-layer' => array(
-                'title' => 'Maps',
-                'icon' => 'fa fa-map-marker'
-              ), 
-              'news-article' => array(
-                'title' => 'News articles',
-                'icon' => 'fa fa-newspaper-o'
-              ), 
-              'topic' => array(
-                'title' => 'Topics',
-                'icon' => 'fa fa-list'
-              ), 
-              'profiles' => array(
-                'title' => 'Profiles',
-                'icon' => 'fa fa-briefcase'
-              ), 
-              'story' => array(
-                'title' => 'Story',
-                'icon' => 'fa fa-lightbulb-o'
-              ), 
-              'announcement' => array(
-                'title' => 'Announcements',
-                'icon' => 'fa fa-bullhorn'
-              ), 
-              'site-update' => array(
-                'title' => 'Site updates',
-                'icon' => 'fa fa-flag'
-              ),
-            )
-					); ?>
+        <input id="search_field" name="s" type="text" class="search_field" id="search_field" value="<?php echo $_GET["s"]?>" data-solr-host="<?php echo $GLOBALS['wp_odm_solr_options']->get_option('wp_odm_solr_setting_solr_host'); ?>" data-solr-scheme="<?php echo $GLOBALS['wp_odm_solr_options']->get_option('wp_odm_solr_setting_solr_scheme'); ?>" data-solr-path="<?php echo $GLOBALS['wp_odm_solr_options']->get_option('wp_odm_solr_setting_solr_path'); ?>" data-solr-core-wp="<?php echo $GLOBALS['wp_odm_solr_options']->get_option('wp_odm_solr_setting_solr_core_wp'); ?>" data-solr-core-ckan="<?php echo $GLOBALS['wp_odm_solr_options']->get_option('wp_odm_solr_setting_solr_core_ckan'); ?>"></input>
+        </form>
+        <div id="accordion" class="solr_results">				
           
-    <?php 
+    <?php           
 			foreach ($supported_search_types as $type => $search_types):
         foreach ($search_types as $key => $value): 
-          if ($type == 'ckan'):
-            $attrs = array(
-              "dataset_type" => $key,
-              "capacity" => "public"
-            );
-            $result = WP_Odm_Solr_CKAN_Manager()->query($s,$attrs);
-            $resultset = $result["resultset"]; 
-          else:
-            $attrs = array(
-              "type" => $key
-            );
-            $result = WP_Odm_Solr_WP_Manager()->query($s,$attrs);
-            $resultset = $result["resultset"]; 
-          endif;
           
+          $resultset = $results[$key];
           $resultcount = ($resultset) ? $resultset->getNumFound() : 0;
                 
           if (isset($resultset) && $resultcount > 0): ?>
