@@ -111,7 +111,7 @@ class WP_Odm_Solr_CKAN_Manager {
       endif;
 
       $current_country = odm_country_manager()->get_current_country();
-      if ( $current_country != "mekong"):
+      if ( $current_country != "mekong" && !array_key_exists("extras_odm_spatial_range",$attrs)):
         $current_country_code = odm_country_manager()->get_current_country_code();
   			$query->createFilterQuery('extras_odm_spatial_range')->setQuery('extras_odm_spatial_range:' . $current_country_code);
   		endif;
@@ -142,7 +142,7 @@ class WP_Odm_Solr_CKAN_Manager {
         $query->addSort($control_attrs["sorting"], 'desc');
       endif;
 
-      wp_odm_solr_log('solr-ckan-manager executing query: ' . serialize($query)); 
+      wp_odm_solr_log('solr-ckan-manager executing query: ' . serialize($query));
 
   		$resultset = $this->client->select($query);
       $result["resultset"] = $resultset;

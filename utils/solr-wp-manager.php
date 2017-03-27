@@ -164,7 +164,7 @@ class WP_Odm_Solr_WP_Manager {
       endif;
 
       $current_country = odm_country_manager()->get_current_country();
-      if ( $current_country != "mekong"):
+      if ( $current_country != "mekong" && !array_key_exists("country_site",$attrs)):
   			$query->createFilterQuery('country_site')->setQuery('country_site:' . $current_country);
   		endif;
 
