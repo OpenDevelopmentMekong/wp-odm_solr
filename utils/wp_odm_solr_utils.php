@@ -6,6 +6,57 @@
   define("WP_ODM_SOLR_DEFAULT_LOG_PATH","/tmp/wp_odm_solr.log");
   define("WP_ODM_SOLR_CHECK_REQS",True);
 
+  function wp_odm_solr_parse_multilingual_wp_content($to_parse,$lang,$fallback) {
+
+    $to_return = $to_parse;
+
+    if ($fallback):
+      $to_return = $fallback;
+    endif;
+
+    $translated = apply_filters('translate_text', $to_parse, $lang);
+    if ($translated):
+      $to_return = $translated;
+    endif;
+
+    return $to_return;
+  }
+
+  function wp_odm_solr_parse_multilingual_ckan_content($to_parse,$lang,$fallback) {
+
+    $json = json_decode($to_parse,true);
+
+    $to_return = $to_parse;
+
+    if ($fallback):
+      $to_return = $fallback;
+    endif;
+
+    if ($json):
+      if (array_key_exists($lang,$json)):
+        $to_return = $json[$lang];
+      endif;
+    endif;
+
+    return $to_return;
+  }
+
+  function wp_odm_solr_highlight_search_words($search_query,$to_highlight) {
+
+    $splitted_words = explode(" ",$search_query);
+
+    $highlighted = $to_highlight;
+    foreach ($splitted_words as $word):
+      $pos = stripos($to_highlight,$word);
+      if (!empty($word) && $pos !== FALSE):
+        $orig_word = substr($to_highlight,$pos,strlen($word));
+        $highlighted = str_ireplace($orig_word,"<b>" . $orig_word . "</b>",$highlighted);
+      endif;
+    endforeach;
+
+    return $highlighted;
+  }
+
   function wp_odm_solr_log($text) {
 
     if (!$GLOBALS['wp_odm_solr_options']->get_option('wpckan_setting_log_enabled')) return;

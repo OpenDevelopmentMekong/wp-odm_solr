@@ -71,18 +71,29 @@ class WP_Odm_Solr_CKAN_Manager {
     return true;
   }
 
-	function query($text, $typeFilter = null){
+	function query($text, $attrs = null){
 
-    wp_odm_solr_log('solr-ckan-manager query' . $text);
+    wp_odm_solr_log('solr-ckan-manager query: ' . $text . " attrs: " . serialize($attrs));
 
-    $resultset = null;
+    $result = array(
+      "resultset" => null,
+      "facets" => array(
+        "vocab_taxonomy" => array(),
+        "extras_odm_keywords" => array(),
+        "extras_odm_spatial_range" => array(),
+        "extras_odm_language" => array()
+      ),
+    );
 
     try {
       $query = $this->client->createSelect();
-  		$query->setQuery($text);
-  		if (isset($typeFilter)):
-  			$query->createFilterQuery('dataset_type')->setQuery('type:' . $typeFilter);
-  		endif;
+  		$query->setQuery(isset($text) ? $text : "*:*");
+      
+      if (isset($attrs)):
+        foreach ($attrs as $key => $value):
+          $query->createFilterQuery($key)->setQuery($key . ':' . $value);
+        endforeach;
+      endif;
 
       $current_country = odm_country_manager()->get_current_country();
       if ( $current_country != "mekong"):
@@ -90,16 +101,43 @@ class WP_Odm_Solr_CKAN_Manager {
   			$query->createFilterQuery('extras_odm_spatial_range')->setQuery('extras_odm_spatial_range:' . $current_country_code);
   		endif;
 
+      $fields_to_query = 'extras_odm_keywords^5 vocab_taxonomy^6 title^2 extras_title_translated^2 extras_notes_translated^1 notes^1 extras_odm_spatial_range^1 extras_odm_province^1';
+      if (isset($attrs["dataset_type"])):
+        $typeFilter = $attrs["dataset_type"];
+        if ($typeFilter == 'library_record'):
+          $fields_to_query .= ' extras_document_type^1 extras_extras_marc21_260c^1 extras_marc21_020^1 extras_marc21_022^1';
+        elseif ($typeFilter == 'laws_record'):
+          $fields_to_query .= ' extras_odm_document_type^1 extras_odm_promulgation_date^1';
+        elseif ($typeFilter == 'agreement'):
+          $fields_to_query .= ' extras_odm_agreement_signature_date^1';
+        endif;
+      endif;
+
       $dismax = $query->getDisMax();
-      $dismax->setQueryFields('title notes tags extras_odm_keywords');
-      $dismax->setQueryFields('extras_odm_keywords^4 tags^3 title^2 notes^1');
+      $dismax->setQueryFields($fields_to_query);
+
+      $facetSet = $query->getFacetSet();
+      foreach ($result["facets"] as $key => $objects):
+        $facetSet->createFacetField($key)->setField($key);
+      endforeach;
 
   		$resultset = $this->client->select($query);
+      $result["resultset"] = $resultset;
+
+      foreach ($result["facets"] as $key => $objects):
+        $facet = $resultset->getFacetSet()->getFacet($key);
+        if (isset($facet)):
+          foreach($facet as $value => $count) {
+            array_push($result["facets"][$key],array($value => $count));
+          }
+        endif;
+      endforeach;
+
     } catch (HttpException $e) {
       wp_odm_solr_log('solr-wp-manager ping_server Error: ' . $e);
     }
 
-		return $resultset;
+		return $result;
 	}
 
 }

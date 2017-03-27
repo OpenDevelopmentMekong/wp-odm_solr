@@ -124,34 +124,60 @@ class WP_Odm_Solr_WP_Manager {
 		return $result;
   }
 
-	function query($text, $typeFilter = null){
+	function query($text, $attrs = null){
 
-    wp_odm_solr_log('solr-wp-manager query ' . $text);
+    wp_odm_solr_log('solr-wp-manager query: ' . $text . " attrs: " . serialize($attrs));
 
-    $resultset = null;
+    $result = array(
+      "resultset" => null,
+      "facets" => array(
+        "categories" => array(),
+        "tags" => array(),
+        "country_site" => array(),
+        "odm_language" => array()
+      ),
+    );
 
     try {
       $query = $this->client->createSelect();
-  		$query->setQuery($text);
-  		if (isset($typeFilter)):
-  			$query->createFilterQuery('type')->setQuery('type:' . $typeFilter);
-  		endif;
+  		$query->setQuery(isset($text) ? $text : "*:*");
+  		
+      if (isset($attrs)):
+        foreach ($attrs as $key => $value):
+          $query->createFilterQuery($key)->setQuery($key . ':' . $value);
+        endforeach;
+      endif;      
 
       $current_country = odm_country_manager()->get_current_country();
       if ( $current_country != "mekong"):
   			$query->createFilterQuery('country_site')->setQuery('country_site:' . $current_country);
   		endif;
 
-      $dismax = $query->getDisMax();
-      $dismax->setQueryFields('title content categories tags');
-      $dismax->setQueryFields('tags^4 categories^3 title^2 content^1');
+      $dismax = $query->getDisMax();      
+      $dismax->setQueryFields('tags^5 categories^4 title^2 content^1');
+
+      $facetSet = $query->getFacetSet();
+      foreach ($result["facets"] as $key => $objects):
+        $facetSet->createFacetField($key)->setField($key);
+      endforeach;
 
   		$resultset = $this->client->select($query);
+      $result["resultset"] = $resultset;
+
+      foreach ($result["facets"] as $key => $objects):
+        $facet = $resultset->getFacetSet()->getFacet($key);
+        if (isset($facet)):
+          foreach($facet as $value => $count) {
+            array_push($result["facets"][$key],array($value => $count));
+          }
+        endif;
+      endforeach;
+
     } catch (HttpException $e) {
       wp_odm_solr_log('solr-wp-manager clear_index Error: ' . $e);
     }
 
-		return $resultset;
+		return $result;
 	}
 
 }
