@@ -43,7 +43,7 @@
   			<div class="eleven columns">
           <!-- Full Width Search box --> 
           <div class="search_bar">
-            <input type="text" class="search_field" id="search_field" value="<?php echo $_GET["s"]?>" data-solr-host="<?php echo $GLOBALS['wp_odm_solr_options']->get_option('wp_odm_solr_setting_solr_host'); ?>" data-solr-scheme="<?php echo $GLOBALS['wp_odm_solr_options']->get_option('wp_odm_solr_setting_solr_scheme'); ?>" data-solr-path="<?php echo $GLOBALS['wp_odm_solr_options']->get_option('wp_odm_solr_setting_solr_path'); ?>" data-solr-core-wp="<?php echo $GLOBALS['wp_odm_solr_options']->get_option('wp_odm_solr_setting_solr_core_wp'); ?>" data-solr-core-ckan="<?php echo $GLOBALS['wp_odm_solr_options']->get_option('wp_odm_solr_setting_solr_core_ckan'); ?>"></input>
+            <input type="text" class="full-width-search-box search_field" id="search_field" value="<?php echo $_GET["s"]?>" data-solr-host="<?php echo $GLOBALS['wp_odm_solr_options']->get_option('wp_odm_solr_setting_solr_host'); ?>" data-solr-scheme="<?php echo $GLOBALS['wp_odm_solr_options']->get_option('wp_odm_solr_setting_solr_scheme'); ?>" data-solr-path="<?php echo $GLOBALS['wp_odm_solr_options']->get_option('wp_odm_solr_setting_solr_path'); ?>" data-solr-core-wp="<?php echo $GLOBALS['wp_odm_solr_options']->get_option('wp_odm_solr_setting_solr_core_wp'); ?>" data-solr-core-ckan="<?php echo $GLOBALS['wp_odm_solr_options']->get_option('wp_odm_solr_setting_solr_core_ckan'); ?>"></input>
           </div>
 
           <!-- ================ Accordian ================= --> 
@@ -52,19 +52,52 @@
   					<?php
   						$supported_search_types = array(
                 'ckan' => array(
-                  'dataset' => 'Datasets',
-                  'library_record' => 'Library publications',
-                  'laws_record' => 'Laws',
-                  'agreement' => 'Agreements'
+                  'dataset' => array(
+                    'title' => 'Datasets',
+                    'icon' => 'fa fa-database'
+                  ),
+                  'library_record' => array(
+                    'title' =>'Library publications',
+                    'icon' => 'fa fa-book'
+                  ),
+                  'laws_record' => array(
+                    'title' =>'Laws',
+                    'icon' => 'fa fa-gavel'
+                  ),
+                  'agreement' => array(
+                    'title' =>'Agreements',
+                    'icon' => 'fa fa-handshake-o'
+                  )
                 ),
                 'wp' => array(
-                  'map-layer' => 'Maps',
-                  'news-article' => 'News articles',
-                  'topic' => 'Topics',
-                  'profiles' => 'Profiles',
-                  'story' => 'Story',
-                  'announcement' => 'Announcements',
-                  'site-update' => 'Site updates'
+                  'map-layer' => array(
+                    'title' => 'Maps',
+                    'icon' => 'fa fa-map-marker'
+                  ), 
+                  'news-article' => array(
+                    'title' => 'News articles',
+                    'icon' => 'fa fa-newspaper-o'
+                  ), 
+                  'topic' => array(
+                    'title' => 'Topics',
+                    'icon' => 'fa fa-list'
+                  ), 
+                  'profiles' => array(
+                    'title' => 'Profiles',
+                    'icon' => 'fa fa-briefcase'
+                  ), 
+                  'story' => array(
+                    'title' => 'Story',
+                    'icon' => 'fa fa-lightbulb-o'
+                  ), 
+                  'announcement' => array(
+                    'title' => 'Announcements',
+                    'icon' => 'fa fa-bullhorn'
+                  ), 
+                  'site-update' => array(
+                    'title' => 'Site updates',
+                    'icon' => 'fa fa-flag'
+                  ),
                 )
   						);
             ?>
@@ -90,10 +123,10 @@
                   
                   if (isset($resultset)):
             ?>
-                    <h3><?php echo $value . " (" . $resultcount . ")" ?></h3>
+                    <h3><i class="<?php echo $value['icon'] ?>"></i> <?php echo $value['title'] . " (" . $resultcount . ")" ?></h3>
                     <div class="single_content_result">
                     <?php
-                      if ($resultset->getNumFound() == 0): ?>
+                      if ($resultcount == 0): ?>
                         <div class="solr_no_result">
                           <?php _e("No record found","wp-odm_solr"); ?>
                         </div>
@@ -103,7 +136,7 @@
             ?>
                         <!-- RESULT LIST -->
                         <div id="solr_results">
-                          <div class="solr_result single_result_container">
+                          <div class="solr_result single_result_container row">
                             <?php if ($type == 'ckan'): ?>
 
                               <!-- CKAN RESULT -->
@@ -113,12 +146,18 @@
                                 $title = wp_odm_solr_parse_multilingual_ckan_content($document->title_translated,odm_language_manager()->get_current_language(),$document->title);
                                 $title = wp_odm_solr_highlight_search_words($s,$title);
                               ?>
-                              <h4 class="data_title">
+                              <h4 class="data_title twelve columns">
                                 <a href="<?php echo wpckan_get_link_to_dataset($document->id) ?>">
                                   <?php echo $title ?>
                                 </a>
                               </h4>
-
+                              <div class="data_format four columns">
+                                <?php $resource_formats = array_unique($document->res_format); ?>
+                                <?php foreach ($resource_formats as $format): ?>
+                                  <span class="meta-label <?php echo strtolower($format); ?>"><?php echo strtolower($format); ?></span>
+                                <?php endforeach ?>
+                              </div>
+                              
                               <!-- Description -->
                               <?php
                                 $description = wp_odm_solr_parse_multilingual_ckan_content($document->notes_translated,odm_language_manager()->get_current_language(),$document->notes);
@@ -126,7 +165,7 @@
                                 $description = substr($description,0,400);
                                 $description = wp_odm_solr_highlight_search_words($s,$description);
                                ?>
-                              <p class="data_description">
+                              <p class="data_description sixteen columns">
                                 <?php
                                   echo $description;
                                   if (strlen($description) >= 400):
@@ -134,33 +173,34 @@
                                   endif;
                                   ?>
                               </p>
-                              <div class="data_meta_wrapper">
+                              <div class="data_meta_wrapper sixteen columns">
                                 <!-- Country -->
                                 <?php if (!empty($document->extras_odm_spatial_range)): ?>
                                   <div class="country_indicator data_meta">
                                     <i class="fa fa-globe"></i>
                                     <span>
                                       <?php
-                                        $hihglighted_value = wp_odm_solr_highlight_search_words($s,$document->extras_odm_spatial_range);
+                                        $odm_country_arr = json_decode($document->extras_odm_spatial_range);
+                                        $hihglighted_value = wp_odm_solr_highlight_search_words($s,implode(", ", $odm_country_arr));
                                         _e($hihglighted_value, "wp-odm_solr") ?>
                                     </span>
                                   </div>
                                 <?php endif; ?>
                                 <!-- Language -->
                                 <?php if (!empty($document->extras_odm_language)): ?>
-                                  <div class="data_meta">
-                                    <i class="fa fa-language"></i>
+                                  <div class="data_languages data_meta">
+                                    <?php $odm_lang_arr = json_decode($document->extras_odm_language); ?>
                                     <span>
-                                      <?php
-                                        $hihglighted_value = wp_odm_solr_highlight_search_words($s,$document->extras_odm_language);
-                                        _e($hihglighted_value, "wp-odm_solr") ?>  
+                                      <?php foreach ($odm_lang_arr as $lang): ?>
+                                        <img class="lang_flag" alt="<?php echo $lang ?>" src="<?php echo odm_language_manager()->get_path_to_flag_image($lang); ?>"></img>
+                                      <?php endforeach; ?>
                                     </span>
                                   </div>
                                 <?php endif; ?>
                                 <!-- Topics -->
                                 <?php if (!empty($document->vocab_taxonomy)): ?>
                                   <div class="data_meta">
-                                    <i class="fa fa-tags"></i>
+                                    <i class="fa fa-list"></i>
                                     <span>
                                       <?php
                                         $hihglighted_value = wp_odm_solr_highlight_search_words($s,implode(", ",$document->vocab_taxonomy));
@@ -171,7 +211,7 @@
                                 <!-- Keywords -->
                                 <?php if (!empty($document->extras_odm_keywords)): ?>
                                   <div class="data_meta">
-                                    <b><?php _e("Keywords", "wp-odm_solr") ?></b>:
+                                    <i class="fa fa-tags"></i>
                                     <?php
                                       $hihglighted_value = wp_odm_solr_highlight_search_words($s,implode(", ",$document->extras_odm_keywords));
                                       _e($hihglighted_value, "wp-odm_solr") ?>
@@ -187,7 +227,7 @@
                                     $title = wp_odm_solr_parse_multilingual_wp_content($document->title,odm_language_manager()->get_current_language(),$document->title);
                                     $title = wp_odm_solr_highlight_search_words($s,$title);
                                    ?>
-                                  <h4>
+                                  <h4 class="data_title">
                                     <a href="<?php echo $document->permalink ?>">
                                       <?php echo $title ?>
                                     </a>
@@ -199,7 +239,7 @@
                                     $description = substr($description,0,400);
                                     $description = wp_odm_solr_highlight_search_words($s,$description);
                                    ?>
-                                  <p>
+                                  <p class="data_description">
                                     <?php
                                     echo $description;
                                     if (strlen($description) >= 400):
@@ -207,37 +247,45 @@
                                     endif;
                                     ?>
                                   </p>
-                                  <p>
+                                  <div class="data_meta">
                                     <?php
                                       if (!empty($document->country_site)): ?>
-                                        <b><?php _e("Country", "wp-odm_solr") ?></b>:
-                                        <?php
-                                          $hihglighted_value = wp_odm_solr_highlight_search_words($s,$document->country_site);
-                                          _e($hihglighted_value, "wp-odm_solr") ?>
+                                        <i class="fa fa-globe"></i>
+                                        <span>
+                                          <?php
+                                            $hihglighted_value = wp_odm_solr_highlight_search_words($s,$document->country_site);
+                                            _e($hihglighted_value, "wp-odm_solr") ?>  
+                                        </span>
                                     <?php
                                       endif;
                                       if (!empty($document->odm_language)): ?>
-                                        <b><?php _e("Language", "wp-odm_solr") ?></b>:
-                                        <?php
-                                          $hihglighted_value = wp_odm_solr_highlight_search_words($s,implode(", ",$document->odm_language));
-                                          _e($hihglighted_value, "wp-odm_solr") ?>
+                                        <i class="fa fa-language"></i>
+                                        <span>
+                                          <?php
+                                            $hihglighted_value = wp_odm_solr_highlight_search_words($s,implode(", ",$document->odm_language));
+                                            _e($hihglighted_value, "wp-odm_solr") ?>  
+                                        </span>
                                     <?php
                                       endif;
                                       if (!empty($document->categories)): ?>
-                                        <b><?php _e("Topics", "wp-odm_solr") ?></b>:
-                                        <?php
-                                          $hihglighted_value = wp_odm_solr_highlight_search_words($s,implode(", ",$document->categories));
-                                          _e($hihglighted_value, "wp-odm_solr") ?>
+                                        <i class="fa fa-list"></i>
+                                        <span>
+                                          <?php
+                                            $hihglighted_value = wp_odm_solr_highlight_search_words($s,implode(", ",$document->categories));
+                                            _e($hihglighted_value, "wp-odm_solr") ?>  
+                                        </span>
                                     <?php
                                       endif;
                                       if (!empty($document->tags)): ?>
-                                        <b><?php _e("Keywords", "wp-odm_solr") ?></b>:
-                                        <?php
-                                          $hihglighted_value = wp_odm_solr_highlight_search_words($s,implode(", ",$document->tags));
-                                          _e($hihglighted_value, "wp-odm_solr") ?>
+                                        <i class="fa fa-tags"></i>
+                                        <span>
+                                          <?php
+                                            $hihglighted_value = wp_odm_solr_highlight_search_words($s,implode(", ",$document->tags));
+                                            _e($hihglighted_value, "wp-odm_solr") ?>  
+                                        </span>
                                     <?php
                                       endif;?>
-                                  </p>
+                                  </div>
                                 </div>
 
                             <?php endif; ?>
@@ -245,6 +293,11 @@
                         </div>
             <?php
                       endforeach;
+            ?>
+            <div class="view_all_link">
+              <a href="#">View all <?php echo $resultcount . " " . strtolower($value['title']) . " results" ?></a>
+            </div>
+            <?php
                       endif;
             ?>
                     </div>
@@ -270,7 +323,10 @@
     jQuery(document).ready(function() {
 
       jQuery( "#accordion" ).accordion({
-        collapsible: true, active: false, header: "h3"
+        collapsible: true, 
+        active: false, 
+        header: "h3",
+        heightStyle: "content"
       });
 
       jQuery('#search_field').keydown(function(event) {
