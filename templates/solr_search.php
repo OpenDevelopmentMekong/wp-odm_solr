@@ -40,7 +40,7 @@
                 "dataset_type" => $key
               );
 							$result = WP_Odm_Solr_CKAN_Manager()->query($s,$attrs);
-              $resultset = $result["resultset"]; 
+              $resultset = $result["resultset"];
               if (isset($resultset)):
             ?>
 
@@ -276,10 +276,9 @@
         minLength: 2,
         select: function( event, ui ) {
           var terms = this.value.split(" ");
-          terms.pop();        
-          terms.push( ui.item.value );          
+          terms.pop();
+          terms.push( ui.item.value );
           this.value = terms.join( " " );
-
           return false;
         }
       });

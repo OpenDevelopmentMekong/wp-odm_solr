@@ -71,9 +71,9 @@ class WP_Odm_Solr_CKAN_Manager {
     return true;
   }
 
-	function query($text, $attrs = null){
+	function query($text, $attrs = null, $control_attrs = null){
 
-    wp_odm_solr_log('solr-ckan-manager query: ' . $text . " attrs: " . serialize($attrs));
+    wp_odm_solr_log('solr-ckan-manager query: ' . $text . " attrs: " . serialize($attrs) . " control_attrs: " . serialize($control_attrs));
 
     $result = array(
       "resultset" => null,
@@ -86,12 +86,18 @@ class WP_Odm_Solr_CKAN_Manager {
     );
 
     try {
-      
+
       $query = $this->client->createSelect();
       if (!empty($text)):
         $query->setQuery($text);
       endif;
-      
+
+      if (isset($control_attrs["page"]) && isset($control_attrs["limit"])):
+        $start = $control_attrs["page"] * $control_attrs["limit"];
+        $rows = $control_attrs["limit"];
+        $query->setStart($start)->setRows($rows);
+      endif;
+
       if (isset($attrs)):
         foreach ($attrs as $key => $value):
           $query->createFilterQuery($key)->setQuery($key . ':' . $value);
@@ -104,20 +110,22 @@ class WP_Odm_Solr_CKAN_Manager {
   			$query->createFilterQuery('extras_odm_spatial_range')->setQuery('extras_odm_spatial_range:' . $current_country_code);
   		endif;
 
-      $fields_to_query = 'extras_odm_keywords^5 vocab_taxonomy^6 title^2 extras_title_translated^2 extras_notes_translated^1 notes^1 extras_odm_spatial_range^1 extras_odm_province^1';
-      if (isset($attrs["dataset_type"])):
-        $typeFilter = $attrs["dataset_type"];
-        if ($typeFilter == 'library_record'):
-          $fields_to_query .= ' extras_document_type^1 extras_extras_marc21_260c^1 extras_marc21_020^1 extras_marc21_022^1';
-        elseif ($typeFilter == 'laws_record'):
-          $fields_to_query .= ' extras_odm_document_type^1 extras_odm_promulgation_date^1';
-        elseif ($typeFilter == 'agreement'):
-          $fields_to_query .= ' extras_odm_agreement_signature_date^1';
+      if (!empty($text)):
+        $fields_to_query = 'extras_odm_keywords^5 vocab_taxonomy^6 title^2 extras_title_translated^2 extras_notes_translated^1 notes^1 extras_odm_spatial_range^1 extras_odm_province^1';
+        if (isset($attrs["dataset_type"])):
+          $typeFilter = $attrs["dataset_type"];
+          if ($typeFilter == 'library_record'):
+            $fields_to_query .= ' extras_document_type^1 extras_extras_marc21_260c^1 extras_marc21_020^1 extras_marc21_022^1';
+          elseif ($typeFilter == 'laws_record'):
+            $fields_to_query .= ' extras_odm_document_type^1 extras_odm_promulgation_date^1';
+          elseif ($typeFilter == 'agreement'):
+            $fields_to_query .= ' extras_odm_agreement_signature_date^1';
+          endif;
         endif;
-      endif;
 
-      $dismax = $query->getDisMax();
-      $dismax->setQueryFields($fields_to_query);
+        $dismax = $query->getDisMax();
+        $dismax->setQueryFields($fields_to_query);
+      endif;
 
       $facetSet = $query->getFacetSet();
       foreach ($result["facets"] as $key => $objects):

@@ -124,9 +124,9 @@ class WP_Odm_Solr_WP_Manager {
 		return $result;
   }
 
-	function query($text, $attrs = null){
+	function query($text, $attrs = null, $control_attrs = null){
 
-    wp_odm_solr_log('solr-wp-manager query: ' . $text . " attrs: " . serialize($attrs));
+    wp_odm_solr_log('solr-wp-manager query: ' . $text . " attrs: " . serialize($attrs)  . " control_attrs: " . serialize($control_attrs));
 
     $result = array(
       "resultset" => null,
@@ -139,24 +139,30 @@ class WP_Odm_Solr_WP_Manager {
     );
 
     try {
-      
+
       $query = $this->client->createSelect();
       if (!empty($text)):
         $query->setQuery($text);
       endif;
-  		
+
+      if (isset($control_attrs["page"]) && isset($control_attrs["limit"])):
+        $start = $control_attrs["page"] * $control_attrs["limit"];
+        $rows = $control_attrs["limit"];
+        $query->setStart($start)->setRows($rows);
+      endif;
+
       if (isset($attrs)):
         foreach ($attrs as $key => $value):
           $query->createFilterQuery($key)->setQuery($key . ':' . $value);
         endforeach;
-      endif;      
+      endif;
 
       $current_country = odm_country_manager()->get_current_country();
       if ( $current_country != "mekong"):
   			$query->createFilterQuery('country_site')->setQuery('country_site:' . $current_country);
   		endif;
 
-      $dismax = $query->getDisMax();      
+      $dismax = $query->getDisMax();
       $dismax->setQueryFields('tags^5 categories^4 title^2 content^1');
 
       $facetSet = $query->getFacetSet();
