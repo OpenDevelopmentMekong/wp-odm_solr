@@ -71,7 +71,7 @@
       ),
       'agreement' => array(
         'title' =>'Agreements',
-        'icon' => 'fa fa-handshake-o'
+        'icon' => 'fa fa-handshake'
       )
     ),
     'wp' => array(
@@ -112,16 +112,20 @@
     
     $results = [];
     $facets = [];
+  
     foreach ($supported_search_types as $type => $search_types):
       foreach ($search_types as $key => $value): 
         $result = null;
         if ($type == 'ckan'):
+          unset($attrs["type"]);
           $attrs["dataset_type"] = $key;
           $attrs["capacity"] = "public";
-          $result = WP_Odm_Solr_CKAN_Manager()->query($s,$attrs);        
+          $result = WP_Odm_Solr_CKAN_Manager()->query($param_query,$attrs,$control_attrs);        
         else:
+          unset($attrs["dataset_type"]);
+          unset($attrs["capacity"]);
           $attrs["type"] = $key;
-          $result = WP_Odm_Solr_WP_Manager()->query($s,$attrs);      
+          $result = WP_Odm_Solr_WP_Manager()->query($param_query,$attrs,$control_attrs);    
         endif;      
       
         $results[$key] = $result["resultset"];            
@@ -272,7 +276,7 @@
   		</div>
 
 			<div class="eleven columns">
-        <input id="search_field" name="s" type="text" class="search_field" id="search_field" value="<?php echo $_GET["s"]?>" data-solr-host="<?php echo $GLOBALS['wp_odm_solr_options']->get_option('wp_odm_solr_setting_solr_host'); ?>" data-solr-scheme="<?php echo $GLOBALS['wp_odm_solr_options']->get_option('wp_odm_solr_setting_solr_scheme'); ?>" data-solr-path="<?php echo $GLOBALS['wp_odm_solr_options']->get_option('wp_odm_solr_setting_solr_path'); ?>" data-solr-core-wp="<?php echo $GLOBALS['wp_odm_solr_options']->get_option('wp_odm_solr_setting_solr_core_wp'); ?>" data-solr-core-ckan="<?php echo $GLOBALS['wp_odm_solr_options']->get_option('wp_odm_solr_setting_solr_core_ckan'); ?>"></input>
+        <input id="search_field" name="s" type="text" class="full-width-search-box search_field" id="search_field" value="<?php echo $_GET["s"]?>" data-solr-host="<?php echo $GLOBALS['wp_odm_solr_options']->get_option('wp_odm_solr_setting_solr_host'); ?>" data-solr-scheme="<?php echo $GLOBALS['wp_odm_solr_options']->get_option('wp_odm_solr_setting_solr_scheme'); ?>" data-solr-path="<?php echo $GLOBALS['wp_odm_solr_options']->get_option('wp_odm_solr_setting_solr_path'); ?>" data-solr-core-wp="<?php echo $GLOBALS['wp_odm_solr_options']->get_option('wp_odm_solr_setting_solr_core_wp'); ?>" data-solr-core-ckan="<?php echo $GLOBALS['wp_odm_solr_options']->get_option('wp_odm_solr_setting_solr_core_ckan'); ?>"></input>
         </form>
         <div id="accordion" class="solr_results">				
           
