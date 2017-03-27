@@ -81,7 +81,8 @@ class WP_Odm_Solr_CKAN_Manager {
         "vocab_taxonomy" => array(),
         "extras_odm_keywords" => array(),
         "extras_odm_spatial_range" => array(),
-        "extras_odm_language" => array()
+        "extras_odm_language" => array(),
+        "license_id" => array()
       ),
     );
 
@@ -150,8 +151,9 @@ class WP_Odm_Solr_CKAN_Manager {
       foreach ($result["facets"] as $key => $objects):
         $facet = $resultset->getFacetSet()->getFacet($key);
         if (isset($facet)):
+          $result["facets"][$key] = [];
           foreach($facet as $value => $count) {
-            array_push($result["facets"][$key],array($value => $count));
+            $result["facets"][$key][$value] = $count;
           }
         endif;
       endforeach;

@@ -187,7 +187,7 @@ class WP_Odm_Solr_WP_Manager {
         $facet = $resultset->getFacetSet()->getFacet($key);
         if (isset($facet)):
           foreach($facet as $value => $count) {
-            array_push($result["facets"][$key],array($value => $count));
+            $result["facets"][$key][$value] = $count;
           }
         endif;
       endforeach;
