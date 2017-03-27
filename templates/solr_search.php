@@ -89,13 +89,31 @@
             ?>
                         <!-- RESULT LIST -->
                         <div id="solr_results">
-                          <div class="solr_result">
+                          <div class="solr_result single_result_container">
                             <?php if ($type == 'ckan'): ?>
 
                               <!-- CKAN RESULT -->
-                              <h4><a href="<?php echo wpckan_get_link_to_dataset($document->id) ?>"><?php echo $document->title ?></a></h4>
-                              <p><?php echo strip_tags(substr($document->notes,0,400)) ?></p>
-                              <p><?php echo "<b>contry</b>: " . $document->extras_odm_spatial_range ?> <?php echo "<b>language</b>: " . $document->extras_odm_language ?> <?php echo "<b>topics</b>: " . $document->extras_taxonomy ?> <?php echo "<b>keywords</b>: " . $document->extras_odm_keywords ?></p>
+                              <h4 class="data_title">
+                                <a href="<?php echo wpckan_get_link_to_dataset($document->id) ?>"><?php echo $document->title ?></a>
+                              </h4>
+                              <p class="data_description">
+                                <?php echo strip_tags(substr($document->notes,0,400)) ?>
+                              </p>
+                              <div class="data_meta_wrapper">
+                                <div class="country_indicator data_meta">
+                                  <i class="fa fa-globe"></i>
+                                  <span><?php echo $document->extras_odm_spatial_range; ?></span>
+                                </div>
+                                <div class="data_meta">
+                                  <i class="fa fa-language"></i>
+                                  <span><?php echo $document->extras_odm_language ?></span>
+                                </div>
+                                <div class="data_meta">
+                                  <i class="fa fa-tags"></i>
+                                  <?php var_dump($document->extras_taxonomy); ?>
+                                  <span><?php //echo implode(", ",$document->extras_taxonomy); ?></span>
+                                </div>
+                              </div>
                             
                             <?php else: ?>
 
