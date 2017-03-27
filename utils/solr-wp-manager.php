@@ -153,6 +153,12 @@ class WP_Odm_Solr_WP_Manager {
 
       if (isset($attrs)):
         foreach ($attrs as $key => $value):
+          if ($key == "categories"):
+            $taxonomy_top_tier = odm_taxonomy_manager()->get_taxonomy_top_tier();
+            if (array_key_exists($value,$taxonomy_top_tier)):
+              $value = "(\"" . implode("\" OR \"", $taxonomy_top_tier[$value]) . "\")";
+            endif;
+          endif;
           $query->createFilterQuery($key)->setQuery($key . ':' . $value);
         endforeach;
       endif;

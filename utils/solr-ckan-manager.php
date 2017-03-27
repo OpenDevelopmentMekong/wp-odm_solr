@@ -100,6 +100,12 @@ class WP_Odm_Solr_CKAN_Manager {
 
       if (isset($attrs)):
         foreach ($attrs as $key => $value):
+          if ($key == "vocab_taxonomy" || $key == "extras_taxonomy"):
+            $taxonomy_top_tier = odm_taxonomy_manager()->get_taxonomy_top_tier();
+            if (array_key_exists($value,$taxonomy_top_tier)):
+              $value = "(\"" . implode("\" OR \"", $taxonomy_top_tier[$value]) . "\")";
+            endif;
+          endif;
           $query->createFilterQuery($key)->setQuery($key . ':' . $value);
         endforeach;
       endif;
@@ -135,6 +141,8 @@ class WP_Odm_Solr_CKAN_Manager {
       if (isset($control_attrs["sorting"])):
         $query->addSort($control_attrs["sorting"], 'desc');
       endif;
+
+      wp_odm_solr_log('solr-ckan-manager executing query: ' . serialize($query)); 
 
   		$resultset = $this->client->select($query);
       $result["resultset"] = $resultset;
