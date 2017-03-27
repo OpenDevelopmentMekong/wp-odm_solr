@@ -22,7 +22,7 @@
   $languages = odm_language_manager()->get_supported_languages();
   $license_list = wpckan_get_license_list();
 
-  //================ Build Filters ===================== //
+  //================ Build query attributes ===================== //
   
   $attrs = [];
   $control_attrs = array(
@@ -107,6 +107,9 @@
   ); ?>
   
   <?php 
+  
+    //================ Run queries and gather both results and facets ===================== //
+    
     $results = [];
     $facets = [];
     foreach ($supported_search_types as $type => $search_types):
@@ -147,7 +150,9 @@
       </div>
     </div>
     <?php
-    else: ?>
+    else: 
+      
+      //================ show filters ===================== // ?>
 
 		<div class="row">
       <div class="four columns data-advanced-filters">
@@ -271,7 +276,10 @@
         </form>
         <div id="accordion" class="solr_results">				
           
-    <?php           
+    <?php
+    
+      //================ show results ===================== // 
+      
 			foreach ($supported_search_types as $type => $search_types):
         foreach ($search_types as $key => $value): 
           
