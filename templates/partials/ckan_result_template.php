@@ -38,9 +38,11 @@ $title = wp_odm_solr_highlight_search_words($s,$title);
           $odm_country_arr = json_decode($document->extras_odm_spatial_range,true);
           foreach ($odm_country_arr as $country_code):
             $country_name = odm_country_manager()->get_country_name_by_country_code($country_code);
-            _e($country_name, "wp-odm_solr");
-            if ($country_code !== end($odm_country_arr)):
-              echo ', ';
+            if (!empty($country_name)):
+              _e($country_name, "wp-odm_solr");
+              if ($country_code !== end($odm_country_arr)):
+                echo ', ';
+              endif;
             endif;
           endforeach; ?>
       </span>
@@ -51,9 +53,14 @@ $title = wp_odm_solr_highlight_search_words($s,$title);
     <div class="data_languages data_meta">
       <?php $odm_lang_arr = json_decode($document->extras_odm_language,true); ?>
       <span>
-        <?php foreach ($odm_lang_arr as $lang): ?>
-          <img class="lang_flag" alt="<?php echo $lang ?>" src="<?php echo odm_language_manager()->get_path_to_flag_image($lang); ?>"></img>
-        <?php endforeach; ?>
+        <?php
+        foreach ($odm_lang_arr as $lang):
+          $path_to_flag = odm_language_manager()->get_path_to_flag_image($lang);
+          if (!empty($path_to_flag)): ?>
+          <img class="lang_flag" alt="<?php echo $lang ?>" src="<?php echo $path_to_flag; ?>"></img>
+        <?php
+          endif;
+        endforeach; ?>
       </span>
     </div>
   <?php endif; ?>
