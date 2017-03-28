@@ -47,7 +47,7 @@ class WP_Odm_Solr_CKAN_Manager {
     try {
       $this->client = new \Solarium\Client($this->server_config);
     } catch (HttpException $e) {
-      wp_odm_solr_log('solr-wp-manager __construct Error: ' . $e);
+      wp_odm_solr_log('solr-ckan-manager __construct Error: ' . $e);
     }
 
 	}
@@ -64,7 +64,7 @@ class WP_Odm_Solr_CKAN_Manager {
       $ping = $this->client->createPing();
       $result = $this->client->ping($ping);
     } catch (HttpException $e) {
-      wp_odm_solr_log('solr-wp-manager ping_server Error: ' . $e);
+      wp_odm_solr_log('solr-ckan-manager ping_server Error: ' . $e);
       return false;
     }
 
@@ -159,7 +159,7 @@ class WP_Odm_Solr_CKAN_Manager {
       endforeach;
 
     } catch (HttpException $e) {
-      wp_odm_solr_log('solr-wp-manager ping_server Error: ' . $e);
+      wp_odm_solr_log('solr-ckan-manager query Error: ' . $e);
     }
 
 		return $result;
