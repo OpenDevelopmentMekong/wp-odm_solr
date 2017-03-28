@@ -86,8 +86,11 @@ class WP_Odm_Solr_CKAN_Manager {
     );
 
     try {
+      
       $query = $this->client->createSelect();
-  		$query->setQuery(isset($text) ? $text : "*:*");
+      if (!empty($text)):
+        $query->setQuery($text);
+      endif;
       
       if (isset($attrs)):
         foreach ($attrs as $key => $value):
