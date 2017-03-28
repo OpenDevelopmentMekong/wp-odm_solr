@@ -1,21 +1,21 @@
 <?php
-$title = wp_odm_solr_parse_multilingual_ckan_content($document->title_translated,odm_language_manager()->get_current_language(),$document->title);
+$title = wp_odm_solr_parse_multilingual_ckan_content($document->extras_title_translated,odm_language_manager()->get_current_language(),$document->title);
 $title = wp_odm_solr_highlight_search_words($s,$title);
 ?>
-<h4 class="data_title twelve columns">
+<h4 class="data_title ten columns">
   <a href="<?php echo wpckan_get_link_to_dataset($document->id) ?>">
     <?php echo $title ?>
   </a>
 </h4>
 
-<div class="data_format four columns">
+<div class="data_format six columns">
   <?php $resource_formats = array_unique($document->res_format); ?>
   <?php foreach ($resource_formats as $format): ?>
     <span class="meta-label <?php echo strtolower($format); ?>"><?php echo strtolower($format); ?></span>
   <?php endforeach ?>
 </div>
 <?php
-  $description = wp_odm_solr_parse_multilingual_ckan_content($document->notes_translated,odm_language_manager()->get_current_language(),$document->notes);
+  $description = wp_odm_solr_parse_multilingual_ckan_content($document->extras_notes_translated,odm_language_manager()->get_current_language(),$document->notes);
   $description = strip_tags($description);
   $description = substr($description,0,400);
   $description = wp_odm_solr_highlight_search_words($s,$description);
