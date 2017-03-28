@@ -446,10 +446,11 @@
                 <?php
                     endif;
 					    endforeach; ?>
-                
-              <div class="view_all_link">
-                <a href="#">View all <?php echo $resultcount . " " . strtolower($value['title']) . " results" ?></a>
-              </div>
+              <?php if ($resultcount > 10): ?>
+                <div class="view_all_link">
+                  <a href="#">View all <?php echo $resultcount . " " . strtolower($value['title']) . " results" ?></a>
+                </div>
+              <?php endif; ?>
             </div>    
           <?php
           endif;
