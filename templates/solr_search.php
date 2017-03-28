@@ -240,11 +240,12 @@
           if (isset($content_resultset) && $content_resultcount > 0):
             foreach ($content_resultset as $document): ?>
             <div class="solr_result single_result_container row">
-              <?php if($supported_search_types[$param_type]['type'] == 'ckan'):
+              <?php
+              if($supported_search_types[$param_type]['type'] == 'ckan'):
                 include 'partials/ckan_result_template.php';
               else:
                 include 'partials/wp_result_template.php';
-              endif; ?>
+              endif;?>
             </div>
         <?php
             endforeach; ?>
@@ -285,7 +286,11 @@
                             if ($value['type'] == 'ckan'):
                               include 'partials/ckan_result_template.php';
                             else:
-                              include 'partials/wp_result_template.php';
+                              if ($key == 'map-layer'):
+                                include 'partials/wp_map_layer_result_template.php';
+                              else:
+                                include 'partials/wp_result_template.php';
+                              endif;
                             endif;
                             ?>
                           </div>
