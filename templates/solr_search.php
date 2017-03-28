@@ -273,7 +273,7 @@
 
                   if (isset($resultset) && $resultcount > 0): ?>
 
-        						<h3><i class="<?php echo $value['icon'] ?>"></i> <?php echo $value['title'] . " (" . $resultcount . ")" ?></h3>
+        						<h3><i class="<?php echo $value['icon'] ?>"></i>  <?php echo $resultcount . " " . __($value['title'],"wp-odm_solr"); ?></h3>
 
                     <div class="single_content_result">
 
