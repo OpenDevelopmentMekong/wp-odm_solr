@@ -4,7 +4,7 @@
   include_once dirname(plugin_dir_path(__FILE__)).'/utils/solr-wp-manager.php';
   include_once dirname(plugin_dir_path(__FILE__)).'/utils/solr-ckan-manager.php';
  ?>
- 
+
  <?php
 
   $param_query = !empty($_GET['s']) ? $_GET['s'] : null;
@@ -23,38 +23,17 @@
   $license_list = wpckan_get_license_list();
 
   //================ Build query attributes ===================== //
-  
-  $attrs = [];
+
   $control_attrs = array(
     "sorting" => $param_sorting
   );
-  
-  //Taxonomy
-  if (!empty($param_taxonomy) && $param_taxonomy != 'all') {
-    $attrs["extras_taxonomy"] = $param_taxonomy;
-  }
 
-  // Language
-  if (!empty($param_language) && $param_language != 'all') {
-    $attrs["extras_odm_language"] = $param_language;
-  }
-
-  // Country
-  if (!empty($param_country) && $param_country != 'mekong' && $param_country != 'all') {
-    $attrs["extras_odm_spatial_range"] = $countries[$param_country]['iso2'];
-  }
-
-  //License
-  if (!empty($param_license) && $param_license != 'all') {
-    $attrs['license_id'] = $param_license;
-  }
-  
 ?>
 
 <?php
 
   //================ Search types ===================== //
-  
+
   $supported_search_types = array(
     'ckan' => array(
       'dataset' => array(
@@ -78,66 +57,117 @@
       'map-layer' => array(
         'title' => 'Maps',
         'icon' => 'fa fa-map-marker'
-      ), 
+      ),
       'news-article' => array(
         'title' => 'News articles',
         'icon' => 'fa fa-newspaper-o'
-      ), 
+      ),
       'topic' => array(
         'title' => 'Topics',
         'icon' => 'fa fa-list'
-      ), 
+      ),
       'profiles' => array(
         'title' => 'Profiles',
         'icon' => 'fa fa-briefcase'
-      ), 
+      ),
       'story' => array(
         'title' => 'Story',
         'icon' => 'fa fa-lightbulb-o'
-      ), 
+      ),
       'announcement' => array(
         'title' => 'Announcements',
         'icon' => 'fa fa-bullhorn'
-      ), 
+      ),
       'site-update' => array(
         'title' => 'Site updates',
         'icon' => 'fa fa-flag'
       ),
     )
   ); ?>
-  
-  <?php 
-  
+
+  <?php
+
     //================ Run queries and gather both results and facets ===================== //
-    
+
     $results = [];
     $facets = [];
-  
+
+    $facets_mapping = array(
+      "categories" => "vocab_taxonomy",
+      "country_site" => "extras_odm_spatial_range",
+      "odm_language" => "extras_odm_language",
+      "tags" => "extras_odm_keywords",
+      "vocab_taxonomy" => "vocab_taxonomy",
+      "extras_odm_spatial_range" => "extras_odm_spatial_range",
+      "extras_odm_language" => "extras_odm_language",
+      "extras_odm_keywords" => "extras_odm_keywords",
+      "license_id" => "license_id"
+    );
+
     foreach ($supported_search_types as $type => $search_types):
-      foreach ($search_types as $key => $value): 
+      foreach ($search_types as $key => $value):
+
+        $attrs = [];
         $result = null;
+        
         if ($type == 'ckan'):
-          unset($attrs["type"]);
+
+          //Taxonomy
+          if (!empty($param_taxonomy) && $param_taxonomy != 'all') {
+            $attrs["vocab_taxonomy"] = $param_taxonomy;
+          }
+
+          // Language
+          if (!empty($param_language) && $param_language != 'all') {
+            $attrs["extras_odm_language"] = $param_language;
+          }
+
+          // Country
+          if (!empty($param_country) && $param_country != 'mekong' && $param_country != 'all') {
+            $attrs["extras_odm_spatial_range"] = $countries[$param_country]['iso2'];
+          }
+
+          //License
+          if (!empty($param_license) && $param_license != 'all') {
+            $attrs['license_id'] = $param_license;
+          }
+
           $attrs["dataset_type"] = $key;
           $attrs["capacity"] = "public";
-          $result = WP_Odm_Solr_CKAN_Manager()->query($param_query,$attrs,$control_attrs);        
+          $result = WP_Odm_Solr_CKAN_Manager()->query($param_query,$attrs,$control_attrs);
+
         else:
-          unset($attrs["dataset_type"]);
-          unset($attrs["capacity"]);
+
+          //Taxonomy
+          if (!empty($param_taxonomy) && $param_taxonomy != 'all') {
+            $attrs["categories"] = $param_taxonomy;
+          }
+
+          // Language
+          if (!empty($param_language) && $param_language != 'all') {
+            $attrs["odm_language"] = $param_language;
+          }
+
+          // Country
+          if (!empty($param_country) && $param_country != 'mekong' && $param_country != 'all') {
+            $attrs["country_site"] = $param_country;
+          }
+
           $attrs["type"] = $key;
-          $result = WP_Odm_Solr_WP_Manager()->query($param_query,$attrs,$control_attrs);    
-        endif;      
-      
-        $results[$key] = $result["resultset"];            
-        foreach ($result["facets"] as $facet_key => $facet):         
-          if (!isset($facets[$facet_key])):
-            $facets[$facet_key] = [];
+          $result = WP_Odm_Solr_WP_Manager()->query($param_query,$attrs,$control_attrs);
+        endif;
+
+        $results[$key] = $result["resultset"];
+        foreach ($result["facets"] as $facet_key => $facet):
+          $facet_key_mapped = $facets_mapping[$facet_key];
+          if (!isset($facets[$facet_key_mapped])):
+            $facets[$facet_key_mapped] = [];
           endif;
           foreach ($facet as $facet_value => $count):
-            if (!isset($facets[$facet_key][$facet_value])):
-              $facets[$facet_key][$facet_value] = 0;
+            if (!isset($facets[$facet_key_mapped][$facet_value])):
+              $facets[$facet_key_mapped][$facet_value] = 0;
             endif;
-            $facets[$facet_key][$facet_value] += $count;
+            $facets[$facet_key_mapped][$facet_value] += $count;
           endforeach;
         endforeach;
       endforeach;
@@ -154,15 +184,15 @@
       </div>
     </div>
     <?php
-    else: 
-      
+    else:
+
       //================ show filters ===================== // ?>
 
 		<div class="row">
       <div class="four columns data-advanced-filters">
         <form>
         <h2><i class="fa fa-filter"></i> Filters</h2>
-        
+
         <!-- TAXONOMY FILTER -->
         <div class="single-filter">
           <label for="taxonomy"><?php _e('Topic', 'odm'); ?></label>
@@ -270,7 +300,7 @@
 				<!-- END OF LICENSE FILTER -->
 
         <div class="single-filter">
-          <input class="button" type="submit" value="<?php _e('Search Filter', 'odm'); ?>"/>          
+          <input class="button" type="submit" value="<?php _e('Search Filter', 'odm'); ?>"/>
         </div>
 
   		</div>
@@ -278,28 +308,28 @@
 			<div class="eleven columns">
         <input id="search_field" name="s" type="text" class="full-width-search-box search_field" id="search_field" value="<?php echo $_GET["s"]?>" data-solr-host="<?php echo $GLOBALS['wp_odm_solr_options']->get_option('wp_odm_solr_setting_solr_host'); ?>" data-solr-scheme="<?php echo $GLOBALS['wp_odm_solr_options']->get_option('wp_odm_solr_setting_solr_scheme'); ?>" data-solr-path="<?php echo $GLOBALS['wp_odm_solr_options']->get_option('wp_odm_solr_setting_solr_path'); ?>" data-solr-core-wp="<?php echo $GLOBALS['wp_odm_solr_options']->get_option('wp_odm_solr_setting_solr_core_wp'); ?>" data-solr-core-ckan="<?php echo $GLOBALS['wp_odm_solr_options']->get_option('wp_odm_solr_setting_solr_core_ckan'); ?>"></input>
         </form>
-        <div id="accordion" class="solr_results">				
-          
+        <div id="accordion" class="solr_results">
+
     <?php
-    
-      //================ show results ===================== // 
-      
+
+      //================ show results ===================== //
+
 			foreach ($supported_search_types as $type => $search_types):
-        foreach ($search_types as $key => $value): 
-          
+        foreach ($search_types as $key => $value):
+
           $resultset = $results[$key];
           $resultcount = ($resultset) ? $resultset->getNumFound() : 0;
-                
+
           if (isset($resultset) && $resultcount > 0): ?>
 
 						<h3><i class="<?php echo $value['icon'] ?>"></i> <?php echo $value['title'] . " (" . $resultcount . ")" ?></h3>
             <div class="single_content_result">
 						<?php
 							foreach ($resultset as $document):
-								?>              
+								?>
                   <div class="solr_result single_result_container row">
-                    <?php 
-                    if ($type == 'ckan'): 
+                    <?php
+                    if ($type == 'ckan'):
                       $title = wp_odm_solr_parse_multilingual_ckan_content($document->title_translated,odm_language_manager()->get_current_language(),$document->title);
                       $title = wp_odm_solr_highlight_search_words($s,$title);
                      ?>
@@ -373,9 +403,9 @@
                           </div>
                         <?php endif; ?>
                       </div>
-                    </div>  
-                  <?php 
-                    else: 
+                    </div>
+                  <?php
+                    else:
                       ?>
                       <div class="solr_result single_result_container row">
                         <?php
@@ -409,7 +439,7 @@
                               <span>
                                 <?php
                                   $hihglighted_value = wp_odm_solr_highlight_search_words($s,$document->country_site);
-                                  _e($hihglighted_value, "wp-odm_solr") ?>  
+                                  _e($hihglighted_value, "wp-odm_solr") ?>
                               </span>
                           <?php
                             endif;
@@ -418,7 +448,7 @@
                               <span>
                                 <?php
                                   $hihglighted_value = wp_odm_solr_highlight_search_words($s,implode(", ",$document->odm_language));
-                                  _e($hihglighted_value, "wp-odm_solr") ?>  
+                                  _e($hihglighted_value, "wp-odm_solr") ?>
                               </span>
                           <?php
                             endif;
@@ -427,7 +457,7 @@
                               <span>
                                 <?php
                                   $hihglighted_value = wp_odm_solr_highlight_search_words($s,implode(", ",$document->categories));
-                                  _e($hihglighted_value, "wp-odm_solr") ?>  
+                                  _e($hihglighted_value, "wp-odm_solr") ?>
                               </span>
                           <?php
                             endif;
@@ -436,7 +466,7 @@
                               <span>
                                 <?php
                                   $hihglighted_value = wp_odm_solr_highlight_search_words($s,implode(", ",$document->tags));
-                                  _e($hihglighted_value, "wp-odm_solr") ?>  
+                                  _e($hihglighted_value, "wp-odm_solr") ?>
                               </span>
                           <?php
                             endif;?>
@@ -446,11 +476,11 @@
                 <?php
                     endif;
 					    endforeach; ?>
-                
+
               <div class="view_all_link">
                 <a href="#">View all <?php echo $resultcount . " " . strtolower($value['title']) . " results" ?></a>
               </div>
-            </div>    
+            </div>
           <?php
           endif;
   		endforeach;
@@ -468,8 +498,8 @@
     jQuery(document).ready(function() {
 
       jQuery( "#accordion" ).accordion({
-        collapsible: true, 
-        active: false, 
+        collapsible: true,
+        active: false,
         header: "h3",
         heightStyle: "content"
       });
