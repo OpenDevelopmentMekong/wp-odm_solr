@@ -195,7 +195,7 @@
       <div class="four columns">
         <?php if ($param_type): ?>
           <div class="result_links">
-          <h4><Php _e('Search Results','wp-odm_solr'); ?> for "<?php _e('$param_query','wp-odm_solr'); ?>"</h4>
+          <h4><?php _e('Search Results','wp-odm_solr'); ?> for "<?php _e($param_query,'wp-odm_solr'); ?>"</h4>
           <?php
             foreach ($supported_search_types as $key => $value):
               $count = ($results[$key]) ? $results[$key]->getNumFound() : 0;
