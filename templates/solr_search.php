@@ -250,11 +250,11 @@
             endforeach; ?>
 
         <?php
+          $total_pages = ceil($content_resultset->getNumFound()/$control_attrs['limit']);
           if ($total_pages > 1):
          ?>
         <div class="pagination">
-          <?php
-          $total_pages = ceil($content_resultset->getNumFound()/$control_attrs['limit']);
+          <?php          
           odm_get_template('pagination_solr', array(
                         "current_page" => $param_page,
                         "total_pages" => $total_pages
