@@ -248,18 +248,21 @@
             </div>
         <?php
             endforeach; ?>
+
+        <?php
+          if ($total_pages > 1):
+         ?>
         <div class="pagination">
           <?php
           $total_pages = ceil($content_resultset->getNumFound()/$control_attrs['limit']);
-          odm_get_template('pagination_solr',array(
+          odm_get_template('pagination_solr', array(
                         "current_page" => $param_page,
                         "total_pages" => $total_pages
                       ),true); ?>
         </div>
         <?php
           endif;
-
-        ?>
+        endif; ?>
         <?php else: ?>
           <div id="accordion" class="solr_results">
             <?php
