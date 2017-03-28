@@ -3,7 +3,7 @@
 <!-- TAXONOMY FILTER -->
 <div class="single-filter">
   <label for="taxonomy"><?php _e('Topic', 'odm'); ?></label>
-  <select id="taxonomy" name="taxonomy" data-placeholder="<?php _e('Select term', 'odm'); ?>">
+  <select id="taxonomy" name="taxonomy" class="filter_box" data-placeholder="<?php _e('Select term', 'odm'); ?>">
     <option value="all" selected><?php _e('All','odm') ?></option>
     <?php
       foreach($taxonomy_list as $value):
@@ -13,7 +13,7 @@
             $available_records = $taxonomy_facets[$value];
             if ($available_records > 0): ?>
             <option value="<?php echo $value; ?>" <?php if($value == $param_taxonomy) echo 'selected'; ?>><?php echo $value . " (" . $available_records . ")"; ?></option>
-    <?php
+            <?php
             endif;
           endif;
         endif;
@@ -26,7 +26,7 @@
 <?php if (odm_country_manager()->get_current_country() == 'mekong'): ?>
 <div class="single-filter">
   <label for="country"><?php _e('Country', 'odm'); ?></label>
-  <select id="country" name="country" data-placeholder="<?php _e('Select country', 'odm'); ?>">
+  <select id="country" name="country" class="filter_box" data-placeholder="<?php _e('Select country', 'odm'); ?>">
     <option value="all" selected><?php _e('All','odm') ?></option>
     <?php
       foreach($countries as $key => $value):
@@ -39,7 +39,7 @@
               $available_records = $spatial_range_facets[$country_code];
               if ($available_records > 0): ?>
           <option value="<?php echo $key; ?>" <?php if($key == $param_country) echo 'selected'; ?> <?php if (odm_country_manager()->get_current_country() != 'mekong' && $key != odm_country_manager()->get_current_country()) echo 'disabled'; ?>><?php echo odm_country_manager()->get_country_name($key) . " (" . $available_records . ")"; ?></option>
-      <?php
+              <?php
               endif;
             endif;
           endif;
@@ -54,7 +54,7 @@
 <!-- LANGUAGE FILTER -->
 <div class="single-filter">
   <label for="language"><?php _e('Language', 'odm'); ?></label>
-  <select id="language" name="language" data-placeholder="<?php _e('Select language', 'odm'); ?>">
+  <select id="language" name="language" class="filter_box" data-placeholder="<?php _e('Select language', 'odm'); ?>">
     <option value="all"  selected><?php _e('All','odm') ?></option>
     <?php
       foreach($languages as $key => $value):
@@ -64,7 +64,7 @@
             $available_records = $language_facets[$key];
             if ($available_records > 0): ?>
     <option value="<?php echo $key; ?>" <?php if($key == $param_language) echo 'selected'; ?>><?php echo $value . " (" . $available_records . ")" ?></option>
-    <?php
+            <?php
             endif;
           endif;
         endif;
@@ -76,7 +76,7 @@
 <!-- LICENSE FILTER -->
 <div class="single-filter">
   <label for="license"><?php _e('License', 'odm'); ?></label>
-  <select id="license" name="license" data-placeholder="<?php _e('Select license', 'odm'); ?>">
+  <select id="license" name="license" class="filter_box" data-placeholder="<?php _e('Select license', 'odm'); ?>">
     <option value="all" selected><?php _e('All','odm') ?></option>
     <?php
       foreach($license_list as $license):
@@ -86,7 +86,7 @@
             $available_records = $license_facets[$license->id];
             if ($available_records > 0): ?>
         <option value="<?php echo $license->id; ?>" <?php if($license->id == $param_license) echo 'selected'; ?>><?php echo $license->title . " (" . $available_records . ")" ?></option>
-    <?php
+            <?php
             endif;
           endif;
         endif;
@@ -99,7 +99,7 @@
 <h3><i class="fa fa-sort"></i> Sorting</h3>
 <div class="single-filter">
   <label for="sorting"><?php _e('Sort by', 'odm'); ?></label>
-  <select id="sorting" name="sorting" data-placeholder="<?php _e('Sort by', 'odm'); ?>">
+  <select id="sorting" name="sorting" class="filter_box" data-placeholder="<?php _e('Sort by', 'odm'); ?>">
     <option <?php if($param_sorting == "score") echo 'selected'; ?> value="score"><?php _e('Relevance','odm') ?></option>
   	<option <?php if($param_sorting == "metadata_modified") echo 'selected'; ?> value="metadata_modified"><?php _e('Date modified','odm') ?></option>
   </select>

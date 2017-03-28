@@ -36,8 +36,13 @@ $title = wp_odm_solr_highlight_search_words($s,$title);
       <span>
         <?php
           $odm_country_arr = json_decode($document->extras_odm_spatial_range);
-          $hihglighted_value = wp_odm_solr_highlight_search_words($s,implode(", ", $odm_country_arr));
-          _e($hihglighted_value, "wp-odm_solr") ?>
+          foreach ($odm_country_arr as $country_code):
+            $country_name = odm_country_manager()->get_country_name_by_country_code($country_code);
+            _e($country_name, "wp-odm_solr");
+            if ($country_code !== end($odm_country_arr)):
+              echo ', ';
+            endif;
+          endforeach; ?>
       </span>
     </div>
   <?php endif; ?>
@@ -58,8 +63,9 @@ $title = wp_odm_solr_highlight_search_words($s,$title);
       <i class="fa fa-tags"></i>
       <span>
         <?php
-          $hihglighted_value = wp_odm_solr_highlight_search_words($s,implode(", ",$document->vocab_taxonomy));
-          _e($hihglighted_value, "wp-odm_solr") ?>
+          foreach ($document->vocab_taxonomy as $topic):
+            _e($topic. " ", "wp-odm_solr");
+          endforeach; ?>
       </span>
     </div>
   <?php endif; ?>

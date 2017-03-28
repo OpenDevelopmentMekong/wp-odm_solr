@@ -317,12 +317,7 @@
         heightStyle: "content"
       });
 
-      jQuery('#search_field').keydown(function(event) {
-        if (event.keyCode == 13) {
-            window.location.href = "/?s=" + jQuery('#search_field').val();
-            return false;
-         }
-      });
+      jQuery( ".filter_box" ).select2();
 
       jQuery('#search_field').autocomplete({
         source: function( request, response ) {
