@@ -124,9 +124,9 @@ class WP_Odm_Solr_WP_Manager {
 		return $result;
   }
 
-	function query($text, $attrs = null){
+	function query($text, $attrs = null, $control_attrs = null){
 
-    wp_odm_solr_log('solr-wp-manager query: ' . $text . " attrs: " . serialize($attrs));
+    wp_odm_solr_log('solr-wp-manager query: ' . $text . " attrs: " . serialize($attrs)  . " control_attrs: " . serialize($control_attrs));
 
     $result = array(
       "resultset" => null,
@@ -139,30 +139,48 @@ class WP_Odm_Solr_WP_Manager {
     );
 
     try {
-      
+
       $query = $this->client->createSelect();
       if (!empty($text)):
         $query->setQuery($text);
       endif;
-  		
+
+      if (isset($control_attrs["page"]) && isset($control_attrs["limit"])):
+        $start = $control_attrs["page"] * $control_attrs["limit"];
+        $rows = $control_attrs["limit"];
+        $query->setStart($start)->setRows($rows);
+      endif;
+
       if (isset($attrs)):
         foreach ($attrs as $key => $value):
+          if ($key == "categories"):
+            $taxonomy_top_tier = odm_taxonomy_manager()->get_taxonomy_top_tier();
+            if (array_key_exists($value,$taxonomy_top_tier)):
+              $value = "(\"" . implode("\" OR \"", $taxonomy_top_tier[$value]) . "\")";
+            endif;
+          endif;
           $query->createFilterQuery($key)->setQuery($key . ':' . $value);
         endforeach;
-      endif;      
+      endif;
 
       $current_country = odm_country_manager()->get_current_country();
-      if ( $current_country != "mekong"):
+      if ( $current_country != "mekong" && !array_key_exists("country_site",$attrs)):
   			$query->createFilterQuery('country_site')->setQuery('country_site:' . $current_country);
   		endif;
 
-      $dismax = $query->getDisMax();      
+      $dismax = $query->getDisMax();
       $dismax->setQueryFields('tags^5 categories^4 title^2 content^1');
 
       $facetSet = $query->getFacetSet();
       foreach ($result["facets"] as $key => $objects):
         $facetSet->createFacetField($key)->setField($key);
       endforeach;
+
+      if (isset($control_attrs["sorting"])):
+        $query->addSort($control_attrs["sorting"], 'desc');
+      endif;
+      
+      wp_odm_solr_log('solr-wp-manager executing query: ' . serialize($query));
 
   		$resultset = $this->client->select($query);
       $result["resultset"] = $resultset;
@@ -171,7 +189,7 @@ class WP_Odm_Solr_WP_Manager {
         $facet = $resultset->getFacetSet()->getFacet($key);
         if (isset($facet)):
           foreach($facet as $value => $count) {
-            array_push($result["facets"][$key],array($value => $count));
+            $result["facets"][$key][$value] = $count;
           }
         endif;
       endforeach;
