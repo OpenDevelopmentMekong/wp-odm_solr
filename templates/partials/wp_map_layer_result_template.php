@@ -1,9 +1,5 @@
 <?php
 
-  global $post;
-  $post = get_post($document->id);
-
-  global $wp_query;
 	$args = array(
 		"p" => $document->id,
     "post_type" => "map-layer",
