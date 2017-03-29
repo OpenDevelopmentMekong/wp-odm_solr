@@ -29,7 +29,7 @@
       <div class="data_languages data_meta">
         <span>
           <?php
-          foreach ($odm_language as $lang):
+          foreach ($document->odm_language as $lang):
             $path_to_flag = odm_language_manager()->get_path_to_flag_image($lang);
             if (!empty($path_to_flag)): ?>
             <img class="lang_flag" alt="<?php echo $lang ?>" src="<?php echo $path_to_flag; ?>"></img>
