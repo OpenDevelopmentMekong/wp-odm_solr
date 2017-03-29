@@ -4,7 +4,8 @@
   "port": "22",
   "target": "/home/vagrant/webapps/wp/wp-content/plugins/wp-odm_solr/",
   "ignore": [
-    ".git/**"
+    ".git/**",
+    "vendor/**"
   ],
   "username": "vagrant",
   "password": "vagrant",
