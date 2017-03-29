@@ -23,24 +23,34 @@
     endif;
     ?>
   </p>
-  <div class="data_meta">
-    <?php
-      if (!empty($document->country_site)): ?>
+  <div class="data_meta_wrapper sixteen columns">
+    <!-- Language -->
+    <?php if (!empty($document->extras_odm_language)): ?>
+      <div class="data_languages data_meta">
+        <span>
+          <?php
+          foreach ($odm_language as $lang):
+            $path_to_flag = odm_language_manager()->get_path_to_flag_image($lang);
+            if (!empty($path_to_flag)): ?>
+            <img class="lang_flag" alt="<?php echo $lang ?>" src="<?php echo $path_to_flag; ?>"></img>
+          <?php
+            endif;
+          endforeach; ?>
+        </span>
+      </div>
+    <?php endif; ?>
+    <!-- Country -->
+    <?php if (!empty($document->country_code)): ?>
+      <div class="country_indicator data_meta">
         <i class="fa fa-globe"></i>
         <span>
-          <?php
-            $hihglighted_value = wp_odm_solr_highlight_search_words($s,$document->country_site);
-            _e($hihglighted_value, "wp-odm_solr") ?>
+          <?php          
+              $country_name = odm_country_manager()->get_country_name_by_country_code($document->country_code);
+              if (!empty($country_name)):
+                _e($country_name, "wp-odm_solr");                
+              endif; ?>
         </span>
-    <?php
-      endif;
-      if (!empty($document->odm_language)): ?>
-        <i class="fa fa-language"></i>
-        <span>
-          <?php
-            $hihglighted_value = wp_odm_solr_highlight_search_words($s,implode(", ",$document->odm_language));
-            _e($hihglighted_value, "wp-odm_solr") ?>
-        </span>
+      </div>  
     <?php
       endif;
       if (!empty($document->categories)): ?>
