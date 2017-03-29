@@ -254,7 +254,7 @@
           if ($total_pages > 1):
          ?>
         <div class="pagination">
-          <?php          
+          <?php
           odm_get_template('pagination_solr', array(
                         "current_page" => $param_page,
                         "total_pages" => $total_pages
