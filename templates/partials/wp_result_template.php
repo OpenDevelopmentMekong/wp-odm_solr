@@ -25,7 +25,7 @@
   </p>
   <div class="data_meta_wrapper sixteen columns">
     <!-- Language -->
-    <?php if (!empty($document->extras_odm_language)): ?>
+    <?php if (!empty($document->odm_language)): ?>
       <div class="data_languages data_meta">
         <span>
           <?php
@@ -40,17 +40,22 @@
       </div>
     <?php endif; ?>
     <!-- Country -->
-    <?php if (!empty($document->country_code)): ?>
+    <?php if (!empty($document->odm_spatial_range)): ?>
       <div class="country_indicator data_meta">
         <i class="fa fa-globe"></i>
         <span>
-          <?php          
-              $country_name = odm_country_manager()->get_country_name_by_country_code($document->country_code);
+          <?php
+            foreach ($document->odm_spatial_range as $country_code):
+              $country_name = odm_country_manager()->get_country_name_by_country_code($country_code);
               if (!empty($country_name)):
-                _e($country_name, "wp-odm_solr");                
-              endif; ?>
+                _e($country_name, "wp-odm_solr");
+                if ($country_code !== end($odm_country_arr)):
+                  echo ', ';
+                endif;
+              endif;
+            endforeach; ?>
         </span>
-      </div>  
+      </div> 
     <?php
       endif;
       if (!empty($document->categories)): ?>
