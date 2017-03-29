@@ -62,8 +62,12 @@
         <i class="fa fa-tags"></i>
         <span>
           <?php
-            $hihglighted_value = wp_odm_solr_highlight_search_words($s,implode(", ",$document->categories));
-            _e($hihglighted_value, "wp-odm_solr") ?>
+            foreach ($document->categories as $category):
+              _e($category, "wp-odm_solr") ;
+              if ($category != end($document->categories)):
+                echo ", ";
+              endif;
+            endforeach;?>
         </span>
     <?php
       endif;
