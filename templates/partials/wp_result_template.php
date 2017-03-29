@@ -49,7 +49,7 @@
               $country_name = odm_country_manager()->get_country_name_by_country_code($country_code);
               if (!empty($country_name)):
                 _e($country_name, "wp-odm_solr");
-                if ($country_code !== end($odm_country_arr)):
+                if ($country_code !== end($document->odm_spatial_range)):
                   echo ', ';
                 endif;
               endif;
