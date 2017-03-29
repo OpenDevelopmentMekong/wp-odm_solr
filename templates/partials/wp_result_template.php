@@ -76,8 +76,13 @@
         <i class="fa fa-tags"></i>
         <span>
           <?php
-            $hihglighted_value = wp_odm_solr_highlight_search_words($s,implode(", ",$document->tags));
-            _e($hihglighted_value, "wp-odm_solr") ?>
+            $tags = (array) $document->tags;
+            foreach ($tags as $tag):
+              _e($tag, "wp-odm_solr") ;
+              if ($tag !== end($tags)):
+                echo ", ";
+              endif;
+            endforeach;?>          
         </span>
     <?php
       endif;?>
