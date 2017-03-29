@@ -71,9 +71,13 @@
         <i class="fa fa-tags"></i>
         <span>
           <?php
-            foreach ($document->vocab_taxonomy as $topic):
-              _e($topic. " ", "wp-odm_solr");
-            endforeach; ?>
+            $topics = (array) $document->vocab_taxonomy;
+            foreach ($topics as $topic):
+              _e($topic, "wp-odm_solr") ;
+              if ($topic !== end($topics)):
+                echo ", ";
+              endif;
+            endforeach;?>          
         </span>
       </div>
     <?php endif; ?>
@@ -82,8 +86,13 @@
       <div class="data_meta">
         <i class="fa fa-tags"></i>
         <?php
-          $hihglighted_value = wp_odm_solr_highlight_search_words($s,implode(", ",$document->extras_odm_keywords));
-          _e($hihglighted_value, "wp-odm_solr") ?>
+          $keywords = (array) $document->extras_odm_keywords;
+          foreach ($keywords as $keyword):
+            _e($keyword, "wp-odm_solr") ;
+            if ($keyword !== end($keywords)):
+              echo ", ";
+            endif;
+          endforeach;?>   
       </div>
     <?php endif; ?>
   </div>
