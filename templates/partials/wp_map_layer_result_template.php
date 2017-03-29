@@ -6,6 +6,7 @@
   global $wp_query;
 	$args = array(
 		"p" => $document->id,
+    "post_type" => "map-layer",
 		"posts_per_page" => 1
 	);
 	$search_results = new WP_Query($args);
