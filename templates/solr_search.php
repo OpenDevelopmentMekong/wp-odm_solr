@@ -172,8 +172,7 @@
             $facets[$facet_key_mapped][$facet_value] += $count;
           endforeach;
         endforeach;
-      endforeach;
-?>
+      endforeach; ?>
 
 <section class="container">
 
@@ -232,7 +231,7 @@
           <h4>
           <?php echo $content_resultcount . ' '
                       . $supported_search_types[$param_type]["title"]
-                      . ' found for "'.$param_query.'"'; ?>
+                      . __(' found for','wp-odm_solr') . '"' . $param_query. '"'; ?>
           </h4>
 
           <?php
@@ -293,7 +292,7 @@
 
                       <?php if ($resultcount > 10): ?>
                         <div class="view_all_link">
-                          <a href="<?php echo construct_url($_SERVER['REQUEST_URI'], 'type', $key); ?>">View all <?php echo $resultcount . " " . strtolower($value['title']) . " results" ?></a>
+                          <a href="<?php echo construct_url($_SERVER['REQUEST_URI'], 'type', $key); ?>">View all <?php echo $resultcount . " " . strtolower($value['title']) . " " . __("results","wp-odm_solr"); ?></a>
                         </div>
                       <?php endif; ?>
                     </div>

@@ -55,15 +55,15 @@ $title = wp_odm_solr_highlight_search_words($s,$title);
           foreach ($odm_country_arr as $country_code):
             $country_name = odm_country_manager()->get_country_name_by_country_code($country_code);
             if (!empty($country_name)):
-              _e($country_name, "wp-odm_solr");
-              if ($country_code !== end($odm_country_arr)):
+              _e(ucwords($country_name), "wp-odm_solr");
+              if ($country_code != end($odm_country_arr)):
                 echo ', ';
               endif;
             endif;
           endforeach; ?>
       </span>
     </div>
-  <?php endif; ?>  
+  <?php endif; ?>
   <!-- Topics -->
   <?php if (!empty($document->vocab_taxonomy)): ?>
     <div class="data_meta">
