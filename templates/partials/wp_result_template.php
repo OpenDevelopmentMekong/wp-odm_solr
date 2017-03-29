@@ -62,9 +62,10 @@
         <i class="fa fa-tags"></i>
         <span>
           <?php
-            foreach ($document->categories as $category):
+            $categories = (array) $document->categories;
+            foreach ($categories as $category):
               _e($category, "wp-odm_solr") ;
-              if ($category != end($document->categories)):
+              if ($category !== end($categories)):
                 echo ", ";
               endif;
             endforeach;?>
