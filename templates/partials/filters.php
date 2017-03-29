@@ -1,4 +1,4 @@
-<h2><i class="fa fa-filter"></i> Filters</h2>
+<h3><i class="fa fa-filter"></i> Filters</h3>
 
 <!-- TAXONOMY FILTER -->
 <div class="single-filter">

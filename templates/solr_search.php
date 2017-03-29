@@ -172,8 +172,7 @@
             $facets[$facet_key_mapped][$facet_value] += $count;
           endforeach;
         endforeach;
-      endforeach;
-?>
+      endforeach; ?>
 
 <section class="container">
 
@@ -195,7 +194,7 @@
       <div class="four columns">
         <?php if ($param_type): ?>
           <div class="result_links">
-          <h4>Search Results for "<?php echo $param_query; ?>"</h4>
+          <h4><?php _e('Search Results','wp-odm_solr'); ?> for "<?php _e($param_query,'wp-odm_solr'); ?>"</h4>
           <?php
             foreach ($supported_search_types as $key => $value):
               $count = ($results[$key]) ? $results[$key]->getNumFound() : 0;
@@ -204,7 +203,7 @@
               <div class="result_link_list">
                 <a href="<?php echo construct_url($_SERVER['REQUEST_URI'], 'type', $key); ?>">
                   <i class="<?php echo $value['icon']; ?>"></i>
-                  <?php echo $value['title']."(".$count.")"; ?>
+                  <?php echo __($value['title'],'wp-odm_solr') . " (".$count.")"; ?>
                 </a>
               </div>
 
@@ -232,7 +231,7 @@
           <h4>
           <?php echo $content_resultcount . ' '
                       . $supported_search_types[$param_type]["title"]
-                      . ' found for "'.$param_query.'"'; ?>
+                      . __(' found for','wp-odm_solr') . '"' . $param_query. '"'; ?>
           </h4>
 
           <?php
@@ -254,11 +253,11 @@
             endforeach; ?>
 
         <?php
+          $total_pages = ceil($content_resultset->getNumFound()/$control_attrs['limit']);
           if ($total_pages > 1):
          ?>
         <div class="pagination">
           <?php
-          $total_pages = ceil($content_resultset->getNumFound()/$control_attrs['limit']);
           odm_get_template('pagination_solr', array(
                         "current_page" => $param_page,
                         "total_pages" => $total_pages
@@ -277,7 +276,7 @@
 
                   if (isset($resultset) && $resultcount > 0): ?>
 
-        						<h3><i class="<?php echo $value['icon'] ?>"></i> <?php echo $value['title'] . " (" . $resultcount . ")" ?></h3>
+        						<h3><i class="<?php echo $value['icon'] ?>"></i>  <?php echo $resultcount . " " . __($value['title'],"wp-odm_solr"); ?></h3>
 
                     <div class="single_content_result">
 
@@ -296,7 +295,7 @@
 
                       <?php if ($resultcount > 10): ?>
                         <div class="view_all_link">
-                          <a href="<?php echo construct_url($_SERVER['REQUEST_URI'], 'type', $key); ?>">View all <?php echo $resultcount . " " . strtolower($value['title']) . " results" ?></a>
+                          <a href="<?php echo construct_url($_SERVER['REQUEST_URI'], 'type', $key); ?>">View all <?php echo $resultcount . " " . strtolower($value['title']) . " " . __("results","wp-odm_solr"); ?></a>
                         </div>
                       <?php endif; ?>
                     </div>
