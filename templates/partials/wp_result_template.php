@@ -4,7 +4,7 @@
     $title = wp_odm_solr_highlight_search_words($s,$title);
    ?>
   <h4 class="data_title">
-    <a href="<?php echo $document->permalink ?>">
+    <a target="_blank" href="<?php echo $document->permalink ?>">
       <?php echo $title ?>
     </a>
   </h4>
