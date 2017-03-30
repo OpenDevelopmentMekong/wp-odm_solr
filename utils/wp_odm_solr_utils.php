@@ -27,10 +27,6 @@
     $to_return = null;
     $json = json_decode($to_parse,true);
 
-    if (!isset($json)):
-      $to_return = $to_parse;
-    endif;
-
     if (!isset($to_return) && isset($fallback)):
       $to_return = $fallback;
     endif;

@@ -59,12 +59,20 @@ class UtilsTest extends PHPUnit_Framework_TestCase
     $this->assertContains($result,"some text");
   }
 
-  public function testParseMultilingualCkanContentFallbackNoJson(){
+  public function testParseMultilingualCkanContentFallbackNoValidJson(){
     $to_parse = '{"en":"some english text","km","some khmer text"}';
     $fallback = 'some text';
     $lang = "en";
     $result = wp_odm_solr_parse_multilingual_ckan_content($to_parse,$lang,$fallback);
     $this->assertContains($result,"some text");
+  }
+
+  public function testParseMultilingualCkanContentFallbackNoFallback(){
+    $to_parse = '{"en":"some english text","km","some khmer text"}';
+    $fallback = null;
+    $lang = "en";
+    $result = wp_odm_solr_parse_multilingual_ckan_content($to_parse,$lang,$fallback);
+    $this->assertNull($result);
   }
 
   // public function testParseMultilingualWpContent(){
