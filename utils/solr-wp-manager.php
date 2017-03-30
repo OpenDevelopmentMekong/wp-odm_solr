@@ -134,7 +134,8 @@ class WP_Odm_Solr_WP_Manager {
         "categories" => array(),
         "tags" => array(),
         "country_site" => array(),
-        "odm_language" => array()
+        "odm_language" => array(),
+        "license_id" => array()
       ),
     );
 
