@@ -247,6 +247,8 @@
                   include 'partials/wp_map_layer_result_template.php';
                 elseif ($param_type == 'topic'):
                   include 'partials/wp_topic_result_template.php';
+                elseif ($param_type == 'profiles'):
+                  include 'partials/wp_profiles_result_template.php';
                 else:
                   include 'partials/wp_result_template.php';
                 endif;
@@ -291,6 +293,8 @@
                             include 'partials/wp_map_layer_result_template.php';
                           elseif ($param_type == 'topic'):
                             include 'partials/wp_topic_result_template.php';
+                          elseif ($param_type == 'profiles'):
+                            include 'partials/wp_profiles_result_template.php';
                           else:
                             include 'partials/wp_result_template.php';
                           endif;
