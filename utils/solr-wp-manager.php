@@ -168,8 +168,11 @@ class WP_Odm_Solr_WP_Manager {
   			$query->createFilterQuery('country_site')->setQuery('country_site:' . $current_country);
   		endif;
 
-      $dismax = $query->getDisMax();
-      $dismax->setQueryFields('tags^5 categories^4 title^2 content^1');
+      if (!empty($text)):
+        $fields_to_query = 'tags^5 categories^4 title^2 content^1';
+        $dismax = $query->getDisMax();
+        $dismax->setQueryFields($fields_to_query);
+      endif;
 
       $facetSet = $query->getFacetSet();
       foreach ($result["facets"] as $key => $objects):
