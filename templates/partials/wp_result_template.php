@@ -49,7 +49,7 @@
             foreach ($countries as $country_code):
               $country_name = odm_country_manager()->get_country_name_by_country_code($country_code);
               if (!empty($country_name)):
-                _e($country_name, "wp-odm_solr");
+                _e($country_name, 'odi');
                 if ($country_code !== end($countries)):
                   echo ', ';
                 endif;
@@ -65,7 +65,7 @@
           <?php
             $categories = (array) $document->categories;
             foreach ($categories as $category):
-              _e($category, "wp-odm_solr") ;
+              _e($category, 'odi') ;
               if ($category !== end($categories)):
                 echo ", ";
               endif;
@@ -79,7 +79,7 @@
           <?php
             $tags = (array) $document->tags;
             foreach ($tags as $tag):
-              _e($tag, "wp-odm_solr") ;
+              _e($tag, 'odi') ;
               if ($tag !== end($tags)):
                 echo ", ";
               endif;

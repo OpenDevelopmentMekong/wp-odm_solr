@@ -55,7 +55,8 @@ if (!class_exists('WpOdmSolr')) {
 
         public function load_text_domain()
         {
-          load_plugin_textdomain( 'wp_odm_solr', false,  dirname( plugin_basename( __FILE__ ) ) . '/i18n' );
+          $locale = apply_filters( 'plugin_locale', get_locale(), 'odi' );
+          load_textdomain( 'odi', trailingslashit( WP_LANG_DIR ) . '-' . $locale . '.mo' );
         }
 
         function check_requirements(){
@@ -136,7 +137,7 @@ if (!class_exists('WpOdmSolr')) {
          */
         public function wp_odm_solr_add_menu()
         {
-            add_options_page('wp-odm_solr Settings', 'wp-odm_solr', 'manage_options', 'wp-odm_solr', array(&$this, 'plugin_settings_page'));
+            add_options_page('wp-odm_solr Settings', 'odi', 'manage_options', 'odi', array(&$this, 'plugin_settings_page'));
         }
 
         /**
@@ -155,8 +156,8 @@ if (!class_exists('WpOdmSolr')) {
 
 if (class_exists('WpOdmSolr')) {
     // Installation and uninstallation hooks
-    register_activation_hook(__FILE__, array('wp-odm_solr', 'activate'));
-    register_deactivation_hook(__FILE__, array('wp-odm_solr', 'deactivate'));
+    register_activation_hook(__FILE__, array('odi', 'activate'));
+    register_deactivation_hook(__FILE__, array('odi', 'deactivate'));
 
     // instantiate the plugin class
     $wp_odm_solr = new WpOdmSolr();

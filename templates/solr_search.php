@@ -181,7 +181,7 @@
       <div class="row">
         <div class="sixteen columns">
             <p class="error">
-              <?php _e("wp-odm_solr plugin is not properly configured. Please contact the system's administrator","wp-odm_solr"); ?>
+              <?php _e("wp-odm_solr plugin is not properly configured. Please contact the system's administrator",'odi'); ?>
             </p>
         </div>
       </div>
@@ -194,7 +194,7 @@
       <div class="four columns">
         <?php if ($param_type): ?>
           <div class="result_links">
-          <h4><?php _e('Search Results','wp-odm_solr'); ?> for "<?php _e($param_query,'wp-odm_solr'); ?>"</h4>
+          <h4><?php _e('Search Results','odi'); ?> for "<?php _e($param_query,'odi'); ?>"</h4>
           <?php
             foreach ($supported_search_types as $key => $value):
               $count = ($results[$key]) ? $results[$key]->getNumFound() : 0;
@@ -203,7 +203,7 @@
               <div class="result_link_list">
                 <a href="<?php echo construct_url($_SERVER['REQUEST_URI'], 'type', $key); ?>">
                   <i class="<?php echo $value['icon']; ?>"></i>
-                  <?php echo __($value['title'],'wp-odm_solr') . " (".$count.")"; ?>
+                  <?php echo __($value['title'],'odi') . " (".$count.")"; ?>
                 </a>
               </div>
 
@@ -220,7 +220,7 @@
   		</div>
       <!-- ============== Search input ============= -->
 			<div class="twelve columns">
-        <input id="search_field" name="s" type="text" class="full-width-search-box search_field" id="search_field" value="<?php echo $_GET["s"]?>" placeholder="<?php _e("Search datasets, topics, news articles...","wp-odm_solr"); ?>" data-solr-host="<?php echo $GLOBALS['wp_odm_solr_options']->get_option('wp_odm_solr_setting_solr_host'); ?>" data-solr-scheme="<?php echo $GLOBALS['wp_odm_solr_options']->get_option('wp_odm_solr_setting_solr_scheme'); ?>" data-solr-path="<?php echo $GLOBALS['wp_odm_solr_options']->get_option('wp_odm_solr_setting_solr_path'); ?>" data-solr-core-wp="<?php echo $GLOBALS['wp_odm_solr_options']->get_option('wp_odm_solr_setting_solr_core_wp'); ?>" data-solr-core-ckan="<?php echo $GLOBALS['wp_odm_solr_options']->get_option('wp_odm_solr_setting_solr_core_ckan'); ?>"></input>
+        <input id="search_field" name="s" type="text" class="full-width-search-box search_field" id="search_field" value="<?php echo $_GET["s"]?>" placeholder="<?php _e("Search datasets, topics, news articles...",'odi'); ?>" data-solr-host="<?php echo $GLOBALS['wp_odm_solr_options']->get_option('wp_odm_solr_setting_solr_host'); ?>" data-solr-scheme="<?php echo $GLOBALS['wp_odm_solr_options']->get_option('wp_odm_solr_setting_solr_scheme'); ?>" data-solr-path="<?php echo $GLOBALS['wp_odm_solr_options']->get_option('wp_odm_solr_setting_solr_path'); ?>" data-solr-core-wp="<?php echo $GLOBALS['wp_odm_solr_options']->get_option('wp_odm_solr_setting_solr_core_wp'); ?>" data-solr-core-ckan="<?php echo $GLOBALS['wp_odm_solr_options']->get_option('wp_odm_solr_setting_solr_core_ckan'); ?>"></input>
         </form>
         <!-- ================ show all results =====================  -->
         <?php
@@ -231,7 +231,7 @@
           <h4>
           <?php echo $content_resultcount . ' '
                       . $supported_search_types[$param_type]["title"]
-                      . __(' found for','wp-odm_solr') . '"' . $param_query. '"'; ?>
+                      . __(' found for','odi') . '"' . $param_query. '"'; ?>
           </h4>
 
           <?php
@@ -276,7 +276,7 @@
 
                   if (isset($resultset) && $resultcount > 0): ?>
 
-        						<h3><i class="<?php echo $value['icon'] ?>"></i>  <?php echo $resultcount . " " . __($value['title'],"wp-odm_solr"); ?></h3>
+        						<h3><i class="<?php echo $value['icon'] ?>"></i>  <?php echo $resultcount . " " . __($value['title'],'odi'); ?></h3>
 
                     <div class="single_content_result">
 
@@ -296,7 +296,7 @@
                       <?php if ($resultcount > 10): ?>
                         <div class="view_all_link row">
                           <div class="sixteen columns">
-                            <a href="<?php echo construct_url($_SERVER['REQUEST_URI'], 'type', $key); ?>">View all <?php echo $resultcount . " " . strtolower($value['title']) . " " . __("results","wp-odm_solr"); ?></a>
+                            <a href="<?php echo construct_url($_SERVER['REQUEST_URI'], 'type', $key); ?>">View all <?php echo $resultcount . " " . strtolower($value['title']) . " " . __("results",'odi'); ?></a>
                           </div>
                         </div>
                       <?php endif; ?>
