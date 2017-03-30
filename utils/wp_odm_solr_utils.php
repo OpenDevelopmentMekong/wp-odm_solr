@@ -24,9 +24,10 @@
 
   function wp_odm_solr_parse_multilingual_ckan_content($to_parse,$lang,$fallback) {
 
+    $to_return = null;
     $json = json_decode($to_parse,true);
 
-    if (!$json):
+    if (!isset($json)):
       $to_return = $to_parse;
     endif;
 
