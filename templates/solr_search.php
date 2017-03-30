@@ -294,8 +294,10 @@
         					    endforeach; ?>
 
                       <?php if ($resultcount > 10): ?>
-                        <div class="view_all_link">
-                          <a href="<?php echo construct_url($_SERVER['REQUEST_URI'], 'type', $key); ?>">View all <?php echo $resultcount . " " . strtolower($value['title']) . " " . __("results","wp-odm_solr"); ?></a>
+                        <div class="view_all_link row">
+                          <div class="sixteen columns">
+                            <a href="<?php echo construct_url($_SERVER['REQUEST_URI'], 'type', $key); ?>">View all <?php echo $resultcount . " " . strtolower($value['title']) . " " . __("results","wp-odm_solr"); ?></a>
+                          </div>
                         </div>
                       <?php endif; ?>
                     </div>
