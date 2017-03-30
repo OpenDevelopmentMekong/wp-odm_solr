@@ -31,7 +31,7 @@
       $to_return = $to_parse;
     endif;
 
-    if (!isset($to_return) && $fallback):
+    if (!isset($to_return) && isset($fallback)):
       $to_return = $fallback;
     endif;
 
