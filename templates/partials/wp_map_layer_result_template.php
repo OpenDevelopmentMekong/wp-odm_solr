@@ -1,6 +1,8 @@
 <?php
 
-  switch_to_blog($document->blogid);
+  if (function_exists("switch_to_blog")):
+    switch_to_blog($document->blogid);
+  endif;
 
   $fetched_post = get_post($document->id);
   odm_get_template('post-grid-single-4-cols',array(
@@ -8,5 +10,8 @@
  	            "show_meta" => false)
  	          , true);
 
-  restore_current_blog();
+  if (function_exists("restore_current_blog")):
+    restore_current_blog();
+  endif;
+
 ?>
