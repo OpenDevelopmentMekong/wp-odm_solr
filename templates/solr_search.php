@@ -245,6 +245,8 @@
               else:
                 if ($param_type == 'map-layer'):
                   include 'partials/wp_map_layer_result_template.php';
+                elseif ($param_type == 'topic'):
+                  include 'partials/wp_topic_result_template.php';
                 else:
                   include 'partials/wp_result_template.php';
                 endif;
@@ -287,6 +289,8 @@
                         else:
                           if ($key == 'map-layer'):
                             include 'partials/wp_map_layer_result_template.php';
+                          elseif ($param_type == 'topic'):
+                            include 'partials/wp_topic_result_template.php';
                           else:
                             include 'partials/wp_result_template.php';
                           endif;
