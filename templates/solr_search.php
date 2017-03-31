@@ -306,19 +306,19 @@
                         if ($value['type'] == 'ckan'):
                           include 'partials/ckan_result_template.php';
                         else:
-                          if ($param_type == 'map-layer'):
+                          if ($key == 'map-layer'):
                             include 'partials/wp_map_layer_result_template.php';
-                          elseif ($param_type == 'news-article'):
+                          elseif ($key == 'news-article'):
                             include 'partials/wp_news_article_result_template.php';
-                          elseif ($param_type == 'topic'):
+                          elseif ($key == 'topic'):
                             include 'partials/wp_topic_result_template.php';
-                          elseif ($param_type == 'profiles'):
+                          elseif ($key == 'profiles'):
                             include 'partials/wp_profiles_result_template.php';
-                          elseif ($param_type == 'story'):
+                          elseif ($key == 'story'):
                             include 'partials/wp_story_result_template.php';
-                          elseif ($param_type == 'announcement'):
+                          elseif ($key == 'announcement'):
                             include 'partials/wp_announcement_result_template.php';
-                          elseif ($param_type == 'site-update'):
+                          elseif ($key == 'site-update'):
                             include 'partials/wp_site_update_result_template.php';
                           else:
                             include 'partials/wp_result_template.php';
