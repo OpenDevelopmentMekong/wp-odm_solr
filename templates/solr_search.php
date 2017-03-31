@@ -297,7 +297,7 @@
 
                   if (isset($resultset) && $resultcount > 0): ?>
 
-        						<h3><i class="<?php echo $value['icon'] ?>"></i>  <?php echo $resultcount . " " . __($value['title'],"wp-odm_solr"); ?></h3>
+        						<h2><i class="<?php echo $value['icon'] ?>"></i>  <?php echo $resultcount . " " . __($value['title'],"wp-odm_solr"); ?></h2>
 
                     <div class="single_content_result">
 
@@ -353,7 +353,7 @@
       jQuery( "#accordion" ).accordion({
         collapsible: true,
         active: false,
-        header: "h3",
+        header: "h2",
         heightStyle: "content"
       });
 
