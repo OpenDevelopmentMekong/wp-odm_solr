@@ -192,6 +192,7 @@ class WP_Odm_Solr_WP_Manager {
       foreach ($result["facets"] as $key => $objects):
         $facet = $resultset->getFacetSet()->getFacet($key);
         if (isset($facet)):
+          $result["facets"][$key] = [];
           foreach($facet as $value => $count) {
             $result["facets"][$key][$value] = $count;
           }
