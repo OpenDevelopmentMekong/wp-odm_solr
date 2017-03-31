@@ -254,10 +254,18 @@
               else:
                 if ($param_type == 'map-layer'):
                   include 'partials/wp_map_layer_result_template.php';
+                elseif ($param_type == 'news-article'):
+                  include 'partials/wp_news_article_result_template.php';
                 elseif ($param_type == 'topic'):
                   include 'partials/wp_topic_result_template.php';
                 elseif ($param_type == 'profiles'):
                   include 'partials/wp_profiles_result_template.php';
+                elseif ($param_type == 'story'):
+                  include 'partials/wp_story_result_template.php';
+                elseif ($param_type == 'announcement'):
+                  include 'partials/wp_announcement_result_template.php';
+                elseif ($param_type == 'site-update'):
+                  include 'partials/wp_site_update_result_template.php';
                 else:
                   include 'partials/wp_result_template.php';
                 endif;
@@ -298,12 +306,20 @@
                         if ($value['type'] == 'ckan'):
                           include 'partials/ckan_result_template.php';
                         else:
-                          if ($key == 'map-layer'):
+                          if ($param_type == 'map-layer'):
                             include 'partials/wp_map_layer_result_template.php';
+                          elseif ($param_type == 'news-article'):
+                            include 'partials/wp_news_article_result_template.php';
                           elseif ($param_type == 'topic'):
                             include 'partials/wp_topic_result_template.php';
                           elseif ($param_type == 'profiles'):
                             include 'partials/wp_profiles_result_template.php';
+                          elseif ($param_type == 'story'):
+                            include 'partials/wp_story_result_template.php';
+                          elseif ($param_type == 'announcement'):
+                            include 'partials/wp_announcement_result_template.php';
+                          elseif ($param_type == 'site-update'):
+                            include 'partials/wp_site_update_result_template.php';
                           else:
                             include 'partials/wp_result_template.php';
                           endif;
