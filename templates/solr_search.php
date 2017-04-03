@@ -38,57 +38,68 @@
     'dataset' => array(
       'title' => 'Datasets',
       'icon' => 'fa fa-database',
-      'type' => 'ckan'
+      'type' => 'ckan',
+      'archive_url' => '/data'
     ),
     'library_record' => array(
       'title' =>'Library publications',
       'icon' => 'fa fa-book',
-      'type' => 'ckan'
+      'type' => 'ckan',
+      'archive_url' => null
     ),
     'laws_record' => array(
       'title' =>'Laws',
       'icon' => 'fa fa-gavel',
-      'type' => 'ckan'
+      'type' => 'ckan',
+      'archive_url' => null
     ),
     'agreement' => array(
       'title' =>'Agreements',
       'icon' => 'fa fa-handshake-o',
-      'type' => 'ckan'
+      'type' => 'ckan',
+      'archive_url' => null
     ),
     'map-layer' => array(
       'title' => 'Maps',
       'icon' => 'fa fa-map-marker',
-      'type' => 'wp'
+      'type' => 'wp',
+      'archive_url' => '/layers'
     ),
     'news-article' => array(
       'title' => 'News articles',
       'icon' => 'fa fa-newspaper-o',
-      'type' => 'wp'
+      'type' => 'wp',
+      'archive_url' => '/news'
     ),
     'topic' => array(
       'title' => 'Topics',
       'icon' => 'fa fa-list',
-      'type' => 'wp'
+      'type' => 'wp',
+      'archive_url' => '/topics'
     ),
     'profiles' => array(
       'title' => 'Profiles',
       'icon' => 'fa fa-briefcase',
-      'type' => 'wp'
+      'type' => 'wp',
+      'archive_url' => '/profiles'
     ),
     'story' => array(
       'title' => 'Story',
       'icon' => 'fa fa-lightbulb-o',
-      'type' => 'wp'
+      'type' => 'wp',
+      'archive_url' => '/story'
     ),
     'announcement' => array(
       'title' => 'Announcements',
       'icon' => 'fa fa-bullhorn',
-      'type' => 'wp'
+      'type' => 'wp',
+      'archive_url' => '/announcements'
     ),
     'site-update' => array(
       'title' => 'Site updates',
       'icon' => 'fa fa-flag',
-      'type' => 'wp'
+      'type' => 'wp',
+      'archive_url' => '/updates'
     )
   );
 
@@ -226,6 +237,18 @@
           <form>
           <?php include 'partials/filters.php'; ?>
         </div>
+
+        <?php
+          if (isset($param_type) && isset($supported_search_types[$param_type])):
+            $supported_type = $supported_search_types[$param_type];
+            if (isset($supported_type['archive_url'])): ?>
+              <div class="result_links">
+                <a href="<?php echo $supported_type['archive_url'] ?>"><h4><?php _e("Explore more","wp-odm_solr") ?> <?php _e($supported_type['title'],"wp-odm_solr") ?></h4></a>
+              </div>
+        <?php
+            endif;
+          endif;
+         ?>
   		</div>
       <!-- ============== Search input ============= -->
 			<div class="twelve columns">
