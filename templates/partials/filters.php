@@ -96,7 +96,7 @@
 <!-- END OF LICENSE FILTER -->
 
 <!-- SORTING FUNCTION -->
-<h3><i class="fa fa-sort"></i> Sorting</h3>
+<h3><i class="fa fa-sort"></i> <?php _e('Sorting','wp-odm_solr'); ?></h3>
 <div class="single-filter">
   <label for="sorting"><?php _e('Sort by', 'odm'); ?></label>
   <select id="sorting" name="sorting" class="filter_box" data-placeholder="<?php _e('Sort by', 'odm'); ?>">

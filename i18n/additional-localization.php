@@ -10,4 +10,12 @@
   echo ("Story");
   echo ("Announcements");
   echo ("Site updates");
+
+  echo ("Cambodia");
+  echo ("Vietnam");
+  echo ("Laos");
+  echo ("Thailand");
+  echo ("Myanmar");
+
+  echo ("All");
 ?>

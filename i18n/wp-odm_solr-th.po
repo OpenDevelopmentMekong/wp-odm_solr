@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"POT-Creation-Date: 2017-03-30 16:40+0200\n"
-"PO-Revision-Date: 2017-03-30 16:40+0200\n"
+"POT-Creation-Date: 2017-04-03 17:01+0200\n"
+"PO-Revision-Date: 2017-04-03 17:01+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: th\n"
@@ -55,6 +55,10 @@ msgstr ""
 
 #: templates/partials/filters.php:79
 msgid "Select license"
+msgstr ""
+
+#: templates/partials/filters.php:99
+msgid "Sorting"
 msgstr ""
 
 #: templates/partials/filters.php:101 templates/partials/filters.php:102
@@ -179,25 +183,29 @@ msgstr ""
 msgid "Path where logs are going to be stored. Mind permissions."
 msgstr ""
 
-#: templates/solr_search.php:184
+#: templates/solr_search.php:204
 msgid ""
 "wp-odm_solr plugin is not properly configured. Please contact the system's "
 "administrator"
 msgstr ""
 
-#: templates/solr_search.php:197
+#: templates/solr_search.php:217
 msgid "Search Results"
 msgstr ""
 
-#: templates/solr_search.php:223
+#: templates/solr_search.php:246
+msgid "Explore more"
+msgstr ""
+
+#: templates/solr_search.php:255
 msgid "Search datasets, topics, news articles..."
 msgstr ""
 
-#: templates/solr_search.php:234
+#: templates/solr_search.php:266
 msgid " found for"
 msgstr ""
 
-#: templates/solr_search.php:299
+#: templates/solr_search.php:355
 msgid "results"
 msgstr ""
 
