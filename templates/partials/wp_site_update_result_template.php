@@ -12,6 +12,8 @@
 						"show_thumbnail" => true,
 						"show_excerpt" => true,
 						"show_summary_translated_by_odc_team" => true,
+            "show_solr_meta" => true,
+            "solr_search_result" => $document,
 						"header_tag" => true
   			),true);
 
