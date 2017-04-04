@@ -73,7 +73,7 @@ class WP_Odm_Solr_WP_Manager {
 
 	function index_post($post){
 
-    wp_odm_solr_log('solr-wp-manager index_post ' . serialize($post, true));
+    wp_odm_solr_log('solr-wp-manager index_post ' . serialize($post));
 
     $result = null;
 
