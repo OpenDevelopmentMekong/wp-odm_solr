@@ -211,28 +211,26 @@
     //================ show filters ===================== // ?>
 
 		<div class="row">
-      <div class="four columns">
-        <?php if ($param_type): ?>
-          <div class="result_links">
-          <h4><?php _e('Search Results','wp-odm_solr'); ?> for "<?php _e($param_query,'wp-odm_solr'); ?>"</h4>
-          <?php
-            foreach ($supported_search_types as $key => $value):
-              $count = ($results[$key]) ? $results[$key]->getNumFound() : 0;
-              if ($count > 0): ?>
+      <div class="four columns">      
+        <div class="result_links">
+        <h4><?php _e('Search Results','wp-odm_solr'); ?> for "<?php _e($param_query,'wp-odm_solr'); ?>"</h4>
+        <?php
+          foreach ($supported_search_types as $key => $value):
+            $count = ($results[$key]) ? $results[$key]->getNumFound() : 0;
+            if ($count > 0): ?>
 
-              <div class="result_link_list">
-                <a href="<?php echo construct_url($_SERVER['REQUEST_URI'], 'type', $key); ?>">
-                  <i class="<?php echo $value['icon']; ?>"></i>
-                  <?php echo __($value['title'],'wp-odm_solr') . " (".$count.")"; ?>
-                </a>
-              </div>
+            <div class="result_link_list">
+              <a href="<?php echo construct_url($_SERVER['REQUEST_URI'], 'type', $key); ?>">
+                <i class="<?php echo $value['icon']; ?>"></i>
+                <?php echo __($value['title'],'wp-odm_solr') . " (".$count.")"; ?>
+              </a>
+            </div>
 
-          <?php
-              endif;
-            endforeach
-          ?>
-          </div>
-        <?php endif ?>
+        <?php
+            endif;
+          endforeach
+        ?>
+        </div>
         <div class="data-advanced-filters">
           <form>
           <?php include 'partials/filters.php'; ?>
