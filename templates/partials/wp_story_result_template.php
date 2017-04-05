@@ -6,7 +6,7 @@
 
   $fetched_post = get_post($document->id);
   odm_get_template('post-grid-single-4-cols',array(
-			"post" => get_post(),
+			"post" => $fetched_post,
 			"show_meta" => true
 	),true);
 
