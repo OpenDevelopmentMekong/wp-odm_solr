@@ -47,7 +47,7 @@ class WP_Odm_Solr_CKAN_Manager {
     try {
       $this->client = new \Solarium\Client($this->server_config);
     } catch (HttpException $e) {
-      wp_odm_solr_log('solr-wp-manager __construct Error: ' . $e);
+      wp_odm_solr_log('solr-ckan-manager __construct Error: ' . $e);
     }
 
 	}
@@ -64,43 +64,86 @@ class WP_Odm_Solr_CKAN_Manager {
       $ping = $this->client->createPing();
       $result = $this->client->ping($ping);
     } catch (HttpException $e) {
-      wp_odm_solr_log('solr-wp-manager ping_server Error: ' . $e);
+      wp_odm_solr_log('solr-ckan-manager ping_server Error: ' . $e);
       return false;
     }
 
     return true;
   }
 
-	function query($text, $typeFilter = null){
+	function query($text, $attrs = null, $control_attrs = null){
 
-    wp_odm_solr_log('solr-ckan-manager query ' . $text);
+    wp_odm_solr_log('solr-ckan-manager query: ' . $text . " attrs: " . serialize($attrs) . " control_attrs: " . serialize($control_attrs));
 
     $result = array(
       "resultset" => null,
       "facets" => array(
-        "vocab_taxonomy" => array()
+        "vocab_taxonomy" => array(),
+        "extras_odm_keywords" => array(),
+        "extras_odm_spatial_range" => array(),
+        "extras_odm_language" => array(),
+        "license_id" => array()
       ),
     );
 
     try {
+
       $query = $this->client->createSelect();
-  		$query->setQuery($text);
-  		if (isset($typeFilter)):
-  			$query->createFilterQuery('dataset_type')->setQuery('type:' . $typeFilter);
-  		endif;
+      if (!empty($text)):
+        $query->setQuery($text);
+      endif;
+
+      if (isset($control_attrs["page"]) && isset($control_attrs["limit"])):
+        $start = $control_attrs["page"] * $control_attrs["limit"];
+        $rows = $control_attrs["limit"];
+        $query->setStart($start)->setRows($rows);
+      endif;
+
+      if (isset($attrs)):
+        foreach ($attrs as $key => $value):
+          if ($key == "vocab_taxonomy" || $key == "extras_taxonomy"):
+            $taxonomy_top_tier = odm_taxonomy_manager()->get_taxonomy_top_tier();
+            if (array_key_exists($value,$taxonomy_top_tier)):
+              $value = "(\"" . implode("\" OR \"", $taxonomy_top_tier[$value]) . "\")";
+            endif;
+          endif;
+          $query->createFilterQuery($key)->setQuery($key . ':' . $value);
+        endforeach;
+      endif;
 
       $current_country = odm_country_manager()->get_current_country();
-      if ( $current_country != "mekong"):
+      if ( $current_country != "mekong" && !array_key_exists("extras_odm_spatial_range",$attrs)):
         $current_country_code = odm_country_manager()->get_current_country_code();
   			$query->createFilterQuery('extras_odm_spatial_range')->setQuery('extras_odm_spatial_range:' . $current_country_code);
   		endif;
 
-      $dismax = $query->getDisMax();
-      $dismax->setQueryFields('title notes vocab_taxonomy extras_odm_keywords');
-      $dismax->setQueryFields('extras_odm_keywords^4 vocab_taxonomy^3 title^2 notes^1');
+      if (!empty($text)):
+        $fields_to_query = 'extras_odm_keywords^5 vocab_taxonomy^6 title^2 extras_title_translated^2 extras_notes_translated^1 notes^1 extras_odm_spatial_range^1 extras_odm_province^1';
+        if (isset($attrs["dataset_type"])):
+          $typeFilter = $attrs["dataset_type"];
+          if ($typeFilter == 'library_record'):
+            $fields_to_query .= ' extras_document_type^1 extras_extras_marc21_260c^1 extras_marc21_020^1 extras_marc21_022^1';
+          elseif ($typeFilter == 'laws_record'):
+            $fields_to_query .= ' extras_odm_document_type^1 extras_odm_promulgation_date^1';
+          elseif ($typeFilter == 'agreement'):
+            $fields_to_query .= ' extras_odm_agreement_signature_date^1';
+          endif;
+        endif;
+
+        $dismax = $query->getDisMax();
+        $dismax->setQueryFields($fields_to_query);
+      endif;
 
       $facetSet = $query->getFacetSet();
-      $facetSet->createFacetField('vocab_taxonomy')->setField('vocab_taxonomy');
+      foreach ($result["facets"] as $key => $objects):
+        $facetSet->createFacetField($key)->setField($key);
+      endforeach;
+
+      if (isset($control_attrs["sorting"])):
+        $query->addSort($control_attrs["sorting"], 'desc');
+      endif;
+
+      wp_odm_solr_log('solr-ckan-manager executing query: ' . serialize($query));
 
   		$resultset = $this->client->select($query);
       $result["resultset"] = $resultset;
@@ -108,14 +151,15 @@ class WP_Odm_Solr_CKAN_Manager {
       foreach ($result["facets"] as $key => $objects):
         $facet = $resultset->getFacetSet()->getFacet($key);
         if (isset($facet)):
+          $result["facets"][$key] = [];
           foreach($facet as $value => $count) {
-            array_push($result["facets"][$key],array($value => $count));
+            $result["facets"][$key][$value] = $count;
           }
         endif;
       endforeach;
 
     } catch (HttpException $e) {
-      wp_odm_solr_log('solr-wp-manager ping_server Error: ' . $e);
+      wp_odm_solr_log('solr-ckan-manager query Error: ' . $e);
     }
 
 		return $result;

@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"POT-Creation-Date: 2017-02-28 17:39+0100\n"
-"PO-Revision-Date: 2017-02-28 17:39+0100\n"
+"POT-Creation-Date: 2017-04-03 17:01+0200\n"
+"PO-Revision-Date: 2017-04-03 17:01+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: vi\n"
@@ -18,3 +18,197 @@ msgstr ""
 "X-Poedit-SearchPath-0: i18n\n"
 "X-Poedit-SearchPath-1: .\n"
 "X-Poedit-SearchPathExcluded-0: components\n"
+"X-Poedit-SearchPathExcluded-1: vendor\n"
+
+#: templates/partials/filters.php:5
+msgid "Topic"
+msgstr ""
+
+#: templates/partials/filters.php:6
+msgid "Select term"
+msgstr ""
+
+#: templates/partials/filters.php:7 templates/partials/filters.php:30
+#: templates/partials/filters.php:58 templates/partials/filters.php:80
+msgid "All"
+msgstr ""
+
+#: templates/partials/filters.php:28
+msgid "Country"
+msgstr ""
+
+#: templates/partials/filters.php:29
+msgid "Select country"
+msgstr ""
+
+#: templates/partials/filters.php:56
+msgid "Language"
+msgstr ""
+
+#: templates/partials/filters.php:57
+msgid "Select language"
+msgstr ""
+
+#: templates/partials/filters.php:78
+msgid "License"
+msgstr ""
+
+#: templates/partials/filters.php:79
+msgid "Select license"
+msgstr ""
+
+#: templates/partials/filters.php:99
+msgid "Sorting"
+msgstr ""
+
+#: templates/partials/filters.php:101 templates/partials/filters.php:102
+msgid "Sort by"
+msgstr ""
+
+#: templates/partials/filters.php:103
+msgid "Relevance"
+msgstr ""
+
+#: templates/partials/filters.php:104
+msgid "Date modified"
+msgstr ""
+
+#: templates/partials/filters.php:110
+msgid "Search Filter"
+msgstr ""
+
+#: templates/settings.php:24
+msgid "Connecting to Solr"
+msgstr ""
+
+#: templates/settings.php:26
+msgid "Host"
+msgstr ""
+
+#: templates/settings.php:29
+msgid ""
+"Specify host without protocol, just domain. example: solr."
+"opendevelopmentmekong.net "
+msgstr ""
+
+#: templates/settings.php:33
+msgid "Port"
+msgstr ""
+
+#: templates/settings.php:36
+msgid "Specify the port under which the solr instance is available"
+msgstr ""
+
+#: templates/settings.php:40
+msgid "Scheme"
+msgstr ""
+
+#: templates/settings.php:43
+msgid "http or https"
+msgstr ""
+
+#: templates/settings.php:47
+msgid "Path"
+msgstr ""
+
+#: templates/settings.php:50
+msgid "Usually /solr/"
+msgstr ""
+
+#: templates/settings.php:54
+msgid "Core WP"
+msgstr ""
+
+#: templates/settings.php:57
+msgid "Example: wordpress_content"
+msgstr ""
+
+#: templates/settings.php:61
+msgid "Core CKAN"
+msgstr ""
+
+#: templates/settings.php:64
+msgid "Example: collection1"
+msgstr ""
+
+#: templates/settings.php:68
+msgid "User"
+msgstr ""
+
+#: templates/settings.php:71
+msgid "Username for authentication"
+msgstr ""
+
+#: templates/settings.php:75
+msgid "Password"
+msgstr ""
+
+#: templates/settings.php:78
+msgid "Password for authentication"
+msgstr ""
+
+#: templates/settings.php:85
+msgid "Connection status"
+msgstr ""
+
+#: templates/settings.php:88
+msgid "Ping to WP index succeded."
+msgstr ""
+
+#: templates/settings.php:90
+msgid "Problem connecting to WP index. Please, check the specified config."
+msgstr ""
+
+#: templates/settings.php:93
+msgid "Ping to CKAN index succeded."
+msgstr ""
+
+#: templates/settings.php:95
+msgid "Problem connecting to CKAN index. Please, check the specified config."
+msgstr ""
+
+#: templates/settings.php:102
+msgid "Logging"
+msgstr ""
+
+#: templates/settings.php:104
+msgid "Enable log"
+msgstr ""
+
+#: templates/settings.php:110
+msgid "Log file path"
+msgstr ""
+
+#: templates/settings.php:113
+msgid "Path where logs are going to be stored. Mind permissions."
+msgstr ""
+
+#: templates/solr_search.php:204
+msgid ""
+"wp-odm_solr plugin is not properly configured. Please contact the system's "
+"administrator"
+msgstr ""
+
+#: templates/solr_search.php:217
+msgid "Search Results"
+msgstr ""
+
+#: templates/solr_search.php:246
+msgid "Explore more"
+msgstr ""
+
+#: templates/solr_search.php:255
+msgid "Search datasets, topics, news articles..."
+msgstr ""
+
+#: templates/solr_search.php:266
+msgid " found for"
+msgstr ""
+
+#: templates/solr_search.php:355
+msgid "results"
+msgstr ""
+
+#: wp-odm_solr.php:148
+msgid "You do not have sufficient permissions to access this page."
+msgstr ""

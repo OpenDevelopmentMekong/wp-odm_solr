@@ -73,7 +73,7 @@ class WP_Odm_Solr_WP_Manager {
 
 	function index_post($post){
 
-    wp_odm_solr_log('solr-wp-manager index_post ' . print_r($post, true));
+    wp_odm_solr_log('solr-wp-manager index_post ' . serialize($post));
 
     $result = null;
 
@@ -124,35 +124,67 @@ class WP_Odm_Solr_WP_Manager {
 		return $result;
   }
 
-	function query($text, $typeFilter = null){
+	function query($text, $attrs = null, $control_attrs = null){
 
-    wp_odm_solr_log('solr-wp-manager query ' . $text);
+    wp_odm_solr_log('solr-wp-manager query: ' . $text . " attrs: " . serialize($attrs)  . " control_attrs: " . serialize($control_attrs));
 
     $result = array(
       "resultset" => null,
       "facets" => array(
-        "categories" => array()
+        "categories" => array(),
+        "tags" => array(),
+        "country_site" => array(),
+        "odm_language" => array(),
+        "license_id" => array()
       ),
     );
 
     try {
+
       $query = $this->client->createSelect();
-  		$query->setQuery($text);
-  		if (isset($typeFilter)):
-  			$query->createFilterQuery('type')->setQuery('type:' . $typeFilter);
-  		endif;
+      if (!empty($text)):
+        $query->setQuery($text);
+      endif;
+
+      if (isset($control_attrs["page"]) && isset($control_attrs["limit"])):
+        $start = $control_attrs["page"] * $control_attrs["limit"];
+        $rows = $control_attrs["limit"];
+        $query->setStart($start)->setRows($rows);
+      endif;
+
+      if (isset($attrs)):
+        foreach ($attrs as $key => $value):
+          if ($key == "categories"):
+            $taxonomy_top_tier = odm_taxonomy_manager()->get_taxonomy_top_tier();
+            if (array_key_exists($value,$taxonomy_top_tier)):
+              $value = "(\"" . implode("\" OR \"", $taxonomy_top_tier[$value]) . "\")";
+            endif;
+          endif;
+          $query->createFilterQuery($key)->setQuery($key . ':' . $value);
+        endforeach;
+      endif;
 
       $current_country = odm_country_manager()->get_current_country();
-      if ( $current_country != "mekong"):
+      if ( $current_country != "mekong" && !array_key_exists("country_site",$attrs)):
   			$query->createFilterQuery('country_site')->setQuery('country_site:' . $current_country);
   		endif;
 
-      $dismax = $query->getDisMax();
-      $dismax->setQueryFields('title content categories tags');
-      $dismax->setQueryFields('tags^4 categories^3 title^2 content^1');
+      if (!empty($text)):
+        $fields_to_query = 'tags^5 categories^4 title^2 content^1';
+        $dismax = $query->getDisMax();
+        $dismax->setQueryFields($fields_to_query);
+      endif;
 
       $facetSet = $query->getFacetSet();
-      $facetSet->createFacetField('categories')->setField('categories');
+      foreach ($result["facets"] as $key => $objects):
+        $facetSet->createFacetField($key)->setField($key);
+      endforeach;
+
+      if (isset($control_attrs["sorting"])):
+        $query->addSort($control_attrs["sorting"], 'desc');
+      endif;
+
+      wp_odm_solr_log('solr-wp-manager executing query: ' . serialize($query));
 
   		$resultset = $this->client->select($query);
       $result["resultset"] = $resultset;
@@ -160,14 +192,15 @@ class WP_Odm_Solr_WP_Manager {
       foreach ($result["facets"] as $key => $objects):
         $facet = $resultset->getFacetSet()->getFacet($key);
         if (isset($facet)):
+          $result["facets"][$key] = [];
           foreach($facet as $value => $count) {
-            array_push($result["facets"][$key],array($value => $count));
+            $result["facets"][$key][$value] = $count;
           }
         endif;
       endforeach;
 
     } catch (HttpException $e) {
-      wp_odm_solr_log('solr-wp-manager clear_index Error: ' . $e);
+      wp_odm_solr_log('solr-wp-manager query Error: ' . $e);
     }
 
 		return $result;

@@ -6,8 +6,7 @@ class UtilsTest extends PHPUnit_Framework_TestCase
 {
   public function setUp()
   {
-    $GLOBALS['wp_odm_solr_options'] = $this->getMockBuilder(Wpckan_Options::class)
-                                   ->setMethods(['get_option']);
+
   }
 
   public function tearDown()
@@ -35,6 +34,54 @@ class UtilsTest extends PHPUnit_Framework_TestCase
     $arguments = wp_odm_solr_highlight_search_words($query,$to_highlight);
     $this->assertContains($arguments,"This <b>topic</b> is about <b>Land</b>-tenure");
   }
+
+  public function testParseMultilingualCkanContent(){
+    $to_parse = '{"en":"some english text","km":"some khmer text"}';
+    $fallback = null;
+    $lang = "en";
+    $result = wp_odm_solr_parse_multilingual_ckan_content($to_parse,$lang,$fallback);
+    $this->assertContains($result,"some english text");
+  }
+
+  public function testParseMultilingualCkanContentKm(){
+    $to_parse = '{"en":"some english text","km":"some khmer text"}';
+    $fallback = null;
+    $lang = "km";
+    $result = wp_odm_solr_parse_multilingual_ckan_content($to_parse,$lang,$fallback);
+    $this->assertContains($result,"some khmer text");
+  }
+
+  public function testParseMultilingualCkanContentFallback(){
+    $to_parse = '{"en":"some english text","km":"some khmer text"}';
+    $fallback = 'some text';
+    $lang = "fr";
+    $result = wp_odm_solr_parse_multilingual_ckan_content($to_parse,$lang,$fallback);
+    $this->assertContains($result,"some text");
+  }
+
+  public function testParseMultilingualCkanContentFallbackNoValidJson(){
+    $to_parse = '{"en":"some english text","km","some khmer text"}';
+    $fallback = 'some text';
+    $lang = "en";
+    $result = wp_odm_solr_parse_multilingual_ckan_content($to_parse,$lang,$fallback);
+    $this->assertContains($result,"some text");
+  }
+
+  public function testParseMultilingualCkanContentFallbackNoFallback(){
+    $to_parse = '{"en":"some english text","km","some khmer text"}';
+    $fallback = null;
+    $lang = "en";
+    $result = wp_odm_solr_parse_multilingual_ckan_content($to_parse,$lang,$fallback);
+    $this->assertNull($result);
+  }
+
+  // public function testParseMultilingualWpContent(){
+  //   $to_parse = '[:en]some english text[:km]some khmer text[:]';
+  //   $fallback = null;
+  //   $lang = "en";
+  //   $result = wp_odm_solr_parse_multilingual_wp_content($to_parse,$lang,$fallback);
+  //   $this->assertContains($result,"some english text");
+  // }
 
 
 }
