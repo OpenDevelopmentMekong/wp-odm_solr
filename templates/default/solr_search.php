@@ -84,6 +84,9 @@
         $attrs["dataset_type"] = $imploded_types;
         $attrs["capacity"] = "public";
 
+        $control_attrs['limit'] = 15;
+        $control_attrs['page'] = 1;
+        
         $result = WP_Odm_Solr_CKAN_Manager()->query($param_query,$attrs,$control_attrs);
       else:
 
