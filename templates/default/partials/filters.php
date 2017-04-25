@@ -16,10 +16,10 @@
   <label for="type"><?php _e('Content type', 'wp-odm_solr'); ?></label>
   <select id="type" name="type" class="filter_box" data-placeholder="<?php _e('Select type', 'wp-odm_solr'); ?>">
     <option value="all" <?php if ($param_type == "all") echo "selected"; ?>><?php _e('All','wp-odm_solr') ?></option>
-    <option value="dataset" <?php if ($param_type == "dataset") echo "selected"; ?>><?php _e('Dataset','wp-odm_solr') ?></option>
+    <!-- <option value="dataset" <?php if ($param_type == "dataset") echo "selected"; ?>><?php _e('Dataset','wp-odm_solr') ?></option>
     <option value="library_record" <?php if ($param_type == "library_record") echo "selected"; ?>><?php _e('Library publications','wp-odm_solr') ?></option>
     <option value="laws_record" <?php if ($param_type == "laws_record") echo "selected"; ?>><?php _e('Laws','wp-odm_solr') ?></option>
-    <option value="agreement" <?php if ($param_type == "agreement") echo "selected"; ?>><?php _e('Agreement','wp-odm_solr') ?></option>
+    <option value="agreement" <?php if ($param_type == "agreement") echo "selected"; ?>><?php _e('Agreement','wp-odm_solr') ?></option> -->
     <option value="map-layer" <?php if ($param_type == "map-layer") echo "selected"; ?>><?php _e('Maps','wp-odm_solr') ?></option>
     <option value="news-article" <?php if ($param_type == "news-article") echo "selected"; ?>><?php _e('News','wp-odm_solr') ?></option>
     <option value="topic" <?php if ($param_type == "topic") echo "selected"; ?>><?php _e('Topics','wp-odm_solr') ?></option>
