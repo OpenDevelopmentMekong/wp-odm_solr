@@ -197,7 +197,7 @@
 
             if (isset($content_resultset) && $content_resultcount > 0):
               foreach ($content_resultset as $document):
-                    include 'partials/ckan_result_template.php';
+                    include 'partials/ckan_default_result_template.php';
               endforeach; ?>
 
           <?php
