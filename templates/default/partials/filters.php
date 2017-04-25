@@ -1,7 +1,17 @@
-<h3><i class="fa fa-filter"></i> Filters</h3>
 
+<?php
+  $is_regional = odm_country_manager()->get_current_country() == 'mekong';
+  $cols_filters = $is_regional ? 'two' : 'three';
+  $cols_button = $is_regional ? 'five' : 'four';
+ ?>
+
+<div class="single-filter <?php echo $cols_filters ?> columns">
+  <label for="search_field_old"><?php _e('Text search', 'odm'); ?></label>
+  <input id="search_field_old" name="s" type="text" value="<?php echo $_GET["s"]?>" placeholder="<?php _e("Search datasets, topics, news articles...","wp-odm_solr"); ?>" data-solr-host="<?php echo $GLOBALS['wp_odm_solr_options']->get_option('wp_odm_solr_setting_solr_host'); ?>" data-solr-scheme="<?php echo $GLOBALS['wp_odm_solr_options']->get_option('wp_odm_solr_setting_solr_scheme'); ?>" data-solr-path="<?php echo $GLOBALS['wp_odm_solr_options']->get_option('wp_odm_solr_setting_solr_path'); ?>" data-solr-core-wp="<?php echo $GLOBALS['wp_odm_solr_options']->get_option('wp_odm_solr_setting_solr_core_wp'); ?>" data-solr-core-ckan="<?php echo $GLOBALS['wp_odm_solr_options']->get_option('wp_odm_solr_setting_solr_core_ckan'); ?>"></input>
+
+</div>
 <!-- TAXONOMY FILTER -->
-<div class="single-filter">
+<div class="single-filter <?php echo $cols_filters ?> columns">
   <label for="taxonomy"><?php _e('Topic', 'odm'); ?></label>
   <select id="taxonomy" name="taxonomy" class="filter_box" data-placeholder="<?php _e('Select term', 'odm'); ?>">
     <option value="all" selected><?php _e('All','odm') ?></option>
@@ -24,7 +34,7 @@
 
 <!-- COUNTRY FILTER -->
 <?php if (odm_country_manager()->get_current_country() == 'mekong'): ?>
-<div class="single-filter">
+<div class="single-filter <?php echo $cols_filters ?> columns">
   <label for="country"><?php _e('Country', 'odm'); ?></label>
   <select id="country" name="country" class="filter_box" data-placeholder="<?php _e('Select country', 'odm'); ?>">
     <option value="all" selected><?php _e('All','odm') ?></option>
@@ -52,7 +62,7 @@
 <!-- END OF COUNTRY FILTER  -->
 
 <!-- LANGUAGE FILTER -->
-<div class="single-filter">
+<div class="single-filter <?php echo $cols_filters ?> columns">
   <label for="language"><?php _e('Language', 'odm'); ?></label>
   <select id="language" name="language" class="filter_box" data-placeholder="<?php _e('Select language', 'odm'); ?>">
     <option value="all"  selected><?php _e('All','odm') ?></option>
@@ -74,7 +84,7 @@
 <!-- END OF LANGUAGE FILTER -->
 
 <!-- LICENSE FILTER -->
-<div class="single-filter">
+<div class="single-filter <?php echo $cols_filters ?> columns">
   <label for="license"><?php _e('License', 'odm'); ?></label>
   <select id="license" name="license" class="filter_box" data-placeholder="<?php _e('Select license', 'odm'); ?>">
     <option value="all" selected><?php _e('All','odm') ?></option>
@@ -95,17 +105,8 @@
 </div>
 <!-- END OF LICENSE FILTER -->
 
-<!-- SORTING FUNCTION -->
-<h3><i class="fa fa-sort"></i> <?php _e('Sorting','wp-odm_solr'); ?></h3>
-<div class="single-filter">
-  <label for="sorting"><?php _e('Sort by', 'odm'); ?></label>
-  <select id="sorting" name="sorting" class="filter_box" data-placeholder="<?php _e('Sort by', 'odm'); ?>">
-    <option <?php if($param_sorting == "score") echo 'selected'; ?> value="score"><?php _e('Relevance','odm') ?></option>
-  	<option <?php if($param_sorting == "metadata_modified") echo 'selected'; ?> value="metadata_modified"><?php _e('Date modified','odm') ?></option>
-  </select>
+<div class="single-filter <?php echo $cols_button ?> columns">
+  <input class="button search_button" type="submit" value="<?php _e('Search Filter', 'odm'); ?>"/>
 </div>
-<!-- END OF LICENSE FILTER -->
 
-<div class="single-filter">
-  <input class="button" type="submit" value="<?php _e('Search Filter', 'odm'); ?>"/>
-</div>
+</form>

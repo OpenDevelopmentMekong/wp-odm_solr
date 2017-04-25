@@ -88,6 +88,10 @@
 
         $attrs["dataset_type"] = $imploded_types;
         $attrs["capacity"] = "public";
+
+        $control_attrs['limit'] = 15;
+        $control_attrs['page'] = 1;
+
         $result = WP_Odm_Solr_CKAN_Manager()->query($param_query,$attrs,$control_attrs);
       else:
 
@@ -136,11 +140,9 @@
 
 <section class="container">
   <div class="row">
-    <div class="sixteen columns">
-      <div class="data-advanced-filters">
-        <form>
-        <?php include plugin_dir_path(__FILE__).'partials/filters.php'; ?>
-      </div>
+    <div class="sixteen columns data-advanced-filters">
+      <form>
+      <?php include plugin_dir_path(__FILE__).'partials/filters.php'; ?>
     </dvi>
   </div>
 </section>
@@ -163,40 +165,46 @@
 
     <div class="row">
 
-      <div class="sixteen columns">
+      <div class="twelve columns">
         <?php
-            $content_resultset = wp_odm_merge_results_and_sort_by_score($results["wp"]->getDocuments(),$results["ckan"]->getDocuments());
-            $content_resultcount = !empty($content_resultset) ? count($content_resultset) : 0;
+            $resultset = $results["wp"];
+            $resultcount = ($resultset) ? $resultset->getNumFound() : 0;
 
-            echo '<h1>' . $content_resultcount . ' ' . __('results found','wp-odm_solr') . '</h1>';
-
-            if (isset($content_resultset) && $content_resultcount > 0):
-              foreach ($content_resultset as $document):
-                if (isset($document->dataset_type)):
-                  include plugin_dir_path(__FILE__). 'partials/ckan_default_result_template.php';
-                else:
-                  include plugin_dir_path(__FILE__). 'partials/wp_default_result_template.php';
-                endif;
+            if (isset($resultset) && $resultcount > 0):
+              foreach ($resultset as $document):
+                include plugin_dir_path(__FILE__). 'partials/wp_default_result_template.php';
               endforeach; ?>
 
           <?php
-            $total_pages = ceil(count($content_resultset)/$control_attrs['limit']);
+            $total_pages = ceil($resultset->getNumFound()/$control_attrs['limit']);
             if ($total_pages > 1): ?>
-
-          <div class="pagination">
-            <?php
-            odm_get_template('pagination_solr', array(
-                          "current_page" => $param_page,
-                          "total_pages" => $total_pages
-                        ),true); ?>
-          </div>
-
+              <div class="pagination">
+                <?php
+                odm_get_template('pagination_solr', array(
+                              "current_page" => $param_page,
+                              "total_pages" => $total_pages
+                            ),true); ?>
+              </div>
           <?php
             endif;
           endif; ?>
 			</div>
 
-		</div>
+      <div class="four columns">
+        <?php
+            $resultset = $results["ckan"];
+            $resultcount = ($resultset) ? $resultset->getNumFound() : 0;
+
+            if (isset($resultset) && $resultcount > 0):
+              foreach ($resultset as $document):
+                include plugin_dir_path(__FILE__). 'partials/ckan_default_result_template.php';
+              endforeach; ?>
+
+          <?php
+          endif; ?>
+  		</div>
+
+	</div>
 
   <?php
       endif; ?>
@@ -214,13 +222,13 @@
 
       jQuery( ".filter_box" ).select2();
 
-      jQuery('#search_field').autocomplete({
+      jQuery('#search_field_old').autocomplete({
         source: function( request, response ) {
-          var host = jQuery('#search_field').data("solr-host");
-          var scheme = jQuery('#search_field').data("solr-scheme");
-          var path = jQuery('#search_field').data("solr-path");
-          var core_wp = jQuery('#search_field').data("solr-core-wp");
-          var core_ckan = jQuery('#search_field').data("solr-core-ckan");
+          var host = jQuery('#search_field_old').data("solr-host");
+          var scheme = jQuery('#search_field_old').data("solr-scheme");
+          var path = jQuery('#search_field_old').data("solr-path");
+          var core_wp = jQuery('#search_field_old').data("solr-core-wp");
+          var core_ckan = jQuery('#search_field_old').data("solr-core-ckan");
           var url_wp = scheme + "://" + host  + path + core_wp + "/suggest";
           var url_ckan = scheme + "://" + host  + path + core_ckan + "/suggest";
 

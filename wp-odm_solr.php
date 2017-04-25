@@ -78,7 +78,7 @@ if (!class_exists('WpOdmSolr')) {
 
         public function wp_odm_solr_register_plugin_styles($hook)
         {
-            wp_register_style('wp_odm_solr_style', plugins_url('wp_odm_solr/css/wp_odm_solr_style.css'));
+            wp_register_style('wp_odm_solr_style', plugins_url('wp-odm_solr/css/wp_odm_solr_style.css'));
             wp_enqueue_style('wp_odm_solr_style');
         }
 
