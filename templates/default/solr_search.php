@@ -116,7 +116,26 @@
 
       $top_tier_taxonomic_terms = odm_taxonomy_manager()->get_taxonomy_top_tier();
       $results[$key] = $result["resultset"];
-
+      foreach ($result["facets"] as $facet_key => $facet):
+        $facet_key_mapped = $facets_mapping[$facet_key];
+        if (!isset($facets[$facet_key_mapped])):
+          $facets[$facet_key_mapped] = [];
+        endif;
+        foreach ($facet as $facet_value => $count):
+          if ($facet_key_mapped == "vocab_taxonomy"):
+            foreach ($top_tier_taxonomic_terms as $top_tier_term => $children):
+              if (in_array($facet_value,$children) || $facet_value == $top_tier_term):
+                $facet_value = $top_tier_term;
+                break;
+              endif;
+            endforeach;
+          endif;
+          if (!isset($facets[$facet_key_mapped][$facet_value])):
+            $facets[$facet_key_mapped][$facet_value] = 0;
+          endif;
+          $facets[$facet_key_mapped][$facet_value] += $count;
+        endforeach;
+      endforeach;
     endforeach; ?>
 
 <section class="container">
