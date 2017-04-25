@@ -1,4 +1,5 @@
-<div class="solr_result single_result_container row">
+<div class="solr_result single_result_container eight columns">
+
   <?php
   $title = wp_odm_solr_parse_multilingual_ckan_content($document->extras_title_translated,odm_language_manager()->get_current_language(),$document->title);
   $title = wp_odm_solr_highlight_search_words($s,$title);
@@ -64,7 +65,7 @@
             endforeach; ?>
         </span>
       </div>
-    <?php endif; ?>    
+    <?php endif; ?>
     <!-- Topics -->
     <?php if (!empty($document->vocab_taxonomy)): ?>
       <div class="data_meta">
@@ -77,7 +78,7 @@
               if ($topic !== end($topics)):
                 echo ", ";
               endif;
-            endforeach;?>          
+            endforeach;?>
         </span>
       </div>
     <?php endif; ?>
@@ -92,7 +93,7 @@
             if ($keyword !== end($keywords)):
               echo ", ";
             endif;
-          endforeach;?>   
+          endforeach;?>
       </div>
     <?php endif; ?>
   </div>

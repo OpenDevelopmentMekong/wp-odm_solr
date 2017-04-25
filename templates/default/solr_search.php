@@ -180,7 +180,7 @@
               endforeach; ?>
 
           <?php
-            $total_pages = ceil($content_resultset->getNumFound()/$control_attrs['limit']);
+            $total_pages = ceil(count($content_resultset)/$control_attrs['limit']);
             if ($total_pages > 1): ?>
 
           <div class="pagination">
