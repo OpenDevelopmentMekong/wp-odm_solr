@@ -10,6 +10,7 @@
 			"show_meta" => true,
 			"show_source_meta" => false,
 			"show_thumbnail" => true,
+      "show_post_type" => true,
 			"show_excerpt" => true,
 			"show_summary_translated_by_odc_team" => false,
       "show_solr_meta" => false,
