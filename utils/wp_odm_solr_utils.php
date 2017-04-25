@@ -85,7 +85,7 @@
       $merged = $wp_results;
     elseif (is_array($ckan_results) && is_array($wp_results)):
       $merged = array_merge($wp_results, $ckan_results);
-      usort($merged, 'compareScoresDesc');
+      $merged = usort($merged, 'compareScoresDesc');
     endif;
 
     return $merged;
