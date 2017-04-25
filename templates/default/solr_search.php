@@ -110,7 +110,7 @@
           $control_attrs['page'] = $param_page;
         }
 
-        $attrs["type"] = isset($param_type) ? $param_type : $imploded_types;
+        $attrs["type"] = (isset($param_type) && $param_type !== "all") ? $param_type : $imploded_types;
         $result = WP_Odm_Solr_WP_Manager()->query($param_query,$attrs,$control_attrs);
       endif;
 
