@@ -15,7 +15,7 @@
 			"show_summary_translated_by_odc_team" => false,
       "show_solr_meta" => false,
       "solr_search_result" => $document,
-			"header_tag" => true
+			"header_tag" => false
 	),true);
 
   if (function_exists("restore_current_blog")):
