@@ -139,7 +139,7 @@
     <div class="sixteen columns">
       <div class="data-advanced-filters">
         <form>
-        <?php include 'partials/filters.php'; ?>
+        <?php include dirname(plugin_dir_path(__FILE__)).'/partials/filters.php'; ?>
       </div>
     </dvi>
   </div>
@@ -163,14 +163,18 @@
 
     <div class="row">
 
-      <div class="twelve columns">
+      <div class="sixteen columns">
         <?php
-            $content_resultset = $results["wp"];
-            $content_resultcount = ($content_resultset) ? $content_resultset->getNumFound() : 0;
+            $content_resultset = wp_odm_merge_results_and_sort_by_score($results["wp"],$results["ckan"]);
+            $content_resultcount = !empty($content_resultset) ? $content_resultset->getNumFound() : 0;
 
             if (isset($content_resultset) && $content_resultcount > 0):
               foreach ($content_resultset as $document):
-                    include 'partials/wp_default_result_template.php';
+                if (isset($document->dataset_type)):
+                  include dirname(plugin_dir_path(__FILE__)). '/partials/ckan_default_result_template.php';
+                else:
+                  include dirname(plugin_dir_path(__FILE__)). '/partials/wp_default_result_template.php';
+                endif;
               endforeach; ?>
 
           <?php
@@ -185,32 +189,6 @@
                         ),true); ?>
           </div>
 
-          <?php
-            endif;
-          endif; ?>
-			</div>
-
-			<div class="four columns">
-        <?php
-            $content_resultset = $results["ckan"];
-            $content_resultcount = ($content_resultset) ? $content_resultset->getNumFound() : 0;
-
-            if (isset($content_resultset) && $content_resultcount > 0):
-              foreach ($content_resultset as $document):
-                    include 'partials/ckan_default_result_template.php';
-              endforeach; ?>
-
-          <?php
-            $total_pages = ceil($content_resultset->getNumFound()/$control_attrs['limit']);
-            if ($total_pages > 1):
-           ?>
-          <div class="pagination">
-            <?php
-            odm_get_template('pagination_solr', array(
-                          "current_page" => $param_page,
-                          "total_pages" => $total_pages
-                        ),true); ?>
-          </div>
           <?php
             endif;
           endif; ?>

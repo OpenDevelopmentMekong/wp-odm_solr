@@ -71,6 +71,26 @@
     Analog::log ( "[ " . $caller['file'] . " | " . $caller['line'] . " ] " . $text );
   }
 
+  function compareScoresDesc($a, $b)
+  {
+      return $a->score > $b->score ? -1 : 1;
+  }
+
+  function wp_odm_merge_results_and_sort_by_score($wp_results,$ckan_results) {
+
+    $merged = array();
+    if (!is_array($wp_results) && is_array($ckan_results)):
+      $merged = $ckan_results;
+    elseif (!is_array($ckan_results) && is_array($wp_results)):
+      $merged = $wp_results;
+    elseif (is_array($ckan_results) && is_array($wp_results)):
+      $merged = array_merge($wp_results, $ckan_results);
+      usort($merged, 'compareScoresDesc');
+    endif;
+
+    return $merged;
+  }
+
   /**
    * Construct Url
    *
