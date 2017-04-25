@@ -167,36 +167,23 @@
 
       <div class="twelve columns">
         <?php
-            $resultset = $results["wp"];
-            $resultcount = ($resultset) ? $resultset->getNumFound() : 0;
+            $resultset_wp = $results["wp"];
+            $resultcount_wp = ($resultset_wp) ? $resultset_wp->getNumFound() : 0;
 
-            if (isset($resultset) && $resultcount > 0):
-              foreach ($resultset as $document):
+            if (isset($resultset_wp) && $resultcount_wp > 0):
+              foreach ($resultset_wp as $document):
                 include plugin_dir_path(__FILE__). 'partials/wp_default_result_template.php';
-              endforeach; ?>
-
-          <?php
-            $total_pages = ceil($resultset->getNumFound()/$control_attrs['limit']);
-            if ($total_pages > 1): ?>
-              <div class="pagination">
-                <?php
-                odm_get_template('pagination_solr', array(
-                              "current_page" => $param_page,
-                              "total_pages" => $total_pages
-                            ),true); ?>
-              </div>
-          <?php
-            endif;
-          endif; ?>
+              endforeach;
+            endif; ?>
 			</div>
 
       <div class="four columns">
         <?php
-            $resultset = $results["ckan"];
-            $resultcount = ($resultset) ? $resultset->getNumFound() : 0;
+            $resultset_ckan = $results["ckan"];
+            $resultcount_ckan = ($resultset_ckan) ? $resultset_ckan->getNumFound() : 0;
 
-            if (isset($resultset) && $resultcount > 0):
-              foreach ($resultset as $document):
+            if (isset($resultset_ckan) && $resultcount_ckan > 0):
+              foreach ($resultset_ckan as $document):
                 include plugin_dir_path(__FILE__). 'partials/ckan_default_result_template.php';
               endforeach; ?>
 
@@ -205,6 +192,23 @@
   		</div>
 
 	</div>
+
+  <div class="row">
+    <div class="sixteen column">
+      <?php
+        $total_pages = ceil($resultset_wp->getNumFound()/$control_attrs['limit']);
+        if ($total_pages > 1): ?>
+          <div class="pagination">
+            <?php
+            odm_get_template('pagination_solr', array(
+                          "current_page" => $param_page,
+                          "total_pages" => $total_pages
+                        ),true); ?>
+          </div>
+      <?php
+        endif; ?>
+    </div>
+  </div>
 
   <?php
       endif; ?>
