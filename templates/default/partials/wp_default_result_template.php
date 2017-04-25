@@ -8,11 +8,11 @@
   odm_get_template('post-list-single-2-cols',array(
 			"post" => $fetched_post,
 			"show_meta" => true,
-			"show_source_meta" => true,
+			"show_source_meta" => false,
 			"show_thumbnail" => true,
 			"show_excerpt" => true,
-			"show_summary_translated_by_odc_team" => true,
-      "show_solr_meta" => true,
+			"show_summary_translated_by_odc_team" => false,
+      "show_solr_meta" => false,
       "solr_search_result" => $document,
 			"header_tag" => true
 	),true);
