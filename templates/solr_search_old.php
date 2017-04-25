@@ -170,13 +170,13 @@
 
             if (isset($content_resultset) && $content_resultcount > 0):
               foreach ($content_resultset as $document):
-                    include 'partials/wp_news_article_result_template.php';
+                    include 'partials/wp_search_old_result_template.php';
               endforeach; ?>
 
           <?php
             $total_pages = ceil($content_resultset->getNumFound()/$control_attrs['limit']);
-            if ($total_pages > 1):
-           ?>
+            if ($total_pages > 1): ?>
+
           <div class="pagination">
             <?php
             odm_get_template('pagination_solr', array(
@@ -184,6 +184,7 @@
                           "total_pages" => $total_pages
                         ),true); ?>
           </div>
+
           <?php
             endif;
           endif; ?>
