@@ -139,7 +139,7 @@
     <div class="sixteen columns">
       <div class="data-advanced-filters">
         <form>
-        <?php include dirname(plugin_dir_path(__FILE__)).'/partials/filters.php'; ?>
+        <?php include plugin_dir_path(__FILE__).'partials/filters.php'; ?>
       </div>
     </dvi>
   </div>
@@ -171,9 +171,9 @@
             if (isset($content_resultset) && $content_resultcount > 0):
               foreach ($content_resultset as $document):
                 if (isset($document->dataset_type)):
-                  include dirname(plugin_dir_path(__FILE__)). '/partials/ckan_default_result_template.php';
+                  include plugin_dir_path(__FILE__). 'partials/ckan_default_result_template.php';
                 else:
-                  include dirname(plugin_dir_path(__FILE__)). '/partials/wp_default_result_template.php';
+                  include plugin_dir_path(__FILE__). 'partials/wp_default_result_template.php';
                 endif;
               endforeach; ?>
 

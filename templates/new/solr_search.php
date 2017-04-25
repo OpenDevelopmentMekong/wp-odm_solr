@@ -233,7 +233,7 @@
         </div>
         <div class="data-advanced-filters">
           <form>
-          <?php include dirname(plugin_dir_path(__FILE__)). '/partials/filters.php'; ?>
+          <?php include plugin_dir_path(__FILE__). 'partials/filters.php'; ?>
         </div>
 
         <?php
@@ -271,24 +271,24 @@
 
               <?php
               if($supported_search_types[$param_type]['type'] == 'ckan'):
-                include dirname(plugin_dir_path(__FILE__)). '/partials/ckan_result_template.php';
+                include plugin_dir_path(__FILE__). 'partials/ckan_result_template.php';
               else:
                 if ($param_type == 'map-layer'):
-                  include dirname(plugin_dir_path(__FILE__)). '/partials/wp_map_layer_result_template.php';
+                  include plugin_dir_path(__FILE__). 'partials/wp_map_layer_result_template.php';
                 elseif ($param_type == 'news-article'):
-                  include dirname(plugin_dir_path(__FILE__)). '/partials/wp_news_article_result_template.php';
+                  include plugin_dir_path(__FILE__). 'partials/wp_news_article_result_template.php';
                 elseif ($param_type == 'topic'):
-                  include dirname(plugin_dir_path(__FILE__)). '/partials/wp_topic_result_template.php';
+                  include plugin_dir_path(__FILE__). 'partials/wp_topic_result_template.php';
                 elseif ($param_type == 'profiles'):
-                  include dirname(plugin_dir_path(__FILE__)). '/partials/wp_profiles_result_template.php';
+                  include plugin_dir_path(__FILE__). 'partials/wp_profiles_result_template.php';
                 elseif ($param_type == 'story'):
-                  include dirname(plugin_dir_path(__FILE__)). '/partials/wp_story_result_template.php';
+                  include plugin_dir_path(__FILE__). 'partials/wp_story_result_template.php';
                 elseif ($param_type == 'announcement'):
-                  include dirname(plugin_dir_path(__FILE__)). '/partials/wp_announcement_result_template.php';
+                  include plugin_dir_path(__FILE__). 'partials/wp_announcement_result_template.php';
                 elseif ($param_type == 'site-update'):
-                  include dirname(plugin_dir_path(__FILE__)). '/partials/wp_site_update_result_template.php';
+                  include plugin_dir_path(__FILE__). 'partials/wp_site_update_result_template.php';
                 else:
-                  include dirname(plugin_dir_path(__FILE__)). '/partials/wp_result_template.php';
+                  include plugin_dir_path(__FILE__). 'partials/wp_result_template.php';
                 endif;
               endif;?>
         <?php
@@ -325,24 +325,24 @@
         						<?php
         							foreach ($resultset as $document):
                         if ($value['type'] == 'ckan'):
-                          include dirname(plugin_dir_path(__FILE__)). '/partials/ckan_result_template.php';
+                          include plugin_dir_path(__FILE__). 'partials/ckan_result_template.php';
                         else:
                           if ($key == 'map-layer'):
-                            include dirname(plugin_dir_path(__FILE__)). '/partials/wp_map_layer_result_template.php';
+                            include plugin_dir_path(__FILE__). 'partials/wp_map_layer_result_template.php';
                           elseif ($key == 'news-article'):
-                            include dirname(plugin_dir_path(__FILE__)). '/partials/wp_news_article_result_template.php';
+                            include plugin_dir_path(__FILE__). 'partials/wp_news_article_result_template.php';
                           elseif ($key == 'topic'):
-                            include dirname(plugin_dir_path(__FILE__)). '/partials/wp_topic_result_template.php';
+                            include plugin_dir_path(__FILE__). 'partials/wp_topic_result_template.php';
                           elseif ($key == 'profiles'):
-                            include dirname(plugin_dir_path(__FILE__)). '/partials/wp_profiles_result_template.php';
+                            include plugin_dir_path(__FILE__). 'partials/wp_profiles_result_template.php';
                           elseif ($key == 'story'):
-                            include dirname(plugin_dir_path(__FILE__)). '/partials/wp_story_result_template.php';
+                            include plugin_dir_path(__FILE__). 'partials/wp_story_result_template.php';
                           elseif ($key == 'announcement'):
-                            include dirname(plugin_dir_path(__FILE__)). '/partials/wp_announcement_result_template.php';
+                            include plugin_dir_path(__FILE__). 'partials/wp_announcement_result_template.php';
                           elseif ($key == 'site-update'):
-                            include dirname(plugin_dir_path(__FILE__)). '/partials/wp_site_update_result_template.php';
+                            include plugin_dir_path(__FILE__). 'partials/wp_site_update_result_template.php';
                           else:
-                            include dirname(plugin_dir_path(__FILE__)). '/partials/wp_result_template.php';
+                            include plugin_dir_path(__FILE__). 'partials/wp_result_template.php';
                           endif;
                         endif;
         					    endforeach; ?>
