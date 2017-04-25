@@ -24,7 +24,9 @@
 
   $attrs = [];
   $control_attrs = array(
-    "sorting" => $param_sorting
+    "sorting" => $param_sorting,
+    "limit" => 15,
+    "page" => 1
   );
 
   if ($param_type || $param_page) {
