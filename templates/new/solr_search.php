@@ -1,8 +1,8 @@
 <?php get_header(); ?>
 
 <?php
-  include_once dirname(plugin_dir_path(__FILE__)).'/utils/solr-wp-manager.php';
-  include_once dirname(plugin_dir_path(__FILE__)).'/utils/solr-ckan-manager.php';
+  include_once dirname(dirname(plugin_dir_path(__FILE__))).'/utils/solr-wp-manager.php';
+  include_once dirname(dirname(plugin_dir_path(__FILE__))).'/utils/solr-ckan-manager.php';
 
   $param_query = !empty($_GET['s']) ? $_GET['s'] : null;
   $param_type = (isset($_GET['type']) && !empty($_GET['type'])) ? $_GET['type'] : null;
@@ -211,7 +211,7 @@
     //================ show filters ===================== // ?>
 
 		<div class="row">
-      <div class="four columns">      
+      <div class="four columns">
         <div class="result_links">
         <h4><?php _e('Search Results','wp-odm_solr'); ?> for "<?php _e($param_query,'wp-odm_solr'); ?>"</h4>
         <?php

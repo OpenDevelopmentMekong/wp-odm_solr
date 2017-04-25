@@ -1,8 +1,8 @@
 <?php get_header(); ?>
 
 <?php
-  include_once dirname(plugin_dir_path(__FILE__)).'/utils/solr-wp-manager.php';
-  include_once dirname(plugin_dir_path(__FILE__)).'/utils/solr-ckan-manager.php';
+  include_once dirname(dirname(plugin_dir_path(__FILE__))).'/utils/solr-wp-manager.php';
+  include_once dirname(dirname(plugin_dir_path(__FILE__))).'/utils/solr-ckan-manager.php';
 
   $param_query = !empty($_GET['s']) ? $_GET['s'] : null;
   $param_type = (isset($_GET['type']) && !empty($_GET['type'])) ? $_GET['type'] : null;
@@ -170,7 +170,7 @@
 
             if (isset($content_resultset) && $content_resultcount > 0):
               foreach ($content_resultset as $document):
-                    include 'partials/wp_search_old_result_template.php';
+                    include 'partials/wp_default_result_template.php';
               endforeach; ?>
 
           <?php

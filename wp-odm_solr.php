@@ -52,9 +52,9 @@ if (!class_exists('WpOdmSolr')) {
 
             $template = $GLOBALS['wp_odm_solr_options']->get_option('wp_odm_solr_setting_template');
             $template = isset($template) ? $template : 'default';
-            $template_file = $template == 'default' ? 'solr_search_old.php' : 'solr_search.php';
+            $template_file = $template == 'default' ? 'default' : 'new';
 
-            return dirname( __FILE__ ) . '/templates/' . $template_file;
+            return dirname( __FILE__ ) . '/templates/' . $template_file . '/solr_search.php';
         }
 
         public function load_text_domain()
