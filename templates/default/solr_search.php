@@ -165,8 +165,10 @@
 
       <div class="sixteen columns">
         <?php
-            $content_resultset = wp_odm_merge_results_and_sort_by_score($results["wp"],$results["ckan"]);
-            $content_resultcount = !empty($content_resultset) ? $content_resultset->getNumFound() : 0;
+            $content_resultset = wp_odm_merge_results_and_sort_by_score($results["wp"]->getDocuments(),$results["ckan"]->getDocuments());
+            $content_resultcount = !empty($content_resultset) ? count($content_resultset) : 0;
+
+            echo '<h1>' . $content_resultcount . ' ' . __('results found','wp-odm_solr') . '</h1>';
 
             if (isset($content_resultset) && $content_resultcount > 0):
               foreach ($content_resultset as $document):
