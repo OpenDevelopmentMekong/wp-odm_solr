@@ -29,11 +29,6 @@
     "page" => 1
   );
 
-  if ($param_type || $param_page) {
-    $control_attrs['limit'] = 15;
-    $control_attrs['page'] = $param_page;
-  }
-
   //================ Search types ===================== //
 
   $supported_search_types = array(
@@ -89,9 +84,6 @@
         $attrs["dataset_type"] = $imploded_types;
         $attrs["capacity"] = "public";
 
-        $control_attrs['limit'] = 15;
-        $control_attrs['page'] = 1;
-
         $result = WP_Odm_Solr_CKAN_Manager()->query($param_query,$attrs,$control_attrs);
       else:
 
@@ -108,6 +100,11 @@
         // Country
         if (!empty($param_country) && $param_country != 'mekong' && $param_country != 'all') {
           $attrs["country_site"] = $param_country;
+        }
+
+        if ($param_type || $param_page) {
+          $control_attrs['limit'] = 15;
+          $control_attrs['page'] = $param_page;
         }
 
         $attrs["type"] = $imploded_types;
