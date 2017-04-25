@@ -116,6 +116,8 @@
 
       $top_tier_taxonomic_terms = odm_taxonomy_manager()->get_taxonomy_top_tier();
       $results[$key] = $result["resultset"];
+
+      if ($key == "wp"):
         foreach ($result["facets"] as $facet_key => $facet):
           $facet_key_mapped = $facets_mapping[$facet_key];
           if (!isset($facets[$facet_key_mapped])):
@@ -136,7 +138,8 @@
             $facets[$facet_key_mapped][$facet_value] += $count;
           endforeach;
         endforeach;
-      endforeach; ?>
+      endif;
+    endforeach; ?>
 
 <section class="container">
   <div class="row">
