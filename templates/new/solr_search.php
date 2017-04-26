@@ -1,8 +1,8 @@
 <?php get_header(); ?>
 
 <?php
-  include_once dirname(plugin_dir_path(__FILE__)).'/utils/solr-wp-manager.php';
-  include_once dirname(plugin_dir_path(__FILE__)).'/utils/solr-ckan-manager.php';
+  include_once dirname(dirname(plugin_dir_path(__FILE__))).'/utils/solr-wp-manager.php';
+  include_once dirname(dirname(plugin_dir_path(__FILE__))).'/utils/solr-ckan-manager.php';
 
   $param_query = !empty($_GET['s']) ? $_GET['s'] : null;
   $param_type = (isset($_GET['type']) && !empty($_GET['type'])) ? $_GET['type'] : null;
@@ -172,27 +172,27 @@
 
       $top_tier_taxonomic_terms = odm_taxonomy_manager()->get_taxonomy_top_tier();
       $results[$key] = $result["resultset"];
-        foreach ($result["facets"] as $facet_key => $facet):
-          $facet_key_mapped = $facets_mapping[$facet_key];
-          if (!isset($facets[$facet_key_mapped])):
-            $facets[$facet_key_mapped] = [];
+      foreach ($result["facets"] as $facet_key => $facet):
+        $facet_key_mapped = $facets_mapping[$facet_key];
+        if (!isset($facets[$facet_key_mapped])):
+          $facets[$facet_key_mapped] = [];
+        endif;
+        foreach ($facet as $facet_value => $count):
+          if ($facet_key_mapped == "vocab_taxonomy"):
+            foreach ($top_tier_taxonomic_terms as $top_tier_term => $children):
+              if (in_array($facet_value,$children) || $facet_value == $top_tier_term):
+                $facet_value = $top_tier_term;
+                break;
+              endif;
+            endforeach;
           endif;
-          foreach ($facet as $facet_value => $count):
-            if ($facet_key_mapped == "vocab_taxonomy"):
-              foreach ($top_tier_taxonomic_terms as $top_tier_term => $children):
-                if (in_array($facet_value,$children) || $facet_value == $top_tier_term):
-                  $facet_value = $top_tier_term;
-                  break;
-                endif;
-              endforeach;
-            endif;
-            if (!isset($facets[$facet_key_mapped][$facet_value])):
-              $facets[$facet_key_mapped][$facet_value] = 0;
-            endif;
-            $facets[$facet_key_mapped][$facet_value] += $count;
-          endforeach;
+          if (!isset($facets[$facet_key_mapped][$facet_value])):
+            $facets[$facet_key_mapped][$facet_value] = 0;
+          endif;
+          $facets[$facet_key_mapped][$facet_value] += $count;
         endforeach;
-      endforeach; ?>
+      endforeach;
+    endforeach; ?>
 
 <section class="container">
 
@@ -211,7 +211,7 @@
     //================ show filters ===================== // ?>
 
 		<div class="row">
-      <div class="four columns">      
+      <div class="four columns">
         <div class="result_links">
         <h4><?php _e('Search Results','wp-odm_solr'); ?> for "<?php _e($param_query,'wp-odm_solr'); ?>"</h4>
         <?php
@@ -233,7 +233,7 @@
         </div>
         <div class="data-advanced-filters">
           <form>
-          <?php include 'partials/filters.php'; ?>
+          <?php include plugin_dir_path(__FILE__). 'partials/filters.php'; ?>
         </div>
 
         <?php
@@ -250,7 +250,7 @@
   		</div>
       <!-- ============== Search input ============= -->
 			<div class="twelve columns">
-        <input id="search_field" name="s" type="text" class="full-width-search-box search_field" id="search_field" value="<?php echo $_GET["s"]?>" placeholder="<?php _e("Search datasets, topics, news articles...","wp-odm_solr"); ?>" data-solr-host="<?php echo $GLOBALS['wp_odm_solr_options']->get_option('wp_odm_solr_setting_solr_host'); ?>" data-solr-scheme="<?php echo $GLOBALS['wp_odm_solr_options']->get_option('wp_odm_solr_setting_solr_scheme'); ?>" data-solr-path="<?php echo $GLOBALS['wp_odm_solr_options']->get_option('wp_odm_solr_setting_solr_path'); ?>" data-solr-core-wp="<?php echo $GLOBALS['wp_odm_solr_options']->get_option('wp_odm_solr_setting_solr_core_wp'); ?>" data-solr-core-ckan="<?php echo $GLOBALS['wp_odm_solr_options']->get_option('wp_odm_solr_setting_solr_core_ckan'); ?>"></input>
+        <input id="search_field" name="s" type="text" class="full-width-search-box search_field" value="<?php echo $_GET["s"]?>" placeholder="<?php _e("Search datasets, topics, news articles...","wp-odm_solr"); ?>" data-solr-host="<?php echo $GLOBALS['wp_odm_solr_options']->get_option('wp_odm_solr_setting_solr_host'); ?>" data-solr-scheme="<?php echo $GLOBALS['wp_odm_solr_options']->get_option('wp_odm_solr_setting_solr_scheme'); ?>" data-solr-path="<?php echo $GLOBALS['wp_odm_solr_options']->get_option('wp_odm_solr_setting_solr_path'); ?>" data-solr-core-wp="<?php echo $GLOBALS['wp_odm_solr_options']->get_option('wp_odm_solr_setting_solr_core_wp'); ?>" data-solr-core-ckan="<?php echo $GLOBALS['wp_odm_solr_options']->get_option('wp_odm_solr_setting_solr_core_ckan'); ?>"></input>
         </form>
         <!-- ================ show all results =====================  -->
         <?php
@@ -271,24 +271,24 @@
 
               <?php
               if($supported_search_types[$param_type]['type'] == 'ckan'):
-                include 'partials/ckan_result_template.php';
+                include plugin_dir_path(__FILE__). 'partials/ckan_result_template.php';
               else:
                 if ($param_type == 'map-layer'):
-                  include 'partials/wp_map_layer_result_template.php';
+                  include plugin_dir_path(__FILE__). 'partials/wp_map_layer_result_template.php';
                 elseif ($param_type == 'news-article'):
-                  include 'partials/wp_news_article_result_template.php';
+                  include plugin_dir_path(__FILE__). 'partials/wp_news_article_result_template.php';
                 elseif ($param_type == 'topic'):
-                  include 'partials/wp_topic_result_template.php';
+                  include plugin_dir_path(__FILE__). 'partials/wp_topic_result_template.php';
                 elseif ($param_type == 'profiles'):
-                  include 'partials/wp_profiles_result_template.php';
+                  include plugin_dir_path(__FILE__). 'partials/wp_profiles_result_template.php';
                 elseif ($param_type == 'story'):
-                  include 'partials/wp_story_result_template.php';
+                  include plugin_dir_path(__FILE__). 'partials/wp_story_result_template.php';
                 elseif ($param_type == 'announcement'):
-                  include 'partials/wp_announcement_result_template.php';
+                  include plugin_dir_path(__FILE__). 'partials/wp_announcement_result_template.php';
                 elseif ($param_type == 'site-update'):
-                  include 'partials/wp_site_update_result_template.php';
+                  include plugin_dir_path(__FILE__). 'partials/wp_site_update_result_template.php';
                 else:
-                  include 'partials/wp_result_template.php';
+                  include plugin_dir_path(__FILE__). 'partials/wp_result_template.php';
                 endif;
               endif;?>
         <?php
@@ -325,24 +325,24 @@
         						<?php
         							foreach ($resultset as $document):
                         if ($value['type'] == 'ckan'):
-                          include 'partials/ckan_result_template.php';
+                          include plugin_dir_path(__FILE__). 'partials/ckan_result_template.php';
                         else:
                           if ($key == 'map-layer'):
-                            include 'partials/wp_map_layer_result_template.php';
+                            include plugin_dir_path(__FILE__). 'partials/wp_map_layer_result_template.php';
                           elseif ($key == 'news-article'):
-                            include 'partials/wp_news_article_result_template.php';
+                            include plugin_dir_path(__FILE__). 'partials/wp_news_article_result_template.php';
                           elseif ($key == 'topic'):
-                            include 'partials/wp_topic_result_template.php';
+                            include plugin_dir_path(__FILE__). 'partials/wp_topic_result_template.php';
                           elseif ($key == 'profiles'):
-                            include 'partials/wp_profiles_result_template.php';
+                            include plugin_dir_path(__FILE__). 'partials/wp_profiles_result_template.php';
                           elseif ($key == 'story'):
-                            include 'partials/wp_story_result_template.php';
+                            include plugin_dir_path(__FILE__). 'partials/wp_story_result_template.php';
                           elseif ($key == 'announcement'):
-                            include 'partials/wp_announcement_result_template.php';
+                            include plugin_dir_path(__FILE__). 'partials/wp_announcement_result_template.php';
                           elseif ($key == 'site-update'):
-                            include 'partials/wp_site_update_result_template.php';
+                            include plugin_dir_path(__FILE__). 'partials/wp_site_update_result_template.php';
                           else:
-                            include 'partials/wp_result_template.php';
+                            include plugin_dir_path(__FILE__). 'partials/wp_result_template.php';
                           endif;
                         endif;
         					    endforeach; ?>

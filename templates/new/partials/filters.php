@@ -2,9 +2,9 @@
 
 <!-- TAXONOMY FILTER -->
 <div class="single-filter">
-  <label for="taxonomy"><?php _e('Topic', 'odm'); ?></label>
-  <select id="taxonomy" name="taxonomy" class="filter_box" data-placeholder="<?php _e('Select term', 'odm'); ?>">
-    <option value="all" selected><?php _e('All','odm') ?></option>
+  <label for="taxonomy"><?php _e('Topic', 'wp-odm_solr'); ?></label>
+  <select id="taxonomy" name="taxonomy" class="filter_box" data-placeholder="<?php _e('Select term', 'wp-odm_solr'); ?>">
+    <option value="all" selected><?php _e('All','wp-odm_solr') ?></option>
     <?php
       foreach($taxonomy_list as $value):
         if (array_key_exists("vocab_taxonomy",$facets)):
@@ -25,9 +25,9 @@
 <!-- COUNTRY FILTER -->
 <?php if (odm_country_manager()->get_current_country() == 'mekong'): ?>
 <div class="single-filter">
-  <label for="country"><?php _e('Country', 'odm'); ?></label>
-  <select id="country" name="country" class="filter_box" data-placeholder="<?php _e('Select country', 'odm'); ?>">
-    <option value="all" selected><?php _e('All','odm') ?></option>
+  <label for="country"><?php _e('Country', 'wp-odm_solr'); ?></label>
+  <select id="country" name="country" class="filter_box" data-placeholder="<?php _e('Select country', 'wp-odm_solr'); ?>">
+    <option value="all" selected><?php _e('All','wp-odm_solr') ?></option>
     <?php
       foreach($countries as $key => $value):
         if ($key != 'mekong'):
@@ -53,9 +53,9 @@
 
 <!-- LANGUAGE FILTER -->
 <div class="single-filter">
-  <label for="language"><?php _e('Language', 'odm'); ?></label>
-  <select id="language" name="language" class="filter_box" data-placeholder="<?php _e('Select language', 'odm'); ?>">
-    <option value="all"  selected><?php _e('All','odm') ?></option>
+  <label for="language"><?php _e('Language', 'wp-odm_solr'); ?></label>
+  <select id="language" name="language" class="filter_box" data-placeholder="<?php _e('Select language', 'wp-odm_solr'); ?>">
+    <option value="all"  selected><?php _e('All','wp-odm_solr') ?></option>
     <?php
       foreach($languages as $key => $value):
         if (array_key_exists("extras_odm_language",$facets)):
@@ -75,9 +75,9 @@
 
 <!-- LICENSE FILTER -->
 <div class="single-filter">
-  <label for="license"><?php _e('License', 'odm'); ?></label>
-  <select id="license" name="license" class="filter_box" data-placeholder="<?php _e('Select license', 'odm'); ?>">
-    <option value="all" selected><?php _e('All','odm') ?></option>
+  <label for="license"><?php _e('License', 'wp-odm_solr'); ?></label>
+  <select id="license" name="license" class="filter_box" data-placeholder="<?php _e('Select license', 'wp-odm_solr'); ?>">
+    <option value="all" selected><?php _e('All','wp-odm_solr') ?></option>
     <?php
       foreach($license_list as $license):
         if (array_key_exists("license_id",$facets)):
@@ -98,14 +98,14 @@
 <!-- SORTING FUNCTION -->
 <h3><i class="fa fa-sort"></i> <?php _e('Sorting','wp-odm_solr'); ?></h3>
 <div class="single-filter">
-  <label for="sorting"><?php _e('Sort by', 'odm'); ?></label>
-  <select id="sorting" name="sorting" class="filter_box" data-placeholder="<?php _e('Sort by', 'odm'); ?>">
-    <option <?php if($param_sorting == "score") echo 'selected'; ?> value="score"><?php _e('Relevance','odm') ?></option>
-  	<option <?php if($param_sorting == "metadata_modified") echo 'selected'; ?> value="metadata_modified"><?php _e('Date modified','odm') ?></option>
+  <label for="sorting"><?php _e('Sort by', 'wp-odm_solr'); ?></label>
+  <select id="sorting" name="sorting" class="filter_box" data-placeholder="<?php _e('Sort by', 'wp-odm_solr'); ?>">
+    <option <?php if($param_sorting == "score") echo 'selected'; ?> value="score"><?php _e('Relevance','wp-odm_solr') ?></option>
+  	<option <?php if($param_sorting == "metadata_modified") echo 'selected'; ?> value="metadata_modified"><?php _e('Date modified','wp-odm_solr') ?></option>
   </select>
 </div>
 <!-- END OF LICENSE FILTER -->
 
 <div class="single-filter">
-  <input class="button" type="submit" value="<?php _e('Search Filter', 'odm'); ?>"/>
+  <input class="button" type="submit" value="<?php _e('Search Filter', 'wp-odm_solr'); ?>"/>
 </div>

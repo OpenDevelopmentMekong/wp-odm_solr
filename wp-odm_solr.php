@@ -3,7 +3,7 @@
  * Plugin Name: wp-odm_solr
  * Plugin URI: http://github.com/OpenDevelopmentMekong/wp-odm_solr
  * Description: ODI Internal Wordpress plugin for indexing created/updated WP contents automatically into a solr index
- * Version: 2.2.8
+ * Version: 2.2.11
  * Author: Alex Corbi (mail@lifeformapps.com)
  * Author URI: http://www.lifeformapps.com
  * License: GPLv3
@@ -23,7 +23,7 @@ if (!class_exists('WpOdmSolr')) {
         {
             add_action('admin_init', array(&$this, 'wp_odm_solr_admin_init'));
             add_action('admin_menu', array(&$this, 'wp_odm_solr_add_menu'));
-            add_action('admin_enqueue_scripts', array(&$this, 'wp_odm_solr_register_plugin_styles'));
+            add_action('init', array(&$this, 'wp_odm_solr_register_plugin_styles'));
             add_action('save_post', array(&$this, 'wp_odm_solr_save_post'));
             add_action('admin_notices', array($this, 'check_requirements'));
             add_action('init', array($this, 'load_text_domain'));
@@ -50,7 +50,11 @@ if (!class_exists('WpOdmSolr')) {
                 return $template;
             endif;
 
-            return dirname( __FILE__ ) . '/templates/solr_search.php';
+            $template = $GLOBALS['wp_odm_solr_options']->get_option('wp_odm_solr_setting_template');
+            $template = isset($template) ? $template : 'default';
+            $template_file = $template == 'default' ? 'default' : 'new';
+
+            return dirname( __FILE__ ) . '/templates/' . $template_file . '/solr_search.php';
         }
 
         public function load_text_domain()
@@ -74,7 +78,7 @@ if (!class_exists('WpOdmSolr')) {
 
         public function wp_odm_solr_register_plugin_styles($hook)
         {
-            wp_register_style('wp_odm_solr_style', plugins_url('wp_odm_solr/css/wp_odm_solr_style.css'));
+            wp_register_style('wp_odm_solr_style', plugin_dir_url(__FILE__).'css/wp_odm_solr_style.css');
             wp_enqueue_style('wp_odm_solr_style');
         }
 
@@ -128,6 +132,7 @@ if (!class_exists('WpOdmSolr')) {
             register_setting('wp_odm_solr-group', 'wp_odm_solr_setting_solr_pwd');
             register_setting('wp_odm_solr-group', 'wp_odm_solr_setting_solr_scheme');
             register_setting('wp_odm_solr-group', 'wp_odm_solr_setting_log_path');
+            register_setting('wp_odm_solr-group', 'wp_odm_solr_setting_template');
             register_setting('wp_odm_solr-group', 'wp_odm_solr_setting_log_enabled');
         }
 
