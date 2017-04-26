@@ -18,6 +18,7 @@
             $logging_path = WP_ODM_SOLR_DEFAULT_LOG_PATH;
           endif;
           $logging_enabled = $GLOBALS['wp_odm_solr_options']->get_option('wp_odm_solr_setting_log_enabled');
+          $template = $GLOBALS['wp_odm_solr_options']->get_option('wp_odm_solr_setting_template');
         ?>
 
         <table class="form-table">
@@ -79,7 +80,7 @@
               </td>
           </tr>
           <!-- Connection status -->
-          <?php 
+          <?php
             if (WP_ODM_SOLR_CHECK_REQS): ?>
             <tr valign="top">
               <th scope="row"><label><?php _e('Connection status','wp-odm_solr') ?></label></th>
@@ -95,9 +96,9 @@
                   <p class="error"><?php _e('Problem connecting to CKAN index. Please, check the specified config.','wp-odm_solr') ?></p>
                 <?php } ?>
               </td>
-            </tr>          
-          <?php 
-              endif; ?>          
+            </tr>
+          <?php
+              endif; ?>
           <!-- Logging -->
           <th scope="row"><label><h3><?php _e('Logging','wp_odm_solr') ?></h3></label></th>
           <tr valign="top">
@@ -111,6 +112,17 @@
             <td>
               <input type="text" name="wp_odm_solr_setting_log_path" id="wp_odm_solr_setting_log_path" value="<?php echo $logging_path ?>"/>
               <p class="description"><?php _e('Path where logs are going to be stored. Mind permissions.','wp_odm_solr') ?></p>
+            </td>
+          </tr>
+          <!-- Templating -->
+          <th scope="row"><label><h3><?php _e('Templating','wp_odm_solr') ?></h3></label></th>
+          <tr valign="top">
+            <th scope="row"><label for="wp_odm_solr_setting_template"><?php _e('Select template','wp_odm_solr') ?></label></th>
+            <td>
+              <select id="wp_odm_solr_setting_template" name="wp_odm_solr_setting_template">
+                <option value="default" <?php if (!isset($template) || $template == 'default')  echo 'selected'; ?>>2.0</option>
+                <option value="latest" <?php if ($template == 'latest')  echo 'selected'; ?>>2.2</option>
+              </select>
             </td>
           </tr>
         </table>

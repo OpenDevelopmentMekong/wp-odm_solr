@@ -6,3 +6,7 @@
 .search_field{
 	width: 100%;
 }
+
+.data-advanced-filters .single-filter .button{
+  margin-top: 20px;
+}
