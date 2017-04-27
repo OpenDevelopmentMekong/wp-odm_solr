@@ -26,7 +26,7 @@
   $control_attrs = array(
     "sorting" => $param_sorting,
     "limit" => 15,
-    "page" => 1
+    "page" => 0
   );
 
   //================ Search types ===================== //
@@ -85,7 +85,7 @@
         $attrs["capacity"] = "public";
 
         $control_attrs['limit'] = 15;
-        $control_attrs['page'] = 1;
+        $control_attrs['page'] = 0;
 
         $result = WP_Odm_Solr_CKAN_Manager()->query($param_query,$attrs,$control_attrs);
       else:
