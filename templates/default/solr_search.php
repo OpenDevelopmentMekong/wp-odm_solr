@@ -175,6 +175,8 @@
               foreach ($resultset_wp as $document):
                 include plugin_dir_path(__FILE__). 'partials/wp_default_result_template.php';
               endforeach;
+            else:
+              echo _e('No result found','wp-odm_solr');
             endif; ?>
 			</div>
 
@@ -186,10 +188,10 @@
             if (isset($resultset_ckan) && $resultcount_ckan > 0):
               foreach ($resultset_ckan as $document):
                 include plugin_dir_path(__FILE__). 'partials/ckan_default_result_template.php';
-              endforeach; ?>
-
-          <?php
-          endif; ?>
+              endforeach;
+            else:
+              echo _e('No result found','wp-odm_solr');
+            endif; ?>
   		</div>
 
 	</div>
