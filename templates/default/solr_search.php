@@ -9,7 +9,7 @@
   $param_license = !empty($_GET['license']) ? $_GET['license'] : null;
   $param_taxonomy = isset($_GET['taxonomy']) ? $_GET['taxonomy'] : null;
   $param_language = isset($_GET['language']) ? $_GET['language'] : null;
-  $param_page = isset($_GET['page']) ? (int)$_GET['page'] : 0;
+  $param_page = (isset($_GET['page']) && (int)$_GET['page'] > 0) ? ((int)$_GET['page'] -1) : 0;
   $param_country = odm_country_manager()->get_current_country() == 'mekong' && isset($_GET['country']) ? $_GET['country'] : odm_country_manager()->get_current_country();
 	$param_sorting = isset($_GET['sorting']) ? $_GET['sorting'] : 'score';
 
