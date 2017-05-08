@@ -310,7 +310,7 @@
           endif;
         endif; ?>
         <?php else: ?>
-          <div id="accordion" class="solr_results">
+          <div id="accordion" class="solr_results search-results">
             <?php
                 foreach ($supported_search_types as $key => $value):
 
