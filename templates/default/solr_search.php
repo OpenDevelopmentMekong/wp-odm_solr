@@ -10,6 +10,7 @@
   $param_taxonomy = isset($_GET['taxonomy']) ? $_GET['taxonomy'] : null;
   $param_language = isset($_GET['language']) ? $_GET['language'] : null;
   $param_page = isset($_GET['page']) ? (int)$_GET['page'] : 0;
+  $param_page_solr = (isset($_GET['page']) && (int)$_GET['page'] > 0) ? ((int)$_GET['page'] -1) : 0;
   $param_country = odm_country_manager()->get_current_country() == 'mekong' && isset($_GET['country']) ? $_GET['country'] : odm_country_manager()->get_current_country();
 	$param_sorting = isset($_GET['sorting']) ? $_GET['sorting'] : 'score';
 
@@ -26,7 +27,7 @@
   $control_attrs = array(
     "sorting" => $param_sorting,
     "limit" => 15,
-    "page" => 1
+    "page" => 0
   );
 
   //================ Search types ===================== //
@@ -85,7 +86,7 @@
         $attrs["capacity"] = "public";
 
         $control_attrs['limit'] = 15;
-        $control_attrs['page'] = 1;
+        $control_attrs['page'] = 0;
 
         $result = WP_Odm_Solr_CKAN_Manager()->query($param_query,$attrs,$control_attrs);
       else:
@@ -105,9 +106,9 @@
           $attrs["country_site"] = $param_country;
         }
 
-        if ($param_type || $param_page) {
+        if ($param_type || $param_page_solr) {
           $control_attrs['limit'] = 15;
-          $control_attrs['page'] = $param_page;
+          $control_attrs['page'] = $param_page_solr;
         }
 
         $attrs["type"] = (isset($param_type) && $param_type !== "all") ? $param_type : $imploded_types;
@@ -174,6 +175,8 @@
               foreach ($resultset_wp as $document):
                 include plugin_dir_path(__FILE__). 'partials/wp_default_result_template.php';
               endforeach;
+            else:
+              echo _e('No result found','wp-odm_solr');
             endif; ?>
 			</div>
 
@@ -185,10 +188,10 @@
             if (isset($resultset_ckan) && $resultcount_ckan > 0):
               foreach ($resultset_ckan as $document):
                 include plugin_dir_path(__FILE__). 'partials/ckan_default_result_template.php';
-              endforeach; ?>
-
-          <?php
-          endif; ?>
+              endforeach;
+            else:
+              echo _e('No result found','wp-odm_solr');
+            endif; ?>
   		</div>
 
 	</div>

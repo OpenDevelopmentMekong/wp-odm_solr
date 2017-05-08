@@ -1,21 +1,29 @@
 <?php
-  echo ("Datasets");
-  echo ("Library publications");
-  echo ("Laws");
-  echo ("Agreements");
-  echo ("Maps");
-  echo ("News articles");
-  echo ("Topics");
-  echo ("Profiles");
-  echo ("Story");
-  echo ("Announcements");
-  echo ("Site updates");
+  echo _("Datasets");
+  echo _("Library publications");
+  echo _("Laws");
+  echo _("Agreements");
+  echo _("Maps");
+  echo _("News articles");
+  echo _("Topics");
+  echo _("Profiles");
+  echo _("Story");
+  echo _("Announcements");
+  echo _("Site updates");
 
-  echo ("Cambodia");
-  echo ("Vietnam");
-  echo ("Laos");
-  echo ("Thailand");
-  echo ("Myanmar");
+  echo _("Cambodia");
+  echo _("Vietnam");
+  echo _("Laos");
+  echo _("Thailand");
+  echo _("Myanmar");
 
-  echo ("All");
+  echo _("English");
+  echo _("Khmer");
+  echo _("Vietnamese");
+  echo _("Lao");
+  echo _("Thai");
+  echo _("Burmese");
+
+
+  echo _("All");
 ?>
