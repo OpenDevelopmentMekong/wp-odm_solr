@@ -11,7 +11,10 @@
   $param_language = isset($_GET['language']) ? $_GET['language'] : array();
   $param_page = isset($_GET['page']) ? (int)$_GET['page'] : 0;
   $param_page_solr = (isset($_GET['page']) && (int)$_GET['page'] > 0) ? ((int)$_GET['page'] -1) : 0;
-  $param_country = odm_country_manager()->get_current_country() == 'mekong' && isset($_GET['country']) ? $_GET['country'] : array(odm_country_manager()->get_current_country());
+  $param_country = odm_country_manager()->get_current_country() == 'mekong' && isset($_GET['country']) ? $_GET['country'] : array();
+  if (empty($param_country) && odm_country_manager()->get_current_country() != 'mekong'):
+    $param_country = array(odm_country_manager()->get_current_country_code());
+  endif;
 	$param_sorting = isset($_GET['sorting']) ? $_GET['sorting'] : 'score';
 
   //================ Filter Values ===================== //
