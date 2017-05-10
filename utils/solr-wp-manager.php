@@ -157,7 +157,7 @@ class WP_Odm_Solr_WP_Manager {
       "facets" => array(
         "categories" => array(),
         "tags" => array(),
-        "country_site" => array(),
+        "odm_spatial_range" => array(),
         "odm_language" => array(),
         "license_id" => array()
       ),
@@ -189,8 +189,8 @@ class WP_Odm_Solr_WP_Manager {
       endif;
 
       $current_country = odm_country_manager()->get_current_country();
-      if ( $current_country != "mekong" && !array_key_exists("country_site",$attrs)):
-  			$query->createFilterQuery('country_site')->setQuery('country_site:' . $current_country);
+      if ( $current_country != "mekong" && !array_key_exists("odm_spatial_range",$attrs)):
+  			$query->createFilterQuery('odm_spatial_range')->setQuery('odm_spatial_range:' . $current_country);
   		endif;
 
       if (!empty($text)):
