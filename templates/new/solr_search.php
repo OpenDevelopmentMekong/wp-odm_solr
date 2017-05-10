@@ -23,6 +23,7 @@
   $country_codes_iso2 = odm_country_manager()->get_country_codes_iso2_list();
   $languages = odm_language_manager()->get_supported_languages();
   $license_list = wpckan_get_license_list();
+  $top_tier_taxonomic_terms = odm_taxonomy_manager()->get_taxonomy_top_tier();
 
   //================ Build query attributes ===================== //
 
@@ -107,77 +108,76 @@
     )
   );
 
-    //================ Run queries and gather both results and facets ===================== //
+  //================ Run queries and gather both results and facets ===================== //
 
-    $results = [];
-    $facets = [];
+  $results = [];
+  $facets = [];
 
-    $facets_mapping = array(
-      "categories" => "vocab_taxonomy",
-      "odm_spatial_range" => "extras_odm_spatial_range",
-      "odm_language" => "extras_odm_language",
-      "tags" => "extras_odm_keywords",
-      "vocab_taxonomy" => "vocab_taxonomy",
-      "extras_odm_spatial_range" => "extras_odm_spatial_range",
-      "extras_odm_language" => "extras_odm_language",
-      "extras_odm_keywords" => "extras_odm_keywords",
-      "license_id" => "license_id"
-    );
+  $facets_mapping = array(
+    "categories" => "vocab_taxonomy",
+    "odm_spatial_range" => "extras_odm_spatial_range",
+    "odm_language" => "extras_odm_language",
+    "tags" => "extras_odm_keywords",
+    "vocab_taxonomy" => "vocab_taxonomy",
+    "extras_odm_spatial_range" => "extras_odm_spatial_range",
+    "extras_odm_language" => "extras_odm_language",
+    "extras_odm_keywords" => "extras_odm_keywords",
+    "license_id" => "license_id"
+  );
 
-    // -------------- Get all results --------------- //
-    foreach ($supported_search_types as $key => $value):
-      $attrs = [];
-      $result = null;
+  // -------------- Get all results --------------- //
+  foreach ($supported_search_types as $key => $value):
+    $attrs = [];
+    $result = null;
 
-      if ($value['type'] == 'ckan'):
-        //Taxonomy
-        if (!empty($param_taxonomy)) {
-          $attrs["vocab_taxonomy"] = $param_taxonomy;
-        }
+    if ($value['type'] == 'ckan'):
+      //Taxonomy
+      if (!empty($param_taxonomy)) {
+        $attrs["vocab_taxonomy"] = $param_taxonomy;
+      }
 
-        // Language
-        if (!empty($param_language)) {
-          $attrs["extras_odm_language"] = $param_language;
-        }
+      // Language
+      if (!empty($param_language)) {
+        $attrs["extras_odm_language"] = $param_language;
+      }
 
-        // Country
-        if (!empty($param_country) && $param_country != 'mekong') {
-          $attrs["extras_odm_spatial_range"] = $param_country;
-        }
+      // Country
+      if (!empty($param_country) && $param_country != 'mekong') {
+        $attrs["extras_odm_spatial_range"] = $param_country;
+      }
 
-        //License
-        if (!empty($param_license)) {
-          $attrs['license_id'] = $param_license;
-        }
+      //License
+      if (!empty($param_license)) {
+        $attrs['license_id'] = $param_license;
+      }
 
-        $attrs["dataset_type"] = $key;
-        $attrs["capacity"] = "public";
-        $result = WP_Odm_Solr_CKAN_Manager()->query($param_query,$attrs,$control_attrs);
-      else:
+      $attrs["dataset_type"] = $key;
+      $attrs["capacity"] = "public";
+      $result = WP_Odm_Solr_CKAN_Manager()->query($param_query,$attrs,$control_attrs);
+    else:
 
-        //Taxonomy
-        if (!empty($param_taxonomy)) {
-          $attrs["categories"] = $param_taxonomy;
-        }
+      //Taxonomy
+      if (!empty($param_taxonomy)) {
+        $attrs["categories"] = $param_taxonomy;
+      }
 
-        // Language
-        if (!empty($param_language)) {
-          $attrs["odm_language"] = $param_language;
-        }
+      // Language
+      if (!empty($param_language)) {
+        $attrs["odm_language"] = $param_language;
+      }
 
-        // Country
-        if (!empty($param_country) && $param_country != 'mekong') {
-          $attrs["odm_spatial_range"] = $param_country;
-        }
+      // Country
+      if (!empty($param_country) && $param_country != 'mekong') {
+        $attrs["odm_spatial_range"] = $param_country;
+      }
 
-        $attrs["type"] = $key;
-        $result = WP_Odm_Solr_WP_Manager()->query($param_query,$attrs,$control_attrs);
-      endif;
-
-      $top_tier_taxonomic_terms = odm_taxonomy_manager()->get_taxonomy_top_tier();
-      $results[$key] = $result["resultset"];
-      $facets[$key] = $result["facets"];
-    endforeach; ?>
+      $attrs["type"] = $key;
+      $result = WP_Odm_Solr_WP_Manager()->query($param_query,$attrs,$control_attrs);
+    endif;
+    
+    $results[$key] = $result["resultset"];
+    $facets[$key] = $result["facets"];
+  endforeach; ?>
 
 <section class="container">
 
