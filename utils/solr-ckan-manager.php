@@ -109,12 +109,16 @@ class WP_Odm_Solr_CKAN_Manager {
               $terms_to_add = $taxonomy_top_tier[$term];
               foreach ($terms_to_add as $to_add):
                 array_push($terms_to_search_for,$to_add);
-              endforeach;              
+              endforeach;
             endforeach;
-            $value = $terms_to_search_for;          
-          endif;
-          if (is_array($value)):
-            $value = "(\"" . implode("\" OR \"", $value) . "\")";
+            $value = $terms_to_search_for;
+            if (is_array($value)):
+              $value = "(\"" . implode("\" OR \"", $value) . "\")";
+            endif;
+          else:
+            if (is_array($value)):
+              $value = "(\"" . implode("\" AND \"", $value) . "\")";
+            endif;
           endif;
           $query->createFilterQuery($key)->setQuery($key . ':' . $value);
         endforeach;

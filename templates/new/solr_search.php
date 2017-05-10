@@ -225,7 +225,7 @@
             $count = ($results[$key]) ? $results[$key]->getNumFound() : 0;
             if ($count > 0): ?>
 
-            <div class="result_link_list">
+            <div class="result_link_list <?php if ($param_type == $key) echo "data-number-results-medium" ?>">
               <a href="<?php echo construct_url($_SERVER['REQUEST_URI'], 'type', $key); ?>">
                 <i class="<?php echo $value['icon']; ?>"></i>
                 <?php echo __($value['title'],'wp-odm_solr') . " (".$count.")"; ?>
