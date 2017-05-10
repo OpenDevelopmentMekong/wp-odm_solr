@@ -15,7 +15,7 @@
               <option value="<?php echo $value; ?>" <?php if($selected) echo 'selected'; ?>>
                 <?php 
                   echo $value;
-                  if ($selected):
+                  if (!$selected):
                     echo " (" . $available_records . ")"; 
                   endif; ?>
               </option>
@@ -45,7 +45,7 @@
               <option value="<?php echo $country_code; ?>" <?php if($selected) echo 'selected'; ?>>
                 <?php 
                   echo $country_name;
-                  if ($selected):
+                  if (!$selected):
                     echo " (" . $available_records . ")"; 
                   endif; ?>
               </option>
@@ -75,7 +75,7 @@
               <option value="<?php echo $key; ?>" <?php if($selected) echo 'selected'; ?>>
                 <?php 
                   echo $value;
-                  if ($selected):
+                  if (!$selected):
                     echo " (" . $available_records . ")"; 
                   endif; ?>
               </option>
@@ -103,7 +103,7 @@
               <option value="<?php echo $license->id; ?>" <?php if($selected) echo 'selected'; ?>>
                 <?php 
                   echo $license->title;
-                  if ($selected):
+                  if (!$selected):
                     echo " (" . $available_records . ")"; 
                   endif; ?>
               </option>
