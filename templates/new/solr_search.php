@@ -6,12 +6,12 @@
 
   $param_query = !empty($_GET['s']) ? $_GET['s'] : null;
   $param_type = (isset($_GET['type']) && !empty($_GET['type'])) ? $_GET['type'] : null;
-  $param_license = !empty($_GET['license']) ? $_GET['license'] : null;
-  $param_taxonomy = isset($_GET['taxonomy']) ? $_GET['taxonomy'] : null;
-  $param_language = isset($_GET['language']) ? $_GET['language'] : null;
+  $param_license = !empty($_GET['license']) ? $_GET['license'] : array();
+  $param_taxonomy = isset($_GET['taxonomy']) ? $_GET['taxonomy'] : array();
+  $param_language = isset($_GET['language']) ? $_GET['language'] : array();
   $param_page = isset($_GET['page']) ? (int)$_GET['page'] : 0;
   $param_page_solr = (isset($_GET['page']) && (int)$_GET['page'] > 0) ? ((int)$_GET['page'] -1) : 0;
-  $param_country = odm_country_manager()->get_current_country() == 'mekong' && isset($_GET['country']) ? $_GET['country'] : odm_country_manager()->get_current_country();
+  $param_country = odm_country_manager()->get_current_country() == 'mekong' && isset($_GET['country']) ? $_GET['country'] : array(odm_country_manager()->get_current_country());
 	$param_sorting = isset($_GET['sorting']) ? $_GET['sorting'] : 'score';
 
   //================ Filter Values ===================== //
@@ -128,22 +128,22 @@
 
       if ($value['type'] == 'ckan'):
         //Taxonomy
-        if (!empty($param_taxonomy) && $param_taxonomy != 'all') {
+        if (!empty($param_taxonomy)) {
           $attrs["vocab_taxonomy"] = $param_taxonomy;
         }
 
         // Language
-        if (!empty($param_language) && $param_language != 'all') {
+        if (!empty($param_language)) {
           $attrs["extras_odm_language"] = $param_language;
         }
 
         // Country
-        if (!empty($param_country) && $param_country != 'mekong' && $param_country != 'all') {
-          $attrs["extras_odm_spatial_range"] = $countries[$param_country]['iso2'];
+        if (!empty($param_country) && $param_country != 'mekong') {
+          $attrs["extras_odm_spatial_range"] = $param_country;
         }
 
         //License
-        if (!empty($param_license) && $param_license != 'all') {
+        if (!empty($param_license)) {
           $attrs['license_id'] = $param_license;
         }
 
@@ -153,18 +153,18 @@
       else:
 
         //Taxonomy
-        if (!empty($param_taxonomy) && $param_taxonomy != 'all') {
+        if (!empty($param_taxonomy)) {
           $attrs["categories"] = $param_taxonomy;
         }
 
         // Language
-        if (!empty($param_language) && $param_language != 'all') {
+        if (!empty($param_language)) {
           $attrs["odm_language"] = $param_language;
         }
 
         // Country
-        if (!empty($param_country) && $param_country != 'mekong' && $param_country != 'all') {
-          $attrs["country_site"] = $param_country;
+        if (!empty($param_country) && $param_country != 'mekong') {
+          $attrs["odm_spatial_range"] = $param_country;
         }
 
         $attrs["type"] = $key;
