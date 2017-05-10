@@ -111,7 +111,7 @@
 
     $facets_mapping = array(
       "categories" => "vocab_taxonomy",
-      "country_site" => "extras_odm_spatial_range",
+      "odm_spatial_range" => "extras_odm_spatial_range",
       "odm_language" => "extras_odm_language",
       "tags" => "extras_odm_keywords",
       "vocab_taxonomy" => "vocab_taxonomy",
