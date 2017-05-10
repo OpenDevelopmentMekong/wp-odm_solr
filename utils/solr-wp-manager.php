@@ -180,9 +180,18 @@ class WP_Odm_Solr_WP_Manager {
         foreach ($attrs as $key => $value):
           if ($key == "categories"):
             $taxonomy_top_tier = odm_taxonomy_manager()->get_taxonomy_top_tier();
-            if (array_key_exists($value,$taxonomy_top_tier)):
-              $value = "(\"" . implode("\" OR \"", $taxonomy_top_tier[$value]) . "\")";
-            endif;
+            $selected_terms = array_intersect(array_keys($taxonomy_top_tier),array_values($value));
+            $terms_to_search_for = array();
+            foreach ($selected_terms as $term):
+              $terms_to_add = $taxonomy_top_tier[$term];
+              foreach ($terms_to_add as $to_add):
+                array_push($terms_to_search_for,$to_add);
+              endforeach;              
+            endforeach;
+            $value = $terms_to_search_for;         
+          endif;
+          if (is_array($value)):
+            $value = "(\"" . implode("\" OR \"", $value) . "\")";
           endif;
           $query->createFilterQuery($key)->setQuery($key . ':' . $value);
         endforeach;
