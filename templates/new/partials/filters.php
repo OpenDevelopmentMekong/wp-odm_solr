@@ -10,8 +10,15 @@
           $taxonomy_facets = $facets[$param_type]["vocab_taxonomy"];
           if (array_key_exists($value,$taxonomy_facets)):
             $available_records = $taxonomy_facets[$value];
-            if ($available_records > 0): ?>
-              <option value="<?php echo $value; ?>" <?php if(in_array($value,$param_taxonomy)) echo 'selected'; ?>><?php echo $value . " (" . $available_records . ")"; ?></option>
+            if ($available_records > 0): 
+              $selected = in_array($value,$param_taxonomy); ?>
+              <option value="<?php echo $value; ?>" <?php if($selected) echo 'selected'; ?>>
+                <?php 
+                  echo $value;
+                  if ($selected):
+                    echo " (" . $available_records . ")"; 
+                  endif; ?>
+              </option>
             <?php
             endif;
           endif;
@@ -33,8 +40,15 @@
           if (array_key_exists($country_code,$spatial_range_facets)):
             $available_records = $spatial_range_facets[$country_code];
             if ($available_records > 0): 
-              $country_name = odm_country_manager()->get_country_name_by_country_code($country_code); ?>
-              <option value="<?php echo $country_code; ?>" <?php if(in_array($country_code,$param_country)) echo 'selected'; ?>><?php echo $country_name . " (" . $available_records . ")"; ?></option>
+              $country_name = odm_country_manager()->get_country_name_by_country_code($country_code);
+              $selected = in_array($country_code,$param_country); ?>
+              <option value="<?php echo $country_code; ?>" <?php if($selected) echo 'selected'; ?>>
+                <?php 
+                  echo $country_name;
+                  if ($selected):
+                    echo " (" . $available_records . ")"; 
+                  endif; ?>
+              </option>
             <?php
             endif;
           endif;
@@ -56,8 +70,15 @@
           $language_facets = $facets[$param_type]["extras_odm_language"];
           if (array_key_exists($key,$language_facets)):
             $available_records = $language_facets[$key];
-            if ($available_records > 0): ?>
-              <option value="<?php echo $key; ?>" <?php if(in_array($key,$param_language)) echo 'selected'; ?>><?php echo $value . " (" . $available_records . ")" ?></option>
+            if ($available_records > 0):               
+              $selected = in_array($key,$param_language); ?>
+              <option value="<?php echo $key; ?>" <?php if($selected) echo 'selected'; ?>>
+                <?php 
+                  echo $value;
+                  if ($selected):
+                    echo " (" . $available_records . ")"; 
+                  endif; ?>
+              </option>
             <?php
             endif;
           endif;
@@ -77,8 +98,15 @@
           $license_facets = $facets[$param_type]["license_id"];
           if (array_key_exists($license->id,$license_facets)):
             $available_records = $license_facets[$license->id];
-            if ($available_records > 0): ?>
-              <option value="<?php echo $license->id; ?>" <?php if(in_array($license->id,$param_license)) echo 'selected'; ?>><?php echo $license->title . " (" . $available_records . ")" ?></option>
+            if ($available_records > 0):
+              $selected = in_array($license->id,$param_license); ?>
+              <option value="<?php echo $license->id; ?>" <?php if($selected) echo 'selected'; ?>>
+                <?php 
+                  echo $license->title;
+                  if ($selected):
+                    echo " (" . $available_records . ")"; 
+                  endif; ?>
+              </option>
             <?php
             endif;
           endif;
