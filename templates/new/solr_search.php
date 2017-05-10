@@ -379,7 +379,7 @@
                 jsonpCallback: 'callback',
                 contentType: "application/json",
                 success: function( data ) {   
-                  console.log("ckan autocompletion suggestions: " + JSON.stringify(data);
+                  console.log("ckan autocompletion suggestions: " + JSON.stringify(data));
                   if (data){
                     if(data.spellcheck){
                       var spellcheck = data.spellcheck;
