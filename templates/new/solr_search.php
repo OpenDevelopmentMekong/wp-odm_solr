@@ -190,7 +190,7 @@
           if (!isset($facets[$facet_key_mapped][$facet_value])):
             $facets[$facet_key_mapped][$facet_value] = 0;
           endif;
-          if (!isset($attrs["type"]) || $attrs["type"] == $key):
+          if (!isset($param_type) || $param_type == $key):
             $facets[$facet_key_mapped][$facet_value] += $count;
           endif;
         endforeach;
