@@ -358,6 +358,7 @@
             jsonpCallback: 'callback',
             contentType: "application/json",
             success: function( data ) {
+              console.log("wp autocompletion suggestions: " + data);
               var options = [];
               if (data){
                 if(data.spellcheck){
@@ -377,7 +378,8 @@
                 dataType: "jsonp",
                 jsonpCallback: 'callback',
                 contentType: "application/json",
-                success: function( data ) {
+                success: function( data ) {   
+                  console.log("ckan autocompletion suggestions: " + data);               
                   if (data){
                     if(data.spellcheck){
                       var spellcheck = data.spellcheck;
