@@ -3,7 +3,7 @@
 <!-- TAXONOMY FILTER -->
 <div class="single-filter">
   <label for="taxonomy"><?php _e('Topic', 'wp-odm_solr'); ?></label>
-  <select id="taxonomy" name="taxonomy" class="filter_box" data-placeholder="<?php _e('Select term', 'wp-odm_solr'); ?>">
+  <select multiple id="taxonomy" name="taxonomy" class="filter_box" data-placeholder="<?php _e('Select term', 'wp-odm_solr'); ?>">
     <option value="all" selected><?php _e('All','wp-odm_solr') ?></option>
     <?php
       foreach($taxonomy_list as $value):
@@ -26,7 +26,7 @@
 <?php if (odm_country_manager()->get_current_country() == 'mekong'): ?>
 <div class="single-filter">
   <label for="country"><?php _e('Country', 'wp-odm_solr'); ?></label>
-  <select id="country" name="country" class="filter_box" data-placeholder="<?php _e('Select country', 'wp-odm_solr'); ?>">
+  <select multiple id="country" name="country" class="filter_box" data-placeholder="<?php _e('Select country', 'wp-odm_solr'); ?>">
     <option value="all" selected><?php _e('All','wp-odm_solr') ?></option>
     <?php
       foreach($countries as $key => $value):
@@ -54,7 +54,7 @@
 <!-- LANGUAGE FILTER -->
 <div class="single-filter">
   <label for="language"><?php _e('Language', 'wp-odm_solr'); ?></label>
-  <select id="language" name="language" class="filter_box" data-placeholder="<?php _e('Select language', 'wp-odm_solr'); ?>">
+  <select multiple id="language" name="language" class="filter_box" data-placeholder="<?php _e('Select language', 'wp-odm_solr'); ?>">
     <option value="all"  selected><?php _e('All','wp-odm_solr') ?></option>
     <?php
       foreach($languages as $key => $value):
@@ -76,7 +76,7 @@
 <!-- LICENSE FILTER -->
 <div class="single-filter">
   <label for="license"><?php _e('License', 'wp-odm_solr'); ?></label>
-  <select id="license" name="license" class="filter_box" data-placeholder="<?php _e('Select license', 'wp-odm_solr'); ?>">
+  <select multiple id="license" name="license" class="filter_box" data-placeholder="<?php _e('Select license', 'wp-odm_solr'); ?>">
     <option value="all" selected><?php _e('All','wp-odm_solr') ?></option>
     <?php
       foreach($license_list as $license):
