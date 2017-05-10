@@ -194,43 +194,33 @@
     else:
       
       // -------------- Define top param type --------------- //
-      $top_param_type = 'dataset';
-      foreach ($supported_search_types as $key => $value):
-        if ($results[$key]->getNumFound() > 0):
-          $top_param_type = $key;
-          break;
-        endif;
-      endforeach;
-      
-      $param_type = isset($param_type) ? $param_type : $top_param_type;
+      if (!isset($param_type)):
+        foreach ($supported_search_types as $key => $value):
+          if (isset($results[$key]) && $results[$key]->getNumFound() > 0):
+            $param_type = $key;
+            break;
+          endif;
+        endforeach;
+      endif;
       
       // -------------- Define facets --------------- //
-      foreach ($supported_search_types as $key => $value):
-        foreach ($facets[$key] as $facet_key => $facet):
-          $facet_key_mapped = $facets_mapping[$facet_key];
-          if (!isset($facets[$key][$facet_key_mapped])):
-            $facets[$key][$facet_key_mapped] = [];
+      foreach ($facets[$param_type] as $facet_key => $facet):
+        $facet_key_mapped = $facets_mapping[$facet_key];
+        if (!isset($facets[$param_type][$facet_key_mapped])):
+          $facets[$param_type][$facet_key_mapped] = [];
+        endif;
+        foreach ($facet as $facet_value => $count):
+          if ($facet_key_mapped == "vocab_taxonomy"):
+            foreach ($top_tier_taxonomic_terms as $top_tier_term => $children):
+              if (in_array($facet_value,$children) || $facet_value == $top_tier_term):
+                $facet_value = $top_tier_term;
+                break;
+              endif;
+            endforeach;
           endif;
-          foreach ($facet as $facet_value => $count):
-            if ($facet_key_mapped == "vocab_taxonomy"):
-              foreach ($top_tier_taxonomic_terms as $top_tier_term => $children):
-                if (in_array($facet_value,$children) || $facet_value == $top_tier_term):
-                  $facet_value = $top_tier_term;
-                  break;
-                endif;
-              endforeach;
-            endif;
-            if (!isset($facets[$key][$facet_key_mapped][$facet_value])):
-              $facets[$key][$facet_key_mapped][$facet_value] = 0;
-            endif;
-            if ($param_type == $key):
-              $facets[$key][$facet_key_mapped][$facet_value] += $count;
-            endif;
-          endforeach;
+          $facets[$param_type][$facet_key_mapped][$facet_value] = $count;
         endforeach;
-      endforeach;
-      
-       ?>
+      endforeach; ?>
       
   		<div class="row">
         <div class="four columns">
