@@ -157,7 +157,7 @@ class WP_Odm_Solr_WP_Manager {
       "facets" => array(
         "categories" => array(),
         "tags" => array(),
-        "country_site" => array(),
+        "odm_spatial_range" => array(),
         "odm_language" => array(),
         "license_id" => array()
       ),
@@ -180,8 +180,21 @@ class WP_Odm_Solr_WP_Manager {
         foreach ($attrs as $key => $value):
           if ($key == "categories"):
             $taxonomy_top_tier = odm_taxonomy_manager()->get_taxonomy_top_tier();
-            if (array_key_exists($value,$taxonomy_top_tier)):
-              $value = "(\"" . implode("\" OR \"", $taxonomy_top_tier[$value]) . "\")";
+            $selected_terms = array_intersect(array_keys($taxonomy_top_tier),array_values($value));
+            $terms_to_search_for = array();
+            foreach ($selected_terms as $term):
+              $terms_to_add = $taxonomy_top_tier[$term];
+              foreach ($terms_to_add as $to_add):
+                array_push($terms_to_search_for,$to_add);
+              endforeach;
+            endforeach;
+            $value = $terms_to_search_for;
+            if (is_array($value)):
+              $value = "(\"" . implode("\" OR \"", $value) . "\")";
+            endif;
+          else:
+            if (is_array($value)):
+              $value = "(\"" . implode("\" AND \"", $value) . "\")";
             endif;
           endif;
           $query->createFilterQuery($key)->setQuery($key . ':' . $value);
@@ -189,8 +202,8 @@ class WP_Odm_Solr_WP_Manager {
       endif;
 
       $current_country = odm_country_manager()->get_current_country();
-      if ( $current_country != "mekong" && !array_key_exists("country_site",$attrs)):
-  			$query->createFilterQuery('country_site')->setQuery('country_site:' . $current_country);
+      if ( $current_country != "mekong" && !array_key_exists("odm_spatial_range",$attrs)):
+  			$query->createFilterQuery('odm_spatial_range')->setQuery('odm_spatial_range:' . $current_country);
   		endif;
 
       if (!empty($text)):
