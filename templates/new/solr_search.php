@@ -6,12 +6,12 @@
 
   $param_query = !empty($_GET['s']) ? $_GET['s'] : null;
   $param_type = (isset($_GET['type']) && !empty($_GET['type'])) ? $_GET['type'] : null;
-  $param_license = !empty($_GET['license']) ? $_GET['license'] : array();
-  $param_taxonomy = isset($_GET['taxonomy']) ? $_GET['taxonomy'] : array();
-  $param_language = isset($_GET['language']) ? $_GET['language'] : array();
+  $param_license = !empty($_GET['license']) || $_GET['license'] == 'all' ? $_GET['license'] : array();
+  $param_taxonomy = isset($_GET['taxonomy']) || $_GET['taxonomy'] == 'all' ? $_GET['taxonomy'] : array();
+  $param_language = isset($_GET['language']) || $_GET['language'] == 'all' ? $_GET['language'] : array();
   $param_page = isset($_GET['page']) ? (int)$_GET['page'] : 0;
   $param_page_solr = (isset($_GET['page']) && (int)$_GET['page'] > 0) ? ((int)$_GET['page'] -1) : 0;
-  $param_country = odm_country_manager()->get_current_country() == 'mekong' && isset($_GET['country']) ? $_GET['country'] : array();
+  $param_country = odm_country_manager()->get_current_country() == 'mekong' && isset($_GET['country']) && $_GET['country'] != 'all' ? $_GET['country'] : array();
   if (empty($param_country) && odm_country_manager()->get_current_country() != 'mekong'):
     $param_country = array(odm_country_manager()->get_current_country_code());
   endif;
