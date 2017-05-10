@@ -214,8 +214,14 @@
   <?php
     else:
       
-      $param_type = isset($param_type) ? $param_type : $top_param_type;     
-      //================ show filters ===================== // ?>
+      $top_param_type = 'dataset';
+      foreach ($supported_search_types as $key => $value):
+        if ($results[$key]->getNumFound() > 0):
+          $top_param_type = $key;
+          break;
+        endif;          
+      endforeach;
+      $param_type = isset($param_type) ? $param_type : $top_param_type; ?>
       
   		<div class="row">
         <div class="four columns">
@@ -260,16 +266,7 @@
           <input id="search_field" name="s" type="text" class="full-width-search-box search_field" value="<?php echo $_GET["s"]?>" placeholder="<?php _e("Search datasets, topics, news articles...","wp-odm_solr"); ?>" data-solr-host="<?php echo $GLOBALS['wp_odm_solr_options']->get_option('wp_odm_solr_setting_solr_host'); ?>" data-solr-scheme="<?php echo $GLOBALS['wp_odm_solr_options']->get_option('wp_odm_solr_setting_solr_scheme'); ?>" data-solr-path="<?php echo $GLOBALS['wp_odm_solr_options']->get_option('wp_odm_solr_setting_solr_path'); ?>" data-solr-core-wp="<?php echo $GLOBALS['wp_odm_solr_options']->get_option('wp_odm_solr_setting_solr_core_wp'); ?>" data-solr-core-ckan="<?php echo $GLOBALS['wp_odm_solr_options']->get_option('wp_odm_solr_setting_solr_core_ckan'); ?>"></input>
           </form>
           <!-- ================ show all results =====================  -->
-          <?php
-          
-          $top_param_type = 'dataset';
-          foreach ($supported_search_types as $key => $value):
-            if ($results[$key]->getNumFound() > 0):
-              $top_param_type = $key;
-              break;
-            endif;          
-          endforeach;
-                   
+          <?php                                     
           $content_resultset = $results[$param_type];
           $content_resultcount = ($content_resultset) ? $content_resultset->getNumFound() : 0;
           ?>
