@@ -6,8 +6,8 @@
   <select multiple id="taxonomy" name="taxonomy[]" class="filter_box" data-placeholder="<?php _e('Select term', 'wp-odm_solr'); ?>">
     <?php
       foreach($taxonomy_list as $value):
-        if (array_key_exists("vocab_taxonomy",$facets)):
-          $taxonomy_facets = $facets["vocab_taxonomy"];
+        if (array_key_exists("vocab_taxonomy",$facets[$param_type])):
+          $taxonomy_facets = $facets[$param_type]["vocab_taxonomy"];
           if (array_key_exists($value,$taxonomy_facets)):
             $available_records = $taxonomy_facets[$value];
             if ($available_records > 0): ?>
@@ -28,8 +28,8 @@
   <select multiple id="country" name="country[]" class="filter_box" data-placeholder="<?php _e('Select country', 'wp-odm_solr'); ?>">
     <?php
       foreach($country_codes_iso2 as $country_code):
-        if (array_key_exists("extras_odm_spatial_range",$facets)):
-          $spatial_range_facets = $facets["extras_odm_spatial_range"];
+        if (array_key_exists("extras_odm_spatial_range",$facets[$param_type])):
+          $spatial_range_facets = $facets[$param_type]["extras_odm_spatial_range"];
           if (array_key_exists($country_code,$spatial_range_facets)):
             $available_records = $spatial_range_facets[$country_code];
             if ($available_records > 0): 
@@ -52,8 +52,8 @@
   <select multiple id="language" name="language[]" class="filter_box" data-placeholder="<?php _e('Select language', 'wp-odm_solr'); ?>">
     <?php
       foreach($languages as $key => $value):
-        if (array_key_exists("extras_odm_language",$facets)):
-          $language_facets = $facets["extras_odm_language"];
+        if (array_key_exists("extras_odm_language",$facets[$param_type])):
+          $language_facets = $facets[$param_type]["extras_odm_language"];
           if (array_key_exists($key,$language_facets)):
             $available_records = $language_facets[$key];
             if ($available_records > 0): ?>
@@ -73,8 +73,8 @@
   <select multiple id="license" name="license[]" class="filter_box" data-placeholder="<?php _e('Select license', 'wp-odm_solr'); ?>">
     <?php
       foreach($license_list as $license):
-        if (array_key_exists("license_id",$facets)):
-          $license_facets = $facets["license_id"];
+        if (array_key_exists("license_id",$facets[$param_type])):
+          $license_facets = $facets[$param_type]["license_id"];
           if (array_key_exists($license->id,$license_facets)):
             $available_records = $license_facets[$license->id];
             if ($available_records > 0): ?>

@@ -5,7 +5,7 @@
   include_once dirname(dirname(plugin_dir_path(__FILE__))).'/utils/solr-ckan-manager.php';
 
   $param_query = !empty($_GET['s']) ? $_GET['s'] : null;
-  $param_type = (isset($_GET['type']) && !empty($_GET['type'])) ? $_GET['type'] : null;
+  $param_type = isset($_GET['type']) ? $_GET['type'] : null;
   $param_license = isset($_GET['license']) ? $_GET['license'] : array();
   $param_taxonomy = isset($_GET['taxonomy']) ? $_GET['taxonomy'] : array();
   $param_language = isset($_GET['language']) ? $_GET['language'] : array();
@@ -28,11 +28,11 @@
 
   $attrs = [];
   $control_attrs = array(
-    "sorting" => $param_sorting
+    "sorting" => $param_sorting,
+    "limit" => 15
   );
 
-  if ($param_type || $param_page_solr) {
-    $control_attrs['limit'] = 15;
+  if ($param_page_solr) {
     $control_attrs['page'] = $param_page_solr;
   }
 
@@ -176,28 +176,7 @@
 
       $top_tier_taxonomic_terms = odm_taxonomy_manager()->get_taxonomy_top_tier();
       $results[$key] = $result["resultset"];
-      foreach ($result["facets"] as $facet_key => $facet):
-        $facet_key_mapped = $facets_mapping[$facet_key];
-        if (!isset($facets[$facet_key_mapped])):
-          $facets[$facet_key_mapped] = [];
-        endif;
-        foreach ($facet as $facet_value => $count):
-          if ($facet_key_mapped == "vocab_taxonomy"):
-            foreach ($top_tier_taxonomic_terms as $top_tier_term => $children):
-              if (in_array($facet_value,$children) || $facet_value == $top_tier_term):
-                $facet_value = $top_tier_term;
-                break;
-              endif;
-            endforeach;
-          endif;
-          if (!isset($facets[$facet_key_mapped][$facet_value])):
-            $facets[$facet_key_mapped][$facet_value] = 0;
-          endif;
-          if (!isset($param_type) || $param_type == $key):
-            $facets[$facet_key_mapped][$facet_value] += $count;
-          endif;
-        endforeach;
-      endforeach;
+      $facets[$key] = $result["facets"];
     endforeach; ?>
 
 <section class="container">
@@ -214,14 +193,44 @@
   <?php
     else:
       
+      // -------------- Define top param type --------------- //
       $top_param_type = 'dataset';
       foreach ($supported_search_types as $key => $value):
         if ($results[$key]->getNumFound() > 0):
           $top_param_type = $key;
           break;
-        endif;          
+        endif;
       endforeach;
-      $param_type = isset($param_type) ? $param_type : $top_param_type; ?>
+      
+      $param_type = isset($param_type) ? $param_type : $top_param_type;
+      
+      // -------------- Define facets --------------- //
+      foreach ($supported_search_types as $key => $value):
+        foreach ($facets[$key] as $facet_key => $facet):
+          $facet_key_mapped = $facets_mapping[$facet_key];
+          if (!isset($facets[$key][$facet_key_mapped])):
+            $facets[$key][$facet_key_mapped] = [];
+          endif;
+          foreach ($facet as $facet_value => $count):
+            if ($facet_key_mapped == "vocab_taxonomy"):
+              foreach ($top_tier_taxonomic_terms as $top_tier_term => $children):
+                if (in_array($facet_value,$children) || $facet_value == $top_tier_term):
+                  $facet_value = $top_tier_term;
+                  break;
+                endif;
+              endforeach;
+            endif;
+            if (!isset($facets[$key][$facet_key_mapped][$facet_value])):
+              $facets[$key][$facet_key_mapped][$facet_value] = 0;
+            endif;
+            if ($param_type == $key):
+              $facets[$key][$facet_key_mapped][$facet_value] += $count;
+            endif;
+          endforeach;
+        endforeach;
+      endforeach;
+      
+       ?>
       
   		<div class="row">
         <div class="four columns">
@@ -265,7 +274,7 @@
   			<div class="twelve columns solr_results search-results">
           <input id="search_field" name="s" type="text" class="full-width-search-box search_field" value="<?php echo $_GET["s"]?>" placeholder="<?php _e("Search datasets, topics, news articles...","wp-odm_solr"); ?>" data-solr-host="<?php echo $GLOBALS['wp_odm_solr_options']->get_option('wp_odm_solr_setting_solr_host'); ?>" data-solr-scheme="<?php echo $GLOBALS['wp_odm_solr_options']->get_option('wp_odm_solr_setting_solr_scheme'); ?>" data-solr-path="<?php echo $GLOBALS['wp_odm_solr_options']->get_option('wp_odm_solr_setting_solr_path'); ?>" data-solr-core-wp="<?php echo $GLOBALS['wp_odm_solr_options']->get_option('wp_odm_solr_setting_solr_core_wp'); ?>" data-solr-core-ckan="<?php echo $GLOBALS['wp_odm_solr_options']->get_option('wp_odm_solr_setting_solr_core_ckan'); ?>"></input>
           </form>
-          <!-- ================ show all results =====================  -->
+          
           <?php                                     
           $content_resultset = $results[$param_type];
           $content_resultcount = ($content_resultset) ? $content_resultset->getNumFound() : 0;
