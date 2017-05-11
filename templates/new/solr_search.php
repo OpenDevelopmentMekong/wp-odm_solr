@@ -247,12 +247,12 @@
             <form>
             <?php include plugin_dir_path(__FILE__). 'partials/filters.php'; ?>
           </div>
-
+          
           <?php
             if (isset($param_type) && isset($supported_search_types[$param_type])):
               $supported_type = $supported_search_types[$param_type];
               if (isset($supported_type['archive_url'])): ?>
-                <div class="result_links">
+                <div class="result_links hideOnMobile">
                   <a href="<?php echo $supported_type['archive_url'] ?>"><h4><?php _e("Explore more","wp-odm_solr") ?> <?php _e($supported_type['title'],"wp-odm_solr") ?></h4></a>
                 </div>
           <?php
