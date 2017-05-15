@@ -5,31 +5,31 @@
   <label for="taxonomy"><?php _e('Topic', 'wp-odm_solr'); ?></label>
   <select id="taxonomy" name="taxonomy" class="filter_box" data-placeholder="<?php _e('Select term', 'wp-odm_solr'); ?>">
     <option value="all" <?php if (isset($param_taxonomy) || $param_taxonomy == 'all') echo 'selected'; ?>><?php _e('All','wp-odm_solr') ?></option>
-      <?php        
-      foreach($top_tier_taxonomic_terms as $top_tier_term):
-        $available_records = 0;
-        if (array_key_exists("vocab_taxonomy",$facets[$param_type])):
-          $taxonomy_facets = $facets[$param_type]["vocab_taxonomy"];          
-          foreach ($taxonomy_facets as $value => $count):
-            $corresponding_top_tier = odm_taxonomy_manager()->get_top_tier_term_for_subterm($value);            
-            if (isset($corresponding_top_tier) && $corresponding_top_tier == $top_tier_term):
-              $available_records += $count;
+      <?php
+      if (array_key_exists("vocab_taxonomy",$facets[$param_type])):
+        foreach(array_keys($top_tier_taxonomic_terms) as $top_tier_term):
+          $available_records = 0; 
+          $taxonomy_facets = $facets[$param_type]["vocab_taxonomy"];
+          foreach ($taxonomy_facets as $value => $count):            
+            $corresponding_top_tier = odm_taxonomy_manager()->get_top_tier_term_for_subterm($value);                    
+            if (isset($corresponding_top_tier) && $corresponding_top_tier == $top_tier_term && $count > $available_records):
+              $available_records = $count;
             endif;
           endforeach;
           
           if ($available_records > 0):               
-              $selected = ($top_tier_term == $param_taxonomy); ?>
-              <option value="<?php echo $top_tier_term; ?>" <?php if($selected) echo 'selected'; ?>>
-                <?php 
-                  echo $top_tier_term;
-                  if (!$selected):
-                    echo " (" . $available_records . ")"; 
-                  endif; ?>
-              </option>
-            <?php
-            endif;
+            $selected = ($top_tier_term == $param_taxonomy); ?>
+            <option value="<?php echo $top_tier_term; ?>" <?php if($selected) echo 'selected'; ?>>
+              <?php 
+                echo $top_tier_term;
+                if (!$selected):
+                  echo " (" . $available_records . ")"; 
+                endif; ?>
+            </option>
+          <?php
           endif;
-      endforeach; ?>
+        endforeach;
+      endif; ?>
   </select>
 </div>
 <!-- END OF TAXONOMY FILTER -->

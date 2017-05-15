@@ -89,7 +89,7 @@
       'archive_url' => '/profiles'
     ),
     'story' => array(
-      'title' => 'Story',
+      'title' => 'Stories',
       'icon' => 'fa fa-lightbulb-o',
       'type' => 'wp',
       'archive_url' => '/story'
