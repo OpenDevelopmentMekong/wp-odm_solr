@@ -3,21 +3,22 @@
 <!-- TAXONOMY FILTER -->
 <div class="single-filter">
   <label for="taxonomy"><?php _e('Topic', 'wp-odm_solr'); ?></label>
-  <select multiple id="taxonomy" name="taxonomy[]" class="filter_box" data-placeholder="<?php _e('Select term', 'wp-odm_solr'); ?>">
-    <?php
+  <select id="taxonomy" name="taxonomy[]" class="filter_box" data-placeholder="<?php _e('Select term', 'wp-odm_solr'); ?>">
+    <option value="all" <?php if (isset($param_taxonomy) || $param_taxonomy == 'all') echo 'selected'; ?>><?php _e('All','wp-odm_solr') ?></option>
+      <?php        
       foreach($taxonomy_list as $value):
         if (array_key_exists("vocab_taxonomy",$facets[$param_type])):
           $taxonomy_facets = $facets[$param_type]["vocab_taxonomy"];
           if (array_key_exists($value,$taxonomy_facets)):
             $available_records = $taxonomy_facets[$value];
             if ($available_records > 0): 
-              $selected = in_array($value,$param_taxonomy); ?>
+              $selected = ($value == $param_taxonomy); ?>
               <option value="<?php echo $value; ?>" <?php if($selected) echo 'selected'; ?>>
                 <?php 
                   echo $value;
-                  if (!$selected):
-                    echo " (" . $available_records . ")"; 
-                  endif; ?>
+                  // if (!$selected):
+                  //   echo " (" . $available_records . ")"; 
+                  // endif; ?>
               </option>
             <?php
             endif;

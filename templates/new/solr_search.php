@@ -7,7 +7,7 @@
   $param_query = !empty($_GET['s']) ? $_GET['s'] : null;
   $param_type = isset($_GET['type']) ? $_GET['type'] : null;
   $param_license = isset($_GET['license']) ? $_GET['license'] : array();
-  $param_taxonomy = isset($_GET['taxonomy']) ? $_GET['taxonomy'] : array();
+  $param_taxonomy = isset($_GET['taxonomy']) ? $_GET['taxonomy'] : 'all';
   $param_language = isset($_GET['language']) ? $_GET['language'] : array();
   $param_page = isset($_GET['page']) ? (int)$_GET['page'] : 0;
   $param_page_solr = (isset($_GET['page']) && (int)$_GET['page'] > 0) ? ((int)$_GET['page'] -1) : 0;
@@ -72,7 +72,7 @@
     ),
     'news-article' => array(
       'title' => 'News articles',
-      'icon' => 'fa fa-newspaper-o',
+      'icon' => 'fa fa-quote-left',
       'type' => 'wp',
       'archive_url' => '/news'
     ),
@@ -132,7 +132,7 @@
 
     if ($value['type'] == 'ckan'):
       //Taxonomy
-      if (!empty($param_taxonomy)) {
+      if (isset($param_taxonomy) && $param_taxonomy != 'all') {
         $attrs["vocab_taxonomy"] = $param_taxonomy;
       }
 
@@ -157,7 +157,7 @@
     else:
 
       //Taxonomy
-      if (!empty($param_taxonomy)) {
+      if (isset($param_taxonomy) && $param_taxonomy != 'all') {
         $attrs["categories"] = $param_taxonomy;
       }
 
