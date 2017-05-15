@@ -3,7 +3,7 @@
 <!-- TAXONOMY FILTER -->
 <div class="single-filter">
   <label for="taxonomy"><?php _e('Topic', 'wp-odm_solr'); ?></label>
-  <select id="taxonomy" name="taxonomy[]" class="filter_box" data-placeholder="<?php _e('Select term', 'wp-odm_solr'); ?>">
+  <select id="taxonomy" name="taxonomy" class="filter_box" data-placeholder="<?php _e('Select term', 'wp-odm_solr'); ?>">
     <option value="all" <?php if (isset($param_taxonomy) || $param_taxonomy == 'all') echo 'selected'; ?>><?php _e('All','wp-odm_solr') ?></option>
       <?php        
       foreach($taxonomy_list as $value):
