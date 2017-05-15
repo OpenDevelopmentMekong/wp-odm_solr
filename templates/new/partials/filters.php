@@ -22,9 +22,9 @@
             <option value="<?php echo $top_tier_term; ?>" <?php if($selected) echo 'selected'; ?>>
               <?php 
                 echo $top_tier_term;
-                if (!$selected):
-                  echo " (" . $available_records . ")"; 
-                endif; ?>
+                // if (!$selected):
+                //   echo " (" . $available_records . ")"; 
+                // endif; ?>
             </option>
           <?php
           endif;
