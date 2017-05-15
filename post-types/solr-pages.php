@@ -17,7 +17,7 @@ if (!class_exists('Odm_Solr_Pages_Post_Type')) {
       global $post;
 
       if ($post->post_type == 'solr-pages') {
-        $single_template = dirname(plugin_dir_path(__FILE__)).'templates/new/solr_search.php';
+        $single_template = dirname(plugin_dir_path(__FILE__)).'/templates/new/solr_search.php';
       }
 
       return $single_template;
@@ -35,7 +35,7 @@ if (!class_exists('Odm_Solr_Pages_Post_Type')) {
         'new_item' => __('New solr page', 'wp-odm_solr'),
         'edit_item' => __('Edit solr page', 'wp-odm_solr'),
         'view_item' => __('View solr page', 'wp-odm_solr'),
-        'all_items' => __('All solr page', 'wp-odm_solr'),
+        'all_items' => __('All solr pages', 'wp-odm_solr'),
         'search_items' => __('Search solr pages', 'wp-odm_solr'),
         'parent_item_colon' => __('Parent solr pages:', 'wp-odm_solr'),
         'not_found' => __('No solr page found.', 'wp-odm_solr'),
@@ -45,15 +45,15 @@ if (!class_exists('Odm_Solr_Pages_Post_Type')) {
         $args = array(
           'labels'             => $labels,
           'public'             => true,
-          'publicly_queryable' => false,
+          'publicly_queryable' => true,
           'show_ui'            => true,
           'show_in_menu'       => true,
 		      'menu_icon'          => '',
-          'query_var'          => true,
+          'query_var'          => 'solr_',
           'rewrite'            => array( 'slug' => 'solr-pages' ),
           'capability_type'    => 'page',
-          'has_archive'        => false,
-          'hierarchical'       => false,
+          'has_archive'        => true,
+          'hierarchical'       => true,
           'menu_position'      => 5,
           //'taxonomies'         => array('category', 'language', 'post_tag'),
           'supports' => array('title', 'editor', 'page-attributes', 'revisions', 'author', 'thumbnail')
@@ -73,17 +73,7 @@ if (!class_exists('Odm_Solr_Pages_Post_Type')) {
        'advanced',
        'high'
       );
-      
-      // Profile settings
-      add_meta_box(
-       'solr_pages_options',
-       __('Option for solr-pages', 'wp-odm_solr'),
-       array($this, 'solr_pages_options_box'),
-       'solr-pages',
-       'advanced',
-       'high'
-      );
-      
+
       add_meta_box(
        'solr_pages_template_layout',
        __('Template layout', 'wp-odm_solr'),
@@ -92,36 +82,36 @@ if (!class_exists('Odm_Solr_Pages_Post_Type')) {
        'side',
        'low'
       );
-            
+
 		}
 
 		public function solr_pages_options_box($post = false)
     {
         $supported_types = get_post_meta($post->ID, '_solr_pages_attributes_supported_types', true); ?>
-                    
+
 			  <h4><?php _e('Column ids linking to detail page', 'wp-odm_solr');?></h4>
-			  <input class="full-width" type="text" id="_solr_pages_attributes_supported_types" name="_solr_pages_attributes_supported_types" placeholder="dataset, library_records, laws_records, agreements" value="<?php echo $supported_types; ?>" />
+			  <input class="full-width" type="text" id="_solr_pages_attributes_supported_types" name="_solr_pages_attributes_supported_types" placeholder="dataset, library_record, laws_record, agreement" value="<?php echo $supported_types; ?>" />
         <p class="description"><?php _e('Please add the document types that should be supported on this page', 'wp-odm_solr'); ?></p>
 
-   <?php 
-    } 
-    
+   <?php
+    }
+
     public function solr_pages_layout_settings_box($post = false)
     {
         $template = get_post_meta($post->ID, '_solr_pages_attributes_template_layout', true); ?>
         <div id="solr_pages_template_layout_settings_box">
          <h4><?php _e('Choose template layout', 'wp-odm_solr');?></h4>
          <select id="_solr_pages_attributes_template_layout" name="_solr_pages_attributes_template_layout">
-            <option value="default" <?php if ($template == "default"): echo "selected"; endif; ?>>Default</option>            
+            <option value="default" <?php if ($template == "default"): echo "selected"; endif; ?>>Default</option>
           </select>
         </div>
     <?php
-    }    
-    
+    }
+
     public function save_post_data($post_id)
     {
         global $post;
-        if (isset($post->ID) && get_post_type($post->ID) == 'solr-page') {
+        if (isset($post->ID) && get_post_type($post->ID) == 'solr-pages') {
 
             if (defined('DOING_AUTOSAVE') && DOING_AUTOSAVE) {
                 return;
@@ -134,9 +124,9 @@ if (!class_exists('Odm_Solr_Pages_Post_Type')) {
             if (false !== wp_is_post_revision($post_id)) {
                 return;
             }
-            
+
             if (isset($_POST['_solr_pages_attributes_supported_types'])) {
-                update_post_meta($post_id, '_solr_pages_attributes_supported_types', $_POST['_solr_pages_attributes_supported_types']);
+                update_post_meta($post_id, '_solr_pages_attributes_supported_types', str_replace(" ","",$_POST['_solr_pages_attributes_supported_types']));
             }
 
             if (isset($_POST['_solr_pages_attributes_template_layout'])) {
