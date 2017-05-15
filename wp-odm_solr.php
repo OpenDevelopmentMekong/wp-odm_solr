@@ -12,15 +12,15 @@
  include_once plugin_dir_path(__FILE__).'utils/wp_odm_solr_utils.php';
  include_once plugin_dir_path(__FILE__).'utils/solr-wp-manager.php';
  include_once plugin_dir_path(__FILE__).'utils/solr-ckan-manager.php';
- 
+
  // Require post types
- require_once plugin_dir_path(__FILE__).'post-types/solr-pages.php';
+ require_once plugin_dir_path(__FILE__).'post-types/search-pages.php';
 
 if (!class_exists('WpOdmSolr')) {
-  
+
     class WpOdmSolr
     {
-      
+
       private static $instance;
 
       private static $post_type;
@@ -37,7 +37,7 @@ if (!class_exists('WpOdmSolr')) {
 
           return self::$instance;
       }
-                
+
         /**
          * Construct the plugin object.
          */

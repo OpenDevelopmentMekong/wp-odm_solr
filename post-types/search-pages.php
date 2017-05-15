@@ -16,7 +16,7 @@ if (!class_exists('Odm_Solr_Pages_Post_Type')) {
     {
       global $post;
 
-      if ($post->post_type == 'solr-pages') {
+      if ($post->post_type == 'search-pages') {
         $single_template = dirname(plugin_dir_path(__FILE__)).'/templates/new/solr_search.php';
       }
 
@@ -26,20 +26,20 @@ if (!class_exists('Odm_Solr_Pages_Post_Type')) {
     public function register_post_type()
     {
         $labels = array(
-        'name' => __('Solr pages', 'post type general name', 'wp-odm_solr'),
-        'singular_name' => __('Solr page', 'post type singular name', 'wp-odm_solr'),
-        'menu_name' => __('Solr pages', 'admin menu for tabular pages', 'wp-odm_solr'),
-        'name_admin_bar' => __('Solr pages', 'add new on admin bar', 'wp-odm_solr'),
-        'add_new' => __('Add new', 'tabular page', 'wp-odm_solr'),
-        'add_new_item' => __('Add new solr page', 'wp-odm_solr'),
-        'new_item' => __('New solr page', 'wp-odm_solr'),
-        'edit_item' => __('Edit solr page', 'wp-odm_solr'),
-        'view_item' => __('View solr page', 'wp-odm_solr'),
-        'all_items' => __('All solr pages', 'wp-odm_solr'),
-        'search_items' => __('Search solr pages', 'wp-odm_solr'),
-        'parent_item_colon' => __('Parent solr pages:', 'wp-odm_solr'),
-        'not_found' => __('No solr page found.', 'wp-odm_solr'),
-        'not_found_in_trash' => __('No solr page found in trash.', 'wp-odm_solr'),
+        'name' => __('Search pages', 'post type general name', 'wp-odm_solr'),
+        'singular_name' => __('Search page', 'post type singular name', 'wp-odm_solr'),
+        'menu_name' => __('Search pages', 'admin menu for tabular pages', 'wp-odm_solr'),
+        'name_admin_bar' => __('Search pages', 'add new on admin bar', 'wp-odm_solr'),
+        'add_new' => __('Add new', 'search page', 'wp-odm_solr'),
+        'add_new_item' => __('Add new search page', 'wp-odm_solr'),
+        'new_item' => __('New search page', 'wp-odm_solr'),
+        'edit_item' => __('Edit search page', 'wp-odm_solr'),
+        'view_item' => __('View search page', 'wp-odm_solr'),
+        'all_items' => __('All search pages', 'wp-odm_solr'),
+        'search_items' => __('Search search pages', 'wp-odm_solr'),
+        'parent_item_colon' => __('Parent search pages:', 'wp-odm_solr'),
+        'not_found' => __('No search page found.', 'wp-odm_solr'),
+        'not_found_in_trash' => __('No search page found in trash.', 'wp-odm_solr'),
         );
 
         $args = array(
@@ -50,26 +50,26 @@ if (!class_exists('Odm_Solr_Pages_Post_Type')) {
           'show_in_menu'       => true,
 		      'menu_icon'          => '',
           'query_var'          => 'solr_',
-          'rewrite'            => array( 'slug' => 'solr-pages' ),
+          'rewrite'            => array( 'slug' => 'search' ),
           'capability_type'    => 'page',
-          'has_archive'        => true,
-          'hierarchical'       => true,
+          'has_archive'        => false,
+          'hierarchical'       => false,
           'menu_position'      => 5,
           //'taxonomies'         => array('category', 'language', 'post_tag'),
           'supports' => array('title', 'editor', 'page-attributes', 'revisions', 'author', 'thumbnail')
         );
 
-        register_post_type('solr-pages', $args);
+        register_post_type('search-pages', $args);
     }
 
 		public function add_meta_box()
     {
       // Profile settings
       add_meta_box(
-       'solr-pages_options',
-       __('Option for solr-pages', 'wp-odm_solr'),
+       'search-pages_options',
+       __('Option for search pages', 'wp-odm_solr'),
        array($this, 'solr_pages_options_box'),
-       'solr-pages',
+       'search-pages',
        'advanced',
        'high'
       );
@@ -78,7 +78,7 @@ if (!class_exists('Odm_Solr_Pages_Post_Type')) {
        'solr_pages_template_layout',
        __('Template layout', 'wp-odm_solr'),
        array($this, 'solr_pages_layout_settings_box'),
-       'solr-pages',
+       'search-pages',
        'side',
        'low'
       );
@@ -111,7 +111,7 @@ if (!class_exists('Odm_Solr_Pages_Post_Type')) {
     public function save_post_data($post_id)
     {
         global $post;
-        if (isset($post->ID) && get_post_type($post->ID) == 'solr-pages') {
+        if (isset($post->ID) && get_post_type($post->ID) == 'search-pages') {
 
             if (defined('DOING_AUTOSAVE') && DOING_AUTOSAVE) {
                 return;
