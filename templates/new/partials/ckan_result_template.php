@@ -68,7 +68,7 @@
     <!-- Topics -->
     <?php if (!empty($document->vocab_taxonomy)): ?>
       <div class="data_meta">
-        <i class="fa fa-tags"></i>
+        <i class="fa fa-folder-o"></i>
         <span>
           <?php
             $topics = (array) $document->vocab_taxonomy;
