@@ -11,7 +11,10 @@
   $param_language = isset($_GET['language']) ? $_GET['language'] : null;
   $param_page = isset($_GET['page']) ? (int)$_GET['page'] : 0;
   $param_page_solr = (isset($_GET['page']) && (int)$_GET['page'] > 0) ? ((int)$_GET['page'] -1) : 0;
-  $param_country = odm_country_manager()->get_current_country() == 'mekong' && isset($_GET['country']) ? $_GET['country'] : odm_country_manager()->get_current_country();
+  $param_country = odm_country_manager()->get_current_country() == 'mekong' && isset($_GET['country']) ? $_GET['country'] : array();
+  if (empty($param_country) && odm_country_manager()->get_current_country() != 'mekong'):
+    $param_country = array(odm_country_manager()->get_current_country_code());
+  endif;
 	$param_sorting = isset($_GET['sorting']) ? $_GET['sorting'] : 'score';
 
   //================ Filter Values ===================== //
@@ -44,7 +47,7 @@
 
     $facets_mapping = array(
       "categories" => "vocab_taxonomy",
-      "country_site" => "extras_odm_spatial_range",
+      "odm_spatial_range" => "extras_odm_spatial_range",
       "odm_language" => "extras_odm_language",
       "tags" => "extras_odm_keywords",
       "vocab_taxonomy" => "vocab_taxonomy",
@@ -74,7 +77,7 @@
 
         // Country
         if (!empty($param_country) && $param_country != 'mekong' && $param_country != 'all') {
-          $attrs["extras_odm_spatial_range"] = $countries[$param_country]['iso2'];
+          $attrs["extras_odm_spatial_range"] = $param_country;
         }
 
         //License
@@ -102,8 +105,8 @@
         }
 
         // Country
-        if (!empty($param_country) && $param_country != 'mekong' && $param_country != 'all') {
-          $attrs["country_site"] = $param_country;
+        if (!empty($param_country) && $param_country != 'mekong') {
+          $attrs["odm_spatial_range"] = $param_country;
         }
 
         if ($param_type || $param_page_solr) {
