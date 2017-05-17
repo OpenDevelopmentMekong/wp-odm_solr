@@ -1,69 +1,76 @@
 # Translators:
 # Alex Corbi <a.corbi@gmail.com>, 2017
 # Theint Naing Yoon <yoon@phandeeyar.org>, 2017
+# thetaung2 <thetaung@phandeeyar.org>, 2017
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "POT-Creation-Date: 2017-05-04 17:55+0200\n"
 "PO-Revision-Date: 2017-05-04 17:55+0200\n"
-"Last-Translator: Theint Naing Yoon <yoon@phandeeyar.org>, 2017\n"
-"Language-Team: Burmese (https://www.transifex.com/open-development-mekong/teams/27158/"
-"my/)\n"
-"Language: my\n"
+"Last-Translator: thetaung2 <thetaung@phandeeyar.org>, 2017\n"
+"Language-Team: Burmese (https://www.transifex.com/open-development-mekong/teams/27158/my/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Language: my\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Poedit 1.8.7.1\n"
 "X-Poedit-Basepath: ..\n"
 "X-Poedit-KeywordsList: _;_e;__;_n:1,2;_x:1,2c;_ex:1,2c\n"
-"X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-SearchPath-0: i18n\n"
 "X-Poedit-SearchPath-1: .\n"
 "X-Poedit-SearchPathExcluded-0: components\n"
 "X-Poedit-SearchPathExcluded-1: vendor\n"
+"X-Poedit-SourceCharset: UTF-8\n"
 
 #: i18n/additional-localization.php:2
 msgid "Datasets"
-msgstr ""
+msgstr "Datasets"
 
-#: i18n/additional-localization.php:3 templates/default/partials/filters.php:20
+#: i18n/additional-localization.php:3
+#: templates/default/partials/filters.php:20
 msgid "Library publications"
-msgstr ""
+msgstr "Library publications"
 
-#: i18n/additional-localization.php:4 templates/default/partials/filters.php:21
+#: i18n/additional-localization.php:4
+#: templates/default/partials/filters.php:21
 msgid "Laws"
-msgstr ""
+msgstr "ဥပဒေများ"
 
 #: i18n/additional-localization.php:5
 msgid "Agreements"
-msgstr ""
+msgstr "သဘောတူညီချက်များ"
 
-#: i18n/additional-localization.php:6 templates/default/partials/filters.php:23
+#: i18n/additional-localization.php:6
+#: templates/default/partials/filters.php:23
 msgid "Maps"
 msgstr "မြေပုံများ"
 
 #: i18n/additional-localization.php:7
 msgid "News articles"
-msgstr ""
+msgstr "သတင်းတင်ဆက်မှုများ"
 
-#: i18n/additional-localization.php:8 templates/default/partials/filters.php:25
+#: i18n/additional-localization.php:8
+#: templates/default/partials/filters.php:25
 msgid "Topics"
 msgstr "ခေါင်းစဉ်များ"
 
-#: i18n/additional-localization.php:9 templates/default/partials/filters.php:26
+#: i18n/additional-localization.php:9
+#: templates/default/partials/filters.php:26
 msgid "Profiles"
 msgstr "ပရိုဖိုင်များ "
 
 #: i18n/additional-localization.php:10
 msgid "Story"
-msgstr ""
+msgstr "Story"
 
-#: i18n/additional-localization.php:11 templates/default/partials/filters.php:27
+#: i18n/additional-localization.php:11
+#: templates/default/partials/filters.php:27
 msgid "Announcements"
 msgstr "ကြေငြာချက်များ"
 
-#: i18n/additional-localization.php:12 templates/default/partials/filters.php:28
+#: i18n/additional-localization.php:12
+#: templates/default/partials/filters.php:28
 msgid "Site updates"
 msgstr "Site updates"
 
@@ -97,27 +104,30 @@ msgstr "ခမာဘာသာစကား"
 
 #: i18n/additional-localization.php:22
 msgid "Vietnamese"
-msgstr ""
+msgstr "ဗီယက်နမ်"
 
 #: i18n/additional-localization.php:23
 msgid "Lao"
-msgstr ""
+msgstr "လာအို"
 
 #: i18n/additional-localization.php:24
 msgid "Thai"
-msgstr ""
+msgstr "ထိုင်း"
 
 #: i18n/additional-localization.php:25
 msgid "Burmese"
-msgstr ""
+msgstr "ဗမာ"
 
-#: i18n/additional-localization.php:28 templates/default/partials/filters.php:18
-#: templates/default/partials/filters.php:36 templates/default/partials/filters.php:59
-#: templates/default/partials/filters.php:87 templates/default/partials/filters.php:109
+#: i18n/additional-localization.php:28
+#: templates/default/partials/filters.php:18
+#: templates/default/partials/filters.php:36
+#: templates/default/partials/filters.php:59
+#: templates/default/partials/filters.php:87
+#: templates/default/partials/filters.php:109
 #: templates/new/partials/filters.php:7 templates/new/partials/filters.php:30
 #: templates/new/partials/filters.php:58 templates/new/partials/filters.php:80
 msgid "All"
-msgstr ""
+msgstr "အားလုံး"
 
 #: templates/default/partials/filters.php:9
 msgid "Text search"
@@ -133,71 +143,83 @@ msgstr "အကြောင်းအရာအမျိုးအစား"
 
 #: templates/default/partials/filters.php:17
 msgid "Select type"
-msgstr ""
+msgstr "အမျိုးအစားကိုရွေးချယ်ပါ"
 
 #: templates/default/partials/filters.php:19
 msgid "Dataset"
-msgstr ""
+msgstr "Dataset"
 
 #: templates/default/partials/filters.php:22
 msgid "Agreement"
-msgstr ""
+msgstr "သဘောတူညီချက်"
 
 #: templates/default/partials/filters.php:24
 msgid "News"
 msgstr "သတင်းများ"
 
-#: templates/default/partials/filters.php:34 templates/new/partials/filters.php:5
+#: templates/default/partials/filters.php:34
+#: templates/new/partials/filters.php:5
 msgid "Topic"
 msgstr "ခေါင်းစဥ်"
 
-#: templates/default/partials/filters.php:35 templates/new/partials/filters.php:6
+#: templates/default/partials/filters.php:35
+#: templates/new/partials/filters.php:6
 msgid "Select term"
-msgstr ""
+msgstr "Select term"
 
-#: templates/default/partials/filters.php:57 templates/new/partials/filters.php:28
+#: templates/default/partials/filters.php:57
+#: templates/new/partials/filters.php:28
 msgid "Country"
-msgstr ""
+msgstr "နိုင်ငံ"
 
-#: templates/default/partials/filters.php:58 templates/new/partials/filters.php:29
+#: templates/default/partials/filters.php:58
+#: templates/new/partials/filters.php:29
 msgid "Select country"
-msgstr ""
+msgstr "နိုင်ငံရွေးချယ်ပါ"
 
-#: templates/default/partials/filters.php:85 templates/new/partials/filters.php:56
+#: templates/default/partials/filters.php:85
+#: templates/new/partials/filters.php:56
 msgid "Language"
-msgstr ""
+msgstr "ဘာသာစကား"
 
-#: templates/default/partials/filters.php:86 templates/new/partials/filters.php:57
+#: templates/default/partials/filters.php:86
+#: templates/new/partials/filters.php:57
 msgid "Select language"
-msgstr ""
+msgstr "ဘာသာစကား ရွေးချယ်ပါ"
 
-#: templates/default/partials/filters.php:107 templates/new/partials/filters.php:78
+#: templates/default/partials/filters.php:107
+#: templates/new/partials/filters.php:78
 msgid "License"
-msgstr ""
+msgstr "လိုင်စင်"
 
-#: templates/default/partials/filters.php:108 templates/new/partials/filters.php:79
+#: templates/default/partials/filters.php:108
+#: templates/new/partials/filters.php:79
 msgid "Select license"
-msgstr ""
+msgstr "လိုင်စင်ကို ရွေးချယ်ပါ"
 
-#: templates/default/partials/filters.php:128 templates/new/partials/filters.php:110
+#: templates/default/partials/filters.php:128
+#: templates/new/partials/filters.php:110
 msgid "Search Filter"
 msgstr "ရှာဖွေမှုကို စစ်ထုတ်ခြင်း"
 
 #: templates/default/solr_search.php:158 templates/new/solr_search.php:205
 msgid ""
-"wp-odm_solr plugin is not properly configured. Please contact the system's administrator"
+"wp-odm_solr plugin is not properly configured. Please contact the system's "
+"administrator"
 msgstr ""
-"wp-odm_solr plugin သည် ကောင်းမွန်စွာ စီစဥ်ထားခြင်မရှိပါ။ ဤစနစ်ကို ထိန်းသိမ်းစောင့်ရှောက်သူထံကျေးဇူးပြု၍ ဆက်သွယ်ပါ။ "
+"wp-odm_solr plugin သည် ကောင်းမွန်စွာ စီစဥ်ထားခြင်မရှိပါ။ ဤစနစ်ကို "
+"ထိန်းသိမ်းစောင့်ရှောက်သူထံကျေးဇူးပြု၍ ဆက်သွယ်ပါ။ "
 
 #: templates/default/solr_search.php:179 templates/default/solr_search.php:193
 msgid "No result found"
-msgstr ""
+msgstr "ရှာမတွေ့ပါ"
 
 #: templates/new/partials/filters.php:99
 msgid "Sorting"
 msgstr "အမျိုးအစားခွဲခြင်း"
 
-#: templates/new/partials/filters.php:101 templates/new/partials/filters.php:102
+#: templates/new/partials/filters.php:101
+#: templates/new/partials/filters.php:102
 msgid "Sort by"
 msgstr "အလိုက် အမျိုးအစားခွဲပါ"
 
@@ -235,8 +257,11 @@ msgstr "သိမ်းဆည်မှု"
 
 #: templates/settings.php:30
 msgid ""
-"Specify host without protocol, just domain. example: solr.opendevelopmentmekong.net "
-msgstr "စည်းမျဥ်းများမပါဘဲ domain ဖြင့်သိမ်းဆည်းမှုကို ဖော်ပြပါ။ ဥပမာ solr.opendevelopmentmekong.net"
+"Specify host without protocol, just domain. example: "
+"solr.opendevelopmentmekong.net "
+msgstr ""
+"စည်းမျဥ်းများမပါဘဲ domain ဖြင့်သိမ်းဆည်းမှုကို ဖော်ပြပါ။ ဥပမာ "
+"solr.opendevelopmentmekong.net"
 
 #: templates/settings.php:34
 msgid "Port"
@@ -304,7 +329,9 @@ msgstr "WP index ကို အသိပေးမှု အောင်မြင�
 
 #: templates/settings.php:91
 msgid "Problem connecting to WP index. Please, check the specified config."
-msgstr "ပြဿနာသည် WP index ကို ဆက်သွယ်နေပါသည်။ ကျေးဇူးပြု၍ ဖော်ပြထားသော config ကို စစ်ဆေးပေးပါ။ "
+msgstr ""
+"ပြဿနာသည် WP index ကို ဆက်သွယ်နေပါသည်။ ကျေးဇူးပြု၍ ဖော်ပြထားသော config ကို "
+"စစ်ဆေးပေးပါ။ "
 
 #: templates/settings.php:94
 msgid "Ping to CKAN index succeded."
@@ -312,7 +339,9 @@ msgstr "CKAN index ကို အသိပေးမှု အောင်မြ�
 
 #: templates/settings.php:96
 msgid "Problem connecting to CKAN index. Please, check the specified config."
-msgstr "ပြဿနာသည် CKAN index ကို ဆက်သွယ်နေပါသည်။ ကျေးဇူးပြု၍ ဖော်ပြထားသော config ကို စစ်ဆေးပေးပါ။ "
+msgstr ""
+"ပြဿနာသည် CKAN index ကို ဆက်သွယ်နေပါသည်။ ကျေးဇူးပြု၍ ဖော်ပြထားသော config ကို "
+"စစ်ဆေးပေးပါ။ "
 
 #: templates/settings.php:103
 msgid "Logging"
@@ -328,16 +357,20 @@ msgstr "ဖိုင်လမ်းကြောင်းတွင်းသို
 
 #: templates/settings.php:114
 msgid "Path where logs are going to be stored. Mind permissions."
-msgstr "သိမ်းဆည်မည့် ဝင်ရောက်မှုများကို လမ်းကြောင်းပြပါ။ ခွင့်ပြုချက်များကို သတိပြုပါ။ "
+msgstr ""
+"သိမ်းဆည်မည့် ဝင်ရောက်မှုများကို လမ်းကြောင်းပြပါ။ ခွင့်ပြုချက်များကို "
+"သတိပြုပါ။ "
 
 #: templates/settings.php:118
 msgid "Templating"
-msgstr ""
+msgstr "Templating"
 
 #: templates/settings.php:120
 msgid "Select template"
-msgstr ""
+msgstr "template ကို ရွေးချယ်ပါ"
 
 #: wp-odm_solr.php:153
 msgid "You do not have sufficient permissions to access this page."
-msgstr "သင့်ထံတွင် ဤစာမျက်နှာကို ကြည့်ရှုရန်အတွက် လုံလောက်သည့် ခွင့်ပြုချက်များ မရှိပါ။ "
+msgstr ""
+"သင့်ထံတွင် ဤစာမျက်နှာကို ကြည့်ရှုရန်အတွက် လုံလောက်သည့် ခွင့်ပြုချက်များ "
+"မရှိပါ။ "
