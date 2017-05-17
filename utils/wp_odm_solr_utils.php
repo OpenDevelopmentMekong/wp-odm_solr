@@ -58,7 +58,7 @@
 
   function wp_odm_solr_log($text) {
 
-    if (!$GLOBALS['wp_odm_solr_options']->get_option('wpckan_setting_log_enabled')) return;
+    if (!$GLOBALS['wp_odm_solr_options']->get_option('wp_odm_solr_setting_log_enabled')) return;
 
     $bt = debug_backtrace();
     $caller = array_shift($bt);

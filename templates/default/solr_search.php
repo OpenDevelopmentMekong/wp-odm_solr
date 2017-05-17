@@ -155,7 +155,7 @@
       <div class="row">
         <div class="sixteen columns">
             <p class="error">
-              <?php _e("wp-odm_solr plugin is not properly configured. Please contact the system's administrator","wp-odm_solr"); ?>
+              <?php _e("wp-odm_solr plugin is not properly configured. Please contact the system's administrator",'wp-odm_solr'); ?>
             </p>
         </div>
       </div>

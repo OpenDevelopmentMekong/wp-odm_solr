@@ -56,7 +56,7 @@
             foreach ($odm_country_arr as $country_code):
               $country_name = odm_country_manager()->get_country_name_by_country_code($country_code);
               if (!empty($country_name)):
-                _e($country_name, "wp-odm_solr");
+                _e($country_name, 'wp-odm_solr');
                 if ($country_code !== end($odm_country_arr)):
                   echo ', ';
                 endif;
@@ -68,12 +68,12 @@
     <!-- Topics -->
     <?php if (!empty($document->vocab_taxonomy)): ?>
       <div class="data_meta">
-        <i class="fa fa-tags"></i>
+        <i class="fa fa-folder-o"></i>
         <span>
           <?php
             $topics = (array) $document->vocab_taxonomy;
             foreach ($topics as $topic):
-              _e($topic, "wp-odm_solr") ;
+              _e($topic, 'wp-odm_solr') ;
               if ($topic !== end($topics)):
                 echo ", ";
               endif;
@@ -88,7 +88,7 @@
         <?php
           $keywords = (array) $document->extras_odm_keywords;
           foreach ($keywords as $keyword):
-            _e($keyword, "wp-odm_solr") ;
+            _e($keyword, 'wp-odm_solr') ;
             if ($keyword !== end($keywords)):
               echo ", ";
             endif;
