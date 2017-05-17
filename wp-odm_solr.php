@@ -184,24 +184,6 @@ if (class_exists('WpOdmSolr')) {
     // Installation and uninstallation hooks
     register_activation_hook(__FILE__, array('wp-odm_solr', 'activate'));
     register_deactivation_hook(__FILE__, array('wp-odm_solr', 'deactivate'));
-
-    // instantiate the plugin class
-    $wp_odm_solr = new WpOdmSolr();
-
-    // Add a link to the settings page onto the plugin page
-    if (isset($wp_odm_solr)) {
-        // Add the settings link to the plugins page
-        function wp_odm_solr_plugin_settings_link($links)
-        {
-            $settings_link = '<a href="options-general.php?page=wp_odm_solr">Settings</a>';
-            array_unshift($links, $settings_link);
-
-            return $links;
-        }
-
-        $plugin = plugin_basename(__FILE__);
-        add_filter("plugin_action_links_$plugin", 'wp_odm_solr_plugin_settings_link');
-    }
 }
 
 add_action('plugins_loaded', array('WpOdmSolr', 'get_instance'));
