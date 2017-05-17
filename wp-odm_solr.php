@@ -81,7 +81,7 @@ if (!class_exists('WpOdmSolr')) {
 
         public function load_text_domain()
         {
-          load_plugin_textdomain( 'wp_odm_solr', false,  dirname( plugin_basename( __FILE__ ) ) . '/i18n' );
+          load_plugin_textdomain( 'wp-odm_solr', false,  dirname( plugin_basename( __FILE__ ) ) . '/i18n' );
         }
 
         function check_requirements(){
