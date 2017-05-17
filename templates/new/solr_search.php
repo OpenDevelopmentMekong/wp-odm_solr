@@ -206,7 +206,7 @@
           <div class="row">
             <div class="sixteen columns">
                 <p class="error">
-                  <?php _e("wp-odm_solr plugin is not properly configured. Please contact the system's administrator","wp-odm_solr"); ?>
+                  <?php _e("wp-odm_solr plugin is not properly configured. Please contact the system's administrator",'wp-odm_solr'); ?>
                 </p>
             </div>
           </div>
@@ -275,7 +275,7 @@
                   $supported_type = $all_search_types[$param_type];
                   if (isset($supported_type['archive_url'])): ?>
                     <div class="result_links hideOnMobile">
-                      <a href="<?php echo $supported_type['archive_url'] ?>"><h4><?php _e("Explore more","wp-odm_solr") ?> <?php _e($supported_type['title'],"wp-odm_solr") ?></h4></a>
+                      <a href="<?php echo $supported_type['archive_url'] ?>"><h4><?php _e("Explore more",'wp-odm_solr') ?> <?php _e($supported_type['title'],'wp-odm_solr') ?></h4></a>
                     </div>
               <?php
                   endif;
@@ -298,7 +298,7 @@
                 endif;
 
                 $query_var_name = $is_search_page ? 'query' : 's'; ?>
-                <input id="search_field" name="<?php echo $query_var_name; ?>" type="text" class="full-width-search-box search_field" value="<?php echo $param_query?>" placeholder="<?php _e("Search datasets, topics, news articles...","wp-odm_solr"); ?>" data-solr-host="<?php echo $GLOBALS['wp_odm_solr_options']->get_option('wp_odm_solr_setting_solr_host'); ?>" data-solr-scheme="<?php echo $GLOBALS['wp_odm_solr_options']->get_option('wp_odm_solr_setting_solr_scheme'); ?>" data-solr-path="<?php echo $GLOBALS['wp_odm_solr_options']->get_option('wp_odm_solr_setting_solr_path'); ?>" data-solr-core-wp="<?php echo $GLOBALS['wp_odm_solr_options']->get_option('wp_odm_solr_setting_solr_core_wp'); ?>" data-solr-core-ckan="<?php echo $GLOBALS['wp_odm_solr_options']->get_option('wp_odm_solr_setting_solr_core_ckan'); ?>"></input>
+                <input id="search_field" name="<?php echo $query_var_name; ?>" type="text" class="full-width-search-box search_field" value="<?php echo $param_query?>" placeholder="<?php _e("Search datasets, topics, news articles...",'wp-odm_solr'); ?>" data-solr-host="<?php echo $GLOBALS['wp_odm_solr_options']->get_option('wp_odm_solr_setting_solr_host'); ?>" data-solr-scheme="<?php echo $GLOBALS['wp_odm_solr_options']->get_option('wp_odm_solr_setting_solr_scheme'); ?>" data-solr-path="<?php echo $GLOBALS['wp_odm_solr_options']->get_option('wp_odm_solr_setting_solr_path'); ?>" data-solr-core-wp="<?php echo $GLOBALS['wp_odm_solr_options']->get_option('wp_odm_solr_setting_solr_core_wp'); ?>" data-solr-core-ckan="<?php echo $GLOBALS['wp_odm_solr_options']->get_option('wp_odm_solr_setting_solr_core_ckan'); ?>"></input>
               </form>
 
               <?php
