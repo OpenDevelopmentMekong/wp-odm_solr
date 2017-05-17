@@ -41,7 +41,7 @@
           if (array_key_exists($value,$taxonomy_facets)):
             $available_records = $taxonomy_facets[$value];
             if ($available_records > 0): ?>
-            <option value="<?php echo $value; ?>" <?php if($value == $param_taxonomy) echo 'selected'; ?>><?php echo $value; ?></option>
+            <option value="<?php echo $value; ?>" <?php if($value == $param_taxonomy) echo 'selected'; ?>><?php _e($value,'wp-odm_solr'); ?></option>
             <?php
             endif;
           endif;
@@ -67,7 +67,7 @@
             if (array_key_exists($country_code,$spatial_range_facets)):
               $available_records = $spatial_range_facets[$country_code];
               if ($available_records > 0): ?>
-                <option value="<?php echo $key; ?>" <?php if($key == $param_country) echo 'selected'; ?> <?php if (odm_country_manager()->get_current_country() != 'mekong' && $key != odm_country_manager()->get_current_country()) echo 'disabled'; ?>><?php echo odm_country_manager()->get_country_name($key); ?></option>
+                <option value="<?php echo $key; ?>" <?php if($key == $param_country) echo 'selected'; ?> <?php if (odm_country_manager()->get_current_country() != 'mekong' && $key != odm_country_manager()->get_current_country()) echo 'disabled'; ?>><?php _e(odm_country_manager()->get_country_name($key),'wp-odm_solr'); ?></option>
               <?php
               endif;
             endif;
@@ -92,7 +92,7 @@
           if (array_key_exists($key,$language_facets)):
             $available_records = $language_facets[$key];
             if ($available_records > 0): ?>
-    <option value="<?php echo $key; ?>" <?php if($key == $param_language) echo 'selected'; ?>><?php echo $value; ?></option>
+              <option value="<?php echo $key; ?>" <?php if($key == $param_language) echo 'selected'; ?>><?php _e($value,'wp-odm_solr'); ?></option>
             <?php
             endif;
           endif;
@@ -114,7 +114,7 @@
           if (array_key_exists($license->id,$license_facets)):
             $available_records = $license_facets[$license->id];
             if ($available_records > 0): ?>
-              <option value="<?php echo $license->id; ?>" <?php if($license->id == $param_license) echo 'selected'; ?>><?php echo $license->title; ?></option>
+              <option value="<?php echo $license->id; ?>" <?php if($license->id == $param_license) echo 'selected'; ?>><?php _e($license->title,'wp-odm_solr'); ?></option>
             <?php
             endif;
           endif;

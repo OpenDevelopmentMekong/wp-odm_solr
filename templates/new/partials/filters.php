@@ -19,9 +19,9 @@
           
           if ($available_records > 0):               
             $selected = ($top_tier_term == $param_taxonomy); ?>
-            <option value="<?php echo $top_tier_term; ?>" <?php if($selected) echo 'selected'; ?>>
+            <option value="<?php $top_tier_term; ?>" <?php if($selected) echo 'selected'; ?>>
               <?php 
-                echo $top_tier_term;
+                _e($top_tier_term,'wp-odm_solr');
                 // if (!$selected):
                 //   echo " (" . $available_records . ")"; 
                 // endif; ?>
@@ -50,7 +50,7 @@
               $selected = in_array($country_code,$param_country); ?>
               <option value="<?php echo $country_code; ?>" <?php if($selected) echo 'selected'; ?>>
                 <?php 
-                  echo $country_name;
+                  _e($country_name,'wp-odm_solr');
                   if (!$selected):
                     echo " (" . $available_records . ")"; 
                   endif; ?>
@@ -80,7 +80,7 @@
               $selected = in_array($key,$param_language); ?>
               <option value="<?php echo $key; ?>" <?php if($selected) echo 'selected'; ?>>
                 <?php 
-                  echo $value;
+                  _e($value,'wp-odm_solr');
                   if (!$selected):
                     echo " (" . $available_records . ")"; 
                   endif; ?>
@@ -108,7 +108,7 @@
               $selected = in_array($license->id,$param_license); ?>
               <option value="<?php echo $license->id; ?>" <?php if($selected) echo 'selected'; ?>>
                 <?php 
-                  echo $license->title;
+                  _e($license->title,'wp-odm_solr');
                   if (!$selected):
                     echo " (" . $available_records . ")"; 
                   endif; ?>
