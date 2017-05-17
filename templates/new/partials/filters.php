@@ -18,10 +18,11 @@
           endforeach;
           
           if ($available_records > 0):               
-            $selected = ($top_tier_term == $param_taxonomy); ?>
-            <option value="<?php $top_tier_term; ?>" <?php if($selected) echo 'selected'; ?>>
+            $selected = ($top_tier_term == $param_taxonomy); 
+            $translated_top_tier_term = __($top_tier_term,'wp-odm_solr');?>
+            <option value="<?php echo $top_tier_term; ?>" <?php if($selected) echo 'selected'; ?>>
               <?php 
-                _e($top_tier_term,'wp-odm_solr');
+                echo $translated_top_tier_term;
                 // if (!$selected):
                 //   echo " (" . $available_records . ")"; 
                 // endif; ?>
