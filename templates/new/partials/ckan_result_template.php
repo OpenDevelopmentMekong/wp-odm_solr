@@ -51,11 +51,13 @@
     <!-- Country -->
     <?php if (!empty($document->extras_odm_spatial_range)): ?>
       <div class="country_indicator data_meta">
-        <i class="fa fa-globe"></i>
+
         <span>
           <?php
             $odm_country_arr = json_decode($document->extras_odm_spatial_range,true);
-            if (is_array($odm_country_arr)):
+            if (is_array($odm_country_arr)): ?>
+              <i class="fa fa-globe"></i>
+              <?php
               foreach ($odm_country_arr as $country_code):
                 $country_name = odm_country_manager()->get_country_name_by_country_code($country_code);
                 if (!empty($country_name)):
