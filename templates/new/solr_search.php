@@ -4,11 +4,15 @@
       include_once dirname(dirname(plugin_dir_path(__FILE__))).'/utils/solr-wp-manager.php';
       include_once dirname(dirname(plugin_dir_path(__FILE__))).'/utils/solr-ckan-manager.php';
 
-      $configured_supported_types = get_post_meta($post->ID, '_solr_pages_attributes_supported_types', true);
-      $supported_types_override =  !empty($configured_supported_types) ? explode(",",$configured_supported_types) : null;
-
       global $post;
-      $is_search_page = get_post_type($post->ID) == 'search-pages';
+      $is_search_page = false;
+
+      if (isset($post)):
+        $configured_supported_types = get_post_meta($post->ID, '_solr_pages_attributes_supported_types', true);
+        $supported_types_override =  !empty($configured_supported_types) ? explode(",",$configured_supported_types) : null;
+        $is_search_page = get_post_type($post->ID) == 'search-pages';
+      endif;
+
 
       $param_query = !empty($_GET['s']) ? $_GET['s'] : null;
       if (!isset($param_query)):
