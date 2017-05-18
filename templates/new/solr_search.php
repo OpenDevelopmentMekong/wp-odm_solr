@@ -42,12 +42,9 @@
       $attrs = [];
       $control_attrs = array(
         "sorting" => $param_sorting,
-        "limit" => 15
+        "limit" => 15,
+        "page" => $param_page_solr
       );
-
-      if ($param_page_solr) {
-        $control_attrs['page'] = $param_page_solr;
-      }
 
       //================ Search types ===================== //
 

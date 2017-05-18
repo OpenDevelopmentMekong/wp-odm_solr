@@ -30,7 +30,7 @@
   $control_attrs = array(
     "sorting" => $param_sorting,
     "limit" => 15,
-    "page" => 0
+    "page" => $param_page_solr
   );
 
   //================ Search types ===================== //
@@ -88,7 +88,6 @@
         $attrs["dataset_type"] = $imploded_types;
         $attrs["capacity"] = "public";
 
-        $control_attrs['limit'] = 15;
         $control_attrs['page'] = 0;
 
         $result = WP_Odm_Solr_CKAN_Manager()->query($param_query,$attrs,$control_attrs);
@@ -107,11 +106,6 @@
         // Country
         if (!empty($param_country) && $param_country != 'mekong') {
           $attrs["odm_spatial_range"] = $param_country;
-        }
-
-        if ($param_type || $param_page_solr) {
-          $control_attrs['limit'] = 15;
-          $control_attrs['page'] = $param_page_solr;
         }
 
         $attrs["type"] = (isset($param_type) && $param_type !== "all") ? $param_type : $imploded_types;
