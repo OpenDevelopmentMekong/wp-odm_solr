@@ -274,6 +274,7 @@
               </div>
               <div class="data-advanced-filters">
                 <form>
+                <input type="hidden" name="type" value="<?php echo $param_type;?>
                 <?php include plugin_dir_path(__FILE__). 'partials/filters.php'; ?>
               </div>
 
