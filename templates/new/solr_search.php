@@ -321,7 +321,7 @@
                   <h4>
                   <?php echo $content_resultcount . ' '
                               . $all_search_types[$param_type]["title"]
-                              . __(' found for','wp-odm_solr') . '" ' . $param_query. '"'; ?>
+                              . __(' found for','wp-odm_solr') . ' "' . $param_query. '"'; ?>
                   </h4>
 
                   <?php
