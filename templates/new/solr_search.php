@@ -42,7 +42,7 @@
       $attrs = [];
       $control_attrs = array(
         "sorting" => $param_sorting,
-        "limit" => 15,
+        "limit" => 12,
         "page" => $param_page_solr
       );
 
