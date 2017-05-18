@@ -104,7 +104,7 @@
         }
 
         // Country
-        if (!empty($param_country) && $param_country != 'mekong') {
+        if (!empty($param_country) && $param_country != 'mekong' && $param_country != 'all') {
           $attrs["odm_spatial_range"] = $param_country;
         }
 
