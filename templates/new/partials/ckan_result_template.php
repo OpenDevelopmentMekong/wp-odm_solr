@@ -36,13 +36,15 @@
         <?php $odm_lang_arr = json_decode($document->extras_odm_language,true); ?>
         <span>
           <?php
-          foreach ($odm_lang_arr as $lang):
-            $path_to_flag = odm_language_manager()->get_path_to_flag_image($lang);
-            if (!empty($path_to_flag)): ?>
-            <img class="lang_flag" alt="<?php echo $lang ?>" src="<?php echo $path_to_flag; ?>"></img>
-          <?php
-            endif;
-          endforeach; ?>
+          if (is_array($odm_lang_arr)):
+            foreach ($odm_lang_arr as $lang):
+              $path_to_flag = odm_language_manager()->get_path_to_flag_image($lang);
+              if (!empty($path_to_flag)): ?>
+              <img class="lang_flag" alt="<?php echo $lang ?>" src="<?php echo $path_to_flag; ?>"></img>
+            <?php
+              endif;
+            endforeach;
+          endif; ?>
         </span>
       </div>
     <?php endif; ?>
@@ -53,18 +55,20 @@
         <span>
           <?php
             $odm_country_arr = json_decode($document->extras_odm_spatial_range,true);
-            foreach ($odm_country_arr as $country_code):
-              $country_name = odm_country_manager()->get_country_name_by_country_code($country_code);
-              if (!empty($country_name)):
-                _e($country_name, 'wp-odm_solr');
-                if ($country_code !== end($odm_country_arr)):
-                  echo ', ';
+            if (is_array($odm_country_arr)):
+              foreach ($odm_country_arr as $country_code):
+                $country_name = odm_country_manager()->get_country_name_by_country_code($country_code);
+                if (!empty($country_name)):
+                  _e($country_name, 'wp-odm_solr');
+                  if ($country_code !== end($odm_country_arr)):
+                    echo ', ';
+                  endif;
                 endif;
-              endif;
-            endforeach; ?>
+              endforeach;
+            endif; ?>
         </span>
       </div>
-    <?php endif; ?>    
+    <?php endif; ?>
     <!-- Topics -->
     <?php if (!empty($document->vocab_taxonomy)): ?>
       <div class="data_meta">
@@ -77,7 +81,7 @@
               if ($topic !== end($topics)):
                 echo ", ";
               endif;
-            endforeach;?>          
+            endforeach;?>
         </span>
       </div>
     <?php endif; ?>
@@ -92,7 +96,7 @@
             if ($keyword !== end($keywords)):
               echo ", ";
             endif;
-          endforeach;?>   
+          endforeach;?>
       </div>
     <?php endif; ?>
   </div>
