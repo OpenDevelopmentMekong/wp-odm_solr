@@ -89,7 +89,7 @@ if (!class_exists('Odm_Solr_Pages_Post_Type')) {
     {
         $supported_types = get_post_meta($post->ID, '_solr_pages_attributes_supported_types', true); ?>
 
-			  <h4><?php _e('Column ids linking to detail page', 'wp-odm_solr');?></h4>
+			  <h4><?php _e('Supported content types', 'wp-odm_solr');?></h4>
 			  <input class="full-width" type="text" id="_solr_pages_attributes_supported_types" name="_solr_pages_attributes_supported_types" placeholder="dataset, library_record, laws_record, agreement" value="<?php echo $supported_types; ?>" />
         <p class="description"><?php _e('Please add the document types that should be supported on this page', 'wp-odm_solr'); ?></p>
 
