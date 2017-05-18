@@ -36,7 +36,7 @@
         <?php $odm_lang_arr = json_decode($document->extras_odm_language,true); ?>
         <span>
           <?php
-          if (is_array($odm_lang_arr)):
+          if (is_array($odm_lang_arr) && !empty($odm_lang_arr)):
             foreach ($odm_lang_arr as $lang):
               $path_to_flag = odm_language_manager()->get_path_to_flag_image($lang);
               if (!empty($path_to_flag)): ?>
@@ -55,7 +55,7 @@
         <span>
           <?php
             $odm_country_arr = json_decode($document->extras_odm_spatial_range,true);
-            if (is_array($odm_country_arr)): ?>
+            if (is_array($odm_country_arr) && !empty($odm_country_arr)): ?>
               <i class="fa fa-globe"></i>
               <?php
               foreach ($odm_country_arr as $country_code):
