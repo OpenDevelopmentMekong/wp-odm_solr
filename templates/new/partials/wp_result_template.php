@@ -56,11 +56,11 @@
               endif;
             endforeach; ?>
         </span>
-      </div> 
+      </div>
     <?php
       endif;
       if (!empty($document->categories)): ?>
-        <i class="fa fa-tags"></i>
+        <i class="fa fa-folder-o"></i>
         <span>
           <?php
             $categories = (array) $document->categories;
@@ -83,7 +83,7 @@
               if ($tag !== end($tags)):
                 echo ", ";
               endif;
-            endforeach;?>          
+            endforeach;?>
         </span>
     <?php
       endif;?>

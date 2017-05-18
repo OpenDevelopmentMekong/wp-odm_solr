@@ -13,7 +13,6 @@
         $is_search_page = get_post_type($post->ID) == 'search-pages';
       endif;
 
-
       $param_query = !empty($_GET['s']) ? $_GET['s'] : null;
       if (!isset($param_query)):
         $param_query = !empty($_GET['query']) ? $_GET['query'] : null;
