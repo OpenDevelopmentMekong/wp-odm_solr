@@ -14,3 +14,19 @@
 .search-page-content{
 	margin-bottom: 20px;
 }
+
+.content-type-tabs{
+  clear: both;
+  margin-bottom: 10px;
+  display: flex;
+}
+
+.content-type-tabs li{
+	float:left;
+	list-style: none;
+	margin-right: 10px;
+}
+
+.filter-box{
+  display: flex;
+}

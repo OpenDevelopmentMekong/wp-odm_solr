@@ -246,51 +246,27 @@
             endforeach;
           endif; ?>
 
-      		<div class="row">
-            <div class="four columns">
-              <div class="result_links">
-              <h4><?php _e('Search Results','wp-odm_solr'); ?> for "<?php _e($param_query,'wp-odm_solr'); ?>"</h4>
-              <?php
-                foreach ($all_search_types as $key => $value):
-                  $count = ($results[$key]) ? $results[$key]->getNumFound() : 0;
-                  if ($count > 0): ?>
-
-                  <div class="result_link_list <?php if ($param_type == $key) echo "data-number-results-medium" ?>">
-                    <?php
-                      $new_url = construct_url($_SERVER['REQUEST_URI'], 'type', $key);
-                      $new_url = construct_url($new_url, 'page', 0);
-                      ?>
-                    <a href="<?php echo $new_url ?>">
-                      <i class="<?php echo $value['icon']; ?>"></i>
-                      <?php echo __($value['title'],'wp-odm_solr') . " (".$count.")"; ?>
-                    </a>
-                  </div>
-
-              <?php
-                  endif;
-                endforeach
-              ?>
-              </div>
-              <div class="data-advanced-filters">
+          <div class="row">
+            <div class="sixteen columns">
+              <div class="data-advanced-filters filter-box">
                 <form>
                 <input type="hidden" name="type" value="<?php echo $param_type;?>"></input>
                 <?php include plugin_dir_path(__FILE__). 'partials/filters.php'; ?>
               </div>
+            </div>
+          </div>
 
-              <?php
-                if (isset($param_type) && isset($all_search_types[$param_type])):
+          <div class="row">
+            <div class="sixteen columns">
+              <div class="content-type-tabs">
+                <?php include plugin_dir_path(__FILE__). 'partials/content-types.php'; ?>
+              </div>
+            </div>
+          </div>
 
-                  if (isset($supported_type['archive_url'])): ?>
-                    <div class="result_links hideOnMobile">
-                      <a href="<?php echo $supported_type['archive_url'] ?>"><h4><?php _e("Explore more",'wp-odm_solr') ?> <?php _e($supported_type['title'],'wp-odm_solr') ?></h4></a>
-                    </div>
-              <?php
-                  endif;
-                endif;
-               ?>
-        		</div>
+          <div class="row">
             <!-- ============== Search input ============= -->
-      			<div class="twelve columns">
+      			<div class="sixteen columns">
 
               <div class="row">
                 <div class="sixteen columns solr_results search-results">
@@ -309,7 +285,7 @@
                     endif;
 
                     $query_var_name = $is_search_page ? 'query' : 's'; ?>
-                    <input id="search_field" name="<?php echo $query_var_name; ?>" type="text" class="full-width-search-box search_field" value="<?php echo $param_query?>" placeholder="<?php _e("Search datasets, topics, news articles...",'wp-odm_solr'); ?>" data-solr-host="<?php echo $GLOBALS['wp_odm_solr_options']->get_option('wp_odm_solr_setting_solr_host'); ?>" data-solr-scheme="<?php echo $GLOBALS['wp_odm_solr_options']->get_option('wp_odm_solr_setting_solr_scheme'); ?>" data-solr-path="<?php echo $GLOBALS['wp_odm_solr_options']->get_option('wp_odm_solr_setting_solr_path'); ?>" data-solr-core-wp="<?php echo $GLOBALS['wp_odm_solr_options']->get_option('wp_odm_solr_setting_solr_core_wp'); ?>" data-solr-core-ckan="<?php echo $GLOBALS['wp_odm_solr_options']->get_option('wp_odm_solr_setting_solr_core_ckan'); ?>"></input>
+
                   </form>
 
                   <?php
