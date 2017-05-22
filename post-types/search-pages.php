@@ -16,8 +16,10 @@ if (!class_exists('Odm_Solr_Pages_Post_Type')) {
     {
       global $post;
 
+      $template = get_post_meta($post->ID, '_solr_pages_attributes_template_layout', true);
+
       if ($post->post_type == 'search-pages') {
-        $single_template = dirname(plugin_dir_path(__FILE__)).'/templates/new/solr_search.php';
+        $single_template = dirname(plugin_dir_path(__FILE__)).'/templates/' . $template . '/solr_search.php';
       }
 
       return $single_template;
@@ -103,6 +105,8 @@ if (!class_exists('Odm_Solr_Pages_Post_Type')) {
          <h4><?php _e('Choose template layout', 'wp-odm_solr');?></h4>
          <select id="_solr_pages_attributes_template_layout" name="_solr_pages_attributes_template_layout">
             <option value="default" <?php if ($template == "default"): echo "selected"; endif; ?>>Default</option>
+            <option value="odc" <?php if ($template == "odc"): echo "selected"; endif; ?>>ODC 2.2</option>
+            <option value="odm" <?php if ($template == "odm"): echo "selected"; endif; ?>>ODM 2.2</option>
           </select>
         </div>
     <?php
