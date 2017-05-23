@@ -197,11 +197,6 @@
         $facets[$key] = $result["facets"];
       endforeach; ?>
 
-    <?php
-    $content_resultset = array_key_exists($param_type,$results) ? $results[$param_type] : null;
-    $content_resultcount = ($content_resultset) ? $content_resultset->getNumFound() : 0;
-    ?>
-
     <section class="container">
 
       <?php
@@ -385,13 +380,6 @@
     	<script>
 
         jQuery(document).ready(function() {
-
-          jQuery( "#accordion" ).accordion({
-            collapsible: true,
-            active: false,
-            header: "h2",
-            heightStyle: "content"
-          });
 
           jQuery( ".filter_box" ).select2();
 

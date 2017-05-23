@@ -1,3 +1,5 @@
+<?php $query_var_name = $is_search_page ? 'query' : 's'; ?>
+
 <div class="single-filter four columns">
   <label for="search_field"><?php _e('Text search', 'wp-odm_solr'); ?></label>
   <input id="search_field" name="<?php echo $query_var_name; ?>" type="text" class="full-width-search-box search_field" value="<?php echo $param_query?>" placeholder="<?php _e("Search datasets, topics, news articles...",'wp-odm_solr'); ?>" data-solr-host="<?php echo $GLOBALS['wp_odm_solr_options']->get_option('wp_odm_solr_setting_solr_host'); ?>" data-solr-scheme="<?php echo $GLOBALS['wp_odm_solr_options']->get_option('wp_odm_solr_setting_solr_scheme'); ?>" data-solr-path="<?php echo $GLOBALS['wp_odm_solr_options']->get_option('wp_odm_solr_setting_solr_path'); ?>" data-solr-core-wp="<?php echo $GLOBALS['wp_odm_solr_options']->get_option('wp_odm_solr_setting_solr_core_wp'); ?>" data-solr-core-ckan="<?php echo $GLOBALS['wp_odm_solr_options']->get_option('wp_odm_solr_setting_solr_core_ckan'); ?>"></input>
@@ -38,38 +40,6 @@
 </div>
 <!-- END OF TAXONOMY FILTER -->
 
-<!-- COUNTRY FILTER -->
-<?php if (odm_country_manager()->get_current_country() == 'mekong'): ?>
-<div class="single-filter four columns">
-  <label for="country"><?php _e('Country', 'wp-odm_solr'); ?></label>
-  <select multiple id="country" name="country[]" class="filter_box" data-placeholder="<?php _e('Select country', 'wp-odm_solr'); ?>">
-    <?php
-      foreach($country_codes_iso2 as $country_code):
-        if (array_key_exists("extras_odm_spatial_range",$facets[$param_type])):
-          $spatial_range_facets = $facets[$param_type]["extras_odm_spatial_range"];
-          if (array_key_exists($country_code,$spatial_range_facets)):
-            $available_records = $spatial_range_facets[$country_code];
-            if ($available_records > 0):
-              $country_name = odm_country_manager()->get_country_name_by_country_code($country_code);
-              $selected = in_array($country_code,$param_country); ?>
-              <option value="<?php echo $country_code; ?>" <?php if($selected) echo 'selected'; ?>>
-                <?php
-                  _e($country_name,'wp-odm_solr');
-                  if (!$selected):
-                    echo " (" . $available_records . ")";
-                  endif; ?>
-              </option>
-            <?php
-            endif;
-          endif;
-        endif; ?>
-        <?php
-      endforeach; ?>
-  </select>
-</div>
-<?php endif; ?>
-<!-- END OF COUNTRY FILTER  -->
-
 <!-- LANGUAGE FILTER -->
 <div class="single-filter four columns">
   <label for="language"><?php _e('Language', 'wp-odm_solr'); ?></label>
@@ -97,45 +67,6 @@
   </select>
 </div>
 <!-- END OF LANGUAGE FILTER -->
-
-<!-- LICENSE FILTER
-<div class="single-filter">
-  <label for="license"><?php _e('License', 'wp-odm_solr'); ?></label>
-  <select multiple id="license" name="license[]" class="filter_box" data-placeholder="<?php _e('Select license', 'wp-odm_solr'); ?>">
-    <?php
-      foreach($license_list as $license):
-        if (array_key_exists("license_id",$facets[$param_type])):
-          $license_facets = $facets[$param_type]["license_id"];
-          if (array_key_exists($license->id,$license_facets)):
-            $available_records = $license_facets[$license->id];
-            if ($available_records > 0):
-              $selected = in_array($license->id,$param_license); ?>
-              <option value="<?php echo $license->id; ?>" <?php if($selected) echo 'selected'; ?>>
-                <?php
-                  _e($license->title,'wp-odm_solr');
-                  if (!$selected):
-                    echo " (" . $available_records . ")";
-                  endif; ?>
-              </option>
-            <?php
-            endif;
-          endif;
-        endif;
-      endforeach; ?>
-  </select>
-</div> -->
-<!-- END OF LICENSE FILTER -->
-
-<!-- SORTING FUNCTION
-<h3><i class="fa fa-sort"></i> <?php _e('Sorting','wp-odm_solr'); ?></h3>
-<div class="single-filter">
-  <label for="sorting"><?php _e('Sort by', 'wp-odm_solr'); ?></label>
-  <select id="sorting" name="sorting" class="filter_box" data-placeholder="<?php _e('Sort by', 'wp-odm_solr'); ?>">
-    <option <?php if($param_sorting == "score") echo 'selected'; ?> value="score"><?php _e('Relevance','wp-odm_solr') ?></option>
-  	<option <?php if($param_sorting == "metadata_modified") echo 'selected'; ?> value="metadata_modified"><?php _e('Date modified','wp-odm_solr') ?></option>
-  </select>
-</div> -->
-<!-- END OF LICENSE FILTER -->
 
 <div class="single-filter four columns">
   <input class="button" type="submit" value="<?php _e('Search Filter', 'wp-odm_solr'); ?>"/>

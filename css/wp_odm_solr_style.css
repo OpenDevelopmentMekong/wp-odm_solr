@@ -1,6 +1,9 @@
 .solr_result{
-	background: @almost-white;
 	padding: 10px;
+}
+
+.solr_result_two_cols{
+	padding: 0px;
 }
 
 .search_field{
@@ -19,14 +22,28 @@
   clear: both;
   margin-bottom: 10px;
   display: flex;
+	padding: 10px;
+}
+
+.content-type-tabs ul{
+	border-bottom: 1px #dcdcdc solid;
 }
 
 .content-type-tabs li{
 	float:left;
 	list-style: none;
-	margin-right: 10px;
+	padding-right: 10px;
 }
 
-.filter-box{
-  display: flex;
+.content-type-tabs li:hover{
+	border-bottom: 2px #97D320;
 }
+
+.content-type-tabs li:active{
+	border-bottom: 2px #97D320;
+}
+
+.left-label{
+	display: inline !important;
+}
+

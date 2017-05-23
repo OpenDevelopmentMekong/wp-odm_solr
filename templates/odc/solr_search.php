@@ -43,7 +43,7 @@
       $attrs = [];
       $control_attrs = array(
         "sorting" => $param_sorting,
-        "limit" => 12,
+        "limit" => 20,
         "page" => $param_page_solr
       );
 
@@ -109,13 +109,13 @@
           'icon' => 'fa fa-bullhorn',
           'type' => 'wp',
           'archive_url' => '/announcements'
-        ),
+        )/*,
         'site-update' => array(
           'title' => 'Site updates',
           'icon' => 'fa fa-flag',
           'type' => 'wp',
           'archive_url' => '/updates'
-        )
+        )*/
       );
 
       if (isset($supported_types_override) && !empty($supported_types_override)):
@@ -197,11 +197,6 @@
         $facets[$key] = $result["facets"];
       endforeach; ?>
 
-    <?php
-    $content_resultset = array_key_exists($param_type,$results) ? $results[$param_type] : null;
-    $content_resultcount = ($content_resultset) ? $content_resultset->getNumFound() : 0;
-    ?>
-
     <section class="container">
       <?php
         if (!WP_Odm_Solr_WP_Manager()->ping_server() || !WP_Odm_Solr_CKAN_Manager()->ping_server()):  ?>
@@ -245,128 +240,100 @@
               endforeach;
             endforeach;
           endif; ?>
-
-          <div class="row">
-            <div class="sixteen columns">
-              <div class="data-advanced-filters filter-box">
-                <form>
-                <input type="hidden" name="type" value="<?php echo $param_type;?>"></input>
-                <?php include plugin_dir_path(__FILE__). 'partials/filters.php'; ?>
-              </div>
+          
+          <?php
+          $content_resultset = array_key_exists($param_type,$results) ? $results[$param_type] : null;
+          $content_resultcount = ($content_resultset) ? $content_resultset->getNumFound() : 0;
+          ?>
+          
+          <form>
+            <div class="row panel more-filters-content">            
+              <input type="hidden" name="type" value="<?php echo $param_type;?>"></input>
+              <?php include plugin_dir_path(__FILE__). 'partials/filters.php'; ?>
             </div>
-          </div>
 
-          <div class="row">
-            <div class="sixteen columns">
-              <div class="content-type-tabs">
-                <?php include plugin_dir_path(__FILE__). 'partials/content-types.php'; ?>
-              </div>
-            </div>
-          </div>
-
-          <div class="row">
-            <!-- ============== Search input ============= -->
-      			<div class="sixteen columns">
-
-              <div class="row">
-                <div class="sixteen columns solr_results search-results">
-                  <?php
-
-                    if ($is_search_page):
-                      if (have_posts()):
-                        $content = apply_filters('the_content', $post->post_content);
-                      endif; ?>
-
-                      <div class="search-page-content">
-                        <?php echo $content; ?>
-                      </div>
-
-                  <?php
-                    endif;
-
-                    $query_var_name = $is_search_page ? 'query' : 's'; ?>
-
-                  </form>
-
-                  <?php
-                  $content_resultset = array_key_exists($param_type,$results) ? $results[$param_type] : null;
-                  $content_resultcount = ($content_resultset) ? $content_resultset->getNumFound() : 0;
-                  ?>
-
-                  <h4>
-                  <?php echo $content_resultcount . ' '
-                              . $all_search_types[$param_type]["title"]
-                              . __(' found for','wp-odm_solr') . ' "' . $param_query. '"'; ?>
-                  </h4>
-
-                  <?php
-
-                  if (isset($content_resultset) && $content_resultcount > 0):
-                    foreach ($content_resultset as $document): ?>
-
-                      <?php
-                      if($all_search_types[$param_type]['type'] == 'ckan'):
-                        include plugin_dir_path(__FILE__). 'partials/ckan_result_template.php';
-                      else:
-                        if ($param_type == 'map-layer'):
-                          include plugin_dir_path(__FILE__). 'partials/wp_map_layer_result_template.php';
-                        elseif ($param_type == 'news-article'):
-                          //include plugin_dir_path(__FILE__). 'partials/wp_news_article_result_template.php';
-                          include plugin_dir_path(__FILE__). 'partials/wp_result_template.php';
-                        elseif ($param_type == 'topic'):
-                          include plugin_dir_path(__FILE__). 'partials/wp_topic_result_template.php';
-                        elseif ($param_type == 'profiles'):
-                          include plugin_dir_path(__FILE__). 'partials/wp_profiles_result_template.php';
-                        elseif ($param_type == 'story'):
-                          include plugin_dir_path(__FILE__). 'partials/wp_story_result_template.php';
-                        elseif ($param_type == 'announcement'):
-                          //include plugin_dir_path(__FILE__). 'partials/wp_announcement_result_template.php';
-                          include plugin_dir_path(__FILE__). 'partials/wp_result_template.php';
-                        elseif ($param_type == 'site-update'):
-                          //include plugin_dir_path(__FILE__). 'partials/wp_site_update_result_template.php';
-                          include plugin_dir_path(__FILE__). 'partials/wp_result_template.php';
-                        else:
-                          include plugin_dir_path(__FILE__). 'partials/wp_result_template.php';
-                        endif;
-                      endif;
-                    endforeach;
-                  endif; ?>
+            <div class="row">
+              <div class="sixteen columns">
+                <div class="content-type-tabs">
+                  <?php include plugin_dir_path(__FILE__). 'partials/content-types.php'; ?>
                 </div>
               </div>
+            </div>
+          </form>
+          
+          <div class="row">
+            <div class="eight columns">
+              <h4>
+                <?php echo $content_resultcount . ' ' . $all_search_types[$param_type]["title"] . __(' found for','wp-odm_solr') . ' "' . $param_query. '"'; ?>
+              </h4>
+            </div>
+            
+            <div class="eight columns align-right">
+              <div class="single-filter">
+                <label class="left-label" for="sorting"><?php _e('Sort by', 'wp-odm_solr'); ?></label>
+                <select id="sorting" name="sorting" class="filter_box" data-placeholder="<?php _e('Sort by', 'wp-odm_solr'); ?>">
+                  <option <?php if($param_sorting == "score") echo 'selected'; ?> value="score"><?php _e('Relevance','wp-odm_solr') ?></option>
+                	<option <?php if($param_sorting == "metadata_modified") echo 'selected'; ?> value="metadata_modified"><?php _e('Date modified','wp-odm_solr') ?></option>
+                </select>
+              </div>
+            </div>
+          </div>
+              
+          <div class="row solr_results search-results">
+            <?php
+            if (isset($content_resultset) && $content_resultcount > 0):
+              foreach ($content_resultset as $document): ?>
 
-              <?php
-                if (isset($content_resultset) && $content_resultcount > 0):
-                  $total_pages = ceil($content_resultset->getNumFound()/$control_attrs['limit']);
-                  if ($total_pages > 1): ?>
-                    <div class="row">
-                      <div class="pagination sixteen columns">
-                        <?php
-                        odm_get_template('pagination_solr', array(
-                                      "current_page" => $param_page,
-                                      "total_pages" => $total_pages
-                                    ),true); ?>
-                      </div>
-                    </div>
                 <?php
+                if($all_search_types[$param_type]['type'] == 'ckan'):
+                  include plugin_dir_path(__FILE__). 'partials/ckan_result_template.php';
+                else:
+                  if ($param_type == 'map-layer'):
+                    include plugin_dir_path(__FILE__). 'partials/wp_map_layer_result_template.php';
+                  elseif ($param_type == 'news-article'):
+                    //include plugin_dir_path(__FILE__). 'partials/wp_news_article_result_template.php';
+                    include plugin_dir_path(__FILE__). 'partials/wp_result_template.php';
+                  elseif ($param_type == 'topic'):
+                    include plugin_dir_path(__FILE__). 'partials/wp_topic_result_template.php';
+                  elseif ($param_type == 'profiles'):
+                    include plugin_dir_path(__FILE__). 'partials/wp_profiles_result_template.php';
+                  elseif ($param_type == 'story'):
+                    include plugin_dir_path(__FILE__). 'partials/wp_story_result_template.php';
+                  elseif ($param_type == 'announcement'):
+                    //include plugin_dir_path(__FILE__). 'partials/wp_announcement_result_template.php';
+                    include plugin_dir_path(__FILE__). 'partials/wp_result_template.php';
+                  elseif ($param_type == 'site-update'):
+                    //include plugin_dir_path(__FILE__). 'partials/wp_site_update_result_template.php';
+                    include plugin_dir_path(__FILE__). 'partials/wp_result_template.php';
+                  else:
+                    include plugin_dir_path(__FILE__). 'partials/wp_result_template.php';
                   endif;
-                endif; ?>
+                endif;
+              endforeach;
+            endif; ?>
+          </div>
 
-      			</div> <!-- end of twelve columns -->
-      		</div> <!-- end of row -->
-
-      <?php
+          <?php
+            if (isset($content_resultset) && $content_resultcount > 0):
+              $total_pages = ceil($content_resultset->getNumFound()/$control_attrs['limit']);
+              if ($total_pages > 1): ?>
+                <div class="row">
+                  <div class="pagination sixteen columns">
+                    <?php
+                    odm_get_template('pagination_solr', array(
+                                  "current_page" => $param_page,
+                                  "total_pages" => $total_pages
+                                ),true); ?>
+                  </div>
+                </div>
+            <?php
+              endif;
+            endif;
           endif; ?>
       </section> <!-- end of container -->
     	<script>
 
         jQuery(document).ready(function() {
-
-          jQuery( "#accordion" ).accordion({
-            collapsible: true,
-            active: false,
-            header: "h2",
-            heightStyle: "content"
-          });
 
           jQuery( ".filter_box" ).select2();
 

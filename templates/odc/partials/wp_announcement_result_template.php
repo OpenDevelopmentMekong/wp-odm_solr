@@ -15,7 +15,7 @@
     "show_solr_meta" => true,
     "solr_search_result" => $document,
   	"header_tag" => true,
-    "extra_classes" => "solr_result"
+    "extra_classes" => "solr_result_two_cols"
 	),true);
 
   if (function_exists("restore_current_blog")):
