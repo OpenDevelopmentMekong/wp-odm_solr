@@ -5,7 +5,7 @@
   endif;
 
   $fetched_post = get_post($document->id);
-  odm_get_template('post-list-single-1-cols',array(
+  odm_get_template('post-list-single-2-cols',array(
 		"post" => $fetched_post,
 		"show_meta" => true,
 		"show_source_meta" => true,
