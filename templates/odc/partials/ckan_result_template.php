@@ -73,7 +73,7 @@
     <?php endif; ?>
     <!-- Date -->    
     <div class="data_meta">
-      <i class="fa fa-pencil-o"></i>
+      <i class="fa fa-pencil"></i>
       <span>
         <?php
           echo wp_solr_print_date($document->metadata_modified); ?>
