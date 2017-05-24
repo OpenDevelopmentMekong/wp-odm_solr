@@ -70,6 +70,15 @@
 
     Analog::log ( "[ " . $caller['file'] . " | " . $caller['line'] . " ] " . $text );
   }
+  
+  function wp_solr_print_date($date_string){
+    try {
+      $date = new \DateTime($date_string);
+      return $date->format("Y-m-d");
+    } catch (\Exception $e) {
+      return null;
+    }
+  }
 
   function compareScoresDesc($a, $b)
   {

@@ -71,6 +71,14 @@
         </span>
       </div>
     <?php endif; ?>
+    <!-- Date -->    
+    <div class="data_meta">
+      <i class="fa fa-pencil-o"></i>
+      <span>
+        <?php
+          echo wp_solr_print_date($document->metadata_modified); ?>
+      </span>
+    </div>
     <!-- Topics -->
     <?php if (!empty($document->vocab_taxonomy)): ?>
       <div class="data_meta">
