@@ -15,20 +15,7 @@
       <span class="meta-label <?php echo strtolower($format); ?>"><?php echo strtolower($format); ?></span>
     <?php endforeach ?>
   </div>
-  <?php
-    $description = wp_odm_solr_parse_multilingual_ckan_content($document->extras_notes_translated,odm_language_manager()->get_current_language(),$document->notes);
-    $description = strip_tags($description);
-    $description = substr($description,0,400);
-    $description = wp_odm_solr_highlight_search_words($s,$description);
-   ?>
-  <p class="data_description sixteen columns">
-  <?php
-    echo $description;
-    if (strlen($description) >= 400):
-      echo "...";
-    endif;
-    ?>
-  </p>
+  
   <div class="data_meta_wrapper sixteen columns">
     <!-- Language -->
     <?php if (!empty($document->extras_odm_language)): ?>
@@ -110,4 +97,20 @@
       </div>
     <?php endif; ?>
   </div>
+  
+  <?php
+    $description = wp_odm_solr_parse_multilingual_ckan_content($document->extras_notes_translated,odm_language_manager()->get_current_language(),$document->notes);
+    $description = strip_tags($description);
+    $description = substr($description,0,400);
+    $description = wp_odm_solr_highlight_search_words($s,$description);
+   ?>
+  <p class="data_description sixteen columns">
+  <?php
+    echo $description;
+    if (strlen($description) >= 400):
+      echo "...";
+    endif;
+    ?>
+  </p>
+  
 </div>
