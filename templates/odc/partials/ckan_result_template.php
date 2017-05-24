@@ -49,7 +49,7 @@
       </div>
     <?php endif; ?>
     <!-- Country -->
-    <?php if (!empty($document->extras_odm_spatial_range)): ?>
+    <?php if (odm_country_manager()->get_current_country() == "mekong" && !empty($document->extras_odm_spatial_range)): ?>
       <div class="country_indicator data_meta">
 
         <span>
