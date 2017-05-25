@@ -16,10 +16,11 @@
     <?php endforeach ?>
   </div>
   
-  <div class="data_meta_wrapper sixteen columns">
+  <div class="post-meta">
+    <ul>
     <!-- Language -->
     <?php if (!empty($document->extras_odm_language)): ?>
-      <div class="data_languages data_meta">
+      <li class="data_languages data_meta">
         <?php $odm_lang_arr = json_decode($document->extras_odm_language,true); ?>
         <span>
           <?php
@@ -33,11 +34,11 @@
             endforeach;
           endif; ?>
         </span>
-      </div>
+      </li>
     <?php endif; ?>
     <!-- Country -->
     <?php if (odm_country_manager()->get_current_country() == "mekong" && !empty($document->extras_odm_spatial_range)): ?>
-      <div class="country_indicator data_meta">
+      <li class="country_indicator data_meta">
 
         <span>
           <?php
@@ -56,19 +57,19 @@
               endforeach;
             endif; ?>
         </span>
-      </div>
+      </li>
     <?php endif; ?>
     <!-- Date -->    
-    <div class="data_meta">
+    <li class="data_meta">
       <i class="fa fa-pencil"></i>
       <span>
         <?php
           echo wp_solr_print_date($document->metadata_modified); ?>
       </span>
-    </div>
+    </li>
     <!-- Topics -->
     <?php if (!empty($document->vocab_taxonomy)): ?>
-      <div class="data_meta">
+      <li class="data_meta">
         <i class="fa fa-folder-o"></i>
         <span>
           <?php
@@ -80,11 +81,11 @@
               endif;
             endforeach;?>
         </span>
-      </div>
+      </li>
     <?php endif; ?>
     <!-- Keywords -->
     <?php if (!empty($document->extras_odm_keywords)): ?>
-      <div class="data_meta">
+      <li class="data_meta">
         <i class="fa fa-tags"></i>
         <?php
           $keywords = (array) $document->extras_odm_keywords;
@@ -94,8 +95,9 @@
               echo ", ";
             endif;
           endforeach;?>
-      </div>
+      </li>
     <?php endif; ?>
+    </ul>
   </div>
   
   <?php
