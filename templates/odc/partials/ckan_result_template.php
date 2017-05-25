@@ -16,7 +16,7 @@
     <?php endforeach ?>
   </div>
   
-  <div class="post-meta">
+  <div class="post-meta sixteen columns">
     <ul>
     <!-- Language -->
     <?php if (!empty($document->extras_odm_language)): ?>
