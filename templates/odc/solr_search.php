@@ -211,7 +211,7 @@
         else:
 
           // -------------- Define top param type --------------- //
-          if (!isset($param_type)):
+          if (!isset($param_type) || (isset($param_type) && array_key_exists($param_type,$results) && $results[$param_type]->getNumFound() == 0)):
             foreach ($all_search_types as $key => $value):
               if (isset($results[$key]) && $results[$key]->getNumFound() > 0):
                 $param_type = $key;
