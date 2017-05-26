@@ -76,7 +76,12 @@
       <i class="fa fa-pencil"></i>
       <span>
         <?php
-          echo wp_solr_print_date($document->metadata_modified); ?>
+          $date = wp_solr_print_date($document->metadata_modified); 
+          if (odm_language_manager()->get_current_language() == 'km'):
+					  echo convert_date_to_kh_date($date);
+					else:
+						echo $date;
+					endif; ?>
       </span>
     </div>
     <!-- Topics -->
