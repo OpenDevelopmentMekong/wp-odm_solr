@@ -259,24 +259,24 @@
                     <?php include plugin_dir_path(__FILE__). 'partials/content-types.php'; ?>
                   </div>
                 </div>
-              </div>          
-            
-              <div class="row">
-                <div class="eight columns">
-                  <h4>
-                    <?php echo $content_resultcount . ' ' . $all_search_types[$param_type]["title"] . __(' found for','wp-odm_solr') . ' "' . $param_query. '"'; ?>
-                  </h4>
-                </div>                              
-              </div>
+              </div>                                  
             </div>
             
-            <div class="eight columns align-right">
-              <label class="left-label" for="sorting"><?php _e('Sort by', 'wp-odm_solr'); ?></label>
-              <select id="sorting" name="sorting" class="filter_box" data-placeholder="<?php _e('Sort by', 'wp-odm_solr'); ?>">
-                <option <?php if($param_sorting == "score") echo 'selected'; ?> value="score"><?php _e('Relevance','wp-odm_solr') ?></option>
-                <option <?php if($param_sorting == "metadata_modified") echo 'selected'; ?> value="metadata_modified"><?php _e('Date modified','wp-odm_solr') ?></option>
-              </select>
-            </div>
+            <div class="row">
+              <div class="eight columns">
+                <h4>
+                  <?php echo $content_resultcount . ' ' . $all_search_types[$param_type]["title"] . __(' found for','wp-odm_solr') . ' "' . $param_query. '"'; ?>
+                </h4>
+              </div>     
+              
+              <div class="eight columns align-right">
+                <label class="left-label" for="sorting"><?php _e('Sort by', 'wp-odm_solr'); ?></label>
+                <select id="sorting" name="sorting" class="filter_box" data-placeholder="<?php _e('Sort by', 'wp-odm_solr'); ?>">
+                  <option <?php if($param_sorting == "score") echo 'selected'; ?> value="score"><?php _e('Relevance','wp-odm_solr') ?></option>
+                  <option <?php if($param_sorting == "metadata_modified") echo 'selected'; ?> value="metadata_modified"><?php _e('Date modified','wp-odm_solr') ?></option>
+                </select>
+              </div>                                       
+            </div>                      
             
           </form>
               
