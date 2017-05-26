@@ -56,6 +56,14 @@ class UtilsTest extends PHPUnit_Framework_TestCase
     $fallback = 'some text';
     $lang = "fr";
     $result = wp_odm_solr_parse_multilingual_ckan_content($to_parse,$lang,$fallback);
+    $this->assertContains($result,"some english text");
+  }
+  
+  public function testParseMultilingualCkanNoContentFallback(){
+    $to_parse = '{"de":"some german text","km":"some khmer text"}';
+    $fallback = 'some text';
+    $lang = "fr";
+    $result = wp_odm_solr_parse_multilingual_ckan_content($to_parse,$lang,$fallback);
     $this->assertContains($result,"some text");
   }
 
