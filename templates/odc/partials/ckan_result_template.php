@@ -1,10 +1,15 @@
-<div class="solr_result_two_cols single_result_container eight columns">
+<div class="post-list-item solr_result_two_cols single_result_container eight columns">
   <?php
   $title = wp_odm_solr_parse_multilingual_ckan_content($document->extras_title_translated,odm_language_manager()->get_current_language(),$document->title);
   $title = wp_odm_solr_highlight_search_words($s,$title);
   ?>
   <h4 class="data_title ten columns">
     <a target="_blank" href="<?php echo wpckan_get_link_to_dataset($document->id) ?>">
+      <?php
+					if ($show_post_type): ?>
+						<i class="<?php echo get_post_type_icon_class($document->dataset_type); ?>"></i>
+					<?php
+					endif; ?>
       <?php echo $title ?>
     </a>
   </h4>
