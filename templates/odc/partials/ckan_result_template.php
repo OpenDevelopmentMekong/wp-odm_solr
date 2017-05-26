@@ -66,7 +66,7 @@
       <span>
         <?php          
           if (odm_language_manager()->get_current_language() == 'km'):
-            $date = wp_solr_print_date($document->metadata_modified,"j.M.Y"); 
+            $date = wp_solr_print_date($document->metadata_modified,"d.M.Y"); 
 					  echo convert_date_to_kh_date($date);
 					else:
             echo wp_solr_print_date($document->metadata_modified); 

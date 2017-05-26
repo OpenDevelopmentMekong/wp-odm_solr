@@ -76,7 +76,7 @@
   function wp_solr_print_date($date_string, $format = "Y-m-d"){
     try {
       $date = new \DateTime($date_string);
-      return $date->format("Y-m-d");
+      return $date->format($format);
     } catch (\Exception $e) {
       return null;
     }
