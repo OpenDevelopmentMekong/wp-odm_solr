@@ -43,7 +43,7 @@
 <!-- LANGUAGE FILTER -->
 <div class="adv-nav-input four columns">
   <label for="language"><?php _e('Language', 'wp-odm_solr'); ?></label>
-  <select multiple id="language" name="language[]" class="filter_box" data-placeholder="<?php _e('Select language', 'wp-odm_solr'); ?>">
+  <select id="language" name="language[]" class="filter_box" data-placeholder="<?php _e('Select language', 'wp-odm_solr'); ?>">
     <?php
       foreach($languages as $key => $value):
         if (array_key_exists("extras_odm_language",$facets[$param_type])):
