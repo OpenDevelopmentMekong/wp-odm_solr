@@ -75,8 +75,9 @@
         <span>
           <?php
             $topics = (array) $document->vocab_taxonomy;
-            foreach ($topics as $topic):
-              _e($topic, 'wp-odm_solr') ;
+            foreach ($topics as $topic): ?>
+              <a href="<?php echo generate_link_to_category_from_name($topic) ?>"><?php _e($topic, 'wp-odm_solr'); ?></a>
+              <?php 
               if ($topic !== end($topics)):
                 echo ", ";
               endif;
