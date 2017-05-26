@@ -1,6 +1,6 @@
 <?php
   
-  $meta_fields = odm_country_manager()->get_current_country() == "mekong" ? array("date","country") : array("date");
+  $meta_fields = odm_country_manager()->get_current_country() == "mekong" ? array("date","country","language") : array("date","language");
   
   if (function_exists("switch_to_blog")):
     switch_to_blog($document->blogid);
