@@ -269,12 +269,14 @@
                 </h4>
               </div>     
               
-              <div class="five columns align-right">
-                <label class="left-label" for="sorting"><?php _e('Sort by', 'wp-odm_solr'); ?> </label>
-                <select id="sorting" name="sorting" class="filter_box" data-placeholder="<?php _e('Sort by', 'wp-odm_solr'); ?>">
-                  <option <?php if($param_sorting == "score") echo 'selected'; ?> value="score"><?php _e('Relevance','wp-odm_solr') ?></option>
-                  <option <?php if($param_sorting == "metadata_modified") echo 'selected'; ?> value="metadata_modified"><?php _e('Date modified','wp-odm_solr') ?></option>
-                </select>
+              <div class="five columns">
+                <div class="align-right">
+                  <label class="left-label" for="sorting"><?php _e('Sort by', 'wp-odm_solr'); ?> </label>
+                  <select id="sorting" name="sorting" class="filter_box" data-placeholder="<?php _e('Sort by', 'wp-odm_solr'); ?>">
+                    <option <?php if($param_sorting == "score") echo 'selected'; ?> value="score"><?php _e('Relevance','wp-odm_solr') ?></option>
+                    <option <?php if($param_sorting == "metadata_modified") echo 'selected'; ?> value="metadata_modified"><?php _e('Date modified','wp-odm_solr') ?></option>
+                  </select>
+                </div>
               </div>                                       
             </div>                      
             
