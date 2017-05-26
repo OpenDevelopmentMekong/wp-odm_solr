@@ -333,7 +333,9 @@
       </section> <!-- end of container -->
     	<script>
 
-        jQuery(document).ready(function() {        
+        jQuery(document).ready(function() { 
+          
+          jQuery( ".filter_box" ).select2();       
 
           jQuery('#search_field').autocomplete({
             source: function( request, response ) {
