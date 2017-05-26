@@ -8,7 +8,7 @@
   odm_get_template('post-grid-single-4-cols',array(
     "post" => $fetched_post,
     "show_meta" => true,
-    "meta_fields" => array("date","country"))
+    "meta_fields" => array("date","country","language"))
   , true);
 
   if (function_exists("restore_current_blog")):
