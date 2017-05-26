@@ -32,8 +32,10 @@
     endif;
 
     if ($json):
-      if (array_key_exists($lang,$json)):
+      if (array_key_exists($lang,$json) && !empty($json[$lang])):
         $to_return = $json[$lang];
+      elseif (array_key_exists("en",$json)  && !empty($json["en"])):
+        $to_return = $json["en"];
       endif;
     endif;
 
@@ -70,25 +72,19 @@
 
     Analog::log ( "[ " . $caller['file'] . " | " . $caller['line'] . " ] " . $text );
   }
+  
+  function wp_solr_print_date($date_string, $format = "Y-m-d"){
+    try {
+      $date = new \DateTime($date_string);
+      return $date->format($format);
+    } catch (\Exception $e) {
+      return null;
+    }
+  }
 
   function compareScoresDesc($a, $b)
   {
       return $a->score > $b->score ? -1 : 1;
-  }
-
-  function wp_odm_merge_results_and_sort_by_score($wp_results,$ckan_results) {
-
-    $merged = array();
-    if (!is_array($wp_results) && is_array($ckan_results)):
-      $merged = $ckan_results;
-    elseif (!is_array($ckan_results) && is_array($wp_results)):
-      $merged = $wp_results;
-    elseif (is_array($ckan_results) && is_array($wp_results)):
-      $merged = array_merge($wp_results, $ckan_results);
-      usort($merged, 'compareScoresDesc');
-    endif;
-
-    return $merged;
   }
 
   /**
