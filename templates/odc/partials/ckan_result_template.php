@@ -5,11 +5,7 @@
   ?>
   <h4 class="data_title ten columns">
     <a target="_blank" href="<?php echo wpckan_get_link_to_dataset($document->id) ?>">
-      <?php
-					if ($show_post_type): ?>
-						<i class="<?php echo get_post_type_icon_class($document->dataset_type); ?>"></i>
-					<?php
-					endif; ?>
+			<i class="<?php echo get_post_type_icon_class($document->dataset_type); ?>"></i>
       <?php echo $title ?>
     </a>
   </h4>
