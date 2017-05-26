@@ -8,6 +8,7 @@
   odm_get_template('post-list-single-2-cols',array(
   	"post" => $fetched_post,
   	"show_meta" => true,
+    "meta_fields" => array("language","country","date","categories","tags"),
   	"show_source_meta" => true,
   	"show_thumbnail" => true,
   	"show_excerpt" => true,

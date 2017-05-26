@@ -7,7 +7,8 @@
   $fetched_post = get_post($document->id);
   odm_get_template('post-grid-single-4-cols',array(
     "post" => $fetched_post,
-    "show_meta" => true)
+    "show_meta" => true,
+    "meta_fields" => array("date","country"))
   , true);
 
   if (function_exists("restore_current_blog")):

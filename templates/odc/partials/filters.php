@@ -1,12 +1,12 @@
 <?php $query_var_name = $is_search_page ? 'query' : 's'; ?>
 
-<div class="single-filter four columns">
+<div class="search-input adv-nav-input four columns">
   <label for="search_field"><?php _e('Text search', 'wp-odm_solr'); ?></label>
   <input id="search_field" name="<?php echo $query_var_name; ?>" type="text" class="full-width-search-box search_field" value="<?php echo $param_query?>" placeholder="<?php _e("Search datasets, topics, news articles...",'wp-odm_solr'); ?>" data-solr-host="<?php echo $GLOBALS['wp_odm_solr_options']->get_option('wp_odm_solr_setting_solr_host'); ?>" data-solr-scheme="<?php echo $GLOBALS['wp_odm_solr_options']->get_option('wp_odm_solr_setting_solr_scheme'); ?>" data-solr-path="<?php echo $GLOBALS['wp_odm_solr_options']->get_option('wp_odm_solr_setting_solr_path'); ?>" data-solr-core-wp="<?php echo $GLOBALS['wp_odm_solr_options']->get_option('wp_odm_solr_setting_solr_core_wp'); ?>" data-solr-core-ckan="<?php echo $GLOBALS['wp_odm_solr_options']->get_option('wp_odm_solr_setting_solr_core_ckan'); ?>"></input>
 </div>
 
 <!-- TAXONOMY FILTER -->
-<div class="single-filter four columns">
+<div class="adv-nav-input four columns">
   <label for="taxonomy"><?php _e('Topic', 'wp-odm_solr'); ?></label>
   <select id="taxonomy" name="taxonomy" class="filter_box" data-placeholder="<?php _e('Select term', 'wp-odm_solr'); ?>">
     <option value="all" <?php if (isset($param_taxonomy) || $param_taxonomy == 'all') echo 'selected'; ?>><?php _e('All','wp-odm_solr') ?></option>
@@ -41,7 +41,7 @@
 <!-- END OF TAXONOMY FILTER -->
 
 <!-- LANGUAGE FILTER -->
-<div class="single-filter four columns">
+<div class="adv-nav-input four columns">
   <label for="language"><?php _e('Language', 'wp-odm_solr'); ?></label>
   <select multiple id="language" name="language[]" class="filter_box" data-placeholder="<?php _e('Select language', 'wp-odm_solr'); ?>">
     <?php
@@ -68,6 +68,6 @@
 </div>
 <!-- END OF LANGUAGE FILTER -->
 
-<div class="single-filter four columns">
+<div class="adv-nav-input four columns">
   <input class="button" type="submit" value="<?php _e('Search Filter', 'wp-odm_solr'); ?>"/>
 </div>
