@@ -1,5 +1,7 @@
 <?php
-
+  
+  $meta_fields = odm_country_manager()->get_current_country() == "mekong" ? array("date","country") : array("date");
+  
   if (function_exists("switch_to_blog")):
     switch_to_blog($document->blogid);
   endif;
@@ -9,7 +11,7 @@
     "post" => $fetched_post,
     "show_post_type" => true,
     "show_meta" => true,
-    "meta_fields" => array("date","country"))
+    "meta_fields" => $meta_fields)
   , true);
 
   if (function_exists("restore_current_blog")):
