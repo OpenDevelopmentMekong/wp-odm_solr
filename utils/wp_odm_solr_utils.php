@@ -32,9 +32,9 @@
     endif;
 
     if ($json):
-      if (array_key_exists($lang,$json)):
+      if (array_key_exists($lang,$json) && !empty($json[$lang])):
         $to_return = $json[$lang];
-      elseif (array_key_exists("en",$json)):
+      elseif (array_key_exists("en",$json)  && !empty($json["en"])):
         $to_return = $json["en"];
       endif;
     endif;
