@@ -68,6 +68,6 @@
 </div>
 <!-- END OF LANGUAGE FILTER -->
 
-<div class="adv-nav-input four columns">
+<div class="four columns">
   <input class="button" type="submit" value="<?php _e('Search Filter', 'wp-odm_solr'); ?>"/>
 </div>
