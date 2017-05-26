@@ -34,6 +34,8 @@
     if ($json):
       if (array_key_exists($lang,$json)):
         $to_return = $json[$lang];
+      elseif (array_key_exists("en",$json)):
+        $to_return = $json["en"];
       endif;
     endif;
 
