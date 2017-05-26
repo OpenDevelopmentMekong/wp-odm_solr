@@ -49,6 +49,7 @@
 }
 
 .left-label{
-	display: inline !important;
+	float: left;
+	margin-right: 10px;
 }
 
