@@ -246,7 +246,7 @@
           $content_resultcount = ($content_resultset) ? $content_resultset->getNumFound() : 0;
           ?>
           
-          <form class="more-filters-content">
+          <form class="advanced-nav-filters ">
             <div class="row panel">
               <input type="hidden" name="type" value="<?php echo $param_type;?>"></input>
               <?php include plugin_dir_path(__FILE__). 'partials/filters.php'; ?>
