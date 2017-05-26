@@ -68,7 +68,7 @@
 </div>
 <!-- END OF LANGUAGE FILTER -->
 
-<div class="four columns">
+<div class="four columns align-right">
   <input class="button" type="submit" value="<?php _e('Search Filter', 'wp-odm_solr'); ?>"/>
   <a href="?clear"><?php _e('Clear','wp-odm_tabular_pages') ?></a>
 </div>
