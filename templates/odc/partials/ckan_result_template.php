@@ -64,12 +64,12 @@
     <li class="data_meta">
       <i class="fa fa-pencil"></i>
       <span>
-        <?php
-          $date = wp_solr_print_date($document->metadata_modified); 
+        <?php          
           if (odm_language_manager()->get_current_language() == 'km'):
+            $date = wp_solr_print_date($document->metadata_modified,"j.M.Y"); 
 					  echo convert_date_to_kh_date($date);
 					else:
-						echo $date;
+            echo wp_solr_print_date($document->metadata_modified); 
 					endif; ?>
       </span>
     </li>
