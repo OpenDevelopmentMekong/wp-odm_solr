@@ -26,14 +26,14 @@
 }
 
 .content-type-tabs ul{
-	border-bottom: 1px #dcdcdc solid;
+	border-bottom: 1px #c8c8c8 solid;
 	width: 100%;
 }
 
 .content-type-tabs li{
 	float:left;
 	list-style: none;
-	padding-right: 10px;
+	margin-right: 20px;
 }
 
 .content-type-tabs li:hover{
