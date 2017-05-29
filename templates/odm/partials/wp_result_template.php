@@ -1,4 +1,4 @@
-<div class="solr_result single_result_container row">
+<div class="solr_result_two_cols single_result_container sixteen columns">
   <?php
     $title = wp_odm_solr_parse_multilingual_wp_content($document->title,odm_language_manager()->get_current_language(),$document->title);
     $title = wp_odm_solr_highlight_search_words($s,$title);
@@ -40,7 +40,7 @@
       </div>
     <?php endif; ?>
     <!-- Country -->
-    <?php if (odm_country_manager()->get_current_country() && !empty($document->odm_spatial_range)): ?>
+    <?php if (odm_country_manager()->get_current_country() == "mekong" && !empty($document->odm_spatial_range)): ?>
       <div class="country_indicator data_meta">
         <i class="fa fa-globe"></i>
         <span>

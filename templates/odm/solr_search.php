@@ -361,10 +361,10 @@
                     <div class="row">
                       <div class="pagination sixteen columns">
                         <?php
-                        odm_get_template('pagination_solr', array(
-                                      "current_page" => $param_page,
-                                      "total_pages" => $total_pages
-                                    ),true); ?>
+                          odm_get_template('pagination_solr', array(
+                                    "current_page" => $param_page,
+                                    "total_pages" => $total_pages
+                                  ),true); ?>
                       </div>
                     </div>
                 <?php
