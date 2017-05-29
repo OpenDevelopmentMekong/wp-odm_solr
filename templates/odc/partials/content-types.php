@@ -10,8 +10,8 @@ foreach ($all_search_types as $key => $value):
         $new_url = construct_url($new_url, 'page', 0);
         ?>
       <a href="<?php echo $new_url ?>">
-        <i class="<?php echo $value['icon']; ?>"></i>
-        <?php echo __($value['title'],'wp-odm_solr') . " (".$count.")"; ?>
+        <!-- <i class="<?php echo $value['icon']; ?>"></i> -->
+        <?php echo __($value['title'],'wp-odm_solr') /*. " (".$count.")" */; ?>
       </a>
     </div>
   </li>
