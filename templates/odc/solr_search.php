@@ -335,7 +335,7 @@
 
         jQuery(document).ready(function() { 
           
-          jQuery( ".filter_box" ).select2();       
+          jQuery( ".filter_box" ).select2({ width: '100%' });       
 
           jQuery('#search_field').autocomplete({
             source: function( request, response ) {
