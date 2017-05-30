@@ -168,6 +168,24 @@ class WP_Odm_Solr_CKAN_Manager {
 
 		return $result;
 	}
+  
+  function delete_dataset($dataset_id){
+
+    wp_odm_solr_log('solr-ckan-manager delete_dataset');
+
+    $result = null;
+
+    try {
+  		$update = $this->client->createUpdate();
+  		$update->addDeleteQuery('id:' . $post_id);
+  		$update->addCommit();
+  		$result = $this->client->update($update);
+    } catch (HttpException $e) {
+      wp_odm_solr_log('solr-ckan-manager delete_dataset Error: ' . $e);
+    }
+
+		return $result;
+  }
 
 }
 
