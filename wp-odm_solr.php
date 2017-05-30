@@ -47,7 +47,7 @@ if (!class_exists('WpOdmSolr')) {
             add_action('admin_menu', array(&$this, 'wp_odm_solr_add_menu'));
             add_action('init', array(&$this, 'wp_odm_solr_register_plugin_styles'));
             add_action('save_post', array(&$this, 'wp_odm_solr_save_post'));
-            add_action('delete_post', array(&$this, 'wp_odm_solr_delete_post'));
+            add_action('deleted_post', array(&$this, 'wp_odm_solr_delete_post'));
             add_action('admin_notices', array($this, 'check_requirements'));
             add_action('init', array($this, 'load_text_domain'));
             add_filter('template_include',array($this,'wp_odm_solr_search_template'));
