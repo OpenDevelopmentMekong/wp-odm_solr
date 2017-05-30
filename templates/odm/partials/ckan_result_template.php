@@ -1,10 +1,11 @@
-<div class="solr_result single_result_container row">
+<div class="post-list-item solr_result_two_cols single_result_container sixteen columns">
   <?php
   $title = wp_odm_solr_parse_multilingual_ckan_content($document->extras_title_translated,odm_language_manager()->get_current_language(),$document->title);
   $title = wp_odm_solr_highlight_search_words($s,$title);
   ?>
   <h4 class="data_title ten columns">
     <a target="_blank" href="<?php echo wpckan_get_link_to_dataset($document->id) ?>">
+			<i class="<?php echo get_post_type_icon_class($document->dataset_type); ?>"></i>
       <?php echo $title ?>
     </a>
   </h4>
@@ -15,24 +16,12 @@
       <span class="meta-label <?php echo strtolower($format); ?>"><?php echo strtolower($format); ?></span>
     <?php endforeach ?>
   </div>
-  <?php
-    $description = wp_odm_solr_parse_multilingual_ckan_content($document->extras_notes_translated,odm_language_manager()->get_current_language(),$document->notes);
-    $description = strip_tags($description);
-    $description = substr($description,0,400);
-    $description = wp_odm_solr_highlight_search_words($s,$description);
-   ?>
-  <p class="data_description sixteen columns">
-  <?php
-    echo $description;
-    if (strlen($description) >= 400):
-      echo "...";
-    endif;
-    ?>
-  </p>
-  <div class="data_meta_wrapper sixteen columns">
+  
+  <div class="post-meta sixteen columns">
+    <ul>
     <!-- Language -->
     <?php if (!empty($document->extras_odm_language)): ?>
-      <div class="data_languages data_meta">
+      <li class="data_languages data_meta">
         <?php $odm_lang_arr = json_decode($document->extras_odm_language,true); ?>
         <span>
           <?php
@@ -46,11 +35,11 @@
             endforeach;
           endif; ?>
         </span>
-      </div>
+      </li>
     <?php endif; ?>
     <!-- Country -->
-    <?php if (!empty($document->extras_odm_spatial_range)): ?>
-      <div class="country_indicator data_meta">
+    <?php if (odm_country_manager()->get_current_country() == "mekong" && !empty($document->extras_odm_spatial_range)): ?>
+      <li class="country_indicator data_meta">
 
         <span>
           <?php
@@ -69,27 +58,41 @@
               endforeach;
             endif; ?>
         </span>
-      </div>
+      </li>
     <?php endif; ?>
+    <!-- Date -->    
+    <li class="data_meta">
+      <i class="fa fa-pencil"></i>
+      <span>
+        <?php          
+          if (odm_language_manager()->get_current_language() == 'km'):
+            $date = wp_solr_print_date($document->metadata_modified,"d.M.Y"); 
+					  echo convert_date_to_kh_date($date);
+					else:
+            echo wp_solr_print_date($document->metadata_modified); 
+					endif; ?>
+      </span>
+    </li>
     <!-- Topics -->
     <?php if (!empty($document->vocab_taxonomy)): ?>
-      <div class="data_meta">
+      <li class="data_meta">
         <i class="fa fa-folder-o"></i>
         <span>
           <?php
             $topics = (array) $document->vocab_taxonomy;
-            foreach ($topics as $topic):
-              _e($topic, 'wp-odm_solr') ;
+            foreach ($topics as $topic): ?>
+              <a href="<?php echo generate_link_to_category_from_name($topic) ?>"><?php _e($topic, 'wp-odm_solr'); ?></a>
+              <?php 
               if ($topic !== end($topics)):
                 echo ", ";
               endif;
             endforeach;?>
         </span>
-      </div>
+      </li>
     <?php endif; ?>
     <!-- Keywords -->
     <?php if (!empty($document->extras_odm_keywords)): ?>
-      <div class="data_meta">
+      <li class="data_meta">
         <i class="fa fa-tags"></i>
         <?php
           $keywords = (array) $document->extras_odm_keywords;
@@ -99,7 +102,24 @@
               echo ", ";
             endif;
           endforeach;?>
-      </div>
+      </li>
     <?php endif; ?>
+    </ul>
   </div>
+  
+  <?php
+    $description = wp_odm_solr_parse_multilingual_ckan_content($document->extras_notes_translated,odm_language_manager()->get_current_language(),$document->notes);
+    $description = strip_tags($description);
+    $description = substr($description,0,400);
+    $description = wp_odm_solr_highlight_search_words($s,$description);
+   ?>
+  <p class="data_description sixteen columns">
+  <?php
+    echo $description;
+    if (strlen($description) >= 400):
+      echo "...";
+    endif;
+    ?>
+  </p>
+  
 </div>

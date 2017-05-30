@@ -121,7 +121,8 @@
           <td>
             <select id="wp_odm_solr_setting_template" name="wp_odm_solr_setting_template">
               <option value="default" <?php if (!isset($template) || $template == 'default')  echo 'selected'; ?>>2.0</option>
-              <option value="latest" <?php if ($template == 'latest')  echo 'selected'; ?>>2.2</option>
+              <option value="odm" <?php if ($template == 'odm')  echo 'selected'; ?>>ODM 2.2</option>
+              <option value="odc" <?php if ($template == 'odc')  echo 'selected'; ?>>ODC 2.2</option>
             </select>
           </td>
         </tr>

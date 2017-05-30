@@ -3,7 +3,7 @@
  * Plugin Name: wp-odm_solr
  * Plugin URI: http://github.com/OpenDevelopmentMekong/wp-odm_solr
  * Description: ODI Internal Wordpress plugin for indexing created/updated WP contents automatically into a solr index
- * Version: 2.2.18
+ * Version: 2.2.19
  * Author: Alex Corbi (mail@lifeformapps.com)
  * Author URI: http://www.lifeformapps.com
  * License: GPLv3
@@ -47,6 +47,7 @@ if (!class_exists('WpOdmSolr')) {
             add_action('admin_menu', array(&$this, 'wp_odm_solr_add_menu'));
             add_action('init', array(&$this, 'wp_odm_solr_register_plugin_styles'));
             add_action('save_post', array(&$this, 'wp_odm_solr_save_post'));
+            add_action('deleted_post', array(&$this, 'wp_odm_solr_delete_post'));
             add_action('admin_notices', array($this, 'check_requirements'));
             add_action('init', array($this, 'load_text_domain'));
             add_filter('template_include',array($this,'wp_odm_solr_search_template'));
@@ -74,9 +75,8 @@ if (!class_exists('WpOdmSolr')) {
 
             $template = $GLOBALS['wp_odm_solr_options']->get_option('wp_odm_solr_setting_template');
             $template = isset($template) ? $template : 'default';
-            $template_file = $template == 'default' ? 'default' : 'new';
 
-            return dirname( __FILE__ ) . '/templates/' . $template_file . '/solr_search.php';
+            return dirname( __FILE__ ) . '/templates/' . $template . '/solr_search.php';
         }
 
         public function load_text_domain()
@@ -113,6 +113,13 @@ if (!class_exists('WpOdmSolr')) {
           if ($post->post_status == "publish"):
             WP_Odm_Solr_WP_Manager()->index_post($post);
           endif;
+        }
+        
+        public function wp_odm_solr_delete_post($post_ID)
+        {
+          wp_odm_solr_log('wp_odm_solr_delete_post');
+
+          WP_Odm_Solr_WP_Manager()->delete_post($post_ID);
         }
 
         /**

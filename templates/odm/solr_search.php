@@ -197,11 +197,6 @@
         $facets[$key] = $result["facets"];
       endforeach; ?>
 
-    <?php
-    $content_resultset = array_key_exists($param_type,$results) ? $results[$param_type] : null;
-    $content_resultcount = ($content_resultset) ? $content_resultset->getNumFound() : 0;
-    ?>
-
     <section class="container">
 
       <?php
@@ -217,7 +212,7 @@
         else:
 
           // -------------- Define top param type --------------- //
-          if (!isset($param_type)):
+          if (!isset($param_type) || (isset($param_type) && array_key_exists($param_type,$results) && $results[$param_type]->getNumFound() == 0)):
             foreach ($all_search_types as $key => $value):
               if (isset($results[$key]) && $results[$key]->getNumFound() > 0):
                 $param_type = $key;
@@ -336,8 +331,7 @@
                         if ($param_type == 'map-layer'):
                           include plugin_dir_path(__FILE__). 'partials/wp_map_layer_result_template.php';
                         elseif ($param_type == 'news-article'):
-                          //include plugin_dir_path(__FILE__). 'partials/wp_news_article_result_template.php';
-                          include plugin_dir_path(__FILE__). 'partials/wp_result_template.php';
+                          include plugin_dir_path(__FILE__). 'partials/wp_news_article_result_template.php';                          
                         elseif ($param_type == 'topic'):
                           include plugin_dir_path(__FILE__). 'partials/wp_topic_result_template.php';
                         elseif ($param_type == 'profiles'):
@@ -345,11 +339,9 @@
                         elseif ($param_type == 'story'):
                           include plugin_dir_path(__FILE__). 'partials/wp_story_result_template.php';
                         elseif ($param_type == 'announcement'):
-                          //include plugin_dir_path(__FILE__). 'partials/wp_announcement_result_template.php';
-                          include plugin_dir_path(__FILE__). 'partials/wp_result_template.php';
+                          include plugin_dir_path(__FILE__). 'partials/wp_announcement_result_template.php';                          
                         elseif ($param_type == 'site-update'):
-                          //include plugin_dir_path(__FILE__). 'partials/wp_site_update_result_template.php';
-                          include plugin_dir_path(__FILE__). 'partials/wp_result_template.php';
+                          include plugin_dir_path(__FILE__). 'partials/wp_site_update_result_template.php';                        
                         else:
                           include plugin_dir_path(__FILE__). 'partials/wp_result_template.php';
                         endif;
@@ -366,10 +358,10 @@
                     <div class="row">
                       <div class="pagination sixteen columns">
                         <?php
-                        odm_get_template('pagination_solr', array(
-                                      "current_page" => $param_page,
-                                      "total_pages" => $total_pages
-                                    ),true); ?>
+                          odm_get_template('pagination_solr', array(
+                                    "current_page" => $param_page,
+                                    "total_pages" => $total_pages
+                                  ),true); ?>
                       </div>
                     </div>
                 <?php
@@ -385,13 +377,6 @@
     	<script>
 
         jQuery(document).ready(function() {
-
-          jQuery( "#accordion" ).accordion({
-            collapsible: true,
-            active: false,
-            header: "h2",
-            heightStyle: "content"
-          });
 
           jQuery( ".filter_box" ).select2();
 
