@@ -147,6 +147,24 @@ class WP_Odm_Solr_WP_Manager {
 
 		return $result;
   }
+  
+  function delete_post($post_id){
+
+    wp_odm_solr_log('solr-wp-manager delete_post');
+
+    $result = null;
+
+    try {
+  		$update = $this->client->createUpdate();
+  		$update->addDeleteQuery('id:' . $post_id);
+  		$update->addCommit();
+  		$result = $this->client->update($update);
+    } catch (HttpException $e) {
+      wp_odm_solr_log('solr-wp-manager delete_post Error: ' . $e);
+    }
+
+		return $result;
+  }
 
 	function query($text, $attrs = null, $control_attrs = null){
 
