@@ -121,9 +121,7 @@ if (!class_exists('WpOdmSolr')) {
 
           $post = get_post($post_ID);
 
-          if ($post->post_status == "publish"):
-            WP_Odm_Solr_WP_Manager()->delete_post($post);
-          endif;
+          WP_Odm_Solr_WP_Manager()->delete_post($post);
         }
 
         /**
