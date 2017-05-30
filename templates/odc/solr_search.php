@@ -29,6 +29,7 @@
         $param_country = array(odm_country_manager()->get_current_country_code());
       endif;
     	$param_sorting = isset($_GET['sorting']) ? $_GET['sorting'] : 'score';
+      $param_metadata_modified = isset($_GET['metadata_modified']) ? $_GET['metadata_modified'] : 'all';
 
       //================ Filter Values ===================== //
 
@@ -140,7 +141,8 @@
         "extras_odm_spatial_range" => "extras_odm_spatial_range",
         "extras_odm_language" => "extras_odm_language",
         "extras_odm_keywords" => "extras_odm_keywords",
-        "license_id" => "license_id"
+        "license_id" => "license_id",
+        "metadata_modified" => "metadata_modified"
       );
 
       // -------------- Get all results --------------- //
@@ -168,10 +170,16 @@
           if (!empty($param_license)) {
             $attrs['license_id'] = $param_license;
           }
+          
+          //metadata_modified
+          if (isset($param_metadata_modified) && $param_metadata_modified != 'all'){
+            $attrs['metadata_modified'] = $param_metadata_modified;
+          }
 
           $attrs["dataset_type"] = $key;
           $attrs["capacity"] = "public";
           $result = WP_Odm_Solr_CKAN_Manager()->query($param_query,$attrs,$control_attrs);
+          
         else:
 
           //Taxonomy
@@ -187,6 +195,11 @@
           // Country
           if (!empty($param_country) && $param_country != 'mekong' && $param_country != 'all') {
             $attrs["odm_spatial_range"] = $param_country;
+          }
+          
+          //metadata_modified
+          if (isset($param_metadata_modified) && $param_metadata_modified != 'all'){
+            $attrs['metadata_modified'] = $param_metadata_modified;
           }
 
           $attrs["type"] = $key;

@@ -177,7 +177,8 @@ class WP_Odm_Solr_WP_Manager {
         "tags" => array(),
         "odm_spatial_range" => array(),
         "odm_language" => array(),
-        "license_id" => array()
+        "license_id" => array(),
+        "metadata_modified" => array()
       ),
     );
 
@@ -196,6 +197,9 @@ class WP_Odm_Solr_WP_Manager {
 
       if (isset($attrs)):
         foreach ($attrs as $key => $value):
+          if ($key == "metadata_modified"):
+            $value = "[ " . $value . "-01-01T00:00:00Z TO " . $value . "-12-31T23:59:59Z]";
+          endif;
           if ($key == "categories"):
             $taxonomy_top_tier = odm_taxonomy_manager()->get_taxonomy_top_tier();
             if (array_key_exists($value,$taxonomy_top_tier)):
@@ -240,7 +244,16 @@ class WP_Odm_Solr_WP_Manager {
         if (isset($facet)):
           $result["facets"][$key] = [];
           foreach($facet as $value => $count) {
-            $result["facets"][$key][$value] = $count;
+            
+            if ($key == "metadata_modified"):
+              $value = wp_solr_print_date($value,"Y");
+              if (!isset($result["facets"][$key][$value])):
+                $result["facets"][$key][$value] = 0;
+              endif;              
+              $result["facets"][$key][$value] += $count;
+            else:
+              $result["facets"][$key][$value] = $count;
+            endif;             
           }
         endif;
       endforeach;
