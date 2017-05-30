@@ -172,7 +172,7 @@
           }
           
           //metadata_modified
-          if (!empty($param_metadata_modified)){
+          if (isset($param_metadata_modified) && $param_metadata_modified != 'all'){
             $attrs['metadata_modified'] = $param_metadata_modified;
           }
 
@@ -198,7 +198,7 @@
           }
           
           //metadata_modified
-          if (!empty($param_metadata_modified)){
+          if (isset($param_metadata_modified) && $param_metadata_modified != 'all'){
             $attrs['metadata_modified'] = $param_metadata_modified;
           }
 
