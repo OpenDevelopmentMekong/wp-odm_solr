@@ -119,9 +119,7 @@ if (!class_exists('WpOdmSolr')) {
         {
           wp_odm_solr_log('wp_odm_solr_delete_post');
 
-          $post = get_post($post_ID);
-
-          WP_Odm_Solr_WP_Manager()->delete_post($post);
+          WP_Odm_Solr_WP_Manager()->delete_post($post_ID);
         }
 
         /**
