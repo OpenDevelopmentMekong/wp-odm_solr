@@ -4,7 +4,7 @@
   $title = wp_odm_solr_highlight_search_words($s,$title);
   ?>
   <h4 class="data_title ten columns">
-    <a target="_blank" href="<?php echo wpckan_get_link_to_dataset($document->id) ?>">
+    <a target="_blank" href="<?php echo wpckan_get_link_to_dataset($document->id,$_SERVER['QUERY_STRING']) ?>">
 			<i class="<?php echo get_post_type_icon_class($document->dataset_type); ?>"></i>
       <?php echo $title ?>
     </a>
@@ -16,7 +16,7 @@
       <span class="meta-label <?php echo strtolower($format); ?>"><?php echo strtolower($format); ?></span>
     <?php endforeach ?>
   </div>
-  
+
   <div class="post-meta sixteen columns">
     <ul>
     <!-- Language -->
@@ -60,16 +60,16 @@
         </span>
       </li>
     <?php endif; ?>
-    <!-- Date -->    
+    <!-- Date -->
     <li class="data_meta">
       <i class="fa fa-pencil"></i>
       <span>
-        <?php          
+        <?php
           if (odm_language_manager()->get_current_language() == 'km'):
-            $date = wp_solr_print_date($document->metadata_modified,"d.M.Y"); 
+            $date = wp_solr_print_date($document->metadata_modified,"d.M.Y");
 					  echo convert_date_to_kh_date($date);
 					else:
-            echo wp_solr_print_date($document->metadata_modified); 
+            echo wp_solr_print_date($document->metadata_modified);
 					endif; ?>
       </span>
     </li>
@@ -82,7 +82,7 @@
             $topics = (array) $document->vocab_taxonomy;
             foreach ($topics as $topic): ?>
               <a href="<?php echo generate_link_to_category_from_name($topic) ?>"><?php _e($topic, 'wp-odm_solr'); ?></a>
-              <?php 
+              <?php
               if ($topic !== end($topics)):
                 echo ", ";
               endif;
@@ -106,7 +106,7 @@
     <?php endif; ?>
     </ul>
   </div>
-  
+
   <?php
     $description = wp_odm_solr_parse_multilingual_ckan_content($document->extras_notes_translated,odm_language_manager()->get_current_language(),$document->notes);
     $description = strip_tags($description);
@@ -121,5 +121,5 @@
     endif;
     ?>
   </p>
-  
+
 </div>
