@@ -83,7 +83,7 @@
         ),
         'news-article' => array(
           'title' => 'News articles',
-          'icon' => 'fa fa-quote-left',
+          'icon' => 'fa fa-newsletter-o',
           'type' => 'wp',
           'archive_url' => '/news'
         ),
@@ -170,7 +170,7 @@
           if (!empty($param_license)) {
             $attrs['license_id'] = $param_license;
           }
-          
+
           //metadata_modified
           if (isset($param_metadata_modified) && $param_metadata_modified != 'all'){
             $attrs['metadata_modified'] = $param_metadata_modified;
@@ -179,7 +179,7 @@
           $attrs["dataset_type"] = $key;
           $attrs["capacity"] = "public";
           $result = WP_Odm_Solr_CKAN_Manager()->query($param_query,$attrs,$control_attrs);
-          
+
         else:
 
           //Taxonomy
@@ -196,7 +196,7 @@
           if (!empty($param_country) && $param_country != 'mekong' && $param_country != 'all') {
             $attrs["odm_spatial_range"] = $param_country;
           }
-          
+
           //metadata_modified
           if (isset($param_metadata_modified) && $param_metadata_modified != 'all'){
             $attrs['metadata_modified'] = $param_metadata_modified;
@@ -253,12 +253,12 @@
               endforeach;
             endforeach;
           endif; ?>
-          
+
           <?php
           $content_resultset = array_key_exists($param_type,$results) ? $results[$param_type] : null;
           $content_resultcount = ($content_resultset) ? $content_resultset->getNumFound() : 0;
           ?>
-          
+
           <form>
             <div class="advanced-nav-filters ">
               <div class="row panel">
@@ -272,16 +272,16 @@
                     <?php include plugin_dir_path(__FILE__). 'partials/content-types.php'; ?>
                   </div>
                 </div>
-              </div>                                  
+              </div>
             </div>
-            
+
             <div class="row">
               <div class="eleven columns">
                 <h4>
                   <?php echo $content_resultcount . ' ' . $all_search_types[$param_type]["title"] . __(' found for','wp-odm_solr') . ' "' . $param_query. '"'; ?>
                 </h4>
-              </div>     
-              
+              </div>
+
               <div class="five columns">
                 <div class="align-right">
                   <label class="left-label" for="sorting"><?php _e('Sort by', 'wp-odm_solr'); ?> </label>
@@ -290,11 +290,11 @@
                     <option <?php if($param_sorting == "metadata_modified") echo 'selected'; ?> value="metadata_modified"><?php _e('Date modified','wp-odm_solr') ?></option>
                   </select>
                 </div>
-              </div>                                       
-            </div>                      
-            
+              </div>
+            </div>
+
           </form>
-              
+
           <div class="row solr_results search-results">
             <?php
             if (isset($content_resultset) && $content_resultcount > 0):
@@ -346,9 +346,9 @@
       </section> <!-- end of container -->
     	<script>
 
-        jQuery(document).ready(function() { 
-          
-          jQuery( ".filter_box" ).select2({ width: '100%' });       
+        jQuery(document).ready(function() {
+
+          jQuery( ".filter_box" ).select2({ width: '100%' });
 
           jQuery('#search_field').autocomplete({
             source: function( request, response ) {
