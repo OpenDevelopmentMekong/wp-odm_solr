@@ -82,7 +82,7 @@
         ),
         'news-article' => array(
           'title' => 'News articles',
-          'icon' => 'fa fa-fa-newsletter-o',
+          'icon' => 'fa fa-newsletter-o',
           'type' => 'wp',
           'archive_url' => '/news'
         ),
