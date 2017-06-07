@@ -17,7 +17,8 @@ if (!class_exists('Odm_Solr_Pages_Post_Type')) {
       global $post;
 
       $template = get_post_meta($post->ID, '_solr_pages_attributes_template_layout', true);
-
+      $template = isset($template) ? $template : 'odm';
+      
       if ($post->post_type == 'search-pages') {
         $single_template = dirname(plugin_dir_path(__FILE__)).'/templates/' . $template . '/solr_search.php';
       }
