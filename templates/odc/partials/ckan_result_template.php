@@ -100,8 +100,8 @@
     </ul>
   </div>
   
-  <div class="item-content">        
-    <p class="data_description sixteen columns">
+  <div class="item-content sixteen columns">        
+    <p class="data_description">
       
       <?php
         $thumbnail_image_url = wp_solr_get_image_url_from_ckan_result($document); 
@@ -124,7 +124,7 @@
   </div>
   
   <div class="data_format sixteen columns">
-    <p class="download_data_buttons"><?php _e("Download:","wp-odm_solr"); ?>
+    <p class="download_data_buttons"><?php _e('Download:','wp-odm_solr'); ?>
     <?php $resource_formats = array_unique($document->res_format); ?>
     <?php foreach ($resource_formats as $format): ?>
       <span class="meta-label <?php echo strtolower($format); ?>"><?php echo strtolower($format); ?></span>
