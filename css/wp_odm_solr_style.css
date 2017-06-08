@@ -57,6 +57,10 @@
 	display: block;
 }
 
+.download_data_buttons{
+	float:left;
+}
+
 .more-filters-content{
   margin-bottom: 0px;
 }

@@ -3,19 +3,12 @@
   $title = wp_odm_solr_parse_multilingual_ckan_content($document->extras_title_translated,odm_language_manager()->get_current_language(),$document->title);
   $title = wp_odm_solr_highlight_search_words($s,$title);
   ?>
-  <h4 class="data_title ten columns">
+  <h4 class="data_title sixteen columns">
     <a target="_blank" href="<?php echo wpckan_get_link_to_dataset($document->id) ?>">
 			<i class="<?php echo get_post_type_icon_class($document->dataset_type); ?>"></i>
       <?php echo $title ?>
     </a>
   </h4>
-
-  <div class="data_format six columns">
-    <?php $resource_formats = array_unique($document->res_format); ?>
-    <?php foreach ($resource_formats as $format): ?>
-      <span class="meta-label <?php echo strtolower($format); ?>"><?php echo strtolower($format); ?></span>
-    <?php endforeach ?>
-  </div>
   
   <div class="post-meta sixteen columns">
     <ul>
@@ -121,5 +114,14 @@
     endif;
     ?>
   </p>
+  
+  <div class="data_format sixteen columns">
+    <p class="download_data_buttons"><?php _e("Download:","wp-odm_solr"); ?>
+    <?php $resource_formats = array_unique($document->res_format); ?>
+    <?php foreach ($resource_formats as $format): ?>
+      <span class="meta-label <?php echo strtolower($format); ?>"><?php echo strtolower($format); ?></span>
+    <?php endforeach ?>
+    </p>
+  </div>
   
 </div>
