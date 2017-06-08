@@ -220,7 +220,7 @@ class WP_Odm_Solr_WP_Manager {
   		endif;
 
       if (!empty($text)):
-        $fields_to_query = 'tags^5 categories^4 title^2 content^1';
+        $fields_to_query = 'tags^6 categories^5 title^2 content^1';
         $dismax = $query->getDisMax();
         $dismax->setQueryFields($fields_to_query);
       endif;
