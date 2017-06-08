@@ -7,7 +7,9 @@
     <option value="all" <?php if (isset($param_taxonomy) || $param_taxonomy == 'all') echo 'selected'; ?>><?php _e('All','wp-odm_solr') ?></option>
       <?php
       if (array_key_exists("vocab_taxonomy",$facets[$param_type])):
-        foreach(array_keys($top_tier_taxonomic_terms) as $top_tier_term):
+        $top_tier_taxonomic_terms_keys = array_keys($top_tier_taxonomic_terms);
+        sort($top_tier_taxonomic_terms_keys,SORT_STRING);
+        foreach(array_keys($top_tier_taxonomic_terms_keys) as $top_tier_term):
           $available_records = 0; 
           $taxonomy_facets = $facets[$param_type]["vocab_taxonomy"];
           foreach ($taxonomy_facets as $value => $count):            
