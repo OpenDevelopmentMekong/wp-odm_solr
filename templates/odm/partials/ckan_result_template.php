@@ -107,8 +107,8 @@
     </ul>
   </div>
   
-  <div class="item-content">        
-    <p class="data_description sixteen columns">
+  <div class="item-content sixteen columns">        
+    <p class="data_description">
       
       <?php
         $thumbnail_image_url = wp_solr_get_image_url_from_ckan_result($document); 
