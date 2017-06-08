@@ -25,29 +25,36 @@
 }
 
 .content-type-tabs{
-  clear: both;
-  margin-bottom: 10px;
   display: flex;
-	padding: 10px;
+	padding: 10px 0px;
 }
 
 .content-type-tabs ul{
 	border-bottom: 1px #c8c8c8 solid;
 	width: 100%;
+	margin-bottom: 0px;
 }
 
 .content-type-tabs li{
 	float:left;
 	list-style: none;
-	margin-right: 20px;
+	margin-bottom: 0px;
+	padding: 10px 10px;
 }
 
-.content-type-tabs li:hover{
+.content-type-tabs .result_link_list a:hover{
 	border-bottom: 2px #97D320;
+	font-size: 16px;
 }
 
-.content-type-tabs li:active{
+.content-type-tabs .result_link_list a:active{
 	border-bottom: 2px #97D320;
+	font-size: 16px;
+}
+
+.content-type-tabs .result_link_list a {
+	font-size: 16px;
+	display: block;
 }
 
 .more-filters-content{
@@ -59,3 +66,4 @@
 	display: inline;
 	margin-right: 10px;
 }
+
