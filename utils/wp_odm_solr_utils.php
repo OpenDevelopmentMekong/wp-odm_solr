@@ -82,6 +82,22 @@
     }
   }
 
+  function wp_solr_get_image_url_from_ckan_result($document){
+    
+    $image_formats = array("png","jpeg","jpg");
+    
+    $count = 0;
+    foreach ($document->res_format as $format): 
+      if (in_array(strtolower($format),$image_formats)):
+        return $document->res_url[$count];
+      endif;
+      $count ++;
+    endforeach;
+    
+    return null;
+  }
+  
+  
   function compareScoresDesc($a, $b)
   {
       return $a->score > $b->score ? -1 : 1;

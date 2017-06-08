@@ -107,19 +107,27 @@
     </ul>
   </div>
   
-  <?php
-    $description = wp_odm_solr_parse_multilingual_ckan_content($document->extras_notes_translated,odm_language_manager()->get_current_language(),$document->notes);
-    $description = strip_tags($description);
-    $description = substr($description,0,400);
-    $description = wp_odm_solr_highlight_search_words($s,$description);
-   ?>
-  <p class="data_description sixteen columns">
-  <?php
-    echo $description;
-    if (strlen($description) >= 400):
-      echo "...";
-    endif;
-    ?>
-  </p>
+  <div class="item-content">        
+    <p class="data_description sixteen columns">
+      
+      <?php
+        $thumbnail_image_url = wp_solr_get_image_url_from_ckan_result($document); 
+        if (isset($thumbnail_image_url)):?>
+          <img src="<?php echo $thumbnail_image_url ?>"></img> 
+      <?php 
+        endif; ?>
+
+      <?php
+        $description = wp_odm_solr_parse_multilingual_ckan_content($document->extras_notes_translated,odm_language_manager()->get_current_language(),$document->notes);
+        $description = strip_tags($description);
+        $description = substr($description,0,400);
+        $description = wp_odm_solr_highlight_search_words($s,$description);
+        echo $description;
+        if (strlen($description) >= 400):
+          echo "...";
+        endif;
+        ?>
+    </p>
+  </div>
   
 </div>
