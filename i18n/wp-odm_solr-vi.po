@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"POT-Creation-Date: 2017-05-04 17:55+0200\n"
-"PO-Revision-Date: 2017-05-04 17:55+0200\n"
+"POT-Creation-Date: 2017-06-09 13:16+0200\n"
+"PO-Revision-Date: 2017-06-09 13:16+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: vi\n"
@@ -116,16 +116,87 @@ msgstr ""
 #: templates/default/partials/filters.php:59
 #: templates/default/partials/filters.php:87
 #: templates/default/partials/filters.php:109
-#: templates/new/partials/filters.php:7 templates/new/partials/filters.php:30
-#: templates/new/partials/filters.php:58 templates/new/partials/filters.php:80
+#: templates/odc/partials/filters.php:12 templates/odc/partials/filters.php:105
+#: templates/odm/partials/filters.php:7
 msgid "All"
 msgstr ""
 
+#: post-types/search-pages.php:32 post-types/search-pages.php:34
+#: post-types/search-pages.php:35
+msgid "Search pages"
+msgstr ""
+
+#: post-types/search-pages.php:33
+msgid "Search page"
+msgstr ""
+
+#: post-types/search-pages.php:36
+msgid "Add new"
+msgstr ""
+
+#: post-types/search-pages.php:37
+msgid "Add new search page"
+msgstr ""
+
+#: post-types/search-pages.php:38
+msgid "New search page"
+msgstr ""
+
+#: post-types/search-pages.php:39
+msgid "Edit search page"
+msgstr ""
+
+#: post-types/search-pages.php:40
+msgid "View search page"
+msgstr ""
+
+#: post-types/search-pages.php:41
+msgid "All search pages"
+msgstr ""
+
+#: post-types/search-pages.php:42
+msgid "Search search pages"
+msgstr ""
+
+#: post-types/search-pages.php:43
+msgid "Parent search pages:"
+msgstr ""
+
+#: post-types/search-pages.php:44
+msgid "No search page found."
+msgstr ""
+
+#: post-types/search-pages.php:45
+msgid "No search page found in trash."
+msgstr ""
+
+#: post-types/search-pages.php:73
+msgid "Option for search pages"
+msgstr ""
+
+#: post-types/search-pages.php:82
+msgid "Template layout"
+msgstr ""
+
+#: post-types/search-pages.php:95
+msgid "Supported content types"
+msgstr ""
+
+#: post-types/search-pages.php:97
+msgid "Please add the document types that should be supported on this page"
+msgstr ""
+
+#: post-types/search-pages.php:106
+msgid "Choose template layout"
+msgstr ""
+
 #: templates/default/partials/filters.php:9
+#: templates/odc/partials/filters.php:4
 msgid "Text search"
 msgstr ""
 
-#: templates/default/partials/filters.php:10 templates/new/solr_search.php:254
+#: templates/default/partials/filters.php:10
+#: templates/odc/partials/filters.php:5 templates/odm/solr_search.php:308
 msgid "Search datasets, topics, news articles..."
 msgstr ""
 
@@ -150,91 +221,109 @@ msgid "News"
 msgstr ""
 
 #: templates/default/partials/filters.php:34
-#: templates/new/partials/filters.php:5
+#: templates/odc/partials/filters.php:10 templates/odm/partials/filters.php:5
 msgid "Topic"
 msgstr ""
 
 #: templates/default/partials/filters.php:35
-#: templates/new/partials/filters.php:6
+#: templates/odc/partials/filters.php:11 templates/odm/partials/filters.php:6
 msgid "Select term"
 msgstr ""
 
 #: templates/default/partials/filters.php:57
-#: templates/new/partials/filters.php:28
+#: templates/odm/partials/filters.php:43
 msgid "Country"
 msgstr ""
 
 #: templates/default/partials/filters.php:58
-#: templates/new/partials/filters.php:29
+#: templates/odm/partials/filters.php:44
 msgid "Select country"
 msgstr ""
 
 #: templates/default/partials/filters.php:85
-#: templates/new/partials/filters.php:56
+#: templates/odc/partials/filters.php:47 templates/odm/partials/filters.php:74
 msgid "Language"
 msgstr ""
 
 #: templates/default/partials/filters.php:86
-#: templates/new/partials/filters.php:57
+#: templates/odc/partials/filters.php:48 templates/odm/partials/filters.php:75
 msgid "Select language"
 msgstr ""
 
 #: templates/default/partials/filters.php:107
-#: templates/new/partials/filters.php:78
+#: templates/odc/partials/filters.php:75 templates/odm/partials/filters.php:102
 msgid "License"
 msgstr ""
 
 #: templates/default/partials/filters.php:108
-#: templates/new/partials/filters.php:79
+#: templates/odc/partials/filters.php:76 templates/odm/partials/filters.php:103
 msgid "Select license"
 msgstr ""
 
 #: templates/default/partials/filters.php:128
-#: templates/new/partials/filters.php:110
+#: templates/odm/partials/filters.php:140
 msgid "Search Filter"
 msgstr ""
 
-#: templates/default/solr_search.php:158 templates/new/solr_search.php:205
+#: templates/default/solr_search.php:155 templates/odc/solr_search.php:219
+#: templates/odm/solr_search.php:207
 msgid ""
 "wp-odm_solr plugin is not properly configured. Please contact the system's "
 "administrator"
 msgstr ""
 
-#: templates/default/solr_search.php:179 templates/default/solr_search.php:193
+#: templates/default/solr_search.php:176 templates/default/solr_search.php:190
 msgid "No result found"
 msgstr ""
 
-#: templates/new/partials/filters.php:99
-msgid "Sorting"
+#: templates/odc/partials/ckan_result_template.php:128
+msgid "Download:"
 msgstr ""
 
-#: templates/new/partials/filters.php:101
-#: templates/new/partials/filters.php:102
-msgid "Sort by"
+#: templates/odc/partials/filters.php:103
+msgid "Year"
 msgstr ""
 
-#: templates/new/partials/filters.php:103
-msgid "Relevance"
+#: templates/odc/partials/filters.php:104
+msgid "Select year"
 msgstr ""
 
-#: templates/new/partials/filters.php:104
-msgid "Date modified"
+#: templates/odc/partials/filters.php:120
+msgid "Search"
 msgstr ""
 
-#: templates/new/solr_search.php:217
-msgid "Search Results"
+#: templates/odc/partials/filters.php:121
+msgid "Clear"
 msgstr ""
 
-#: templates/new/solr_search.php:245
-msgid "Explore more"
-msgstr ""
-
-#: templates/new/solr_search.php:265
+#: templates/odc/solr_search.php:281 templates/odm/solr_search.php:319
 msgid " found for"
 msgstr ""
 
-#: templates/new/solr_search.php:354
-msgid "results"
+#: templates/odc/solr_search.php:287 templates/odc/solr_search.php:288
+#: templates/odm/partials/filters.php:131
+#: templates/odm/partials/filters.php:132
+msgid "Sort by"
+msgstr ""
+
+#: templates/odc/solr_search.php:289 templates/odm/partials/filters.php:133
+msgid "Relevance"
+msgstr ""
+
+#: templates/odc/solr_search.php:290 templates/odm/partials/filters.php:134
+msgid "Date modified"
+msgstr ""
+
+#: templates/odm/partials/filters.php:129
+msgid "Sorting"
+msgstr ""
+
+#: templates/odm/solr_search.php:248
+msgid "Search Results"
+msgstr ""
+
+#: templates/odm/solr_search.php:281
+msgid "Explore more"
 msgstr ""
 
 #: templates/settings.php:25
@@ -351,6 +440,6 @@ msgstr ""
 msgid "Select template"
 msgstr ""
 
-#: wp-odm_solr.php:153
+#: wp-odm_solr.php:182
 msgid "You do not have sufficient permissions to access this page."
 msgstr ""
