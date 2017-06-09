@@ -71,4 +71,13 @@
 	margin-right: 10px;
 }
 
+.data_description img{
+	float:left;
+	max-width: 80px;
+	max-height: 80px;
+	margin: 5px 10px 5px 0;
+	border: 1px solid #c8c8c8;
+	padding: 5px;
+}
+
 
