@@ -2,9 +2,10 @@
   <?php
   $title = wp_odm_solr_parse_multilingual_ckan_content($document->extras_title_translated,odm_language_manager()->get_current_language(),$document->title);
   $title = wp_odm_solr_highlight_search_words($s,$title);
+  $link_to_dataset = wpckan_get_link_to_dataset($document->id);
   ?>
   <h4 class="data_title ten columns">
-    <a target="_blank" href="<?php echo wpckan_get_link_to_dataset($document->id) ?>">
+    <a target="_blank" href="<?php echo $link_to_dataset ?>">
 			<i class="<?php echo get_post_type_icon_class($document->dataset_type); ?>"></i>
       <?php echo $title ?>
     </a>
@@ -13,7 +14,7 @@
   <div class="data_format six columns">
     <?php $resource_formats = array_unique($document->res_format); ?>
     <?php foreach ($resource_formats as $format): ?>
-      <span class="meta-label <?php echo strtolower($format); ?>"><?php echo strtolower($format); ?></span>
+      <span class="meta-label <?php echo strtolower($format); ?>"><a href="<?php echo $link_to_dataset ?>"><?php echo strtolower($format); ?></a></span>
     <?php endforeach ?>
   </div>
   
