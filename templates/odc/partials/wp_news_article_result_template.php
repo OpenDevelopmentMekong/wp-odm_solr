@@ -12,6 +12,8 @@
     "show_post_type" => true,
 		"show_meta" => true,
     "meta_fields" => $meta_fields,
+    "max_num_topics" => 5,
+    "max_num_tags" => 5,
 		"show_source_meta" => true,
 		"show_thumbnail" => true,
 		"show_excerpt" => true,
