@@ -56,14 +56,14 @@
     <?php endif; ?>
     <!-- Date -->    
     <li class="data_meta">
-      <i class="fa fa-pencil"></i>
+      <i class="fa fa-clock-o"></i>
       <span>
         <?php          
           if (odm_language_manager()->get_current_language() == 'km'):
-            $date = wp_solr_print_date($document->metadata_modified,"d.M.Y"); 
+            $date = wp_solr_print_date($document->metadata_created,"d.M.Y"); 
 					  echo convert_date_to_kh_date($date);
 					else:
-            echo wp_solr_print_date($document->metadata_modified); 
+            echo wp_solr_print_date($document->metadata_created); 
 					endif; ?>
       </span>
     </li>

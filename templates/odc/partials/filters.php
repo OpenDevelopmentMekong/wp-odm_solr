@@ -100,14 +100,14 @@
 
 <!-- YEAR FILTER -->
 <div class="adv-nav-input three columns">
-  <label for="metadata_modified"><?php _e('Year', 'wp-odm_solr'); ?></label>
-  <select id="metadata_modified" name="metadata_modified" class="filter_box" data-placeholder="<?php _e('Select year', 'wp-odm_solr'); ?>">
-    <option value="all" <?php if (isset($param_metadata_modified) || $param_metadata_modified == 'all') echo 'selected'; ?>><?php _e('All','wp-odm_solr') ?></option>
+  <label for="metadata_created"><?php _e('Year', 'wp-odm_solr'); ?></label>
+  <select id="metadata_created" name="metadata_created" class="filter_box" data-placeholder="<?php _e('Select year', 'wp-odm_solr'); ?>">
+    <option value="all" <?php if (isset($param_metadata_created) || $param_metadata_created == 'all') echo 'selected'; ?>><?php _e('All','wp-odm_solr') ?></option>
     <?php
-        if (array_key_exists("metadata_modified",$facets[$param_type])):
-          $year_facets = $facets[$param_type]["metadata_modified"];
+        if (array_key_exists("metadata_created",$facets[$param_type])):
+          $year_facets = $facets[$param_type]["metadata_created"];
           foreach ($year_facets as $year => $count): 
-            $selected = $year == $param_metadata_modified; ?>
+            $selected = $year == $param_metadata_created; ?>
             <option value="<?php echo $year; ?>" <?php if($selected) echo 'selected'; ?>><?php echo $year . " (" . $count . ")"; ?></option>
         <?php
           endforeach;

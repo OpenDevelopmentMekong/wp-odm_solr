@@ -131,7 +131,8 @@
   <label for="sorting"><?php _e('Sort by', 'wp-odm_solr'); ?></label>
   <select id="sorting" name="sorting" class="filter_box" data-placeholder="<?php _e('Sort by', 'wp-odm_solr'); ?>">
     <option <?php if($param_sorting == "score") echo 'selected'; ?> value="score"><?php _e('Relevance','wp-odm_solr') ?></option>
-  	<option <?php if($param_sorting == "metadata_modified") echo 'selected'; ?> value="metadata_modified"><?php _e('Date modified','wp-odm_solr') ?></option>
+  	<option <?php if($param_sorting == "metadata_modified") echo 'selected'; ?> value="metadata_modified"><?php _e('Creation date','wp-odm_solr') ?></option>
+    <option <?php if($param_sorting == "metadata_created") echo 'selected'; ?> value="metadata_created"><?php _e('Modification date','wp-odm_solr') ?></option>
   </select>
 </div>
 <!-- END OF LICENSE FILTER -->
