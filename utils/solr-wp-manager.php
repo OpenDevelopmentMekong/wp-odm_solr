@@ -118,8 +118,10 @@ class WP_Odm_Solr_WP_Manager {
   		$doc->tags = wp_get_post_tags($post->ID, array('fields' => 'names'));
   		$date = new DateTime($post->post_date);
   		$doc->date = $date->format('Y-m-d\TH:i:s\Z');
+      $doc->metadata_created = $date->format('Y-m-d\TH:i:s\Z');
   		$modified = new DateTime($post->post_modified);
   		$doc->modified = $modified->format('Y-m-d\TH:i:s\Z');
+      $doc->metadata_modified = $modified->format('Y-m-d\TH:i:s\Z');
   		$update->addDocument($doc);
   		$update->addCommit();
   		$result = $this->client->update($update);
