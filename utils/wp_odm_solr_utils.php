@@ -97,6 +97,10 @@
     return null;
   }
   
+  function wp_solr_get_search_page_template($template)
+  {
+      include sprintf('%s/templates/'. $template . '/solr_search.php', dirname(dirname(__FILE__)));
+  }
   
   function compareScoresDesc($a, $b)
   {
