@@ -251,7 +251,7 @@
       <div class="advanced-nav-filters ">
         <div class="row">
           <div class="sixteen columns">
-            <div class="content-type-tabs">
+            <div class="content-type-tabs-category">
               <?php include plugin_dir_path(__FILE__). 'partials/content-types.php'; ?>
             </div>
           </div>
