@@ -82,22 +82,22 @@ class WP_Odm_Solr_WP_Manager {
 
       $languages = array();
       if (strpos($post->post_content,"<!--:en-->") > -1 or strpos($post->post_content,"[:en]") > -1):
-          array_push($languages,"en");
+        array_push($languages,"en");
       endif;
       if (strpos($post->post_content,"<!--:km-->") > -1 or strpos($post->post_content,"[:km]") > -1):
-          array_push($languages,"km");
+        array_push($languages,"km");
       endif;
       if (strpos($post->post_content,"<!--:my-->") > -1 or strpos($post->post_content,"[:my]") > -1):
-          array_push($languages,"my");
+        array_push($languages,"my");
       endif;
       if (strpos($post->post_content,"<!--:la-->") > -1 or strpos($post->post_content,"[:la]") > -1):
-          array_push($languages,"la");
+        array_push($languages,"la");
       endif;
       if (strpos($post->post_content,"<!--:th-->") > -1 or strpos($post->post_content,"[:th]") > -1):
-          array_push($languages,"th");
+        array_push($languages,"th");
       endif;
       if (strpos($post->post_content,"<!--:vi-->") > -1 or strpos($post->post_content,"[:vi]") > -1):
-          array_push($languages,"vi");
+        array_push($languages,"vi");
       endif;
 
   		$doc = $update->createDocument();
