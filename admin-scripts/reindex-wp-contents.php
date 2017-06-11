@@ -17,7 +17,7 @@ else:
   //Odm_Solr_WP_Manager()->clear_index();
 
 			$args = array(
-		    'post_type'      => $post_type,
+		    'post_type'      => array('news-article','topic','dashboard','dataviz','profiles','tabular','announcement','site-update','story','map-layer'),
 				'posts_per_page' => $num_posts,
         'offset'         => $offset,
 			);
