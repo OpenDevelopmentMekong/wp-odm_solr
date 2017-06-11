@@ -5,8 +5,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"POT-Creation-Date: 2017-06-09 13:16+0200\n"
-"PO-Revision-Date: 2017-06-09 13:16+0200\n"
+"POT-Creation-Date: 2017-06-11 23:57+0200\n"
+"PO-Revision-Date: 2017-06-11 23:57+0200\n"
 "Last-Translator: thetaung2 <thetaung@phandeeyar.org>, 2017\n"
 "Language-Team: Burmese (https://www.transifex.com/open-development-mekong/teams/27158/"
 "my/)\n"
@@ -189,12 +189,24 @@ msgstr ""
 msgid "Choose template layout"
 msgstr ""
 
+#: templates/category-page/partials/ckan_result_template.php:129
+#: templates/odc/partials/ckan_result_template.php:135
+msgid "Download:"
+msgstr ""
+
+#: templates/category-page/solr_search.php:219 templates/default/solr_search.php:155
+#: templates/odc/solr_search.php:231 templates/odm/solr_search.php:231
+msgid ""
+"wp-odm_solr plugin is not properly configured. Please contact the system's administrator"
+msgstr ""
+"wp-odm_solr plugin သည် ကောင်းမွန်စွာ စီစဥ်ထားခြင်မရှိပါ။ ဤစနစ်ကို ထိန်းသိမ်းစောင့်ရှောက်သူထံကျေးဇူးပြု၍ ဆက်သွယ်ပါ။ "
+
 #: templates/default/partials/filters.php:9 templates/odc/partials/filters.php:4
 msgid "Text search"
 msgstr "စာသားဖြင့်ရှာဖွေခြင်း"
 
 #: templates/default/partials/filters.php:10 templates/odc/partials/filters.php:5
-#: templates/odm/solr_search.php:308
+#: templates/odm/solr_search.php:332
 msgid "Search datasets, topics, news articles..."
 msgstr "datasets များ၊ ခေါင်းစဥ်များ၊ သတင်းဆောင်းပါးများကို ရှာဖွေပါ။"
 
@@ -256,24 +268,13 @@ msgstr "လိုင်စင်"
 msgid "Select license"
 msgstr "လိုင်စင်ကို ရွေးချယ်ပါ"
 
-#: templates/default/partials/filters.php:128 templates/odm/partials/filters.php:140
+#: templates/default/partials/filters.php:128 templates/odm/partials/filters.php:141
 msgid "Search Filter"
 msgstr "ရှာဖွေမှုကို စစ်ထုတ်ခြင်း"
-
-#: templates/default/solr_search.php:155 templates/odc/solr_search.php:219
-#: templates/odm/solr_search.php:207
-msgid ""
-"wp-odm_solr plugin is not properly configured. Please contact the system's administrator"
-msgstr ""
-"wp-odm_solr plugin သည် ကောင်းမွန်စွာ စီစဥ်ထားခြင်မရှိပါ။ ဤစနစ်ကို ထိန်းသိမ်းစောင့်ရှောက်သူထံကျေးဇူးပြု၍ ဆက်သွယ်ပါ။ "
 
 #: templates/default/solr_search.php:176 templates/default/solr_search.php:190
 msgid "No result found"
 msgstr "ရှာမတွေ့ပါ"
-
-#: templates/odc/partials/ckan_result_template.php:128
-msgid "Download:"
-msgstr ""
 
 #: templates/odc/partials/filters.php:103
 msgid "Year"
@@ -291,32 +292,36 @@ msgstr ""
 msgid "Clear"
 msgstr ""
 
-#: templates/odc/solr_search.php:281 templates/odm/solr_search.php:319
+#: templates/odc/solr_search.php:293 templates/odm/solr_search.php:343
 msgid " found for"
 msgstr "အတွက် တွေ့ရှိပါသည်။"
 
-#: templates/odc/solr_search.php:287 templates/odc/solr_search.php:288
+#: templates/odc/solr_search.php:299 templates/odc/solr_search.php:300
 #: templates/odm/partials/filters.php:131 templates/odm/partials/filters.php:132
 msgid "Sort by"
 msgstr "အလိုက် အမျိုးအစားခွဲပါ"
 
-#: templates/odc/solr_search.php:289 templates/odm/partials/filters.php:133
+#: templates/odc/solr_search.php:301 templates/odm/partials/filters.php:133
 msgid "Relevance"
 msgstr "သင့်လျော်မှု"
 
-#: templates/odc/solr_search.php:290 templates/odm/partials/filters.php:134
-msgid "Date modified"
-msgstr "ပြုပြင်ခဲ့သည့်ရက်စွဲ"
+#: templates/odc/solr_search.php:302 templates/odm/partials/filters.php:134
+msgid "Creation date"
+msgstr ""
+
+#: templates/odc/solr_search.php:303 templates/odm/partials/filters.php:135
+msgid "Modification date"
+msgstr ""
 
 #: templates/odm/partials/filters.php:129
 msgid "Sorting"
 msgstr "အမျိုးအစားခွဲခြင်း"
 
-#: templates/odm/solr_search.php:248
+#: templates/odm/solr_search.php:272
 msgid "Search Results"
 msgstr "ရလဒ်များကို ရှာဖွေပါ"
 
-#: templates/odm/solr_search.php:281
+#: templates/odm/solr_search.php:305
 msgid "Explore more"
 msgstr "ပိုမို၍ လေ့လာပါ"
 
@@ -436,6 +441,9 @@ msgstr "template ကို ရွေးချယ်ပါ"
 #: wp-odm_solr.php:182
 msgid "You do not have sufficient permissions to access this page."
 msgstr "သင့်ထံတွင် ဤစာမျက်နှာကို ကြည့်ရှုရန်အတွက် လုံလောက်သည့် ခွင့်ပြုချက်များ မရှိပါ။ "
+
+#~ msgid "Date modified"
+#~ msgstr "ပြုပြင်ခဲ့သည့်ရက်စွဲ"
 
 #~ msgid "results"
 #~ msgstr "ရလဒ်များ"
