@@ -80,10 +80,10 @@ class WP_Odm_Solr_WP_Manager {
     try {
       $update = $this->client->createUpdate();
 
-      $languages = array();
-      if (strpos($post->post_content,"<!--:en-->") > -1 || strpos($post->post_content,"[:en]") > -1):
-        array_push($languages,"en");
-      endif;
+      $languages = array("en");
+      // if (strpos($post->post_content,"<!--:en-->") > -1 || strpos($post->post_content,"[:en]") > -1):
+      //   array_push($languages,"en");
+      // endif;
       if (strpos($post->post_content,"<!--:km-->") > -1 || strpos($post->post_content,"[:km]") > -1):
         array_push($languages,"km");
       endif;
