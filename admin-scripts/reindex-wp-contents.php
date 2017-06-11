@@ -29,7 +29,7 @@ else:
     'status'         => 'publish',
     'meta_key' => 'solr_indexed_at',
 	  'meta_value' => time(),
-	  'meta_compare' => '<'
+	  'meta_compare' => '<='
 	);
 
 	$posts = get_posts($args);
