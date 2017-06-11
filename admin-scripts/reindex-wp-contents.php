@@ -1,5 +1,7 @@
 <?php
 
+include_once dirname(dirname(__FILE__)).'utils/solr-wp-manager.php';
+
 $is_site_admin = in_array('administrator',  wp_get_current_user()->roles);
 
 $num_posts = isset($_GET["num_posts"]) ? $_GET["num_posts"] : 50;
