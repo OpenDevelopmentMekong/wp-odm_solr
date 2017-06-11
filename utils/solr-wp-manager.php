@@ -81,24 +81,24 @@ class WP_Odm_Solr_WP_Manager {
       $update = $this->client->createUpdate();
 
       $languages = array();
-        if (strpos($post->content,"<!--:en-->") > -1 or strpos($post->content,"[:en]") > -1):
-            array_push($languages,"en");
-        endif;
-        if (strpos($post->content,"<!--:km-->") > -1 or strpos($post->content,"[:km]") > -1):
-            array_push($languages,"km");
-        endif;
-        if (strpos($post->content,"<!--:my-->") > -1 or strpos($post->content,"[:my]") > -1):
-            array_push($languages,"my");
-        endif;
-        if (strpos($post->content,"<!--:la-->") > -1 or strpos($post->content,"[:la]") > -1):
-            array_push($languages,"la");
-        endif;
-        if (strpos($post->content,"<!--:th-->") > -1 or strpos($post->content,"[:th]") > -1):
-            array_push($languages,"th");
-        endif;
-        if (strpos($post->content,"<!--:vi-->") > -1 or strpos($post->content,"[:vi]") > -1):
-            array_push($languages,"vi");
-        endif;
+      if (strpos($post->post_content,"<!--:en-->") > -1 or strpos($post->post_content,"[:en]") > -1):
+          array_push($languages,"en");
+      endif;
+      if (strpos($post->post_content,"<!--:km-->") > -1 or strpos($post->post_content,"[:km]") > -1):
+          array_push($languages,"km");
+      endif;
+      if (strpos($post->post_content,"<!--:my-->") > -1 or strpos($post->post_content,"[:my]") > -1):
+          array_push($languages,"my");
+      endif;
+      if (strpos($post->post_content,"<!--:la-->") > -1 or strpos($post->post_content,"[:la]") > -1):
+          array_push($languages,"la");
+      endif;
+      if (strpos($post->post_content,"<!--:th-->") > -1 or strpos($post->post_content,"[:th]") > -1):
+          array_push($languages,"th");
+      endif;
+      if (strpos($post->post_content,"<!--:vi-->") > -1 or strpos($post->post_content,"[:vi]") > -1):
+          array_push($languages,"vi");
+      endif;
 
   		$doc = $update->createDocument();
   		$doc->id = $post->ID;
