@@ -83,6 +83,7 @@ class WP_Odm_Solr_CKAN_Manager {
         "extras_odm_spatial_range" => array(),
         "extras_odm_language" => array(),
         "license_id" => array(),
+        "metadata_created" => array(),
         "metadata_modified" => array()
       ),
     );
@@ -102,7 +103,7 @@ class WP_Odm_Solr_CKAN_Manager {
 
       if (isset($attrs)):
         foreach ($attrs as $key => $value):
-          if ($key == "metadata_modified"):
+          if ($key == "metadata_modified" || $key == "metadata_created"):
             $value = "[ " . $value . "-01-01T00:00:00Z TO " . $value . "-12-31T23:59:59Z]";
           endif;
           if ($key == "vocab_taxonomy"):
@@ -162,7 +163,7 @@ class WP_Odm_Solr_CKAN_Manager {
           $result["facets"][$key] = [];
           foreach($facet as $value => $count) {
                         
-            if ($key == "metadata_modified"):
+            if ($key == "metadata_modified" || $key == "metadata_created"):
               $value = wp_solr_print_date($value,"Y");
               if (!isset($result["facets"][$key][$value])):
                 $result["facets"][$key][$value] = 0;

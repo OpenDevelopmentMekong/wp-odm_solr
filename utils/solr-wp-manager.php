@@ -105,7 +105,7 @@ class WP_Odm_Solr_WP_Manager {
   		$doc->blogid = get_current_blog_id();
       $doc->country_site = odm_country_manager()->get_current_country();
       $doc->odm_spatial_range = odm_country_manager()->get_current_country_code();
-      $doc->odm_language = array();
+      $doc->odm_language = $languages;
       $doc->license_id = "CC-BY-4.0";
   		$doc->blogdomain = get_site_url();
   		$doc->title = $post->post_title;
@@ -180,6 +180,7 @@ class WP_Odm_Solr_WP_Manager {
         "odm_spatial_range" => array(),
         "odm_language" => array(),
         "license_id" => array(),
+        "metadata_created" => array(),
         "metadata_modified" => array()
       ),
     );
@@ -199,7 +200,7 @@ class WP_Odm_Solr_WP_Manager {
 
       if (isset($attrs)):
         foreach ($attrs as $key => $value):
-          if ($key == "metadata_modified"):
+          if ($key == "metadata_modified" || $key == "metadata_created"):
             $value = "[ " . $value . "-01-01T00:00:00Z TO " . $value . "-12-31T23:59:59Z]";
           endif;
           if ($key == "categories"):
@@ -247,7 +248,7 @@ class WP_Odm_Solr_WP_Manager {
           $result["facets"][$key] = [];
           foreach($facet as $value => $count) {
             
-            if ($key == "metadata_modified"):
+            if ($key == "metadata_modified" || $key == "metadata_created"):
               $value = wp_solr_print_date($value,"Y");
               if (!isset($result["facets"][$key][$value])):
                 $result["facets"][$key][$value] = 0;
