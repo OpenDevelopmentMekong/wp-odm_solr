@@ -63,12 +63,12 @@
     <?php endif; ?>
     <!-- Date -->
     <li class="data_meta">
-      <?php if ($param_sorting == "metadata_created"): 
+      <?php if ($param_sorting == "metadata_modified"): 
+        $metadata_date = $document->metadata_modified; ?>
+        <i class="fa fa-pencil"></i>        
+      <?php else: 
         $metadata_date = $document->metadata_created; ?>
         <i class="fa fa-clock-o"></i>
-      <?php else: 
-        $metadata_date = $document->metadata_modified; ?>
-        <i class="fa fa-pencil"></i>
       <?php endif; ?>
       <span>
         <?php          

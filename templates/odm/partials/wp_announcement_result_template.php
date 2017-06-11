@@ -23,7 +23,7 @@
     "solr_search_result" => $document,
   	"header_tag" => true,
     "extra_classes" => "solr_result_two_cols",
-    "date" => $param_sorting
+    "order" => $param_sorting
 	),true);
 
   if (function_exists("restore_current_blog")):
