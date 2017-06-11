@@ -21,8 +21,7 @@
     "show_solr_meta" => false,
     "highlight_words_query" => $param_query,
     "solr_search_result" => $document,
-		"header_tag" => true,
-    "extra_classes" => "solr_result_two_cols"
+		"header_tag" => true
 	),true);
 
   if (function_exists("restore_current_blog")):

@@ -19,7 +19,6 @@ else:
 
   Odm_Solr_WP_Manager()->clear_index();
 
-
 	foreach ( $post_types_to_index as $post_type):
 
 		$current_post_number = 0;
