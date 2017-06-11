@@ -61,16 +61,22 @@
         </span>
       </li>
     <?php endif; ?>
-    <!-- Date -->    
+    <!-- Date -->
     <li class="data_meta">
-      <i class="fa fa-pencil"></i>
+      <?php if ($param_sorting == "metadata_modified"): 
+        $metadata_date = $document->metadata_modified; ?>
+        <i class="fa fa-pencil"></i>        
+      <?php else: 
+        $metadata_date = $document->metadata_created; ?>
+        <i class="fa fa-clock-o"></i>
+      <?php endif; ?>
       <span>
         <?php          
           if (odm_language_manager()->get_current_language() == 'km'):
-            $date = wp_solr_print_date($document->metadata_modified,"d.M.Y"); 
+            $date = wp_solr_print_date($metadata_date,"d.M.Y"); 
 					  echo convert_date_to_kh_date($date);
 					else:
-            echo wp_solr_print_date($document->metadata_modified); 
+            echo wp_solr_print_date($metadata_date); 
 					endif; ?>
       </span>
     </li>

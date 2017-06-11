@@ -131,7 +131,8 @@
     "extras_odm_language" => "extras_odm_language",
     "extras_odm_keywords" => "extras_odm_keywords",
     "license_id" => "license_id",
-    "metadata_modified" => "metadata_modified"
+    "metadata_modified" => "metadata_modified",
+    "metadata_created" => "metadata_created"
   );
 
   // -------------- Get all results --------------- //
@@ -164,6 +165,11 @@
       if (isset($param_metadata_modified) && $param_metadata_modified != 'all'){
         $attrs['metadata_modified'] = $param_metadata_modified;
       }
+      
+      //metadata_created
+      if (isset($param_metadata_created) && $param_metadata_created != 'all'){
+        $attrs['metadata_created'] = $param_metadata_created;
+      }
 
       $attrs["dataset_type"] = $key;
       $attrs["capacity"] = "public";
@@ -189,6 +195,11 @@
       //metadata_modified
       if (isset($param_metadata_modified) && $param_metadata_modified != 'all'){
         $attrs['metadata_modified'] = $param_metadata_modified;
+      }
+      
+      //metadata_created
+      if (isset($param_metadata_created) && $param_metadata_created != 'all'){
+        $attrs['metadata_created'] = $param_metadata_created;
       }
 
       $attrs["type"] = $key;
