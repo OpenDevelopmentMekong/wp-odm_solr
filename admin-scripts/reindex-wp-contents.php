@@ -1,15 +1,11 @@
 <?php
 
-function wp_solr_isSiteAdmin(){
-  return in_array('administrator',  wp_get_current_user()->roles);
-}
-
 // $max_posts_to_index_per_type = 100;
 // $post_types_to_index = array(
 // 	'news-article','topic','dashboard','dataviz','profiles','tabular','announcement','site-update','story','map-layer'
 // );
 
-if(!is_user_logged_in() && !wp_solr_isSiteAdmin()):
+if(!is_user_logged_in() && !in_array('administrator',  wp_get_current_user()->roles)):
 
   echo('You do not have access to this functionality');
 
