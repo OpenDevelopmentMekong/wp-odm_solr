@@ -12,7 +12,7 @@ if(!is_user_logged_in() && !$site_admin):
 
 else:
   
-  $min_id = isset($_GET["min_id"]) ? $_GET["min_id"] : 0;
+  $min_id = isset($_GET["min_id"]) ? $_GET["min_id"] : 1;
   $num_posts = isset($_GET["num_posts"]) ? $_GET["num_posts"] : 50;
 	
   //echo "Clearing WP index" . nl2br("\n");
@@ -20,11 +20,10 @@ else:
 
 	//foreach ( $post_types_to_index as $post_type):
 
-		$current_post_number = 0;
-
 		$args = array(
 			'posts_per_page' => $num_posts,
       'offset'         => $min_id,
+      'post_status'    => 'publish',
       'orderby'        => 'ID',
       'order'          => 'ASC',
 		);
@@ -46,7 +45,6 @@ else:
     
     if (count($posts) == 0):
       echo("Indexing complete, no posts found");
-      header("HTTP/1.0 404 Not Found");
     endif;
 
 	//endforeach;
