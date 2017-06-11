@@ -24,9 +24,12 @@ else:
     'post_type'      => $supported_post_types,
 		'posts_per_page' => $num_posts,
     'offset'         => $offset,
-    'orderby'         => 'modified',
+    'orderby'         => 'ID',
     'order'         => 'ASC',
-    'status'         => 'publish'
+    'status'         => 'publish',
+    'meta_key' => 'solr_indexed_at',
+	  'meta_value' => time(),
+	  'meta_compare' => '<'
 	);
 
 	$posts = get_posts($args);
