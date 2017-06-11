@@ -22,8 +22,7 @@ else:
 	$args = array(
     'post_type'      => $supported_post_types,
 		'posts_per_page' => $num_posts,
-    'orderby'         => 'ID',
-    'order'         => 'rand',
+    'orderby'         => 'rand',
     'status'         => 'publish'
 	);
 
