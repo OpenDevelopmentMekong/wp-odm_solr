@@ -1,5 +1,5 @@
 <?php
-require_once('wp-load.php');
+
 $site_admin = in_array('administrator',  wp_get_current_user()->roles);
 // $max_posts_to_index_per_type = 100;
 // $post_types_to_index = array(
@@ -21,11 +21,7 @@ else:
 	//foreach ( $post_types_to_index as $post_type):
 
 		$args = array(
-			'posts_per_page' => $num_posts,
-      'offset'         => $min_id,
-      'post_status'    => 'publish',
-      'orderby'        => 'ID',
-      'order'          => 'ASC'
+			'post__in' => array(1,2,3,4,5,6,7,8,9,10)
 		);
 
 		$posts = get_posts($args);
