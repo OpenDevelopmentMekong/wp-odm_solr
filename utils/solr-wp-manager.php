@@ -80,32 +80,32 @@ class WP_Odm_Solr_WP_Manager {
     try {
       $update = $this->client->createUpdate();
 
-      $languages = array();
-        if (strpos("<!--:en-->",$post->content) > -1 or strpos("[:en]",$post->content) > -1):
-            array_push($languages,"en");
-        endif;
-        if (strpos("<!--:km-->",$post->content) > -1 or strpos("[:km]",$post->content) > -1):
-            array_push($languages,"km");
-        endif;
-        if (strpos("<!--:my-->",$post->content) > -1 or strpos("[:my]",$post->content) > -1):
-            array_push($languages,"my");
-        endif;
-        if (strpos("<!--:la-->",$post->content) > -1 or strpos("[:la]",$post->content) > -1):
-            array_push($languages,"la");
-        endif;
-        if (strpos("<!--:th-->",$post->content) > -1 or strpos("[:th]",$post->content) > -1):
-            array_push($languages,"th");
-        endif;
-        if (strpos("<!--:vi-->",$post->content) > -1 or strpos("[:vi]",$post->content) > -1):
-            array_push($languages,"vi");
-        endif;
+      $languages = array("en");
+      // if (strpos($post->post_content,"<!--:en-->") > -1 || strpos($post->post_content,"[:en]") > -1):
+      //   array_push($languages,"en");
+      // endif;
+      if (strpos($post->post_content,"<!--:km-->") > -1 || strpos($post->post_content,"[:km]") > -1):
+        array_push($languages,"km");
+      endif;
+      if (strpos($post->post_content,"<!--:my-->") > -1 || strpos($post->post_content,"[:my]") > -1):
+        array_push($languages,"my");
+      endif;
+      if (strpos($post->post_content,"<!--:la-->") > -1 || strpos($post->post_content,"[:la]") > -1):
+        array_push($languages,"la");
+      endif;
+      if (strpos($post->post_content,"<!--:th-->") > -1 || strpos($post->post_content,"[:th]") > -1):
+        array_push($languages,"th");
+      endif;
+      if (strpos($post->post_content,"<!--:vi-->") > -1 || strpos($post->post_content,"[:vi]") > -1):
+        array_push($languages,"vi");
+      endif;
 
   		$doc = $update->createDocument();
   		$doc->id = $post->ID;
   		$doc->blogid = get_current_blog_id();
       $doc->country_site = odm_country_manager()->get_current_country();
       $doc->odm_spatial_range = odm_country_manager()->get_current_country_code();
-      $doc->odm_language = $languages;
+      $doc->odm_language = array();
       $doc->license_id = "CC-BY-4.0";
   		$doc->blogdomain = get_site_url();
   		$doc->title = $post->post_title;
