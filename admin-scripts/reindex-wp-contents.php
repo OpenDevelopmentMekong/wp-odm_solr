@@ -23,9 +23,7 @@ else:
 		$args = array(
 			'posts_per_page' => 50,
       'offset'         => 0,
-      'post_status'    => 'publish',
-      'orderby'        => 'ID',
-      'order'          => 'ASC'
+      'post_status'    => 'publish'
 		);
 
 		$posts = get_posts($args);
