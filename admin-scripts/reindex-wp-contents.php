@@ -2,10 +2,9 @@
 
 $is_site_admin = in_array('administrator',  wp_get_current_user()->roles);
 
-$max_posts_to_index_per_type = 100;
-$post_types_to_index = array(
-	'news-article','topic','dashboard','dataviz','profiles','tabular','announcement','site-update','story','map-layer'
-);
+$num_posts = isset($_GET["num_posts"]) ? $_GET["num_posts"] : 50;
+$offset = isset($_GET["offset"]) ? $_GET["offset"] : 0;
+$post_type = 'topic';
 
 if(!is_user_logged_in() && !$is_site_admin):
 
@@ -17,16 +16,10 @@ else:
 
   //Odm_Solr_WP_Manager()->clear_index();
 
-	foreach ( $post_types_to_index as $post_type):
-
-		$current_post_number = 0;
-
-		do{
-
 			$args = array(
 		    'post_type'      => $post_type,
-				'posts_per_page' => 50,
-        'offset'         => $current_post_number,
+				'posts_per_page' => $num_posts,
+        'offset'         => $offset,
 			);
 
 			$posts = get_posts($args);
@@ -42,13 +35,8 @@ else:
 
 			wp_reset_postdata();
 
-			$current_post_number += count($posts);
-
-		}while (count($posts) > 0 && $current_post_number < ($max_posts_to_index_per_type + 50));
-
 		echo("Indexed " . count($current_post_number) . " of type " . $post_type . nl2br("\n"));
 
-	endforeach;
 
 endif;
 
