@@ -21,7 +21,7 @@ else:
 	//foreach ( $post_types_to_index as $post_type):
 
 		$args = array(
-			'post__in' => array(1,2,3,4,5,6,7,8,9,10)
+			'post__in' => array(1124229)
 		);
 
 		$posts = get_posts($args);
