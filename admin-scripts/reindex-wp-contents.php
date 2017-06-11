@@ -23,7 +23,7 @@ else:
 		$args = array(
       'post_type'      => 'topic',
       'posts_per_page' => 50,
-      'offset'         => 0,
+      'offset'         => 0
 		);
 
 		$posts = get_posts($args);
