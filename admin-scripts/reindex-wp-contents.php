@@ -21,6 +21,7 @@ else:
 	//foreach ( $post_types_to_index as $post_type):
 
   $args = array(
+    'post_type' => 'topic',
     'post_status' => 'publish',
     'post__in' => array(1124229) 
   );
