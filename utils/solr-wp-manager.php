@@ -81,22 +81,22 @@ class WP_Odm_Solr_WP_Manager {
       $update = $this->client->createUpdate();
 
       $languages = array();
-        if (strpos("<!--:en-->",$post->content) > -1 or strpos("[:en]",$post->content) > -1):
+        if (strpos($post->content,"<!--:en-->") > -1 or strpos($post->content,"[:en]") > -1):
             array_push($languages,"en");
         endif;
-        if (strpos("<!--:km-->",$post->content) > -1 or strpos("[:km]",$post->content) > -1):
+        if (strpos($post->content,"<!--:km-->") > -1 or strpos($post->content,"[:km]") > -1):
             array_push($languages,"km");
         endif;
-        if (strpos("<!--:my-->",$post->content) > -1 or strpos("[:my]",$post->content) > -1):
+        if (strpos($post->content,"<!--:my-->") > -1 or strpos($post->content,"[:my]") > -1):
             array_push($languages,"my");
         endif;
-        if (strpos("<!--:la-->",$post->content) > -1 or strpos("[:la]",$post->content) > -1):
+        if (strpos($post->content,"<!--:la-->") > -1 or strpos($post->content,"[:la]") > -1):
             array_push($languages,"la");
         endif;
-        if (strpos("<!--:th-->",$post->content) > -1 or strpos("[:th]",$post->content) > -1):
+        if (strpos($post->content,"<!--:th-->") > -1 or strpos($post->content,"[:th]") > -1):
             array_push($languages,"th");
         endif;
-        if (strpos("<!--:vi-->",$post->content) > -1 or strpos("[:vi]",$post->content) > -1):
+        if (strpos($post->content,"<!--:vi-->") > -1 or strpos($post->content,"[:vi]") > -1):
             array_push($languages,"vi");
         endif;
 
