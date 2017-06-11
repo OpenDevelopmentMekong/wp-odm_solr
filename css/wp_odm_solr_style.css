@@ -6,6 +6,10 @@
 	padding: 0px;
 }
 
+.solr_result_two_cols:nth-child(2n+1) {
+    clear: left;
+}
+
 .search_field{
 	width: 100%;
 }
@@ -137,6 +141,7 @@
 	font-size: 14px;
 	display: block;
 }
+
 select#sorting{
 	margin-bottom: 0 !important;
 }
@@ -159,3 +164,4 @@ select#sorting{
 .tooltip:hover .tooltip-text {
     visibility: visible;
 }
+
