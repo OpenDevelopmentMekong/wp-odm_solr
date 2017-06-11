@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"POT-Creation-Date: 2017-06-09 13:16+0200\n"
-"PO-Revision-Date: 2017-06-09 13:16+0200\n"
+"POT-Creation-Date: 2017-06-11 23:57+0200\n"
+"PO-Revision-Date: 2017-06-11 23:57+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: th\n"
@@ -190,13 +190,26 @@ msgstr ""
 msgid "Choose template layout"
 msgstr ""
 
+#: templates/category-page/partials/ckan_result_template.php:129
+#: templates/odc/partials/ckan_result_template.php:135
+msgid "Download:"
+msgstr ""
+
+#: templates/category-page/solr_search.php:219
+#: templates/default/solr_search.php:155 templates/odc/solr_search.php:231
+#: templates/odm/solr_search.php:231
+msgid ""
+"wp-odm_solr plugin is not properly configured. Please contact the system's "
+"administrator"
+msgstr ""
+
 #: templates/default/partials/filters.php:9
 #: templates/odc/partials/filters.php:4
 msgid "Text search"
 msgstr ""
 
 #: templates/default/partials/filters.php:10
-#: templates/odc/partials/filters.php:5 templates/odm/solr_search.php:308
+#: templates/odc/partials/filters.php:5 templates/odm/solr_search.php:332
 msgid "Search datasets, topics, news articles..."
 msgstr ""
 
@@ -261,23 +274,12 @@ msgid "Select license"
 msgstr ""
 
 #: templates/default/partials/filters.php:128
-#: templates/odm/partials/filters.php:140
+#: templates/odm/partials/filters.php:141
 msgid "Search Filter"
-msgstr ""
-
-#: templates/default/solr_search.php:155 templates/odc/solr_search.php:219
-#: templates/odm/solr_search.php:207
-msgid ""
-"wp-odm_solr plugin is not properly configured. Please contact the system's "
-"administrator"
 msgstr ""
 
 #: templates/default/solr_search.php:176 templates/default/solr_search.php:190
 msgid "No result found"
-msgstr ""
-
-#: templates/odc/partials/ckan_result_template.php:128
-msgid "Download:"
 msgstr ""
 
 #: templates/odc/partials/filters.php:103
@@ -296,33 +298,37 @@ msgstr ""
 msgid "Clear"
 msgstr ""
 
-#: templates/odc/solr_search.php:281 templates/odm/solr_search.php:319
+#: templates/odc/solr_search.php:293 templates/odm/solr_search.php:343
 msgid " found for"
 msgstr ""
 
-#: templates/odc/solr_search.php:287 templates/odc/solr_search.php:288
+#: templates/odc/solr_search.php:299 templates/odc/solr_search.php:300
 #: templates/odm/partials/filters.php:131
 #: templates/odm/partials/filters.php:132
 msgid "Sort by"
 msgstr ""
 
-#: templates/odc/solr_search.php:289 templates/odm/partials/filters.php:133
+#: templates/odc/solr_search.php:301 templates/odm/partials/filters.php:133
 msgid "Relevance"
 msgstr ""
 
-#: templates/odc/solr_search.php:290 templates/odm/partials/filters.php:134
-msgid "Date modified"
+#: templates/odc/solr_search.php:302 templates/odm/partials/filters.php:134
+msgid "Creation date"
+msgstr ""
+
+#: templates/odc/solr_search.php:303 templates/odm/partials/filters.php:135
+msgid "Modification date"
 msgstr ""
 
 #: templates/odm/partials/filters.php:129
 msgid "Sorting"
 msgstr ""
 
-#: templates/odm/solr_search.php:248
+#: templates/odm/solr_search.php:272
 msgid "Search Results"
 msgstr ""
 
-#: templates/odm/solr_search.php:281
+#: templates/odm/solr_search.php:305
 msgid "Explore more"
 msgstr ""
 

@@ -4,8 +4,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"POT-Creation-Date: 2017-06-09 13:16+0200\n"
-"PO-Revision-Date: 2017-06-09 13:16+0200\n"
+"POT-Creation-Date: 2017-06-11 23:57+0200\n"
+"PO-Revision-Date: 2017-06-11 23:57+0200\n"
 "Last-Translator: ChandaraKhun <chandara@opendevcam.net>, 2017\n"
 "Language-Team: Khmer (https://www.transifex.com/open-development-mekong/teams/27158/km/)\n"
 "Language: km\n"
@@ -187,12 +187,24 @@ msgstr ""
 msgid "Choose template layout"
 msgstr ""
 
+#: templates/category-page/partials/ckan_result_template.php:129
+#: templates/odc/partials/ckan_result_template.php:135
+msgid "Download:"
+msgstr ""
+
+#: templates/category-page/solr_search.php:219 templates/default/solr_search.php:155
+#: templates/odc/solr_search.php:231 templates/odm/solr_search.php:231
+msgid ""
+"wp-odm_solr plugin is not properly configured. Please contact the system's administrator"
+msgstr ""
+"Plugin សម្រាប់ wp-odm_solr plugin មិនត្រូវបានរៀបចំឲ្យបានត្រឹមត្រូវ។ សូមទំនាក់ទំនងមកកាន់អ្នកគ្រប់គ្រងប្រព័ន្ធកុំព្យូទ័រ"
+
 #: templates/default/partials/filters.php:9 templates/odc/partials/filters.php:4
 msgid "Text search"
 msgstr "ស្វែងរកអត្ថបទ"
 
 #: templates/default/partials/filters.php:10 templates/odc/partials/filters.php:5
-#: templates/odm/solr_search.php:308
+#: templates/odm/solr_search.php:332
 msgid "Search datasets, topics, news articles..."
 msgstr "ស្វែងរកសំណុំទិន្នន័យ ប្រធានបទ អត្ថបទសារព័ត៌មាន ..."
 
@@ -254,24 +266,13 @@ msgstr "អាជ្ញាប័ណ្ណ"
 msgid "Select license"
 msgstr "ជ្រើសរើសអាជ្ញាប័ណ្ណ"
 
-#: templates/default/partials/filters.php:128 templates/odm/partials/filters.php:140
+#: templates/default/partials/filters.php:128 templates/odm/partials/filters.php:141
 msgid "Search Filter"
 msgstr "ស្វែងរកការជ្រើសរើស"
-
-#: templates/default/solr_search.php:155 templates/odc/solr_search.php:219
-#: templates/odm/solr_search.php:207
-msgid ""
-"wp-odm_solr plugin is not properly configured. Please contact the system's administrator"
-msgstr ""
-"Plugin សម្រាប់ wp-odm_solr plugin មិនត្រូវបានរៀបចំឲ្យបានត្រឹមត្រូវ។ សូមទំនាក់ទំនងមកកាន់អ្នកគ្រប់គ្រងប្រព័ន្ធកុំព្យូទ័រ"
 
 #: templates/default/solr_search.php:176 templates/default/solr_search.php:190
 msgid "No result found"
 msgstr "មិនមានលទ្ធផល"
-
-#: templates/odc/partials/ckan_result_template.php:128
-msgid "Download:"
-msgstr ""
 
 #: templates/odc/partials/filters.php:103
 msgid "Year"
@@ -289,32 +290,36 @@ msgstr ""
 msgid "Clear"
 msgstr ""
 
-#: templates/odc/solr_search.php:281 templates/odm/solr_search.php:319
+#: templates/odc/solr_search.php:293 templates/odm/solr_search.php:343
 msgid " found for"
 msgstr "រកឃើញសម្រាប់"
 
-#: templates/odc/solr_search.php:287 templates/odc/solr_search.php:288
+#: templates/odc/solr_search.php:299 templates/odc/solr_search.php:300
 #: templates/odm/partials/filters.php:131 templates/odm/partials/filters.php:132
 msgid "Sort by"
 msgstr "តម្រៀបតាម"
 
-#: templates/odc/solr_search.php:289 templates/odm/partials/filters.php:133
+#: templates/odc/solr_search.php:301 templates/odm/partials/filters.php:133
 msgid "Relevance"
 msgstr "ភាពទាក់ទង"
 
-#: templates/odc/solr_search.php:290 templates/odm/partials/filters.php:134
-msgid "Date modified"
-msgstr "កាលបរិច្ឆេទកែប្រែ"
+#: templates/odc/solr_search.php:302 templates/odm/partials/filters.php:134
+msgid "Creation date"
+msgstr ""
+
+#: templates/odc/solr_search.php:303 templates/odm/partials/filters.php:135
+msgid "Modification date"
+msgstr ""
 
 #: templates/odm/partials/filters.php:129
 msgid "Sorting"
 msgstr "តម្រៀប"
 
-#: templates/odm/solr_search.php:248
+#: templates/odm/solr_search.php:272
 msgid "Search Results"
 msgstr "លទ្ធផលស្វែងរក"
 
-#: templates/odm/solr_search.php:281
+#: templates/odm/solr_search.php:305
 msgid "Explore more"
 msgstr "រុករកបន្ថែម"
 
@@ -437,6 +442,9 @@ msgstr "ជ្រើសរើសពុម្ពគំរូ"
 #: wp-odm_solr.php:182
 msgid "You do not have sufficient permissions to access this page."
 msgstr "លោកអ្នក មិនមានការអនុញ្ញាតគ្រប់គ្រាន់ដើម្បីចូលអានទំព័រនេះទេ"
+
+#~ msgid "Date modified"
+#~ msgstr "កាលបរិច្ឆេទកែប្រែ"
 
 #~ msgid "results"
 #~ msgstr "លទ្ធផល"
