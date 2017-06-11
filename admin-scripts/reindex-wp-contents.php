@@ -22,6 +22,7 @@ else:
         'offset'         => $offset,
         'orderby'         => 'ID',
         'order'         => 'ASC',
+        'status'         => 'publish'
 			);
 
 			$posts = get_posts($args);
