@@ -28,14 +28,14 @@ else:
 
 			foreach ( $posts as $post):
 
-				echo("Indexing post with title:" . $post->post_title . nl2br("\n"));
+				echo("Indexing post with title:" . $post->post_title . " and type " . $post->post_type . nl2br("\n"));
 				//Odm_Solr_WP_Manager()->index_post($post);
 
 			endforeach;
 
 			wp_reset_postdata();
 
-		echo("Indexed " . count($current_post_number) . " of type " . $post_type . nl2br("\n"));
+		  echo("Indexed " . count($posts) . " of type " . $post_type . nl2br("\n"));
 
 
 endif;
