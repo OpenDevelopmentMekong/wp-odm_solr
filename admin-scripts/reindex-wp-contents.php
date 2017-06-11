@@ -19,11 +19,13 @@ else:
   //Odm_Solr_WP_Manager()->clear_index();
 
 	//foreach ( $post_types_to_index as $post_type):
-
+  wp_reset_postdata();	
 		$args = array(
-			'posts_per_page' => 50,
-      'offset'         => 0,
-      'post_status'    => 'publish'
+			'posts_per_page' => $num_posts,
+      'offset'         => $min_id,
+      'post_status'    => 'publish',
+      'orderby'        => 'ID',
+      'order'          => 'ASC'
 		);
 
 		$posts = get_posts($args);
