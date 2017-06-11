@@ -105,7 +105,7 @@ class WP_Odm_Solr_WP_Manager {
   		$doc->blogid = get_current_blog_id();
       $doc->country_site = odm_country_manager()->get_current_country();
       $doc->odm_spatial_range = odm_country_manager()->get_current_country_code();
-      $doc->odm_language = $languages;
+      $doc->odm_language = implode(",",$languages);
       $doc->license_id = "CC-BY-4.0";
   		$doc->blogdomain = get_site_url();
   		$doc->title = $post->post_title;
