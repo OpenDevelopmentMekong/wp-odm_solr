@@ -19,6 +19,19 @@
 .data-advanced-filters .single-filter .button{
   margin-top: 20px;
 }
+.advanced-nav-filters .select2-selection--single{
+	height: 30px;
+}
+.advanced-nav-filters .select2-selection{
+	min-height: 27px;
+}
+.advanced-nav-filters .select2-selection ul li.select2-search{
+	line-height: 20px;
+}
+.advanced-nav-filters .select2-selection .select2-search__field{
+	margin: 0;
+	padding: 0;
+}
 
 .search-page-content{
 	margin-bottom: 20px;
