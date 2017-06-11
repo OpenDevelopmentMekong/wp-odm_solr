@@ -25,7 +25,7 @@ else:
       'offset'         => $min_id,
       'post_status'    => 'publish',
       'orderby'        => 'ID',
-      'order'          => 'ASC',
+      'order'          => 'ASC'
 		);
 
 		$posts = get_posts($args);
