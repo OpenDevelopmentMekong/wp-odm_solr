@@ -21,9 +21,11 @@ else:
 	//foreach ( $post_types_to_index as $post_type):
 
 		$args = array(
-      'post_type'      => 'topic',
-      'posts_per_page' => 50,
-      'offset'         => 0
+			'posts_per_page' => 50,
+      'offset'         => 0,
+      'post_status'    => 'publish',
+      'orderby'        => 'ID',
+      'order'          => 'ASC'
 		);
 
 		$posts = get_posts($args);
