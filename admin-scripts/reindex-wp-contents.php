@@ -20,6 +20,8 @@ else:
 		    'post_type'      => array('news-article','topic','dashboard','dataviz','profiles','tabular','announcement','site-update','story','map-layer'),
 				'posts_per_page' => $num_posts,
         'offset'         => $offset,
+        'orderby'         => 'ID',
+        'order'         => 'ASC',
 			);
 
 			$posts = get_posts($args);
@@ -28,7 +30,7 @@ else:
 
 			foreach ( $posts as $post):
 
-				echo("Indexing post with title:" . $post->post_title . " and type " . $post->post_type . nl2br("\n"));
+				echo("Indexing post with ID: " . $post->ID ." and title:" . $post->post_title . " and type " . $post->post_type . nl2br("\n"));
 				//Odm_Solr_WP_Manager()->index_post($post);
 
 			endforeach;
