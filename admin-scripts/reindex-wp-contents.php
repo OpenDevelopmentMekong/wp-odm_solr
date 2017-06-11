@@ -25,11 +25,8 @@ else:
 		'posts_per_page' => $num_posts,
     'offset'         => $offset,
     'orderby'         => 'ID',
-    'order'         => 'ASC',
-    'status'         => 'publish',
-    'meta_key' => 'solr_indexed_at',
-	  'meta_value' => time(),
-	  'meta_compare' => '<='
+    'order'         => 'rand',
+    'status'         => 'publish'
 	);
 
 	$posts = get_posts($args);
@@ -39,7 +36,6 @@ else:
 	foreach ( $posts as $post):
 		echo("Indexing post with ID: " . $post->ID ." and title:" . $post->post_title . " and type " . $post->post_type . nl2br("\n"));
 		WP_Odm_Solr_WP_Manager()->index_post($post);
-    update_post_meta( $post->ID, "solr_indexed_at", time());
 	endforeach;
 
 	wp_reset_postdata();
