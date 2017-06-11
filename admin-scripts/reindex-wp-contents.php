@@ -17,7 +17,7 @@ else:
 
   if ($clear):
     echo "Clearing WP index" . nl2br("\n");
-    Odm_Solr_WP_Manager()->clear_index();    
+    WP_Odm_Solr_WP_Manager()->clear_index();    
   endif;
 
 	$args = array(
@@ -35,7 +35,7 @@ else:
 
 	foreach ( $posts as $post):
 		echo("Indexing post with ID: " . $post->ID ." and title:" . $post->post_title . " and type " . $post->post_type . nl2br("\n"));
-		WP_Odm_Solr_CKAN_Manager()->index_post($post);
+		WP_Odm_Solr_WP_Manager()->index_post($post);
 	endforeach;
 
 	wp_reset_postdata();
