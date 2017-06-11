@@ -68,7 +68,7 @@
 	float:left;
 	list-style: none;
 	margin-bottom: 0px;
-	padding: 10px 10px;
+	padding: 0 10px;
 }
 
 .content-type-tabs-odc .result_link_list a:hover{
@@ -84,8 +84,12 @@
 .content-type-tabs-odc .result_link_list a {
 	font-size: 16px;
 	display: block;
+	padding-bottom: 10px;
 }
 
+.content-type-tabs-odc .result_link_list.data-number-results-medium a{
+		border-bottom: 2px solid #97D320;
+}
 /* CATEGORY */
 
 .content-type-tabs-category{
@@ -120,3 +124,27 @@
 	font-size: 14px;
 	display: block;
 }
+
+select#sorting{
+	margin-bottom: 0 !important;
+}
+
+.tooltip{
+  position: relative;
+}
+.tooltip-text{
+	visibility: hidden;
+	min-width: 210px;
+	max-width: 250px;
+	background-color: #f7f7f7;
+	text-align: center;
+	border-radius: 6px;
+	padding: 5px 5px;
+	border: 1px solid #ddd;
+	position: absolute;
+	top: 30px
+}
+.tooltip:hover .tooltip-text {
+    visibility: visible;
+}
+
