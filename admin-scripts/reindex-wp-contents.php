@@ -1,5 +1,5 @@
 <?php
-
+require_once('wp-load.php');
 $site_admin = in_array('administrator',  wp_get_current_user()->roles);
 // $max_posts_to_index_per_type = 100;
 // $post_types_to_index = array(
@@ -19,7 +19,7 @@ else:
   //Odm_Solr_WP_Manager()->clear_index();
 
 	//foreach ( $post_types_to_index as $post_type):
-  wp_reset_postdata();	
+
 		$args = array(
 			'posts_per_page' => $num_posts,
       'offset'         => $min_id,
