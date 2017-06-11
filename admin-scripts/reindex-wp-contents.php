@@ -1,6 +1,6 @@
 <?php
 
-function isSiteAdmin(){
+function wp_solr_isSiteAdmin(){
   return in_array('administrator',  wp_get_current_user()->roles);
 }
 
@@ -9,7 +9,7 @@ function isSiteAdmin(){
 // 	'news-article','topic','dashboard','dataviz','profiles','tabular','announcement','site-update','story','map-layer'
 // );
 
-if(!is_user_logged_in() && !isSiteAdmin()):
+if(!is_user_logged_in() && !wp_solr_isSiteAdmin()):
 
   echo('You do not have access to this functionality');
 
