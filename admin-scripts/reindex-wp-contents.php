@@ -5,7 +5,6 @@ include_once dirname(dirname(__FILE__)).'/utils/solr-wp-manager.php';
 $is_site_admin = in_array('administrator',  wp_get_current_user()->roles);
 
 $num_posts = isset($_GET["num_posts"]) ? $_GET["num_posts"] : 50;
-$offset = isset($_GET["offset"]) ? $_GET["offset"] : 0;
 $clear = isset($_GET["clear"]) ? $_GET["clear"] : false;
 $supported_post_types = array('news-article','topic','dashboard','dataviz','profiles','tabular','announcement','site-update','story','map-layer');
 
@@ -23,7 +22,6 @@ else:
 	$args = array(
     'post_type'      => $supported_post_types,
 		'posts_per_page' => $num_posts,
-    'offset'         => $offset,
     'orderby'         => 'ID',
     'order'         => 'rand',
     'status'         => 'publish'
