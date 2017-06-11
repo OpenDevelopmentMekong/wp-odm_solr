@@ -26,12 +26,12 @@ else:
 			'posts_per_page' => $num_posts,
       'offset'         => $min_id,
       'orderby'        => 'ID',
-      'order'        => 'ASC',
+      'order'          => 'ASC',
 		);
 
 		$posts = get_posts($args);
 
-		echo("Batch of " . count($posts) . " posts found with post type:" . nl2br("\n"));
+		echo("Batch of " . count($posts) . " posts found" . nl2br("\n"));
 
 		foreach ( $posts as $post):
 
