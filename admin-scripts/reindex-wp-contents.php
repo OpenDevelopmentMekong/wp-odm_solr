@@ -27,6 +27,7 @@ else:
 
   // Create a new query  
   $myquery = new WP_Query($args);
+  print_r($myquery);
   
   while($myquery->have_posts()) : $myquery->the_post();
     $post = get_post(the_ID());
