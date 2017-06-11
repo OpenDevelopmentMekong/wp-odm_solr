@@ -42,7 +42,7 @@ else:
 
 		wp_reset_postdata();		
 
-		echo("Indexed " . count($posts) . " of type " . $post_type . nl2br("\n"));
+		echo("Indexed " . count($posts) . nl2br("\n"));
     
     if (count($posts) == 0):
       echo("Indexing complete, no posts found");
