@@ -4,7 +4,7 @@ $is_site_admin = in_array('administrator',  wp_get_current_user()->roles);
 
 $num_posts = isset($_GET["num_posts"]) ? $_GET["num_posts"] : 50;
 $offset = isset($_GET["offset"]) ? $_GET["offset"] : 0;
-$post_type = 'topic';
+$supported_post_types = array('news-article','topic','dashboard','dataviz','profiles','tabular','announcement','site-update','story','map-layer');
 
 if(!is_user_logged_in() && !$is_site_admin):
 
@@ -17,7 +17,7 @@ else:
   //Odm_Solr_WP_Manager()->clear_index();
 
 			$args = array(
-		    'post_type'      => array('news-article','topic','dashboard','dataviz','profiles','tabular','announcement','site-update','story','map-layer'),
+		    'post_type'      => $supported_post_types,
 				'posts_per_page' => $num_posts,
         'offset'         => $offset,
         'orderby'         => 'ID',
@@ -38,7 +38,7 @@ else:
 
 			wp_reset_postdata();
 
-		  echo("Indexed " . count($posts) . " of type " . $post_type . nl2br("\n"));
+		  echo("Indexed " . count($posts) . nl2br("\n"));
 
 
 endif;
