@@ -11,7 +11,8 @@
     "post" => $fetched_post,
     "show_post_type" => true,
     "show_meta" => true,
-    "meta_fields" => $meta_fields
+    "meta_fields" => $meta_fields,
+    "order" => $param_sorting
   ), true);
 
   if (function_exists("restore_current_blog")):

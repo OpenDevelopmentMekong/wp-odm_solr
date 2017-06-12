@@ -80,25 +80,25 @@ class WP_Odm_Solr_WP_Manager {
     try {
       $update = $this->client->createUpdate();
 
-      $languages = array();
-        if (strpos("<!--:en-->",$post->content) > -1 or strpos("[:en]",$post->content) > -1):
-            array_push($languages,"en");
-        endif;
-        if (strpos("<!--:km-->",$post->content) > -1 or strpos("[:km]",$post->content) > -1):
-            array_push($languages,"km");
-        endif;
-        if (strpos("<!--:my-->",$post->content) > -1 or strpos("[:my]",$post->content) > -1):
-            array_push($languages,"my");
-        endif;
-        if (strpos("<!--:la-->",$post->content) > -1 or strpos("[:la]",$post->content) > -1):
-            array_push($languages,"la");
-        endif;
-        if (strpos("<!--:th-->",$post->content) > -1 or strpos("[:th]",$post->content) > -1):
-            array_push($languages,"th");
-        endif;
-        if (strpos("<!--:vi-->",$post->content) > -1 or strpos("[:vi]",$post->content) > -1):
-            array_push($languages,"vi");
-        endif;
+      $languages = array("en");
+      // if (strpos($post->post_content,"<!--:en-->") > -1 || strpos($post->post_content,"[:en]") > -1):
+      //   array_push($languages,"en");
+      // endif;
+      if (strpos($post->post_content,"<!--:km-->") > -1 || strpos($post->post_content,"[:km]") > -1):
+        array_push($languages,"km");
+      endif;
+      if (strpos($post->post_content,"<!--:my-->") > -1 || strpos($post->post_content,"[:my]") > -1):
+        array_push($languages,"my");
+      endif;
+      if (strpos($post->post_content,"<!--:la-->") > -1 || strpos($post->post_content,"[:la]") > -1):
+        array_push($languages,"la");
+      endif;
+      if (strpos($post->post_content,"<!--:th-->") > -1 || strpos($post->post_content,"[:th]") > -1):
+        array_push($languages,"th");
+      endif;
+      if (strpos($post->post_content,"<!--:vi-->") > -1 || strpos($post->post_content,"[:vi]") > -1):
+        array_push($languages,"vi");
+      endif;
 
   		$doc = $update->createDocument();
   		$doc->id = $post->ID;
@@ -118,8 +118,10 @@ class WP_Odm_Solr_WP_Manager {
   		$doc->tags = wp_get_post_tags($post->ID, array('fields' => 'names'));
   		$date = new DateTime($post->post_date);
   		$doc->date = $date->format('Y-m-d\TH:i:s\Z');
+      $doc->metadata_created = $date->format('Y-m-d\TH:i:s\Z');
   		$modified = new DateTime($post->post_modified);
   		$doc->modified = $modified->format('Y-m-d\TH:i:s\Z');
+      $doc->metadata_modified = $modified->format('Y-m-d\TH:i:s\Z');
   		$update->addDocument($doc);
   		$update->addCommit();
   		$result = $this->client->update($update);
@@ -178,6 +180,7 @@ class WP_Odm_Solr_WP_Manager {
         "odm_spatial_range" => array(),
         "odm_language" => array(),
         "license_id" => array(),
+        "metadata_created" => array(),
         "metadata_modified" => array()
       ),
     );
@@ -197,7 +200,7 @@ class WP_Odm_Solr_WP_Manager {
 
       if (isset($attrs)):
         foreach ($attrs as $key => $value):
-          if ($key == "metadata_modified"):
+          if ($key == "metadata_modified" || $key == "metadata_created"):
             $value = "[ " . $value . "-01-01T00:00:00Z TO " . $value . "-12-31T23:59:59Z]";
           endif;
           if ($key == "categories"):
@@ -220,7 +223,7 @@ class WP_Odm_Solr_WP_Manager {
   		endif;
 
       if (!empty($text)):
-        $fields_to_query = 'tags^5 categories^4 title^2 content^1';
+        $fields_to_query = 'tags^6 categories^5 title^2 content^1';
         $dismax = $query->getDisMax();
         $dismax->setQueryFields($fields_to_query);
       endif;
@@ -245,7 +248,7 @@ class WP_Odm_Solr_WP_Manager {
           $result["facets"][$key] = [];
           foreach($facet as $value => $count) {
             
-            if ($key == "metadata_modified"):
+            if ($key == "metadata_modified" || $key == "metadata_created"):
               $value = wp_solr_print_date($value,"Y");
               if (!isset($result["facets"][$key][$value])):
                 $result["facets"][$key][$value] = 0;

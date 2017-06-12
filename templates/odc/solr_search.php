@@ -30,6 +30,7 @@
       endif;
     	$param_sorting = isset($_GET['sorting']) ? $_GET['sorting'] : 'score';
       $param_metadata_modified = isset($_GET['metadata_modified']) ? $_GET['metadata_modified'] : 'all';
+      $param_metadata_created = isset($_GET['metadata_created']) ? $_GET['metadata_created'] : 'all';
 
       //================ Filter Values ===================== //
 
@@ -142,7 +143,8 @@
         "extras_odm_language" => "extras_odm_language",
         "extras_odm_keywords" => "extras_odm_keywords",
         "license_id" => "license_id",
-        "metadata_modified" => "metadata_modified"
+        "metadata_modified" => "metadata_modified",
+        "metadata_created" => "metadata_created"
       );
 
       // -------------- Get all results --------------- //
@@ -175,6 +177,11 @@
           if (isset($param_metadata_modified) && $param_metadata_modified != 'all'){
             $attrs['metadata_modified'] = $param_metadata_modified;
           }
+          
+          //metadata_created
+          if (isset($param_metadata_created) && $param_metadata_created != 'all'){
+            $attrs['metadata_created'] = $param_metadata_created;
+          }
 
           $attrs["dataset_type"] = $key;
           $attrs["capacity"] = "public";
@@ -200,6 +207,11 @@
           //metadata_modified
           if (isset($param_metadata_modified) && $param_metadata_modified != 'all'){
             $attrs['metadata_modified'] = $param_metadata_modified;
+          }
+          
+          //metadata_created
+          if (isset($param_metadata_created) && $param_metadata_created != 'all'){
+            $attrs['metadata_created'] = $param_metadata_created;
           }
 
           $attrs["type"] = $key;
@@ -268,7 +280,7 @@
 
               <div class="row">
                 <div class="sixteen columns">
-                  <div class="content-type-tabs">
+                  <div class="content-type-tabs-odc">
                     <?php include plugin_dir_path(__FILE__). 'partials/content-types.php'; ?>
                   </div>
                 </div>
@@ -278,16 +290,17 @@
             <div class="row">
               <div class="eleven columns">
                 <h4>
-                  <?php echo $content_resultcount . ' ' . $all_search_types[$param_type]["title"] . __(' found for','wp-odm_solr') . ' "' . $param_query. '"'; ?>
+                  <?php echo $content_resultcount . ' ' . __($all_search_types[$param_type]["title"],'wp-odm_solr') . __(' found for','wp-odm_solr') . ' "' . $param_query. '"'; ?>
                 </h4>
               </div>
 
               <div class="five columns">
                 <div class="align-right">
                   <label class="left-label" for="sorting"><?php _e('Sort by', 'wp-odm_solr'); ?> </label>
-                  <select id="sorting" name="sorting" data-placeholder="<?php _e('Sort by', 'wp-odm_solr'); ?>">
+                  <select id="sorting" name="sorting" data-placeholder="<?php _e('Sort by', 'wp-odm_solr'); ?>" onchange="this.form.submit()">
                     <option <?php if($param_sorting == "score") echo 'selected'; ?> value="score"><?php _e('Relevance','wp-odm_solr') ?></option>
-                    <option <?php if($param_sorting == "metadata_modified") echo 'selected'; ?> value="metadata_modified"><?php _e('Date modified','wp-odm_solr') ?></option>
+                    <option <?php if($param_sorting == "metadata_created") echo 'selected'; ?> value="metadata_created"><?php _e('Creation date','wp-odm_solr') ?></option>
+                    <option <?php if($param_sorting == "metadata_modified") echo 'selected'; ?> value="metadata_modified"><?php _e('Modification date','wp-odm_solr') ?></option>
                   </select>
                 </div>
               </div>

@@ -4,35 +4,33 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"POT-Creation-Date: 2017-05-04 17:55+0200\n"
-"PO-Revision-Date: 2017-05-04 17:55+0200\n"
+"POT-Creation-Date: 2017-06-11 23:57+0200\n"
+"PO-Revision-Date: 2017-06-11 23:57+0200\n"
 "Last-Translator: ChandaraKhun <chandara@opendevcam.net>, 2017\n"
 "Language-Team: Khmer (https://www.transifex.com/open-development-mekong/teams/27158/km/)\n"
+"Language: km\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: km\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Poedit 1.8.7.1\n"
 "X-Poedit-Basepath: ..\n"
 "X-Poedit-KeywordsList: _;_e;__;_n:1,2;_x:1,2c;_ex:1,2c\n"
+"X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-SearchPath-0: i18n\n"
 "X-Poedit-SearchPath-1: .\n"
 "X-Poedit-SearchPathExcluded-0: components\n"
 "X-Poedit-SearchPathExcluded-1: vendor\n"
-"X-Poedit-SourceCharset: UTF-8\n"
 
 #: i18n/additional-localization.php:2
 msgid "Datasets"
 msgstr "សំណុំទិន្នន័យ"
 
-#: i18n/additional-localization.php:3
-#: templates/default/partials/filters.php:20
+#: i18n/additional-localization.php:3 templates/default/partials/filters.php:20
 msgid "Library publications"
 msgstr "ធនធានបណ្ណា​ល័យ"
 
-#: i18n/additional-localization.php:4
-#: templates/default/partials/filters.php:21
+#: i18n/additional-localization.php:4 templates/default/partials/filters.php:21
 msgid "Laws"
 msgstr "ច្បាប់"
 
@@ -40,8 +38,7 @@ msgstr "ច្បាប់"
 msgid "Agreements"
 msgstr "កិច្ចព្រមព្រៀង"
 
-#: i18n/additional-localization.php:6
-#: templates/default/partials/filters.php:23
+#: i18n/additional-localization.php:6 templates/default/partials/filters.php:23
 msgid "Maps"
 msgstr "ផែនទី"
 
@@ -49,13 +46,11 @@ msgstr "ផែនទី"
 msgid "News articles"
 msgstr "អត្ថបទសារព័ត៌មាន"
 
-#: i18n/additional-localization.php:8
-#: templates/default/partials/filters.php:25
+#: i18n/additional-localization.php:8 templates/default/partials/filters.php:25
 msgid "Topics"
 msgstr "ប្រធានបទ"
 
-#: i18n/additional-localization.php:9
-#: templates/default/partials/filters.php:26
+#: i18n/additional-localization.php:9 templates/default/partials/filters.php:26
 msgid "Profiles"
 msgstr "ព័ត៌មានទិន្នន័យ"
 
@@ -63,13 +58,11 @@ msgstr "ព័ត៌មានទិន្នន័យ"
 msgid "Story"
 msgstr "ដំណើរ​រឿង"
 
-#: i18n/additional-localization.php:11
-#: templates/default/partials/filters.php:27
+#: i18n/additional-localization.php:11 templates/default/partials/filters.php:27
 msgid "Announcements"
 msgstr "សេចក្តីប្រកាស"
 
-#: i18n/additional-localization.php:12
-#: templates/default/partials/filters.php:28
+#: i18n/additional-localization.php:12 templates/default/partials/filters.php:28
 msgid "Site updates"
 msgstr "ការធ្វើបច្ចុប្បន្នភាពលើគេហទំព័រ"
 
@@ -117,22 +110,101 @@ msgstr "ភាសាថៃ"
 msgid "Burmese"
 msgstr "ភាសាភូមា"
 
-#: i18n/additional-localization.php:28
-#: templates/default/partials/filters.php:18
-#: templates/default/partials/filters.php:36
-#: templates/default/partials/filters.php:59
-#: templates/default/partials/filters.php:87
-#: templates/default/partials/filters.php:109
-#: templates/new/partials/filters.php:7 templates/new/partials/filters.php:30
-#: templates/new/partials/filters.php:58 templates/new/partials/filters.php:80
+#: i18n/additional-localization.php:28 templates/default/partials/filters.php:18
+#: templates/default/partials/filters.php:36 templates/default/partials/filters.php:59
+#: templates/default/partials/filters.php:87 templates/default/partials/filters.php:109
+#: templates/odc/partials/filters.php:12 templates/odc/partials/filters.php:105
+#: templates/odm/partials/filters.php:7
 msgid "All"
 msgstr "ទាំងអស់"
 
-#: templates/default/partials/filters.php:9
+#: post-types/search-pages.php:32 post-types/search-pages.php:34
+#: post-types/search-pages.php:35
+msgid "Search pages"
+msgstr ""
+
+#: post-types/search-pages.php:33
+msgid "Search page"
+msgstr ""
+
+#: post-types/search-pages.php:36
+msgid "Add new"
+msgstr ""
+
+#: post-types/search-pages.php:37
+msgid "Add new search page"
+msgstr ""
+
+#: post-types/search-pages.php:38
+msgid "New search page"
+msgstr ""
+
+#: post-types/search-pages.php:39
+msgid "Edit search page"
+msgstr ""
+
+#: post-types/search-pages.php:40
+msgid "View search page"
+msgstr ""
+
+#: post-types/search-pages.php:41
+msgid "All search pages"
+msgstr ""
+
+#: post-types/search-pages.php:42
+msgid "Search search pages"
+msgstr ""
+
+#: post-types/search-pages.php:43
+msgid "Parent search pages:"
+msgstr ""
+
+#: post-types/search-pages.php:44
+msgid "No search page found."
+msgstr ""
+
+#: post-types/search-pages.php:45
+msgid "No search page found in trash."
+msgstr ""
+
+#: post-types/search-pages.php:73
+msgid "Option for search pages"
+msgstr ""
+
+#: post-types/search-pages.php:82
+msgid "Template layout"
+msgstr ""
+
+#: post-types/search-pages.php:95
+msgid "Supported content types"
+msgstr ""
+
+#: post-types/search-pages.php:97
+msgid "Please add the document types that should be supported on this page"
+msgstr ""
+
+#: post-types/search-pages.php:106
+msgid "Choose template layout"
+msgstr ""
+
+#: templates/category-page/partials/ckan_result_template.php:129
+#: templates/odc/partials/ckan_result_template.php:135
+msgid "Download:"
+msgstr ""
+
+#: templates/category-page/solr_search.php:219 templates/default/solr_search.php:155
+#: templates/odc/solr_search.php:231 templates/odm/solr_search.php:231
+msgid ""
+"wp-odm_solr plugin is not properly configured. Please contact the system's administrator"
+msgstr ""
+"Plugin សម្រាប់ wp-odm_solr plugin មិនត្រូវបានរៀបចំឲ្យបានត្រឹមត្រូវ។ សូមទំនាក់ទំនងមកកាន់អ្នកគ្រប់គ្រងប្រព័ន្ធកុំព្យូទ័រ"
+
+#: templates/default/partials/filters.php:9 templates/odc/partials/filters.php:4
 msgid "Text search"
 msgstr "ស្វែងរកអត្ថបទ"
 
-#: templates/default/partials/filters.php:10 templates/new/solr_search.php:254
+#: templates/default/partials/filters.php:10 templates/odc/partials/filters.php:5
+#: templates/odm/solr_search.php:332
 msgid "Search datasets, topics, news articles..."
 msgstr "ស្វែងរកសំណុំទិន្នន័យ ប្រធានបទ អត្ថបទសារព័ត៌មាន ..."
 
@@ -156,95 +228,100 @@ msgstr "កិច្ចព្រមព្រៀង"
 msgid "News"
 msgstr "ព័ត៌មាន​"
 
-#: templates/default/partials/filters.php:34
-#: templates/new/partials/filters.php:5
+#: templates/default/partials/filters.php:34 templates/odc/partials/filters.php:10
+#: templates/odm/partials/filters.php:5
 msgid "Topic"
 msgstr "ប្រធានបទ"
 
-#: templates/default/partials/filters.php:35
-#: templates/new/partials/filters.php:6
+#: templates/default/partials/filters.php:35 templates/odc/partials/filters.php:11
+#: templates/odm/partials/filters.php:6
 msgid "Select term"
 msgstr "ជ្រើសរើសពាក្យ"
 
-#: templates/default/partials/filters.php:57
-#: templates/new/partials/filters.php:28
+#: templates/default/partials/filters.php:57 templates/odm/partials/filters.php:43
 msgid "Country"
 msgstr "ប្រទេស"
 
-#: templates/default/partials/filters.php:58
-#: templates/new/partials/filters.php:29
+#: templates/default/partials/filters.php:58 templates/odm/partials/filters.php:44
 msgid "Select country"
 msgstr "ជ្រើសរើសប្រទេស"
 
-#: templates/default/partials/filters.php:85
-#: templates/new/partials/filters.php:56
+#: templates/default/partials/filters.php:85 templates/odc/partials/filters.php:47
+#: templates/odm/partials/filters.php:74
 msgid "Language"
 msgstr "ភាសា"
 
-#: templates/default/partials/filters.php:86
-#: templates/new/partials/filters.php:57
+#: templates/default/partials/filters.php:86 templates/odc/partials/filters.php:48
+#: templates/odm/partials/filters.php:75
 msgid "Select language"
 msgstr "ជ្រើសរើសភាសា"
 
-#: templates/default/partials/filters.php:107
-#: templates/new/partials/filters.php:78
+#: templates/default/partials/filters.php:107 templates/odc/partials/filters.php:75
+#: templates/odm/partials/filters.php:102
 msgid "License"
 msgstr "អាជ្ញាប័ណ្ណ"
 
-#: templates/default/partials/filters.php:108
-#: templates/new/partials/filters.php:79
+#: templates/default/partials/filters.php:108 templates/odc/partials/filters.php:76
+#: templates/odm/partials/filters.php:103
 msgid "Select license"
 msgstr "ជ្រើសរើសអាជ្ញាប័ណ្ណ"
 
-#: templates/default/partials/filters.php:128
-#: templates/new/partials/filters.php:110
+#: templates/default/partials/filters.php:128 templates/odm/partials/filters.php:141
 msgid "Search Filter"
 msgstr "ស្វែងរកការជ្រើសរើស"
 
-#: templates/default/solr_search.php:158 templates/new/solr_search.php:205
-msgid ""
-"wp-odm_solr plugin is not properly configured. Please contact the system's "
-"administrator"
-msgstr ""
-"Plugin សម្រាប់ wp-odm_solr plugin មិនត្រូវបានរៀបចំឲ្យបានត្រឹមត្រូវ។ "
-"សូមទំនាក់ទំនងមកកាន់អ្នកគ្រប់គ្រងប្រព័ន្ធកុំព្យូទ័រ"
-
-#: templates/default/solr_search.php:179 templates/default/solr_search.php:193
+#: templates/default/solr_search.php:176 templates/default/solr_search.php:190
 msgid "No result found"
 msgstr "មិនមានលទ្ធផល"
 
-#: templates/new/partials/filters.php:99
-msgid "Sorting"
-msgstr "តម្រៀប"
+#: templates/odc/partials/filters.php:103
+msgid "Year"
+msgstr ""
 
-#: templates/new/partials/filters.php:101
-#: templates/new/partials/filters.php:102
-msgid "Sort by"
-msgstr "តម្រៀបតាម"
+#: templates/odc/partials/filters.php:104
+msgid "Select year"
+msgstr ""
 
-#: templates/new/partials/filters.php:103
-msgid "Relevance"
-msgstr "ភាពទាក់ទង"
+#: templates/odc/partials/filters.php:120
+msgid "Search"
+msgstr ""
 
-#: templates/new/partials/filters.php:104
-msgid "Date modified"
-msgstr "កាលបរិច្ឆេទកែប្រែ"
+#: templates/odc/partials/filters.php:121
+msgid "Clear"
+msgstr ""
 
-#: templates/new/solr_search.php:217
-msgid "Search Results"
-msgstr "លទ្ធផលស្វែងរក"
-
-#: templates/new/solr_search.php:245
-msgid "Explore more"
-msgstr "រុករកបន្ថែម"
-
-#: templates/new/solr_search.php:265
+#: templates/odc/solr_search.php:293 templates/odm/solr_search.php:343
 msgid " found for"
 msgstr "រកឃើញសម្រាប់"
 
-#: templates/new/solr_search.php:354
-msgid "results"
-msgstr "លទ្ធផល"
+#: templates/odc/solr_search.php:299 templates/odc/solr_search.php:300
+#: templates/odm/partials/filters.php:131 templates/odm/partials/filters.php:132
+msgid "Sort by"
+msgstr "តម្រៀបតាម"
+
+#: templates/odc/solr_search.php:301 templates/odm/partials/filters.php:133
+msgid "Relevance"
+msgstr "ភាពទាក់ទង"
+
+#: templates/odc/solr_search.php:302 templates/odm/partials/filters.php:134
+msgid "Creation date"
+msgstr ""
+
+#: templates/odc/solr_search.php:303 templates/odm/partials/filters.php:135
+msgid "Modification date"
+msgstr ""
+
+#: templates/odm/partials/filters.php:129
+msgid "Sorting"
+msgstr "តម្រៀប"
+
+#: templates/odm/solr_search.php:272
+msgid "Search Results"
+msgstr "លទ្ធផលស្វែងរក"
+
+#: templates/odm/solr_search.php:305
+msgid "Explore more"
+msgstr "រុករកបន្ថែម"
 
 #: templates/settings.php:25
 msgid "Connecting to Solr"
@@ -255,12 +332,8 @@ msgid "Host"
 msgstr "កន្លែងដាក់ផ្សាយ"
 
 #: templates/settings.php:30
-msgid ""
-"Specify host without protocol, just domain. example: "
-"solr.opendevelopmentmekong.net "
-msgstr ""
-"បញ្ជាក់ពីកន្លែងដាក់ផ្សាយជាមួយវិស័យ ដោយមិនមានប្រូតូកូល។ ឧទាហរណ៍៖  "
-"solr.opendevelopmentmekong.net "
+msgid "Specify host without protocol, just domain. example: solr.opendevelopmentmekong.net "
+msgstr "បញ្ជាក់ពីកន្លែងដាក់ផ្សាយជាមួយវិស័យ ដោយមិនមានប្រូតូកូល។ ឧទាហរណ៍៖  solr.opendevelopmentmekong.net "
 
 #: templates/settings.php:34
 msgid "Port"
@@ -366,6 +439,12 @@ msgstr "ការផ្តល់ពុម្ពគំរូ"
 msgid "Select template"
 msgstr "ជ្រើសរើសពុម្ពគំរូ"
 
-#: wp-odm_solr.php:153
+#: wp-odm_solr.php:182
 msgid "You do not have sufficient permissions to access this page."
 msgstr "លោកអ្នក មិនមានការអនុញ្ញាតគ្រប់គ្រាន់ដើម្បីចូលអានទំព័រនេះទេ"
+
+#~ msgid "Date modified"
+#~ msgstr "កាលបរិច្ឆេទកែប្រែ"
+
+#~ msgid "results"
+#~ msgstr "លទ្ធផល"

@@ -1,58 +1,37 @@
 <?php
 
-function isSiteAdmin(){
-  return in_array('administrator',  wp_get_current_user()->roles);
-}
+include_once dirname(dirname(__FILE__)).'/utils/solr-wp-manager.php';
 
-$max_posts_to_index_per_type = 100;
-$post_types_to_index = array(
-	'news-article','topic','dashboard','dataviz','profiles','tabular','announcement','site-update','story','map-layer'
+$is_site_admin = in_array('administrator',  wp_get_current_user()->roles);
+
+$num_posts = isset($_GET["num_posts"]) ? $_GET["num_posts"] : 500;
+//$clear = isset($_GET["clear"]) ? $_GET["clear"] : false;
+$supported_post_types = array('news-article','topic','dashboard','dataviz','profiles','tabular','announcement','site-update','story','map-layer');
+
+
+// if ($clear):
+//   echo "Clearing WP index" . nl2br("\n");
+//   WP_Odm_Solr_WP_Manager()->clear_index();    
+// endif;
+
+$args = array(
+  'post_type'      => $supported_post_types,
+	'posts_per_page' => $num_posts,
+  'orderby'         => 'rand',
+  'status'         => 'publish'
 );
 
-if(!is_user_logged_in() && !isSiteAdmin()):
+$posts = get_posts($args);
 
-  echo('You do not have access to this functionality');
+echo("Batch of " . count($posts) . nl2br("\n"));
 
-else:
+foreach ( $posts as $post):
+	echo("Indexing post with ID: " . $post->ID ." and title:" . $post->post_title . " and type " . $post->post_type . nl2br("\n"));
+	WP_Odm_Solr_WP_Manager()->index_post($post);
+endforeach;
 
-	echo "Clearing WP index" . nl2br("\n");
+wp_reset_postdata();
 
-  Odm_Solr_WP_Manager()->clear_index();
-
-
-	foreach ( $post_types_to_index as $post_type):
-
-		$current_post_number = 0;
-
-		do{
-
-			$args = array(
-		    'post_type'      => $post_type,
-				'posts_per_page' => 50,
-        'offset'         => $current_post_number,
-			);
-
-			$posts = get_posts($args);
-
-			#echo("Batch of " . count($posts) . " posts found with post type:" . $post_type . nl2br("\n"));
-
-			foreach ( $posts as $post):
-
-				#echo("Indexing post with title:" . $post->post_title . nl2br("\n"));
-				Odm_Solr_WP_Manager()->index_post($post);
-
-			endforeach;
-
-			wp_reset_postdata();
-
-			$current_post_number += count($posts);
-
-		}while (count($posts) > 0 && $current_post_number < ($max_posts_to_index_per_type + 50));
-
-		echo("Indexed " . count($current_post_number) . " of type " . $post_type . nl2br("\n"));
-
-	endforeach;
-
-endif;
+echo("Posts Indexed " . count($posts) . nl2br("\n"));
 
 ?>
