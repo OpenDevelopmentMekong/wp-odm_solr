@@ -1,17 +1,16 @@
-<div class="post-list-item solr_result_two_cols single_result_container eight columns">
+<div class="post-list-item solr_result single_result_container sixteen columns">
   <?php
   $title = wp_odm_solr_parse_multilingual_ckan_content($document->extras_title_translated,odm_language_manager()->get_current_language(),$document->title);
   $title = wp_odm_solr_highlight_search_words($s,$title);
-  $link_to_dataset = wpckan_get_link_to_dataset($document->id,$_SERVER['QUERY_STRING']);
+  $link_to_dataset = wpckan_get_link_to_dataset($document->id);
   ?>
-
   <h4 class="data_title sixteen columns">
     <a target="_blank" href="<?php echo $link_to_dataset ?>">
 			<i class="<?php echo get_post_type_icon_class($document->dataset_type); ?>"></i>
       <?php echo $title ?>
     </a>
   </h4>
-
+  
   <div class="post-meta sixteen columns">
     <ul>
     <!-- Language -->
@@ -55,21 +54,16 @@
         </span>
       </li>
     <?php endif; ?>
-    <!-- Date -->
+    <!-- Date -->    
     <li class="data_meta">
-      <?php if ($param_sorting == "metadata_modified"): 
-        $metadata_date = $document->metadata_modified; ?>
-        <i class="fa fa-pencil"></i>        
-      <?php else: 
-        $metadata_date = $document->metadata_created; ?>
-        <i class="fa fa-clock-o"></i>
-      <?php endif; ?>
+      <i class="fa fa-clock-o"></i>
       <span>
-        <?php
-            $date = wp_solr_print_date($metadata_date,"d.M.Y"); 
+        <?php          
+          if (odm_language_manager()->get_current_language() == 'km'):
+            $date = wp_solr_print_date($document->metadata_created,"d.M.Y"); 
 					  echo convert_date_to_kh_date($date);
 					else:
-            echo wp_solr_print_date($metadata_date); 
+            echo wp_solr_print_date($document->metadata_created); 
 					endif; ?>
       </span>
     </li>
@@ -83,7 +77,7 @@
             $five_topics = array_slice($topics,0,5);
             foreach ($five_topics as $topic): ?>
               <a href="<?php echo generate_link_to_category_from_name($topic) ?>"><?php _e($topic, 'wp-odm_solr'); ?></a>
-              <?php
+              <?php 
               if ($topic !== end($topics)):
                 echo ", ";
               endif;

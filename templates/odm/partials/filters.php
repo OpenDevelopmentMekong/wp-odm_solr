@@ -7,7 +7,9 @@
     <option value="all" <?php if (isset($param_taxonomy) || $param_taxonomy == 'all') echo 'selected'; ?>><?php _e('All','wp-odm_solr') ?></option>
       <?php
       if (array_key_exists("vocab_taxonomy",$facets[$param_type])):
-        foreach(array_keys($top_tier_taxonomic_terms) as $top_tier_term):
+        $top_tier_taxonomic_terms_keys = array_keys($top_tier_taxonomic_terms);
+        sort($top_tier_taxonomic_terms_keys,SORT_STRING);
+        foreach($top_tier_taxonomic_terms_keys as $top_tier_term):
           $available_records = 0;
           $taxonomy_facets = $facets[$param_type]["vocab_taxonomy"];
           foreach ($taxonomy_facets as $value => $count):
@@ -129,7 +131,8 @@
   <label for="sorting"><?php _e('Sort by', 'wp-odm_solr'); ?></label>
   <select id="sorting" name="sorting" class="filter_box" data-placeholder="<?php _e('Sort by', 'wp-odm_solr'); ?>">
     <option <?php if($param_sorting == "score") echo 'selected'; ?> value="score"><?php _e('Relevance','wp-odm_solr') ?></option>
-  	<option <?php if($param_sorting == "metadata_modified") echo 'selected'; ?> value="metadata_modified"><?php _e('Date modified','wp-odm_solr') ?></option>
+  	<option <?php if($param_sorting == "metadata_created") echo 'selected'; ?> value="metadata_created"><?php _e('Creation date','wp-odm_solr') ?></option>
+    <option <?php if($param_sorting == "metadata_modified") echo 'selected'; ?> value="metadata_modified"><?php _e('Modification date','wp-odm_solr') ?></option>
   </select>
 </div>
 <!-- END OF LICENSE FILTER -->

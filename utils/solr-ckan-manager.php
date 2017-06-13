@@ -83,6 +83,7 @@ class WP_Odm_Solr_CKAN_Manager {
         "extras_odm_spatial_range" => array(),
         "extras_odm_language" => array(),
         "license_id" => array(),
+        "metadata_created" => array(),
         "metadata_modified" => array()
       ),
     );
@@ -102,7 +103,7 @@ class WP_Odm_Solr_CKAN_Manager {
 
       if (isset($attrs)):
         foreach ($attrs as $key => $value):
-          if ($key == "metadata_modified"):
+          if ($key == "metadata_modified" || $key == "metadata_created"):
             $value = "[ " . $value . "-01-01T00:00:00Z TO " . $value . "-12-31T23:59:59Z]";
           endif;
           if ($key == "vocab_taxonomy"):
@@ -126,7 +127,7 @@ class WP_Odm_Solr_CKAN_Manager {
   		endif;
 
       if (!empty($text)):
-        $fields_to_query = 'extras_odm_keywords^5 vocab_taxonomy^6 title^2 extras_title_translated^2 extras_notes_translated^1 notes^1 extras_odm_spatial_range^1 extras_odm_province^1';
+        $fields_to_query = 'extras_odm_keywords^6 vocab_taxonomy^5 title^2 extras_title_translated^2 extras_notes_translated^1 notes^1 extras_odm_spatial_range^1 extras_odm_province^1';
         if (isset($attrs["dataset_type"])):
           $typeFilter = $attrs["dataset_type"];
           if ($typeFilter == 'library_record'):
@@ -162,7 +163,7 @@ class WP_Odm_Solr_CKAN_Manager {
           $result["facets"][$key] = [];
           foreach($facet as $value => $count) {
                         
-            if ($key == "metadata_modified"):
+            if ($key == "metadata_modified" || $key == "metadata_created"):
               $value = wp_solr_print_date($value,"Y");
               if (!isset($result["facets"][$key][$value])):
                 $result["facets"][$key][$value] = 0;

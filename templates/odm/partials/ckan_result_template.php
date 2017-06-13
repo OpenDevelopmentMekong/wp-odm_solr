@@ -2,9 +2,10 @@
   <?php
   $title = wp_odm_solr_parse_multilingual_ckan_content($document->extras_title_translated,odm_language_manager()->get_current_language(),$document->title);
   $title = wp_odm_solr_highlight_search_words($s,$title);
+  $link_to_dataset = wpckan_get_link_to_dataset($document->id,$_SERVER['QUERY_STRING']);
   ?>
   <h4 class="data_title ten columns">
-    <a target="_blank" href="<?php echo wpckan_get_link_to_dataset($document->id,$_SERVER['QUERY_STRING']) ?>">
+    <a target="_blank" href="<?php echo $link_to_dataset ?>">
 			<i class="<?php echo get_post_type_icon_class($document->dataset_type); ?>"></i>
       <?php echo $title ?>
     </a>
@@ -13,7 +14,7 @@
   <div class="data_format six columns">
     <?php $resource_formats = array_unique($document->res_format); ?>
     <?php foreach ($resource_formats as $format): ?>
-      <span class="meta-label <?php echo strtolower($format); ?>"><?php echo strtolower($format); ?></span>
+      <span class="meta-label <?php echo strtolower($format); ?>"><a href="<?php echo $link_to_dataset ?>"><?php echo strtolower($format); ?></a></span>
     <?php endforeach ?>
   </div>
 
@@ -62,14 +63,20 @@
     <?php endif; ?>
     <!-- Date -->
     <li class="data_meta">
-      <i class="fa fa-pencil"></i>
+      <?php if ($param_sorting == "metadata_modified"): 
+        $metadata_date = $document->metadata_modified; ?>
+        <i class="fa fa-pencil"></i>        
+      <?php else: 
+        $metadata_date = $document->metadata_created; ?>
+        <i class="fa fa-clock-o"></i>
+      <?php endif; ?>
       <span>
         <?php
           if (odm_language_manager()->get_current_language() == 'km'):
-            $date = wp_solr_print_date($document->metadata_modified,"d.M.Y");
+            $date = wp_solr_print_date($metadata_date,"d.M.Y"); 
 					  echo convert_date_to_kh_date($date);
 					else:
-            echo wp_solr_print_date($document->metadata_modified);
+            echo wp_solr_print_date($metadata_date); 
 					endif; ?>
       </span>
     </li>
@@ -106,20 +113,28 @@
     <?php endif; ?>
     </ul>
   </div>
+  
+  <div class="item-content sixteen columns">        
+    <p class="data_description">
+      
+      <?php
+        $thumbnail_image_url = wp_solr_get_image_url_from_ckan_result($document); 
+        if (isset($thumbnail_image_url)):?>
+          <img src="<?php echo $thumbnail_image_url ?>"></img> 
+      <?php 
+        endif; ?>
 
-  <?php
-    $description = wp_odm_solr_parse_multilingual_ckan_content($document->extras_notes_translated,odm_language_manager()->get_current_language(),$document->notes);
-    $description = strip_tags($description);
-    $description = substr($description,0,400);
-    $description = wp_odm_solr_highlight_search_words($s,$description);
-   ?>
-  <p class="data_description sixteen columns">
-  <?php
-    echo $description;
-    if (strlen($description) >= 400):
-      echo "...";
-    endif;
-    ?>
-  </p>
-
+      <?php
+        $description = wp_odm_solr_parse_multilingual_ckan_content($document->extras_notes_translated,odm_language_manager()->get_current_language(),$document->notes);
+        $description = strip_tags($description);
+        $description = substr($description,0,400);
+        $description = wp_odm_solr_highlight_search_words($s,$description);
+        echo $description;
+        if (strlen($description) >= 400):
+          echo "...";
+        endif;
+        ?>
+    </p>
+  </div>
+  
 </div>

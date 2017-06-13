@@ -5,35 +5,34 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"POT-Creation-Date: 2017-05-04 17:55+0200\n"
-"PO-Revision-Date: 2017-05-04 17:55+0200\n"
+"POT-Creation-Date: 2017-06-11 23:57+0200\n"
+"PO-Revision-Date: 2017-06-11 23:57+0200\n"
 "Last-Translator: thetaung2 <thetaung@phandeeyar.org>, 2017\n"
-"Language-Team: Burmese (https://www.transifex.com/open-development-mekong/teams/27158/my/)\n"
+"Language-Team: Burmese (https://www.transifex.com/open-development-mekong/teams/27158/"
+"my/)\n"
+"Language: my\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Language: my\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Poedit 1.8.7.1\n"
 "X-Poedit-Basepath: ..\n"
 "X-Poedit-KeywordsList: _;_e;__;_n:1,2;_x:1,2c;_ex:1,2c\n"
+"X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-SearchPath-0: i18n\n"
 "X-Poedit-SearchPath-1: .\n"
 "X-Poedit-SearchPathExcluded-0: components\n"
 "X-Poedit-SearchPathExcluded-1: vendor\n"
-"X-Poedit-SourceCharset: UTF-8\n"
 
 #: i18n/additional-localization.php:2
 msgid "Datasets"
 msgstr "Datasets"
 
-#: i18n/additional-localization.php:3
-#: templates/default/partials/filters.php:20
+#: i18n/additional-localization.php:3 templates/default/partials/filters.php:20
 msgid "Library publications"
 msgstr "Library publications"
 
-#: i18n/additional-localization.php:4
-#: templates/default/partials/filters.php:21
+#: i18n/additional-localization.php:4 templates/default/partials/filters.php:21
 msgid "Laws"
 msgstr "ဥပဒေများ"
 
@@ -41,8 +40,7 @@ msgstr "ဥပဒေများ"
 msgid "Agreements"
 msgstr "သဘောတူညီချက်များ"
 
-#: i18n/additional-localization.php:6
-#: templates/default/partials/filters.php:23
+#: i18n/additional-localization.php:6 templates/default/partials/filters.php:23
 msgid "Maps"
 msgstr "မြေပုံများ"
 
@@ -50,13 +48,11 @@ msgstr "မြေပုံများ"
 msgid "News articles"
 msgstr "သတင်းတင်ဆက်မှုများ"
 
-#: i18n/additional-localization.php:8
-#: templates/default/partials/filters.php:25
+#: i18n/additional-localization.php:8 templates/default/partials/filters.php:25
 msgid "Topics"
 msgstr "ခေါင်းစဉ်များ"
 
-#: i18n/additional-localization.php:9
-#: templates/default/partials/filters.php:26
+#: i18n/additional-localization.php:9 templates/default/partials/filters.php:26
 msgid "Profiles"
 msgstr "ပရိုဖိုင်များ "
 
@@ -64,13 +60,11 @@ msgstr "ပရိုဖိုင်များ "
 msgid "Story"
 msgstr "Story"
 
-#: i18n/additional-localization.php:11
-#: templates/default/partials/filters.php:27
+#: i18n/additional-localization.php:11 templates/default/partials/filters.php:27
 msgid "Announcements"
 msgstr "ကြေငြာချက်များ"
 
-#: i18n/additional-localization.php:12
-#: templates/default/partials/filters.php:28
+#: i18n/additional-localization.php:12 templates/default/partials/filters.php:28
 msgid "Site updates"
 msgstr "Site updates"
 
@@ -118,22 +112,101 @@ msgstr "ထိုင်း"
 msgid "Burmese"
 msgstr "ဗမာ"
 
-#: i18n/additional-localization.php:28
-#: templates/default/partials/filters.php:18
-#: templates/default/partials/filters.php:36
-#: templates/default/partials/filters.php:59
-#: templates/default/partials/filters.php:87
-#: templates/default/partials/filters.php:109
-#: templates/new/partials/filters.php:7 templates/new/partials/filters.php:30
-#: templates/new/partials/filters.php:58 templates/new/partials/filters.php:80
+#: i18n/additional-localization.php:28 templates/default/partials/filters.php:18
+#: templates/default/partials/filters.php:36 templates/default/partials/filters.php:59
+#: templates/default/partials/filters.php:87 templates/default/partials/filters.php:109
+#: templates/odc/partials/filters.php:12 templates/odc/partials/filters.php:105
+#: templates/odm/partials/filters.php:7
 msgid "All"
 msgstr "အားလုံး"
 
-#: templates/default/partials/filters.php:9
+#: post-types/search-pages.php:32 post-types/search-pages.php:34
+#: post-types/search-pages.php:35
+msgid "Search pages"
+msgstr ""
+
+#: post-types/search-pages.php:33
+msgid "Search page"
+msgstr ""
+
+#: post-types/search-pages.php:36
+msgid "Add new"
+msgstr ""
+
+#: post-types/search-pages.php:37
+msgid "Add new search page"
+msgstr ""
+
+#: post-types/search-pages.php:38
+msgid "New search page"
+msgstr ""
+
+#: post-types/search-pages.php:39
+msgid "Edit search page"
+msgstr ""
+
+#: post-types/search-pages.php:40
+msgid "View search page"
+msgstr ""
+
+#: post-types/search-pages.php:41
+msgid "All search pages"
+msgstr ""
+
+#: post-types/search-pages.php:42
+msgid "Search search pages"
+msgstr ""
+
+#: post-types/search-pages.php:43
+msgid "Parent search pages:"
+msgstr ""
+
+#: post-types/search-pages.php:44
+msgid "No search page found."
+msgstr ""
+
+#: post-types/search-pages.php:45
+msgid "No search page found in trash."
+msgstr ""
+
+#: post-types/search-pages.php:73
+msgid "Option for search pages"
+msgstr ""
+
+#: post-types/search-pages.php:82
+msgid "Template layout"
+msgstr ""
+
+#: post-types/search-pages.php:95
+msgid "Supported content types"
+msgstr ""
+
+#: post-types/search-pages.php:97
+msgid "Please add the document types that should be supported on this page"
+msgstr ""
+
+#: post-types/search-pages.php:106
+msgid "Choose template layout"
+msgstr ""
+
+#: templates/category-page/partials/ckan_result_template.php:129
+#: templates/odc/partials/ckan_result_template.php:135
+msgid "Download:"
+msgstr ""
+
+#: templates/category-page/solr_search.php:219 templates/default/solr_search.php:155
+#: templates/odc/solr_search.php:231 templates/odm/solr_search.php:231
+msgid ""
+"wp-odm_solr plugin is not properly configured. Please contact the system's administrator"
+msgstr ""
+"wp-odm_solr plugin သည် ကောင်းမွန်စွာ စီစဥ်ထားခြင်မရှိပါ။ ဤစနစ်ကို ထိန်းသိမ်းစောင့်ရှောက်သူထံကျေးဇူးပြု၍ ဆက်သွယ်ပါ။ "
+
+#: templates/default/partials/filters.php:9 templates/odc/partials/filters.php:4
 msgid "Text search"
 msgstr "စာသားဖြင့်ရှာဖွေခြင်း"
 
-#: templates/default/partials/filters.php:10 templates/new/solr_search.php:254
+#: templates/default/partials/filters.php:10 templates/odc/partials/filters.php:5
+#: templates/odm/solr_search.php:332
 msgid "Search datasets, topics, news articles..."
 msgstr "datasets များ၊ ခေါင်းစဥ်များ၊ သတင်းဆောင်းပါးများကို ရှာဖွေပါ။"
 
@@ -157,95 +230,100 @@ msgstr "သဘောတူညီချက်"
 msgid "News"
 msgstr "သတင်းများ"
 
-#: templates/default/partials/filters.php:34
-#: templates/new/partials/filters.php:5
+#: templates/default/partials/filters.php:34 templates/odc/partials/filters.php:10
+#: templates/odm/partials/filters.php:5
 msgid "Topic"
 msgstr "ခေါင်းစဥ်"
 
-#: templates/default/partials/filters.php:35
-#: templates/new/partials/filters.php:6
+#: templates/default/partials/filters.php:35 templates/odc/partials/filters.php:11
+#: templates/odm/partials/filters.php:6
 msgid "Select term"
 msgstr "Select term"
 
-#: templates/default/partials/filters.php:57
-#: templates/new/partials/filters.php:28
+#: templates/default/partials/filters.php:57 templates/odm/partials/filters.php:43
 msgid "Country"
 msgstr "နိုင်ငံ"
 
-#: templates/default/partials/filters.php:58
-#: templates/new/partials/filters.php:29
+#: templates/default/partials/filters.php:58 templates/odm/partials/filters.php:44
 msgid "Select country"
 msgstr "နိုင်ငံရွေးချယ်ပါ"
 
-#: templates/default/partials/filters.php:85
-#: templates/new/partials/filters.php:56
+#: templates/default/partials/filters.php:85 templates/odc/partials/filters.php:47
+#: templates/odm/partials/filters.php:74
 msgid "Language"
 msgstr "ဘာသာစကား"
 
-#: templates/default/partials/filters.php:86
-#: templates/new/partials/filters.php:57
+#: templates/default/partials/filters.php:86 templates/odc/partials/filters.php:48
+#: templates/odm/partials/filters.php:75
 msgid "Select language"
 msgstr "ဘာသာစကား ရွေးချယ်ပါ"
 
-#: templates/default/partials/filters.php:107
-#: templates/new/partials/filters.php:78
+#: templates/default/partials/filters.php:107 templates/odc/partials/filters.php:75
+#: templates/odm/partials/filters.php:102
 msgid "License"
 msgstr "လိုင်စင်"
 
-#: templates/default/partials/filters.php:108
-#: templates/new/partials/filters.php:79
+#: templates/default/partials/filters.php:108 templates/odc/partials/filters.php:76
+#: templates/odm/partials/filters.php:103
 msgid "Select license"
 msgstr "လိုင်စင်ကို ရွေးချယ်ပါ"
 
-#: templates/default/partials/filters.php:128
-#: templates/new/partials/filters.php:110
+#: templates/default/partials/filters.php:128 templates/odm/partials/filters.php:141
 msgid "Search Filter"
 msgstr "ရှာဖွေမှုကို စစ်ထုတ်ခြင်း"
 
-#: templates/default/solr_search.php:158 templates/new/solr_search.php:205
-msgid ""
-"wp-odm_solr plugin is not properly configured. Please contact the system's "
-"administrator"
-msgstr ""
-"wp-odm_solr plugin သည် ကောင်းမွန်စွာ စီစဥ်ထားခြင်မရှိပါ။ ဤစနစ်ကို "
-"ထိန်းသိမ်းစောင့်ရှောက်သူထံကျေးဇူးပြု၍ ဆက်သွယ်ပါ။ "
-
-#: templates/default/solr_search.php:179 templates/default/solr_search.php:193
+#: templates/default/solr_search.php:176 templates/default/solr_search.php:190
 msgid "No result found"
 msgstr "ရှာမတွေ့ပါ"
 
-#: templates/new/partials/filters.php:99
-msgid "Sorting"
-msgstr "အမျိုးအစားခွဲခြင်း"
+#: templates/odc/partials/filters.php:103
+msgid "Year"
+msgstr ""
 
-#: templates/new/partials/filters.php:101
-#: templates/new/partials/filters.php:102
-msgid "Sort by"
-msgstr "အလိုက် အမျိုးအစားခွဲပါ"
+#: templates/odc/partials/filters.php:104
+msgid "Select year"
+msgstr ""
 
-#: templates/new/partials/filters.php:103
-msgid "Relevance"
-msgstr "သင့်လျော်မှု"
+#: templates/odc/partials/filters.php:120
+msgid "Search"
+msgstr ""
 
-#: templates/new/partials/filters.php:104
-msgid "Date modified"
-msgstr "ပြုပြင်ခဲ့သည့်ရက်စွဲ"
+#: templates/odc/partials/filters.php:121
+msgid "Clear"
+msgstr ""
 
-#: templates/new/solr_search.php:217
-msgid "Search Results"
-msgstr "ရလဒ်များကို ရှာဖွေပါ"
-
-#: templates/new/solr_search.php:245
-msgid "Explore more"
-msgstr "ပိုမို၍ လေ့လာပါ"
-
-#: templates/new/solr_search.php:265
+#: templates/odc/solr_search.php:293 templates/odm/solr_search.php:343
 msgid " found for"
 msgstr "အတွက် တွေ့ရှိပါသည်။"
 
-#: templates/new/solr_search.php:354
-msgid "results"
-msgstr "ရလဒ်များ"
+#: templates/odc/solr_search.php:299 templates/odc/solr_search.php:300
+#: templates/odm/partials/filters.php:131 templates/odm/partials/filters.php:132
+msgid "Sort by"
+msgstr "အလိုက် အမျိုးအစားခွဲပါ"
+
+#: templates/odc/solr_search.php:301 templates/odm/partials/filters.php:133
+msgid "Relevance"
+msgstr "သင့်လျော်မှု"
+
+#: templates/odc/solr_search.php:302 templates/odm/partials/filters.php:134
+msgid "Creation date"
+msgstr ""
+
+#: templates/odc/solr_search.php:303 templates/odm/partials/filters.php:135
+msgid "Modification date"
+msgstr ""
+
+#: templates/odm/partials/filters.php:129
+msgid "Sorting"
+msgstr "အမျိုးအစားခွဲခြင်း"
+
+#: templates/odm/solr_search.php:272
+msgid "Search Results"
+msgstr "ရလဒ်များကို ရှာဖွေပါ"
+
+#: templates/odm/solr_search.php:305
+msgid "Explore more"
+msgstr "ပိုမို၍ လေ့လာပါ"
 
 #: templates/settings.php:25
 msgid "Connecting to Solr"
@@ -257,11 +335,8 @@ msgstr "သိမ်းဆည်မှု"
 
 #: templates/settings.php:30
 msgid ""
-"Specify host without protocol, just domain. example: "
-"solr.opendevelopmentmekong.net "
-msgstr ""
-"စည်းမျဥ်းများမပါဘဲ domain ဖြင့်သိမ်းဆည်းမှုကို ဖော်ပြပါ။ ဥပမာ "
-"solr.opendevelopmentmekong.net"
+"Specify host without protocol, just domain. example: solr.opendevelopmentmekong.net "
+msgstr "စည်းမျဥ်းများမပါဘဲ domain ဖြင့်သိမ်းဆည်းမှုကို ဖော်ပြပါ။ ဥပမာ solr.opendevelopmentmekong.net"
 
 #: templates/settings.php:34
 msgid "Port"
@@ -329,9 +404,7 @@ msgstr "WP index ကို အသိပေးမှု အောင်မြင�
 
 #: templates/settings.php:91
 msgid "Problem connecting to WP index. Please, check the specified config."
-msgstr ""
-"ပြဿနာသည် WP index ကို ဆက်သွယ်နေပါသည်။ ကျေးဇူးပြု၍ ဖော်ပြထားသော config ကို "
-"စစ်ဆေးပေးပါ။ "
+msgstr "ပြဿနာသည် WP index ကို ဆက်သွယ်နေပါသည်။ ကျေးဇူးပြု၍ ဖော်ပြထားသော config ကို စစ်ဆေးပေးပါ။ "
 
 #: templates/settings.php:94
 msgid "Ping to CKAN index succeded."
@@ -339,9 +412,7 @@ msgstr "CKAN index ကို အသိပေးမှု အောင်မြ�
 
 #: templates/settings.php:96
 msgid "Problem connecting to CKAN index. Please, check the specified config."
-msgstr ""
-"ပြဿနာသည် CKAN index ကို ဆက်သွယ်နေပါသည်။ ကျေးဇူးပြု၍ ဖော်ပြထားသော config ကို "
-"စစ်ဆေးပေးပါ။ "
+msgstr "ပြဿနာသည် CKAN index ကို ဆက်သွယ်နေပါသည်။ ကျေးဇူးပြု၍ ဖော်ပြထားသော config ကို စစ်ဆေးပေးပါ။ "
 
 #: templates/settings.php:103
 msgid "Logging"
@@ -357,9 +428,7 @@ msgstr "ဖိုင်လမ်းကြောင်းတွင်းသို
 
 #: templates/settings.php:114
 msgid "Path where logs are going to be stored. Mind permissions."
-msgstr ""
-"သိမ်းဆည်မည့် ဝင်ရောက်မှုများကို လမ်းကြောင်းပြပါ။ ခွင့်ပြုချက်များကို "
-"သတိပြုပါ။ "
+msgstr "သိမ်းဆည်မည့် ဝင်ရောက်မှုများကို လမ်းကြောင်းပြပါ။ ခွင့်ပြုချက်များကို သတိပြုပါ။ "
 
 #: templates/settings.php:118
 msgid "Templating"
@@ -369,8 +438,12 @@ msgstr "Templating"
 msgid "Select template"
 msgstr "template ကို ရွေးချယ်ပါ"
 
-#: wp-odm_solr.php:153
+#: wp-odm_solr.php:182
 msgid "You do not have sufficient permissions to access this page."
-msgstr ""
-"သင့်ထံတွင် ဤစာမျက်နှာကို ကြည့်ရှုရန်အတွက် လုံလောက်သည့် ခွင့်ပြုချက်များ "
-"မရှိပါ။ "
+msgstr "သင့်ထံတွင် ဤစာမျက်နှာကို ကြည့်ရှုရန်အတွက် လုံလောက်သည့် ခွင့်ပြုချက်များ မရှိပါ။ "
+
+#~ msgid "Date modified"
+#~ msgstr "ပြုပြင်ခဲ့သည့်ရက်စွဲ"
+
+#~ msgid "results"
+#~ msgstr "ရလဒ်များ"

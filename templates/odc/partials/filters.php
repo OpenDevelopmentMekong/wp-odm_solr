@@ -12,7 +12,9 @@
     <option value="all" <?php if (isset($param_taxonomy) || $param_taxonomy == 'all') echo 'selected'; ?>><?php _e('All','wp-odm_solr') ?></option>
       <?php
       if (array_key_exists("vocab_taxonomy",$facets[$param_type])):
-        foreach(array_keys($top_tier_taxonomic_terms) as $top_tier_term):
+        $top_tier_taxonomic_terms_keys = array_keys($top_tier_taxonomic_terms);
+        sort($top_tier_taxonomic_terms_keys,SORT_STRING);
+        foreach($top_tier_taxonomic_terms_keys as $top_tier_term):
           $available_records = 0;
           $taxonomy_facets = $facets[$param_type]["vocab_taxonomy"];
           foreach ($taxonomy_facets as $value => $count):
@@ -41,10 +43,10 @@
 <!-- END OF TAXONOMY FILTER -->
 
 <!-- LANGUAGE FILTER -->
-<div class="adv-nav-input three columns">
+<!-- <div class="adv-nav-input three columns">
   <label for="language"><?php _e('Language', 'wp-odm_solr'); ?></label>
-  <select multiple id="language" name="language[]" class="filter_box" data-placeholder="<?php _e('Select language', 'wp-odm_solr'); ?>">
-    <?php
+  <select multiple id="language" name="language[]" class="filter_box" data-placeholder="<?php _e('Select language', 'wp-odm_solr'); ?>"> -->
+    <?php /*
       foreach($languages as $key => $value):
         if (array_key_exists("extras_odm_language",$facets[$param_type])):
           $language_facets = $facets[$param_type]["extras_odm_language"];
@@ -63,9 +65,9 @@
             endif;
           endif;
         endif;
-      endforeach; ?>
-  </select>
-</div>
+      endforeach; */?>
+  <!-- </select>
+</div> -->
 <!-- END OF LANGUAGE FILTER -->
 
 <!-- LICENSE FILTER -->
@@ -98,14 +100,14 @@
 
 <!-- YEAR FILTER -->
 <div class="adv-nav-input three columns">
-  <label for="metadata_modified"><?php _e('Year', 'wp-odm_solr'); ?></label>
-  <select id="metadata_modified" name="metadata_modified" class="filter_box" data-placeholder="<?php _e('Select year', 'wp-odm_solr'); ?>">
-    <option value="all" <?php if (isset($param_metadata_modified) || $param_metadata_modified == 'all') echo 'selected'; ?>><?php _e('All','wp-odm_solr') ?></option>
+  <label for="metadata_created"><?php _e('Year', 'wp-odm_solr'); ?></label>
+  <select id="metadata_created" name="metadata_created" class="filter_box" data-placeholder="<?php _e('Select year', 'wp-odm_solr'); ?>">
+    <option value="all" <?php if (isset($param_metadata_created) || $param_metadata_created == 'all') echo 'selected'; ?>><?php _e('All','wp-odm_solr') ?></option>
     <?php
-        if (array_key_exists("metadata_modified",$facets[$param_type])):
-          $year_facets = $facets[$param_type]["metadata_modified"];
-          foreach ($year_facets as $year => $count):
-            $selected = $year == $param_metadata_modified; ?>
+        if (array_key_exists("metadata_created",$facets[$param_type])):
+          $year_facets = $facets[$param_type]["metadata_created"];
+          foreach ($year_facets as $year => $count): 
+            $selected = $year == $param_metadata_created; ?>
             <option value="<?php echo $year; ?>" <?php if($selected) echo 'selected'; ?>><?php echo $year . " (" . $count . ")"; ?></option>
         <?php
           endforeach;
@@ -114,7 +116,7 @@
 </div>
 <!-- END OF YEAR FILTER -->
 
-<div class="one columns align-right">
-  <button class="search-button" type="submit"><i class="fa fa-search" aria-hidden="true"></i></button>
+<div class="four columns align-right">
+  <button class="search-button" type="submit"><i class="fa fa-search" aria-hidden="true"></i> <?php _e('Search','wp-odm_solr') ?></button>
   <a href="?<?php echo $query_var_name ?>="><?php _e('Clear','wp-odm_solr') ?></a>
 </div>
