@@ -81,10 +81,10 @@
             if ($available_records > 0):
               $selected = in_array($license->id,$param_license); ?>
               <option value="<?php echo $license->id; ?>" <?php if($selected) echo 'selected'; ?>>
-                <?php 
+                <?php
                   _e($license->title,'wp-odm_solr');
                   if (!$selected):
-                    echo " (" . $available_records . ")"; 
+                    echo " (" . $available_records . ")";
                   endif; ?>
               </option>
             <?php
@@ -104,7 +104,7 @@
     <?php
         if (array_key_exists("metadata_modified",$facets[$param_type])):
           $year_facets = $facets[$param_type]["metadata_modified"];
-          foreach ($year_facets as $year => $count): 
+          foreach ($year_facets as $year => $count):
             $selected = $year == $param_metadata_modified; ?>
             <option value="<?php echo $year; ?>" <?php if($selected) echo 'selected'; ?>><?php echo $year . " (" . $count . ")"; ?></option>
         <?php
