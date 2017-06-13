@@ -63,20 +63,20 @@
     <?php endif; ?>
     <!-- Date -->
     <li class="data_meta">
-      <?php if ($param_sorting == "metadata_modified"): 
+      <?php if ($param_sorting == "metadata_modified"):
         $metadata_date = $document->metadata_modified; ?>
-        <i class="fa fa-pencil"></i>        
-      <?php else: 
+        <i class="fa fa-pencil"></i>
+      <?php else:
         $metadata_date = $document->metadata_created; ?>
         <i class="fa fa-clock-o"></i>
       <?php endif; ?>
       <span>
         <?php
           if (odm_language_manager()->get_current_language() == 'km'):
-            $date = wp_solr_print_date($metadata_date,"d.M.Y"); 
+            $date = wp_solr_print_date($metadata_date,"d.M.Y");
 					  echo convert_date_to_kh_date($date);
 					else:
-            echo wp_solr_print_date($metadata_date); 
+            echo wp_solr_print_date($metadata_date);
 					endif; ?>
       </span>
     </li>
@@ -113,15 +113,15 @@
     <?php endif; ?>
     </ul>
   </div>
-  
-  <div class="item-content sixteen columns">        
+
+  <div class="item-content sixteen columns">
     <p class="data_description">
-      
+
       <?php
-        $thumbnail_image_url = wp_solr_get_image_url_from_ckan_result($document); 
+        $thumbnail_image_url = wp_solr_get_image_url_from_ckan_result($document);
         if (isset($thumbnail_image_url)):?>
-          <img src="<?php echo $thumbnail_image_url ?>"></img> 
-      <?php 
+          <img src="<?php echo $thumbnail_image_url ?>"></img>
+      <?php
         endif; ?>
 
       <?php
@@ -136,5 +136,5 @@
         ?>
     </p>
   </div>
-  
+
 </div>
