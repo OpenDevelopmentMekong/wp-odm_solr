@@ -83,10 +83,10 @@
             if ($available_records > 0):
               $selected = in_array($license->id,$param_license); ?>
               <option value="<?php echo $license->id; ?>" <?php if($selected) echo 'selected'; ?>>
-                <?php 
+                <?php
                   _e($license->title,'wp-odm_solr');
                   if (!$selected):
-                    echo " (" . $available_records . ")"; 
+                    echo " (" . $available_records . ")";
                   endif; ?>
               </option>
             <?php

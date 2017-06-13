@@ -12,21 +12,21 @@
         foreach($top_tier_taxonomic_terms_keys as $top_tier_term):
           $available_records = 0;
           $taxonomy_facets = $facets[$param_type]["vocab_taxonomy"];
-          foreach ($taxonomy_facets as $value => $count):            
-            $corresponding_top_tier = odm_taxonomy_manager()->get_top_tier_term_for_subterm($value);                    
+          foreach ($taxonomy_facets as $value => $count):
+            $corresponding_top_tier = odm_taxonomy_manager()->get_top_tier_term_for_subterm($value);
             if (isset($corresponding_top_tier) && $corresponding_top_tier == $top_tier_term && $count > $available_records):
               $available_records = $count;
             endif;
           endforeach;
-          
-          if ($available_records > 0):               
-            $selected = ($top_tier_term == $param_taxonomy); 
+
+          if ($available_records > 0):
+            $selected = ($top_tier_term == $param_taxonomy);
             $translated_top_tier_term = __($top_tier_term,'wp-odm_solr');?>
             <option value="<?php echo $top_tier_term; ?>" <?php if($selected) echo 'selected'; ?>>
-              <?php 
+              <?php
                 echo $translated_top_tier_term;
                 // if (!$selected):
-                //   echo " (" . $available_records . ")"; 
+                //   echo " (" . $available_records . ")";
                 // endif; ?>
             </option>
           <?php
@@ -48,14 +48,14 @@
           $spatial_range_facets = $facets[$param_type]["extras_odm_spatial_range"];
           if (array_key_exists($country_code,$spatial_range_facets)):
             $available_records = $spatial_range_facets[$country_code];
-            if ($available_records > 0): 
+            if ($available_records > 0):
               $country_name = odm_country_manager()->get_country_name_by_country_code($country_code);
               $selected = in_array($country_code,$param_country); ?>
               <option value="<?php echo $country_code; ?>" <?php if($selected) echo 'selected'; ?>>
-                <?php 
+                <?php
                   _e($country_name,'wp-odm_solr');
                   if (!$selected):
-                    echo " (" . $available_records . ")"; 
+                    echo " (" . $available_records . ")";
                   endif; ?>
               </option>
             <?php
@@ -79,13 +79,13 @@
           $language_facets = $facets[$param_type]["extras_odm_language"];
           if (array_key_exists($key,$language_facets)):
             $available_records = $language_facets[$key];
-            if ($available_records > 0):               
+            if ($available_records > 0):
               $selected = in_array($key,$param_language); ?>
               <option value="<?php echo $key; ?>" <?php if($selected) echo 'selected'; ?>>
-                <?php 
+                <?php
                   _e($value,'wp-odm_solr');
                   if (!$selected):
-                    echo " (" . $available_records . ")"; 
+                    echo " (" . $available_records . ")";
                   endif; ?>
               </option>
             <?php
@@ -110,10 +110,10 @@
             if ($available_records > 0):
               $selected = in_array($license->id,$param_license); ?>
               <option value="<?php echo $license->id; ?>" <?php if($selected) echo 'selected'; ?>>
-                <?php 
+                <?php
                   _e($license->title,'wp-odm_solr');
                   if (!$selected):
-                    echo " (" . $available_records . ")"; 
+                    echo " (" . $available_records . ")";
                   endif; ?>
               </option>
             <?php
