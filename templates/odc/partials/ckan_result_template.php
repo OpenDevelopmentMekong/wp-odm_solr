@@ -83,6 +83,15 @@
             echo $document->extras_marc21_100;
           endif; ?>      
     </li>
+    <!-- Author (coorporate) -->
+    <li class="data_meta">
+      <?php 
+          if (!empty($document->extras_marc21_110)): ?>
+            <i class="fa fa-building-o"></i>
+        <?php 
+            echo $document->extras_marc21_110;
+          endif; ?>      
+    </li>
     <!-- Topics -->
     <?php if (!empty($document->vocab_taxonomy)): ?>
       <li class="data_meta">
