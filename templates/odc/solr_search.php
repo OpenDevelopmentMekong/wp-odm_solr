@@ -54,7 +54,7 @@
       $all_search_types = array(
         'all' => array(
           'title' => 'All',
-          'icon' => 'fa fa-database',
+          'icon' => 'fa fa-asterisk',
           'type' => 'unified',
           'archive_url' => null
         ),
@@ -141,12 +141,12 @@
 
       $facets_mapping = array(
         "categories" => "vocab_taxonomy",
-        "odm_spatial_range" => "extras_odm_spatial_range",
-        "odm_language" => "extras_odm_language",
-        "tags" => "extras_odm_keywords",
         "vocab_taxonomy" => "vocab_taxonomy",
+        "odm_spatial_range" => "extras_odm_spatial_range",
         "extras_odm_spatial_range" => "extras_odm_spatial_range",
+        "odm_language" => "extras_odm_language",
         "extras_odm_language" => "extras_odm_language",
+        "tags" => "extras_odm_keywords",
         "extras_odm_keywords" => "extras_odm_keywords",
         "license_id" => "license_id",
         "metadata_modified" => "metadata_modified",
@@ -191,19 +191,13 @@
         $attrs["capacity"] = "public";
 
         if ($value['type'] == 'unified'):
-
           $result = WP_Odm_Solr_UNIFIED_Manager()->query($param_query,$attrs,$control_attrs);
-
         elseif ($value['type'] == 'ckan'):
-
           $attrs["dataset_type"] = $key;
           $result = WP_Odm_Solr_CKAN_Manager()->query($param_query,$attrs,$control_attrs);
-
         else:
-
           $attrs["dataset_type"] = $key;
           $result = WP_Odm_Solr_WP_Manager()->query($param_query,$attrs,$control_attrs);
-
         endif;
 
         $results[$key] = $result["resultset"];
@@ -278,7 +272,11 @@
             <div class="row">
               <div class="eleven columns">
                 <h4>
-                  <?php echo $content_resultcount . ' ' . __($all_search_types[$param_type]["title"],'wp-odm_solr') . __(' found for','wp-odm_solr') . ' "' . $param_query. '"'; ?>
+                <?php 
+                  $type_title = $param_type == "all"  ? __("Records","wp-odm_solr") : $all_search_types[$param_type]["title"];
+                  echo $content_resultcount . ' '
+                            . $type_title
+                            . __(' found for','wp-odm_solr') . ' "' . $param_query. '"'; ?>
                 </h4>
               </div>
 
@@ -299,29 +297,25 @@
           <div class="row solr_results search-results">
             <?php
             if (isset($content_resultset) && $content_resultcount > 0):
-              foreach ($content_resultset as $document): ?>
-
-                <?php
-                if($all_search_types[$param_type]['type'] == 'ckan'):
+              foreach ($content_resultset as $document): 
+                if(in_array($document->dataset_type,array("dataset","library_record","laws_record","agreement"))):
                   include plugin_dir_path(__FILE__). 'partials/ckan_result_template.php';
+                elseif ($document->dataset_type == 'map-layer'):
+                  include plugin_dir_path(__FILE__). 'partials/wp_map_layer_result_template.php';
+                elseif ($document->dataset_type == 'news-article'):
+                  include plugin_dir_path(__FILE__). 'partials/wp_news_article_result_template.php';
+                elseif ($document->dataset_type == 'topic'):
+                  include plugin_dir_path(__FILE__). 'partials/wp_topic_result_template.php';
+                elseif ($document->dataset_type == 'profiles'):
+                  include plugin_dir_path(__FILE__). 'partials/wp_profiles_result_template.php';
+                elseif ($document->dataset_type == 'story'):
+                  include plugin_dir_path(__FILE__). 'partials/wp_story_result_template.php';
+                elseif ($document->dataset_type == 'announcement'):
+                  include plugin_dir_path(__FILE__). 'partials/wp_announcement_result_template.php';
+                elseif ($document->dataset_type == 'site-update'):
+                  include plugin_dir_path(__FILE__). 'partials/wp_site_update_result_template.php';
                 else:
-                  if ($param_type == 'map-layer'):
-                    include plugin_dir_path(__FILE__). 'partials/wp_map_layer_result_template.php';
-                  elseif ($param_type == 'news-article'):
-                    include plugin_dir_path(__FILE__). 'partials/wp_news_article_result_template.php';
-                  elseif ($param_type == 'topic'):
-                    include plugin_dir_path(__FILE__). 'partials/wp_topic_result_template.php';
-                  elseif ($param_type == 'profiles'):
-                    include plugin_dir_path(__FILE__). 'partials/wp_profiles_result_template.php';
-                  elseif ($param_type == 'story'):
-                    include plugin_dir_path(__FILE__). 'partials/wp_story_result_template.php';
-                  elseif ($param_type == 'announcement'):
-                    include plugin_dir_path(__FILE__). 'partials/wp_announcement_result_template.php';
-                  elseif ($param_type == 'site-update'):
-                    include plugin_dir_path(__FILE__). 'partials/wp_site_update_result_template.php';
-                  else:
-                    include plugin_dir_path(__FILE__). 'partials/wp_result_template.php';
-                  endif;
+                  include plugin_dir_path(__FILE__). 'partials/wp_result_template.php';
                 endif;
               endforeach;
             endif; ?>
@@ -356,19 +350,17 @@
               var host = jQuery('#search_field').data("solr-host");
               var scheme = jQuery('#search_field').data("solr-scheme");
               var path = jQuery('#search_field').data("solr-path");
-              var core_wp = jQuery('#search_field').data("solr-core-wp");
-              var core_ckan = jQuery('#search_field').data("solr-core-ckan");
-              var url_wp = scheme + "://" + host  + path + core_wp + "/suggest";
-              var url_ckan = scheme + "://" + host  + path + core_ckan + "/suggest";
+              var core_unified = jQuery('#search_field').data("solr-core-unified");
+              var url = scheme + "://" + host  + path + core_unified + "/suggest";
 
               jQuery.ajax({
-                url: url_wp,
+                url: url,
                 data: {'wt':'json', 'q':request.term, 'json.wrf': 'callback'},
                 dataType: "jsonp",
                 jsonpCallback: 'callback',
                 contentType: "application/json",
                 success: function( data ) {
-                  console.log("wp autocompletion suggestions: " + JSON.stringify(data));
+                  console.log("unified autocompletion suggestions: " + JSON.stringify(data));
                   var options = [];
                   if (data){
                     if(data.spellcheck){
@@ -382,29 +374,7 @@
                       }
                     }
                   }
-                  jQuery.ajax({
-                    url: url_ckan,
-                    data: {'wt':'json', 'q':request.term, 'json.wrf': 'callback'},
-                    dataType: "jsonp",
-                    jsonpCallback: 'callback',
-                    contentType: "application/json",
-                    success: function( data ) {
-                      console.log("ckan autocompletion suggestions: " + JSON.stringify(data));
-                      if (data){
-                        if(data.spellcheck){
-                          var spellcheck = data.spellcheck;
-                          if (spellcheck.suggestions){
-                            var suggestions = spellcheck.suggestions;
-                            if (suggestions[1]){
-                              var suggestionObject = suggestions[1];
-                              options = options.concat(suggestionObject.suggestion);
-                            }
-                          }
-                        }
-                      }
-                      response( options );
-                    }
-                  });
+                  response( options );
                 }
               });
             },

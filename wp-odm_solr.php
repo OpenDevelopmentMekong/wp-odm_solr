@@ -11,6 +11,7 @@
  require 'vendor/autoload.php';
  include_once plugin_dir_path(__FILE__).'utils/wp_odm_solr_utils.php';
  include_once plugin_dir_path(__FILE__).'utils/solr-wp-manager.php';
+ include_once plugin_dir_path(__FILE__).'utils/solr-unified-manager.php';
  include_once plugin_dir_path(__FILE__).'utils/solr-ckan-manager.php';
 
  // Require post types

@@ -18,7 +18,7 @@
         $param_query = !empty($_GET['query']) ? $_GET['query'] : null;
       endif;
 
-      $param_type = isset($_GET['type']) ? $_GET['type'] : null;
+      $param_type = isset($_GET['type']) ? $_GET['type'] : 'all';
       $param_license = isset($_GET['license']) ? $_GET['license'] : array();
       $param_taxonomy = isset($_GET['taxonomy']) ? $_GET['taxonomy'] : 'all';
       $param_language = isset($_GET['language']) ? $_GET['language'] : array();
@@ -52,6 +52,12 @@
       //================ Search types ===================== //
 
       $all_search_types = array(
+        'all' => array(
+          'title' => 'All',
+          'icon' => 'fa fa-asterisk',
+          'type' => 'unified',
+          'archive_url' => null
+        ),
         'dataset' => array(
           'title' => 'Datasets',
           'icon' => 'fa fa-database',
@@ -135,12 +141,12 @@
 
       $facets_mapping = array(
         "categories" => "vocab_taxonomy",
-        "odm_spatial_range" => "extras_odm_spatial_range",
-        "odm_language" => "extras_odm_language",
-        "tags" => "extras_odm_keywords",
         "vocab_taxonomy" => "vocab_taxonomy",
+        "odm_spatial_range" => "extras_odm_spatial_range",
         "extras_odm_spatial_range" => "extras_odm_spatial_range",
+        "odm_language" => "extras_odm_language",
         "extras_odm_language" => "extras_odm_language",
+        "tags" => "extras_odm_keywords",
         "extras_odm_keywords" => "extras_odm_keywords",
         "license_id" => "license_id",
         "metadata_modified" => "metadata_modified",
@@ -152,70 +158,43 @@
         $attrs = [];
         $result = null;
 
-        if ($value['type'] == 'ckan'):
-          //Taxonomy
-          if (isset($param_taxonomy) && $param_taxonomy != 'all') {
-            $attrs["vocab_taxonomy"] = $param_taxonomy;
-          }
+        //Taxonomy
+        if (isset($param_taxonomy) && $param_taxonomy != 'all') {
+          $attrs["vocab_taxonomy"] = $param_taxonomy;
+        }
 
-          // Language
-          if (!empty($param_language)) {
-            $attrs["extras_odm_language"] = $param_language;
-          }
+        // Language
+        if (!empty($param_language)) {
+          $attrs["extras_odm_language"] = $param_language;
+        }
 
-          // Country
-          if (!empty($param_country) && $param_country != 'mekong' && $param_country != 'all') {
-            $attrs["extras_odm_spatial_range"] = $param_country;
-          }
+        // Country
+        if (!empty($param_country) && $param_country != 'mekong' && $param_country != 'all') {
+          $attrs["extras_odm_spatial_range"] = $param_country;
+        }
 
-          //License
-          if (!empty($param_license)) {
-            $attrs['license_id'] = $param_license;
-          }
-          
-          //metadata_modified
-          if (isset($param_metadata_modified) && $param_metadata_modified != 'all'){
-            $attrs['metadata_modified'] = $param_metadata_modified;
-          }
-          
-          //metadata_created
-          if (isset($param_metadata_created) && $param_metadata_created != 'all'){
-            $attrs['metadata_created'] = $param_metadata_created;
-          }
+        //License
+        if (!empty($param_license)) {
+          $attrs['license_id'] = $param_license;
+        }
 
+        //metadata_modified
+        if (isset($param_metadata_modified) && $param_metadata_modified != 'all'){
+          $attrs['metadata_modified'] = $param_metadata_modified;
+        }
+
+        //metadata_created
+        if (isset($param_metadata_created) && $param_metadata_created != 'all'){
+          $attrs['metadata_created'] = $param_metadata_created;
+        }
+
+        $attrs["capacity"] = "public";
+
+        if ($value['type'] != 'unified'):
           $attrs["dataset_type"] = $key;
-          $attrs["capacity"] = "public";
-          $result = WP_Odm_Solr_CKAN_Manager()->query($param_query,$attrs,$control_attrs);
-        else:
-
-          //Taxonomy
-          if (isset($param_taxonomy) && $param_taxonomy != 'all') {
-            $attrs["categories"] = $param_taxonomy;
-          }
-
-          // Language
-          if (!empty($param_language)) {
-            $attrs["odm_language"] = $param_language;
-          }
-
-          // Country
-          if (!empty($param_country) && $param_country != 'mekong' && $param_country != 'all') {
-            $attrs["odm_spatial_range"] = $param_country;
-          }
-          
-          //metadata_modified
-          if (isset($param_metadata_modified) && $param_metadata_modified != 'all'){
-            $attrs['metadata_modified'] = $param_metadata_modified;
-          }
-          
-          //metadata_created
-          if (isset($param_metadata_created) && $param_metadata_created != 'all'){
-            $attrs['metadata_created'] = $param_metadata_created;
-          }
-
-          $attrs["type"] = $key;
-          $result = WP_Odm_Solr_WP_Manager()->query($param_query,$attrs,$control_attrs);
         endif;
+        
+        $result = WP_Odm_Solr_UNIFIED_Manager()->query($param_query,$attrs,$control_attrs);
 
         $results[$key] = $result["resultset"];
         $facets[$key] = $result["facets"];
@@ -224,7 +203,7 @@
     <section class="container">
 
       <?php
-        if (!WP_Odm_Solr_WP_Manager()->ping_server() || !WP_Odm_Solr_CKAN_Manager()->ping_server()):  ?>
+        if (!WP_Odm_Solr_UNIFIED_Manager()->ping_server()):  ?>
           <div class="row">
             <div class="sixteen columns">
                 <p class="error">
@@ -269,7 +248,7 @@
       		<div class="row">
             <div class="four columns">
               <div class="result_links">
-              <h4><?php _e('Search Results','wp-odm_solr'); ?> for "<?php _e($param_query,'wp-odm_solr'); ?>"</h4>
+              <h4><?php _e('Search Results for','wp-odm_solr'); ?> "<?php _e($param_query,'wp-odm_solr'); ?>"</h4>
               <?php
                 foreach ($all_search_types as $key => $value):
                   $count = ($results[$key]) ? $results[$key]->getNumFound() : 0;
@@ -338,37 +317,34 @@
                   ?>
 
                   <h4>
-                  <?php echo $content_resultcount . ' '
-                              . $all_search_types[$param_type]["title"]
+                  <?php 
+                    $type_title = $param_type == "all"  ? __("Records","wp-odm_solr") : $all_search_types[$param_type]["title"];
+                    echo $content_resultcount . ' '
+                              . $type_title
                               . __(' found for','wp-odm_solr') . ' "' . $param_query. '"'; ?>
                   </h4>
 
                   <?php
-
                   if (isset($content_resultset) && $content_resultcount > 0):
-                    foreach ($content_resultset as $document): ?>
-
-                      <?php
-                      if($all_search_types[$param_type]['type'] == 'ckan'):
+                    foreach ($content_resultset as $document): 
+                      if(in_array($document->dataset_type,array("dataset","library_record","laws_record","agreement"))):
                         include plugin_dir_path(__FILE__). 'partials/ckan_result_template.php';
+                      elseif ($document->dataset_type == 'map-layer'):
+                        include plugin_dir_path(__FILE__). 'partials/wp_map_layer_result_template.php';
+                      elseif ($document->dataset_type == 'news-article'):
+                        include plugin_dir_path(__FILE__). 'partials/wp_news_article_result_template.php';
+                      elseif ($document->dataset_type == 'topic'):
+                        include plugin_dir_path(__FILE__). 'partials/wp_topic_result_template.php';
+                      elseif ($document->dataset_type == 'profiles'):
+                        include plugin_dir_path(__FILE__). 'partials/wp_profiles_result_template.php';
+                      elseif ($document->dataset_type == 'story'):
+                        include plugin_dir_path(__FILE__). 'partials/wp_story_result_template.php';
+                      elseif ($document->dataset_type == 'announcement'):
+                        include plugin_dir_path(__FILE__). 'partials/wp_announcement_result_template.php';
+                      elseif ($document->dataset_type == 'site-update'):
+                        include plugin_dir_path(__FILE__). 'partials/wp_site_update_result_template.php';
                       else:
-                        if ($param_type == 'map-layer'):
-                          include plugin_dir_path(__FILE__). 'partials/wp_map_layer_result_template.php';
-                        elseif ($param_type == 'news-article'):
-                          include plugin_dir_path(__FILE__). 'partials/wp_news_article_result_template.php';
-                        elseif ($param_type == 'topic'):
-                          include plugin_dir_path(__FILE__). 'partials/wp_topic_result_template.php';
-                        elseif ($param_type == 'profiles'):
-                          include plugin_dir_path(__FILE__). 'partials/wp_profiles_result_template.php';
-                        elseif ($param_type == 'story'):
-                          include plugin_dir_path(__FILE__). 'partials/wp_story_result_template.php';
-                        elseif ($param_type == 'announcement'):
-                          include plugin_dir_path(__FILE__). 'partials/wp_announcement_result_template.php';
-                        elseif ($param_type == 'site-update'):
-                          include plugin_dir_path(__FILE__). 'partials/wp_site_update_result_template.php';
-                        else:
-                          include plugin_dir_path(__FILE__). 'partials/wp_result_template.php';
-                        endif;
+                        include plugin_dir_path(__FILE__). 'partials/wp_result_template.php';
                       endif;
                     endforeach;
                   endif; ?>
@@ -409,19 +385,17 @@
               var host = jQuery('#search_field').data("solr-host");
               var scheme = jQuery('#search_field').data("solr-scheme");
               var path = jQuery('#search_field').data("solr-path");
-              var core_wp = jQuery('#search_field').data("solr-core-wp");
-              var core_ckan = jQuery('#search_field').data("solr-core-ckan");
-              var url_wp = scheme + "://" + host  + path + core_wp + "/suggest";
-              var url_ckan = scheme + "://" + host  + path + core_ckan + "/suggest";
+              var core_unified = jQuery('#search_field').data("solr-core-unified");
+              var url = scheme + "://" + host  + path + core_unified + "/suggest";
 
               jQuery.ajax({
-                url: url_wp,
+                url: url,
                 data: {'wt':'json', 'q':request.term, 'json.wrf': 'callback'},
                 dataType: "jsonp",
                 jsonpCallback: 'callback',
                 contentType: "application/json",
                 success: function( data ) {
-                  console.log("wp autocompletion suggestions: " + JSON.stringify(data));
+                  console.log("unified autocompletion suggestions: " + JSON.stringify(data));
                   var options = [];
                   if (data){
                     if(data.spellcheck){
@@ -435,29 +409,7 @@
                       }
                     }
                   }
-                  jQuery.ajax({
-                    url: url_ckan,
-                    data: {'wt':'json', 'q':request.term, 'json.wrf': 'callback'},
-                    dataType: "jsonp",
-                    jsonpCallback: 'callback',
-                    contentType: "application/json",
-                    success: function( data ) {
-                      console.log("ckan autocompletion suggestions: " + JSON.stringify(data));
-                      if (data){
-                        if(data.spellcheck){
-                          var spellcheck = data.spellcheck;
-                          if (spellcheck.suggestions){
-                            var suggestions = spellcheck.suggestions;
-                            if (suggestions[1]){
-                              var suggestionObject = suggestions[1];
-                              options = options.concat(suggestionObject.suggestion);
-                            }
-                          }
-                        }
-                      }
-                      response( options );
-                    }
-                  });
+                  response( options );
                 }
               });
             },

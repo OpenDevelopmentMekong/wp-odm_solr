@@ -40,6 +40,12 @@
   //================ Search types ===================== //
 
   $all_search_types = array(
+    'all' => array(
+      'title' => 'All',
+      'icon' => 'fa fa-asterisk',
+      'type' => 'unified',
+      'archive_url' => null
+    ),
     'dataset' => array(
       'title' => 'Datasets',
       'icon' => 'fa fa-database',
@@ -99,13 +105,13 @@
       'icon' => 'fa fa-bullhorn',
       'type' => 'wp',
       'archive_url' => '/announcements'
-    )/*,
+    ),
     'site-update' => array(
       'title' => 'Site updates',
       'icon' => 'fa fa-flag',
       'type' => 'wp',
       'archive_url' => '/updates'
-    )*/
+    )
   );
 
   if (isset($supported_types_override) && !empty($supported_types_override)):
@@ -123,12 +129,12 @@
 
   $facets_mapping = array(
     "categories" => "vocab_taxonomy",
-    "odm_spatial_range" => "extras_odm_spatial_range",
-    "odm_language" => "extras_odm_language",
-    "tags" => "extras_odm_keywords",
     "vocab_taxonomy" => "vocab_taxonomy",
+    "odm_spatial_range" => "extras_odm_spatial_range",
     "extras_odm_spatial_range" => "extras_odm_spatial_range",
+    "odm_language" => "extras_odm_language",
     "extras_odm_language" => "extras_odm_language",
+    "tags" => "extras_odm_keywords",
     "extras_odm_keywords" => "extras_odm_keywords",
     "license_id" => "license_id",
     "metadata_modified" => "metadata_modified",
@@ -140,69 +146,45 @@
     $attrs = [];
     $result = null;
 
-    if ($value['type'] == 'ckan'):
-      //Taxonomy
-      if (isset($param_taxonomy) && $param_taxonomy != 'all') {
-        $attrs["vocab_taxonomy"] = $param_taxonomy;
-      }
+    //Taxonomy
+    if (isset($param_taxonomy) && $param_taxonomy != 'all') {
+      $attrs["vocab_taxonomy"] = $param_taxonomy;
+    }
 
-      // Language
-      if (!empty($param_language)) {
-        $attrs["extras_odm_language"] = $param_language;
-      }
+    // Language
+    if (!empty($param_language)) {
+      $attrs["extras_odm_language"] = $param_language;
+    }
 
-      // Country
-      if (!empty($param_country) && $param_country != 'mekong' && $param_country != 'all') {
-        $attrs["extras_odm_spatial_range"] = $param_country;
-      }
+    // Country
+    if (!empty($param_country) && $param_country != 'mekong' && $param_country != 'all') {
+      $attrs["extras_odm_spatial_range"] = $param_country;
+    }
 
-      //License
-      if (!empty($param_license)) {
-        $attrs['license_id'] = $param_license;
-      }
+    //License
+    if (!empty($param_license)) {
+      $attrs['license_id'] = $param_license;
+    }
 
-      //metadata_modified
-      if (isset($param_metadata_modified) && $param_metadata_modified != 'all'){
-        $attrs['metadata_modified'] = $param_metadata_modified;
-      }
-      
-      //metadata_created
-      if (isset($param_metadata_created) && $param_metadata_created != 'all'){
-        $attrs['metadata_created'] = $param_metadata_created;
-      }
+    //metadata_modified
+    if (isset($param_metadata_modified) && $param_metadata_modified != 'all'){
+      $attrs['metadata_modified'] = $param_metadata_modified;
+    }
 
+    //metadata_created
+    if (isset($param_metadata_created) && $param_metadata_created != 'all'){
+      $attrs['metadata_created'] = $param_metadata_created;
+    }
+
+    $attrs["capacity"] = "public";
+
+    if ($value['type'] == 'unified'):
+      $result = WP_Odm_Solr_UNIFIED_Manager()->query($param_query,$attrs,$control_attrs);
+    elseif ($value['type'] == 'ckan'):
       $attrs["dataset_type"] = $key;
-      $attrs["capacity"] = "public";
       $result = WP_Odm_Solr_CKAN_Manager()->query($param_query,$attrs,$control_attrs);
-
     else:
-
-      //Taxonomy
-      if (isset($param_taxonomy) && $param_taxonomy != 'all') {
-        $attrs["categories"] = $param_taxonomy;
-      }
-
-      // Language
-      if (!empty($param_language)) {
-        $attrs["odm_language"] = $param_language;
-      }
-
-      // Country
-      if (!empty($param_country) && $param_country != 'mekong' && $param_country != 'all') {
-        $attrs["odm_spatial_range"] = $param_country;
-      }
-
-      //metadata_modified
-      if (isset($param_metadata_modified) && $param_metadata_modified != 'all'){
-        $attrs['metadata_modified'] = $param_metadata_modified;
-      }
-      
-      //metadata_created
-      if (isset($param_metadata_created) && $param_metadata_created != 'all'){
-        $attrs['metadata_created'] = $param_metadata_created;
-      }
-
-      $attrs["type"] = $key;
+      $attrs["dataset_type"] = $key;
       $result = WP_Odm_Solr_WP_Manager()->query($param_query,$attrs,$control_attrs);
     endif;
 
@@ -272,29 +254,25 @@
       <div class="row solr_results search-results">
         <?php
         if (isset($content_resultset) && $content_resultcount > 0):
-          foreach ($content_resultset as $document): ?>
-
-            <?php
-            if($all_search_types[$param_type]['type'] == 'ckan'):
+          foreach ($content_resultset as $document): 
+            if(in_array($document->dataset_type,array("dataset","library_record","laws_record","agreement"))):
               include plugin_dir_path(__FILE__). 'partials/ckan_result_template.php';
+            elseif ($document->dataset_type == 'map-layer'):
+              include plugin_dir_path(__FILE__). 'partials/wp_map_layer_result_template.php';
+            elseif ($document->dataset_type == 'news-article'):
+              include plugin_dir_path(__FILE__). 'partials/wp_news_article_result_template.php';
+            elseif ($document->dataset_type == 'topic'):
+              include plugin_dir_path(__FILE__). 'partials/wp_topic_result_template.php';
+            elseif ($document->dataset_type == 'profiles'):
+              include plugin_dir_path(__FILE__). 'partials/wp_profiles_result_template.php';
+            elseif ($document->dataset_type == 'story'):
+              include plugin_dir_path(__FILE__). 'partials/wp_story_result_template.php';
+            elseif ($document->dataset_type == 'announcement'):
+              include plugin_dir_path(__FILE__). 'partials/wp_announcement_result_template.php';
+            elseif ($document->dataset_type == 'site-update'):
+              include plugin_dir_path(__FILE__). 'partials/wp_site_update_result_template.php';
             else:
-              if ($param_type == 'map-layer'):
-                include plugin_dir_path(__FILE__). 'partials/wp_map_layer_result_template.php';
-              elseif ($param_type == 'news-article'):
-                include plugin_dir_path(__FILE__). 'partials/wp_news_article_result_template.php';
-              elseif ($param_type == 'topic'):
-                include plugin_dir_path(__FILE__). 'partials/wp_topic_result_template.php';
-              elseif ($param_type == 'profiles'):
-                include plugin_dir_path(__FILE__). 'partials/wp_profiles_result_template.php';
-              elseif ($param_type == 'story'):
-                include plugin_dir_path(__FILE__). 'partials/wp_story_result_template.php';
-              elseif ($param_type == 'announcement'):
-                include plugin_dir_path(__FILE__). 'partials/wp_announcement_result_template.php';
-              elseif ($param_type == 'site-update'):
-                include plugin_dir_path(__FILE__). 'partials/wp_site_update_result_template.php';
-              else:
-                include plugin_dir_path(__FILE__). 'partials/wp_result_template.php';
-              endif;
+              include plugin_dir_path(__FILE__). 'partials/wp_result_template.php';
             endif;
           endforeach;
         endif; ?>

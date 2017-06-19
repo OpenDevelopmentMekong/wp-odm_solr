@@ -231,18 +231,17 @@
           var host = jQuery('#search_field_old').data("solr-host");
           var scheme = jQuery('#search_field_old').data("solr-scheme");
           var path = jQuery('#search_field_old').data("solr-path");
-          var core_wp = jQuery('#search_field_old').data("solr-core-wp");
-          var core_ckan = jQuery('#search_field_old').data("solr-core-ckan");
-          var url_wp = scheme + "://" + host  + path + core_wp + "/suggest";
-          var url_ckan = scheme + "://" + host  + path + core_ckan + "/suggest";
+          var core_unified = jQuery('#search_field_old').data("solr-core-unified");
+          var url = scheme + "://" + host  + path + core_unified + "/suggest";
 
           jQuery.ajax({
-            url: url_wp,
+            url: url,
             data: {'wt':'json', 'q':request.term, 'json.wrf': 'callback'},
             dataType: "jsonp",
             jsonpCallback: 'callback',
             contentType: "application/json",
             success: function( data ) {
+              console.log("unified autocompletion suggestions: " + JSON.stringify(data));
               var options = [];
               if (data){
                 if(data.spellcheck){
@@ -256,28 +255,7 @@
                   }
                 }
               }
-              jQuery.ajax({
-                url: url_ckan,
-                data: {'wt':'json', 'q':request.term, 'json.wrf': 'callback'},
-                dataType: "jsonp",
-                jsonpCallback: 'callback',
-                contentType: "application/json",
-                success: function( data ) {
-                  if (data){
-                    if(data.spellcheck){
-                      var spellcheck = data.spellcheck;
-                      if (spellcheck.suggestions){
-                        var suggestions = spellcheck.suggestions;
-                        if (suggestions[1]){
-                          var suggestionObject = suggestions[1];
-                          options = options.concat(suggestionObject.suggestion);
-                        }
-                      }
-                    }
-                  }
-                  response( options );
-                }
-              });
+              response( options );
             }
           });
         },
