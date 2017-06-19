@@ -347,7 +347,7 @@
               var scheme = jQuery('#search_field').data("solr-scheme");
               var path = jQuery('#search_field').data("solr-path");
               var core_unified = jQuery('#search_field').data("solr-core-unified");
-              var url = scheme + "://" + host  + path + core_unified + "/suggest";
+              var url = scheme + "://" + host  + path + core_unified + "/spell";
 
               jQuery.ajax({
                 url: url,
