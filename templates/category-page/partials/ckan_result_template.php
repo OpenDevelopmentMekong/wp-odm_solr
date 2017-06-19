@@ -2,7 +2,7 @@
   <?php
   $title = wp_odm_solr_parse_multilingual_ckan_content($document->extras_title_translated,odm_language_manager()->get_current_language(),$document->title);
   $title = wp_odm_solr_highlight_search_words($s,$title);
-  $link_to_dataset = wpckan_get_link_to_dataset($document->id);
+  $link_to_dataset = wpckan_get_link_to_dataset($document->index_id);
   ?>
   <h4 class="data_title sixteen columns">
     <a target="_blank" href="<?php echo $link_to_dataset ?>">

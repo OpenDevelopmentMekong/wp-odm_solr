@@ -11,6 +11,7 @@
         $solr_path = $GLOBALS['wp_odm_solr_options']->get_option('wp_odm_solr_setting_solr_path');
         $solr_core_wp = $GLOBALS['wp_odm_solr_options']->get_option('wp_odm_solr_setting_solr_core_wp');
         $solr_core_ckan = $GLOBALS['wp_odm_solr_options']->get_option('wp_odm_solr_setting_solr_core_ckan');
+        $solr_core_unified = $GLOBALS['wp_odm_solr_options']->get_option('wp_odm_solr_setting_solr_core_unified');
         $solr_user = $GLOBALS['wp_odm_solr_options']->get_option('wp_odm_solr_setting_solr_user');
         $solr_pwd = $GLOBALS['wp_odm_solr_options']->get_option('wp_odm_solr_setting_solr_pwd');
         $logging_path = $GLOBALS['wp_odm_solr_options']->get_option('wp_odm_solr_setting_log_path');
@@ -66,6 +67,13 @@
             </td>
         </tr>
         <tr valign="top">
+            <th scope="row"><label for="wp_odm_solr_setting_solr_core_unified"><?php _e('Core unified','wp-odm_solr') ?></label></th>
+            <td>
+              <input class="full-width" type="text" name="wp_odm_solr_setting_solr_core_unified" id="wp_odm_solr_setting_solr_core_unified" value="<?php echo $solr_core_unified ?>"/>
+              <p class="description"><?php _e('Example: unified','wp-odm_solr') ?>.</p>
+            </td>
+        </tr>
+        <tr valign="top">
             <th scope="row"><label for="wp_odm_solr_setting_solr_user"><?php _e('User','wp-odm_solr') ?></label></th>
             <td>
               <input class="full-width" type="text" name="wp_odm_solr_setting_solr_user" id="wp_odm_solr_setting_solr_user" value="<?php echo $solr_user ?>"/>
@@ -85,6 +93,11 @@
           <tr valign="top">
             <th scope="row"><label><?php _e('Connection status','wp-odm_solr') ?></label></th>
             <td>
+              <?php if (WP_Odm_Solr_UNIFIED_Manager()->ping_server()){ ?>
+                <p class="ok"><?php _e('Ping to unified index succeded.','wp-odm_solr') ?></p>
+              <?php } else { ?>
+                <p class="error"><?php _e('Problem connecting to unified index. Please, check the specified config.','wp-odm_solr') ?></p>
+              <?php } ?>
               <?php if (WP_Odm_Solr_WP_Manager()->ping_server()){ ?>
                 <p class="ok"><?php _e('Ping to WP index succeded.','wp-odm_solr') ?></p>
               <?php } else { ?>

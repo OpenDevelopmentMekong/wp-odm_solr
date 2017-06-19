@@ -11,6 +11,7 @@
  require 'vendor/autoload.php';
  include_once plugin_dir_path(__FILE__).'utils/wp_odm_solr_utils.php';
  include_once plugin_dir_path(__FILE__).'utils/solr-wp-manager.php';
+ include_once plugin_dir_path(__FILE__).'utils/solr-unified-manager.php';
  include_once plugin_dir_path(__FILE__).'utils/solr-ckan-manager.php';
 
  // Require post types
@@ -156,6 +157,7 @@ if (!class_exists('WpOdmSolr')) {
             register_setting('wp_odm_solr-group', 'wp_odm_solr_setting_solr_path');
             register_setting('wp_odm_solr-group', 'wp_odm_solr_setting_solr_core_wp');
             register_setting('wp_odm_solr-group', 'wp_odm_solr_setting_solr_core_ckan');
+            register_setting('wp_odm_solr-group', 'wp_odm_solr_setting_solr_core_unified');
             register_setting('wp_odm_solr-group', 'wp_odm_solr_setting_solr_schema');
             register_setting('wp_odm_solr-group', 'wp_odm_solr_setting_solr_user');
             register_setting('wp_odm_solr-group', 'wp_odm_solr_setting_solr_pwd');

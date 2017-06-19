@@ -13,20 +13,20 @@
  * Solr Manager
  */
 
-class WP_Odm_Solr_CKAN_Manager {
+class WP_Odm_Solr_UNIFIED_Manager {
 
   var $client = null;
   var $server_config = null;
 
 	function __construct() {
 
-    wp_odm_solr_log('solr-ckan-manager __construct');
+    wp_odm_solr_log('solr-unified-manager __construct');
 
     $solr_host = $GLOBALS['wp_odm_solr_options']->get_option('wp_odm_solr_setting_solr_host');
     $solr_port = $GLOBALS['wp_odm_solr_options']->get_option('wp_odm_solr_setting_solr_port');
     $solr_scheme = $GLOBALS['wp_odm_solr_options']->get_option('wp_odm_solr_setting_solr_scheme');
     $solr_path = $GLOBALS['wp_odm_solr_options']->get_option('wp_odm_solr_setting_solr_path');
-    $solr_core_ckan = $GLOBALS['wp_odm_solr_options']->get_option('wp_odm_solr_setting_solr_core_ckan');
+    $solr_core_unified = $GLOBALS['wp_odm_solr_options']->get_option('wp_odm_solr_setting_solr_core_unified');
     $solr_user = $GLOBALS['wp_odm_solr_options']->get_option('wp_odm_solr_setting_solr_user');
     $solr_pwd = $GLOBALS['wp_odm_solr_options']->get_option('wp_odm_solr_setting_solr_pwd');
 
@@ -36,7 +36,7 @@ class WP_Odm_Solr_CKAN_Manager {
               'host' => $solr_host,
               'port' => $solr_port,
               'path' => $solr_path,
-  						'core' => $solr_core_ckan,
+  						'core' => $solr_core_unified,
   						'scheme' => $solr_scheme,
               'username' => $solr_user,
               'password' => $solr_pwd
@@ -47,14 +47,14 @@ class WP_Odm_Solr_CKAN_Manager {
     try {
       $this->client = new \Solarium\Client($this->server_config);
     } catch (HttpException $e) {
-      wp_odm_solr_log('solr-ckan-manager __construct Error: ' . $e);
+      wp_odm_solr_log('solr-unified-manager __construct Error: ' . $e);
     }
 
 	}
 
   function ping_server(){
 
-    wp_odm_solr_log('solr-ckan-manager ping_server');
+    wp_odm_solr_log('solr-unified-manager ping_server');
 
     if (!isset($this->client)):
       return false;
@@ -64,7 +64,7 @@ class WP_Odm_Solr_CKAN_Manager {
       $ping = $this->client->createPing();
       $result = $this->client->ping($ping);
     } catch (HttpException $e) {
-      wp_odm_solr_log('solr-ckan-manager ping_server Error: ' . $e);
+      wp_odm_solr_log('solr-unified-manager ping_server Error: ' . $e);
       return false;
     }
 
@@ -73,7 +73,7 @@ class WP_Odm_Solr_CKAN_Manager {
 
 	function query($text, $attrs = null, $control_attrs = null){
 
-    wp_odm_solr_log('solr-ckan-manager query: ' . $text . " attrs: " . serialize($attrs) . " control_attrs: " . serialize($control_attrs));
+    wp_odm_solr_log('solr-unified-manager query: ' . $text . " attrs: " . serialize($attrs) . " control_attrs: " . serialize($control_attrs));
 
     $result = array(
       "resultset" => null,
@@ -152,7 +152,7 @@ class WP_Odm_Solr_CKAN_Manager {
         $query->addSort($control_attrs["sorting"], 'desc');
       endif;
 
-      wp_odm_solr_log('solr-ckan-manager executing query: ' . serialize($query));
+      wp_odm_solr_log('solr-unified-manager executing query: ' . serialize($query));
 
   		$resultset = $this->client->select($query);
       $result["resultset"] = $resultset;
@@ -177,7 +177,7 @@ class WP_Odm_Solr_CKAN_Manager {
       endforeach;
 
     } catch (HttpException $e) {
-      wp_odm_solr_log('solr-ckan-manager query Error: ' . $e);
+      wp_odm_solr_log('solr-unified-manager query Error: ' . $e);
     }
 
 		return $result;
@@ -185,7 +185,7 @@ class WP_Odm_Solr_CKAN_Manager {
 
   function delete_dataset($dataset_id){
 
-    wp_odm_solr_log('solr-ckan-manager delete_dataset');
+    wp_odm_solr_log('solr-unified-manager delete_dataset');
 
     $result = null;
 
@@ -195,7 +195,7 @@ class WP_Odm_Solr_CKAN_Manager {
   		$update->addCommit();
   		$result = $this->client->update($update);
     } catch (HttpException $e) {
-      wp_odm_solr_log('solr-ckan-manager delete_dataset Error: ' . $e);
+      wp_odm_solr_log('solr-unified-manager delete_dataset Error: ' . $e);
     }
 
 		return $result;
@@ -203,10 +203,10 @@ class WP_Odm_Solr_CKAN_Manager {
 
 }
 
-$GLOBALS['WP_Odm_Solr_CKAN_Manager'] = new WP_Odm_Solr_CKAN_Manager();
+$GLOBALS['WP_Odm_Solr_UNIFIED_Manager'] = new WP_Odm_Solr_UNIFIED_Manager();
 
-function WP_Odm_Solr_CKAN_Manager() {
-	return $GLOBALS['WP_Odm_Solr_CKAN_Manager'];
+function WP_Odm_Solr_UNIFIED_Manager() {
+	return $GLOBALS['WP_Odm_Solr_UNIFIED_Manager'];
 }
 
 ?>
