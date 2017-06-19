@@ -326,22 +326,22 @@
 
                   <?php
                   if (isset($content_resultset) && $content_resultcount > 0):
-                    foreach ($content_resultset as $document): 
-                      if(in_array($document->dataset_type,array("dataset","library_record","laws_record","agreement"))):
+                    foreach ($content_resultset as $document):
+                      if(in_array($document->dataset_type,array("dataset","library_record","laws_record","agreement"))  && $param_type != "all"):
                         include plugin_dir_path(__FILE__). 'partials/ckan_result_template.php';
-                      elseif ($document->dataset_type == 'map-layer'):
+                      elseif ($document->dataset_type == 'map-layer' && $param_type != "all"):
                         include plugin_dir_path(__FILE__). 'partials/wp_map_layer_result_template.php';
-                      elseif ($document->dataset_type == 'news-article'):
+                      elseif ($document->dataset_type == 'news-article' && $param_type != "all"):
                         include plugin_dir_path(__FILE__). 'partials/wp_news_article_result_template.php';
-                      elseif ($document->dataset_type == 'topic'):
+                      elseif ($document->dataset_type == 'topic' && $param_type != "all"):
                         include plugin_dir_path(__FILE__). 'partials/wp_topic_result_template.php';
-                      elseif ($document->dataset_type == 'profiles'):
+                      elseif ($document->dataset_type == 'profiles' && $param_type != "all"):
                         include plugin_dir_path(__FILE__). 'partials/wp_profiles_result_template.php';
-                      elseif ($document->dataset_type == 'story'):
+                      elseif ($document->dataset_type == 'story' && $param_type != "all"):
                         include plugin_dir_path(__FILE__). 'partials/wp_story_result_template.php';
-                      elseif ($document->dataset_type == 'announcement'):
+                      elseif ($document->dataset_type == 'announcement' && $param_type != "all"):
                         include plugin_dir_path(__FILE__). 'partials/wp_announcement_result_template.php';
-                      elseif ($document->dataset_type == 'site-update'):
+                      elseif ($document->dataset_type == 'site-update' && $param_type != "all"):
                         include plugin_dir_path(__FILE__). 'partials/wp_site_update_result_template.php';
                       else:
                         include plugin_dir_path(__FILE__). 'partials/wp_result_template.php';
