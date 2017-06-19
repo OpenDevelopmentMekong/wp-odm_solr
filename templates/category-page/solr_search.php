@@ -178,15 +178,11 @@
 
     $attrs["capacity"] = "public";
 
-    if ($value['type'] == 'unified'):
-      $result = WP_Odm_Solr_UNIFIED_Manager()->query($param_query,$attrs,$control_attrs);
-    elseif ($value['type'] == 'ckan'):
+    if ($value['type'] != 'unified'):
       $attrs["dataset_type"] = $key;
-      $result = WP_Odm_Solr_CKAN_Manager()->query($param_query,$attrs,$control_attrs);
-    else:
-      $attrs["dataset_type"] = $key;
-      $result = WP_Odm_Solr_WP_Manager()->query($param_query,$attrs,$control_attrs);
     endif;
+    
+    $result = WP_Odm_Solr_UNIFIED_Manager()->query($param_query,$attrs,$control_attrs);
 
     $results[$key] = $result["resultset"];
     $facets[$key] = $result["facets"];

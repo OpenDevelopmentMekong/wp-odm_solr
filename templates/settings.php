@@ -93,6 +93,11 @@
           <tr valign="top">
             <th scope="row"><label><?php _e('Connection status','wp-odm_solr') ?></label></th>
             <td>
+              <?php if (WP_Odm_Solr_UNIFIED_Manager()->ping_server()){ ?>
+                <p class="ok"><?php _e('Ping to unified index succeded.','wp-odm_solr') ?></p>
+              <?php } else { ?>
+                <p class="error"><?php _e('Problem connecting to unified index. Please, check the specified config.','wp-odm_solr') ?></p>
+              <?php } ?>
               <?php if (WP_Odm_Solr_WP_Manager()->ping_server()){ ?>
                 <p class="ok"><?php _e('Ping to WP index succeded.','wp-odm_solr') ?></p>
               <?php } else { ?>
