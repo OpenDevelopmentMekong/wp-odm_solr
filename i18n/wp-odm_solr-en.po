@@ -1,8 +1,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"POT-Creation-Date: 2017-06-11 23:57+0200\n"
-"PO-Revision-Date: 2017-06-11 23:57+0200\n"
+"POT-Creation-Date: 2017-06-19 20:28+0200\n"
+"PO-Revision-Date: 2017-06-19 20:28+0200\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "Language: en\n"
@@ -24,11 +24,11 @@ msgstr ""
 msgid "Datasets"
 msgstr ""
 
-#: i18n/additional-localization.php:3 templates/default/partials/filters.php:20
+#: i18n/additional-localization.php:3
 msgid "Library publications"
 msgstr ""
 
-#: i18n/additional-localization.php:4 templates/default/partials/filters.php:21
+#: i18n/additional-localization.php:4
 msgid "Laws"
 msgstr ""
 
@@ -36,7 +36,7 @@ msgstr ""
 msgid "Agreements"
 msgstr ""
 
-#: i18n/additional-localization.php:6 templates/default/partials/filters.php:23
+#: i18n/additional-localization.php:6
 msgid "Maps"
 msgstr ""
 
@@ -44,11 +44,11 @@ msgstr ""
 msgid "News articles"
 msgstr ""
 
-#: i18n/additional-localization.php:8 templates/default/partials/filters.php:25
+#: i18n/additional-localization.php:8
 msgid "Topics"
 msgstr ""
 
-#: i18n/additional-localization.php:9 templates/default/partials/filters.php:26
+#: i18n/additional-localization.php:9
 msgid "Profiles"
 msgstr ""
 
@@ -57,12 +57,10 @@ msgid "Story"
 msgstr ""
 
 #: i18n/additional-localization.php:11
-#: templates/default/partials/filters.php:27
 msgid "Announcements"
 msgstr ""
 
 #: i18n/additional-localization.php:12
-#: templates/default/partials/filters.php:28
 msgid "Site updates"
 msgstr ""
 
@@ -110,14 +108,8 @@ msgstr ""
 msgid "Burmese"
 msgstr ""
 
-#: i18n/additional-localization.php:28
-#: templates/default/partials/filters.php:18
-#: templates/default/partials/filters.php:36
-#: templates/default/partials/filters.php:59
-#: templates/default/partials/filters.php:87
-#: templates/default/partials/filters.php:109
-#: templates/odc/partials/filters.php:12 templates/odc/partials/filters.php:105
-#: templates/odm/partials/filters.php:7
+#: i18n/additional-localization.php:28 templates/odc/partials/filters.php:12
+#: templates/odc/partials/filters.php:105 templates/odm/partials/filters.php:7
 msgid "All"
 msgstr ""
 
@@ -190,96 +182,48 @@ msgstr ""
 msgid "Choose template layout"
 msgstr ""
 
-#: templates/category-page/partials/ckan_result_template.php:129
-#: templates/odc/partials/ckan_result_template.php:135
+#: templates/category-page/partials/ckan_result_template.php:138
+#: templates/odc/partials/ckan_result_template.php:145
 msgid "Download:"
 msgstr ""
 
-#: templates/category-page/solr_search.php:219
-#: templates/default/solr_search.php:155 templates/odc/solr_search.php:231
-#: templates/odm/solr_search.php:231
+#: templates/category-page/solr_search.php:197
+#: templates/odc/solr_search.php:209 templates/odm/solr_search.php:210
 msgid ""
 "wp-odm_solr plugin is not properly configured. Please contact the system's "
 "administrator"
 msgstr ""
 
-#: templates/default/partials/filters.php:9
 #: templates/odc/partials/filters.php:4
 msgid "Text search"
 msgstr ""
 
-#: templates/default/partials/filters.php:10
-#: templates/odc/partials/filters.php:5 templates/odm/solr_search.php:332
+#: templates/odc/partials/filters.php:5 templates/odm/solr_search.php:311
 msgid "Search datasets, topics, news articles..."
 msgstr ""
 
-#: templates/default/partials/filters.php:16
-msgid "Content type"
-msgstr ""
-
-#: templates/default/partials/filters.php:17
-msgid "Select type"
-msgstr ""
-
-#: templates/default/partials/filters.php:19
-msgid "Dataset"
-msgstr ""
-
-#: templates/default/partials/filters.php:22
-msgid "Agreement"
-msgstr ""
-
-#: templates/default/partials/filters.php:24
-msgid "News"
-msgstr ""
-
-#: templates/default/partials/filters.php:34
 #: templates/odc/partials/filters.php:10 templates/odm/partials/filters.php:5
 msgid "Topic"
 msgstr ""
 
-#: templates/default/partials/filters.php:35
 #: templates/odc/partials/filters.php:11 templates/odm/partials/filters.php:6
 msgid "Select term"
 msgstr ""
 
-#: templates/default/partials/filters.php:57
-#: templates/odm/partials/filters.php:43
-msgid "Country"
-msgstr ""
-
-#: templates/default/partials/filters.php:58
-#: templates/odm/partials/filters.php:44
-msgid "Select country"
-msgstr ""
-
-#: templates/default/partials/filters.php:85
 #: templates/odc/partials/filters.php:47 templates/odm/partials/filters.php:74
 msgid "Language"
 msgstr ""
 
-#: templates/default/partials/filters.php:86
 #: templates/odc/partials/filters.php:48 templates/odm/partials/filters.php:75
 msgid "Select language"
 msgstr ""
 
-#: templates/default/partials/filters.php:107
 #: templates/odc/partials/filters.php:75 templates/odm/partials/filters.php:102
 msgid "License"
 msgstr ""
 
-#: templates/default/partials/filters.php:108
 #: templates/odc/partials/filters.php:76 templates/odm/partials/filters.php:103
 msgid "Select license"
-msgstr ""
-
-#: templates/default/partials/filters.php:128
-#: templates/odm/partials/filters.php:141
-msgid "Search Filter"
-msgstr ""
-
-#: templates/default/solr_search.php:176 templates/default/solr_search.php:190
-msgid "No result found"
 msgstr ""
 
 #: templates/odc/partials/filters.php:103
@@ -298,154 +242,187 @@ msgstr ""
 msgid "Clear"
 msgstr ""
 
-#: templates/odc/solr_search.php:293 templates/odm/solr_search.php:343
+#: templates/odc/solr_search.php:272 templates/odm/solr_search.php:321
+msgid "Records"
+msgstr ""
+
+#: templates/odc/solr_search.php:275 templates/odm/solr_search.php:324
 msgid " found for"
 msgstr ""
 
-#: templates/odc/solr_search.php:299 templates/odc/solr_search.php:300
+#: templates/odc/solr_search.php:281 templates/odc/solr_search.php:282
 #: templates/odm/partials/filters.php:131
 #: templates/odm/partials/filters.php:132
 msgid "Sort by"
 msgstr ""
 
-#: templates/odc/solr_search.php:301 templates/odm/partials/filters.php:133
+#: templates/odc/solr_search.php:283 templates/odm/partials/filters.php:133
 msgid "Relevance"
 msgstr ""
 
-#: templates/odc/solr_search.php:302 templates/odm/partials/filters.php:134
+#: templates/odc/solr_search.php:284 templates/odm/partials/filters.php:134
 msgid "Creation date"
 msgstr ""
 
-#: templates/odc/solr_search.php:303 templates/odm/partials/filters.php:135
+#: templates/odc/solr_search.php:285 templates/odm/partials/filters.php:135
 msgid "Modification date"
+msgstr ""
+
+#: templates/odm/partials/filters.php:43
+msgid "Country"
+msgstr ""
+
+#: templates/odm/partials/filters.php:44
+msgid "Select country"
 msgstr ""
 
 #: templates/odm/partials/filters.php:129
 msgid "Sorting"
 msgstr ""
 
-#: templates/odm/solr_search.php:272
-msgid "Search Results"
+#: templates/odm/partials/filters.php:141
+msgid "Search Filter"
 msgstr ""
 
-#: templates/odm/solr_search.php:305
+#: templates/odm/solr_search.php:251
+msgid "Search Results for"
+msgstr ""
+
+#: templates/odm/solr_search.php:284
 msgid "Explore more"
 msgstr ""
 
-#: templates/settings.php:25
+#: templates/settings.php:26
 msgid "Connecting to Solr"
 msgstr ""
 
-#: templates/settings.php:27
+#: templates/settings.php:28
 msgid "Host"
 msgstr ""
 
-#: templates/settings.php:30
+#: templates/settings.php:31
 msgid ""
 "Specify host without protocol, just domain. example: solr."
 "opendevelopmentmekong.net "
 msgstr ""
 
-#: templates/settings.php:34
+#: templates/settings.php:35
 msgid "Port"
 msgstr ""
 
-#: templates/settings.php:37
+#: templates/settings.php:38
 msgid "Specify the port under which the solr instance is available"
 msgstr ""
 
-#: templates/settings.php:41
+#: templates/settings.php:42
 msgid "Scheme"
 msgstr ""
 
-#: templates/settings.php:44
+#: templates/settings.php:45
 msgid "http or https"
 msgstr ""
 
-#: templates/settings.php:48
+#: templates/settings.php:49
 msgid "Path"
 msgstr ""
 
-#: templates/settings.php:51
+#: templates/settings.php:52
 msgid "Usually /solr/"
 msgstr ""
 
-#: templates/settings.php:55
+#: templates/settings.php:56
 msgid "Core WP"
 msgstr ""
 
-#: templates/settings.php:58
+#: templates/settings.php:59
 msgid "Example: wordpress_content"
 msgstr ""
 
-#: templates/settings.php:62
+#: templates/settings.php:63
 msgid "Core CKAN"
 msgstr ""
 
-#: templates/settings.php:65
+#: templates/settings.php:66
 msgid "Example: collection1"
 msgstr ""
 
-#: templates/settings.php:69
+#: templates/settings.php:70
+msgid "Core unified"
+msgstr ""
+
+#: templates/settings.php:73
+msgid "Example: unified"
+msgstr ""
+
+#: templates/settings.php:77
 msgid "User"
 msgstr ""
 
-#: templates/settings.php:72
+#: templates/settings.php:80
 msgid "Username for authentication"
 msgstr ""
 
-#: templates/settings.php:76
+#: templates/settings.php:84
 msgid "Password"
 msgstr ""
 
-#: templates/settings.php:79
+#: templates/settings.php:87
 msgid "Password for authentication"
 msgstr ""
 
-#: templates/settings.php:86
+#: templates/settings.php:94
 msgid "Connection status"
 msgstr ""
 
-#: templates/settings.php:89
+#: templates/settings.php:97
+msgid "Ping to unified index succeded."
+msgstr ""
+
+#: templates/settings.php:99
+msgid ""
+"Problem connecting to unified index. Please, check the specified config."
+msgstr ""
+
+#: templates/settings.php:102
 msgid "Ping to WP index succeded."
 msgstr ""
 
-#: templates/settings.php:91
+#: templates/settings.php:104
 msgid "Problem connecting to WP index. Please, check the specified config."
 msgstr ""
 
-#: templates/settings.php:94
+#: templates/settings.php:107
 msgid "Ping to CKAN index succeded."
 msgstr ""
 
-#: templates/settings.php:96
+#: templates/settings.php:109
 msgid "Problem connecting to CKAN index. Please, check the specified config."
 msgstr ""
 
-#: templates/settings.php:103
+#: templates/settings.php:116
 msgid "Logging"
 msgstr ""
 
-#: templates/settings.php:105
+#: templates/settings.php:118
 msgid "Enable log"
 msgstr ""
 
-#: templates/settings.php:111
+#: templates/settings.php:124
 msgid "Log file path"
 msgstr ""
 
-#: templates/settings.php:114
+#: templates/settings.php:127
 msgid "Path where logs are going to be stored. Mind permissions."
 msgstr ""
 
-#: templates/settings.php:118
+#: templates/settings.php:131
 msgid "Templating"
 msgstr ""
 
-#: templates/settings.php:120
+#: templates/settings.php:133
 msgid "Select template"
 msgstr ""
 
-#: wp-odm_solr.php:182
+#: wp-odm_solr.php:184
 msgid "You do not have sufficient permissions to access this page."
 msgstr ""
