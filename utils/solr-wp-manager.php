@@ -105,17 +105,23 @@ class WP_Odm_Solr_WP_Manager {
   		$doc->blogid = get_current_blog_id();
       $doc->country_site = odm_country_manager()->get_current_country();
       $doc->odm_spatial_range = odm_country_manager()->get_current_country_code();
+      $doc->extras_odm_spatial_range = odm_country_manager()->get_current_country_code();
       $doc->odm_language = $languages;
+      $doc->extras_odm_language = $languages;
       $doc->license_id = "CC-BY-4.0";
   		$doc->blogdomain = get_site_url();
   		$doc->title = $post->post_title;
   		$doc->permalink = get_permalink($post);
   		$doc->author = $post->post_author;
   		$doc->content = $post->post_content;
+      $doc->notes = $post->post_content;
   		$doc->excerpt = $post->post_excerpt;
   		$doc->type = $post->post_type;
+      $doc->dataset_type = $post->post_type;
   		$doc->categories = wp_get_post_categories($post->ID, array('fields' => 'names'));
+      $doc->vocab_taxonomy = wp_get_post_categories($post->ID, array('fields' => 'names'));
   		$doc->tags = wp_get_post_tags($post->ID, array('fields' => 'names'));
+      $doc->extras_odm_keywords = wp_get_post_tags($post->ID, array('fields' => 'names'));
   		$date = new DateTime($post->post_date);
   		$doc->date = $date->format('Y-m-d\TH:i:s\Z');
       $doc->metadata_created = $date->format('Y-m-d\TH:i:s\Z');
@@ -149,7 +155,7 @@ class WP_Odm_Solr_WP_Manager {
 
 		return $result;
   }
-  
+
   function delete_post($post_id){
 
     wp_odm_solr_log('solr-wp-manager delete_post');
@@ -207,7 +213,7 @@ class WP_Odm_Solr_WP_Manager {
             $taxonomy_top_tier = odm_taxonomy_manager()->get_taxonomy_top_tier();
             if (array_key_exists($value,$taxonomy_top_tier)):
               $value = "(\"" . implode("\" OR \"", $taxonomy_top_tier[$value]) . "\")";
-            endif;  
+            endif;
           else:
             if (is_array($value)):
               $value = "(\"" . implode("\" AND \"", $value) . "\")";
@@ -247,16 +253,16 @@ class WP_Odm_Solr_WP_Manager {
         if (isset($facet)):
           $result["facets"][$key] = [];
           foreach($facet as $value => $count) {
-            
+
             if ($key == "metadata_modified" || $key == "metadata_created"):
               $value = wp_solr_print_date($value,"Y");
               if (!isset($result["facets"][$key][$value])):
                 $result["facets"][$key][$value] = 0;
-              endif;              
+              endif;
               $result["facets"][$key][$value] += $count;
             else:
               $result["facets"][$key][$value] = $count;
-            endif;             
+            endif;
           }
         endif;
       endforeach;

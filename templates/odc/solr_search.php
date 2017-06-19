@@ -52,6 +52,12 @@
       //================ Search types ===================== //
 
       $all_search_types = array(
+        'all' => array(
+          'title' => 'All',
+          'icon' => 'fa fa-database',
+          'type' => 'unified',
+          'archive_url' => null
+        ),
         'dataset' => array(
           'title' => 'Datasets',
           'icon' => 'fa fa-database',
@@ -152,70 +158,52 @@
         $attrs = [];
         $result = null;
 
-        if ($value['type'] == 'ckan'):
-          //Taxonomy
-          if (isset($param_taxonomy) && $param_taxonomy != 'all') {
-            $attrs["vocab_taxonomy"] = $param_taxonomy;
-          }
+        //Taxonomy
+        if (isset($param_taxonomy) && $param_taxonomy != 'all') {
+          $attrs["vocab_taxonomy"] = $param_taxonomy;
+        }
 
-          // Language
-          if (!empty($param_language)) {
-            $attrs["extras_odm_language"] = $param_language;
-          }
+        // Language
+        if (!empty($param_language)) {
+          $attrs["extras_odm_language"] = $param_language;
+        }
 
-          // Country
-          if (!empty($param_country) && $param_country != 'mekong' && $param_country != 'all') {
-            $attrs["extras_odm_spatial_range"] = $param_country;
-          }
+        // Country
+        if (!empty($param_country) && $param_country != 'mekong' && $param_country != 'all') {
+          $attrs["extras_odm_spatial_range"] = $param_country;
+        }
 
-          //License
-          if (!empty($param_license)) {
-            $attrs['license_id'] = $param_license;
-          }
+        //License
+        if (!empty($param_license)) {
+          $attrs['license_id'] = $param_license;
+        }
 
-          //metadata_modified
-          if (isset($param_metadata_modified) && $param_metadata_modified != 'all'){
-            $attrs['metadata_modified'] = $param_metadata_modified;
-          }
-          
-          //metadata_created
-          if (isset($param_metadata_created) && $param_metadata_created != 'all'){
-            $attrs['metadata_created'] = $param_metadata_created;
-          }
+        //metadata_modified
+        if (isset($param_metadata_modified) && $param_metadata_modified != 'all'){
+          $attrs['metadata_modified'] = $param_metadata_modified;
+        }
+
+        //metadata_created
+        if (isset($param_metadata_created) && $param_metadata_created != 'all'){
+          $attrs['metadata_created'] = $param_metadata_created;
+        }
+
+        $attrs["capacity"] = "public";
+
+        if ($value['type'] == 'unified'):
+
+          $result = WP_Odm_Solr_UNIFIED_Manager()->query($param_query,$attrs,$control_attrs);
+
+        elseif ($value['type'] == 'ckan'):
 
           $attrs["dataset_type"] = $key;
-          $attrs["capacity"] = "public";
           $result = WP_Odm_Solr_CKAN_Manager()->query($param_query,$attrs,$control_attrs);
 
         else:
 
-          //Taxonomy
-          if (isset($param_taxonomy) && $param_taxonomy != 'all') {
-            $attrs["categories"] = $param_taxonomy;
-          }
-
-          // Language
-          if (!empty($param_language)) {
-            $attrs["odm_language"] = $param_language;
-          }
-
-          // Country
-          if (!empty($param_country) && $param_country != 'mekong' && $param_country != 'all') {
-            $attrs["odm_spatial_range"] = $param_country;
-          }
-
-          //metadata_modified
-          if (isset($param_metadata_modified) && $param_metadata_modified != 'all'){
-            $attrs['metadata_modified'] = $param_metadata_modified;
-          }
-          
-          //metadata_created
-          if (isset($param_metadata_created) && $param_metadata_created != 'all'){
-            $attrs['metadata_created'] = $param_metadata_created;
-          }
-
-          $attrs["type"] = $key;
+          $attrs["dataset_type"] = $key;
           $result = WP_Odm_Solr_WP_Manager()->query($param_query,$attrs,$control_attrs);
+
         endif;
 
         $results[$key] = $result["resultset"];

@@ -11,6 +11,7 @@
         $solr_path = $GLOBALS['wp_odm_solr_options']->get_option('wp_odm_solr_setting_solr_path');
         $solr_core_wp = $GLOBALS['wp_odm_solr_options']->get_option('wp_odm_solr_setting_solr_core_wp');
         $solr_core_ckan = $GLOBALS['wp_odm_solr_options']->get_option('wp_odm_solr_setting_solr_core_ckan');
+        $solr_core_unified = $GLOBALS['wp_odm_solr_options']->get_option('wp_odm_solr_setting_solr_core_unified');
         $solr_user = $GLOBALS['wp_odm_solr_options']->get_option('wp_odm_solr_setting_solr_user');
         $solr_pwd = $GLOBALS['wp_odm_solr_options']->get_option('wp_odm_solr_setting_solr_pwd');
         $logging_path = $GLOBALS['wp_odm_solr_options']->get_option('wp_odm_solr_setting_log_path');
@@ -63,6 +64,13 @@
             <td>
               <input class="full-width" type="text" name="wp_odm_solr_setting_solr_core_ckan" id="wp_odm_solr_setting_solr_core_ckan" value="<?php echo $solr_core_ckan ?>"/>
               <p class="description"><?php _e('Example: collection1','wp-odm_solr') ?>.</p>
+            </td>
+        </tr>
+        <tr valign="top">
+            <th scope="row"><label for="wp_odm_solr_setting_solr_core_unified"><?php _e('Core unified','wp-odm_solr') ?></label></th>
+            <td>
+              <input class="full-width" type="text" name="wp_odm_solr_setting_solr_core_unified" id="wp_odm_solr_setting_solr_core_unified" value="<?php echo $solr_core_unified ?>"/>
+              <p class="description"><?php _e('Example: unified','wp-odm_solr') ?>.</p>
             </td>
         </tr>
         <tr valign="top">
