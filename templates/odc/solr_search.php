@@ -335,56 +335,8 @@
             endif;
           endif; ?>
       </section> <!-- end of container -->
-    	<script>
-
-        jQuery(document).ready(function() {
-
-          jQuery( ".filter_box" ).select2({ width: '100%' });
-
-          jQuery('#search_field').autocomplete({
-            source: function( request, response ) {
-              var host = jQuery('#search_field').data("solr-host");
-              var scheme = jQuery('#search_field').data("solr-scheme");
-              var path = jQuery('#search_field').data("solr-path");
-              var core_unified = jQuery('#search_field').data("solr-core-unified");
-              var url = scheme + "://" + host  + path + core_unified + "/spell";
-
-              jQuery.ajax({
-                url: url,
-                data: {'wt':'json', 'q':request.term, 'json.wrf': 'callback'},
-                dataType: "jsonp",
-                jsonpCallback: 'callback',
-                contentType: "application/json",
-                success: function( data ) {
-                  console.log("unified autocompletion suggestions: " + JSON.stringify(data));
-                  var options = [];
-                  if (data){
-                    if(data.spellcheck){
-                      var spellcheck = data.spellcheck;
-                      if (spellcheck.suggestions){
-                        var suggestions = spellcheck.suggestions;
-                        if (suggestions[1]){
-                          var suggestionObject = suggestions[1];
-                          options = suggestionObject.suggestion;
-                        }
-                      }
-                    }
-                  }
-                  response( options );
-                }
-              });
-            },
-            minLength: 2,
-            select: function( event, ui ) {
-              var terms = this.value.split(" ");
-              terms.pop();
-              terms.push( ui.item.value );
-              this.value = terms.join( " " );
-              return false;
-            }
-          });
-        });
-
-    	</script>
+    	
+      <?php 
+        wp_enqueue_script('search-page-js', dirname(dirname(plugin_dir_path(__FILE__))).'/js/search_page.js'); ?>
 
 <?php get_footer(); ?>
