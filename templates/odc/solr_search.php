@@ -254,8 +254,9 @@
               <div class="row panel">
                 <input type="hidden" name="type" value="<?php echo $param_type;?>"></input>
                 <?php include plugin_dir_path(__FILE__). 'partials/filters.php'; ?>
+                <p id="spell"><b><?php _e("Did you mean?","wp-odm_solr");?></b></p>
               </div>
-
+              
               <div class="row">
                 <div class="sixteen columns">
                   <div class="content-type-tabs-odc">
