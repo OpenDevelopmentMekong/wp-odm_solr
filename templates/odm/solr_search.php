@@ -117,13 +117,13 @@
           'icon' => 'fa fa-bullhorn',
           'type' => 'wp',
           'archive_url' => '/announcements'
-        ),
+        )/*,
         'site-update' => array(
           'title' => 'Site updates',
           'icon' => 'fa fa-flag',
           'type' => 'wp',
           'archive_url' => '/updates'
-        )
+        )*/
       );
 
       if (isset($supported_types_override) && !empty($supported_types_override)):
