@@ -167,6 +167,7 @@ select#sorting{
 }
 
 #spell{
+	float:right;
 	display: none;
 }
 
