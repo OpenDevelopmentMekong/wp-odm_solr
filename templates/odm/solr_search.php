@@ -379,6 +379,6 @@
     	
       <?php 
         wp_register_script('search-page-js', plugins_url('wp-odm_solr/js/search_page.js'), array('jquery'));
-        wp_enqueue_script('wpckan_js'); ?>
+        wp_enqueue_script('search-page-js'); ?>
 
 <?php get_footer(); ?>
