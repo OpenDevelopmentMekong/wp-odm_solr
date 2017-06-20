@@ -61,7 +61,7 @@ jQuery(document).ready(function() {
           var spellcheck = data.spellcheck;
           if (spellcheck.suggestions){
             var suggestions = spellcheck.suggestions;
-            var suggestedString = null;
+            var suggestedString = "";
             for (var i = 1; i < suggestions.length; i += 2) {
               if (suggestions[i].suggestion){
                 var suggestion = suggestions[i].suggestion;
@@ -73,7 +73,7 @@ jQuery(document).ready(function() {
                 }
               }
             }
-            if (suggestedString !== null){
+            if (suggestedString !== ""){
               jQuery('#spell').append('<a href="/?s=' + suggestedString + '"> ' + suggestedString + '</a>');
               jQuery('#spell').show();
             }
