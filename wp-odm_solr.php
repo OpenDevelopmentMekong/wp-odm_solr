@@ -75,7 +75,7 @@ if (!class_exists('WpOdmSolr')) {
             endif;
 
             $template = $GLOBALS['wp_odm_solr_options']->get_option('wp_odm_solr_setting_template');
-            $template = isset($template) ? $template : 'default';
+            $template = isset($template) ? $template : 'odm';
 
             return dirname( __FILE__ ) . '/templates/' . $template . '/solr_search.php';
         }
