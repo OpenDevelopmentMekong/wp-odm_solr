@@ -337,6 +337,7 @@
       </section> <!-- end of container -->
     	
       <?php 
-        wp_enqueue_script('search-page-js', dirname(dirname(plugin_dir_path(__FILE__))).'/js/search_page.js'); ?>
+        wp_register_script('search-page-js', plugins_url('wp-odm_solr/js/search_page.js'), array('jquery'));
+        wp_enqueue_script('wpckan_js'); ?>
 
 <?php get_footer(); ?>
