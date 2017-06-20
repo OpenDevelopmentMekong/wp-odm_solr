@@ -316,7 +316,7 @@
                   $content_resultcount = ($content_resultset) ? $content_resultset->getNumFound() : 0;
                   ?>
                   
-                  <p id="suggestions"><b><?php _e("Did you mean?","wp-odm_solr");?></b></p>
+                  <p id="spell"><b><?php _e("Did you mean?","wp-odm_solr");?></b></p>
 
                   <h4>
                   <?php 
@@ -446,16 +446,16 @@
                       if (suggestions[i].suggestion){
                         var suggestion = suggestions[i].suggestion;
                         if (suggestion[0]){
-                          suggestedString += suggestion[0]
+                          suggestedString += suggestion[0];
+                          if (i < suggestions.length - 1){
+                            suggestedString += " "
+                          }
                         }
-                      }
-                      if (i < suggestions.length - 1){
-                        suggestedString += " "
                       }
                     }
                     if (suggestedString !== ""){
-                      jQuery('#suggestions').append('<a href="/?s=' + suggestedString + '"> ' + suggestedString + '</a>');
-                      jQuery('#suggestions').show();
+                      jQuery('#spell').append('<a href="/?s=' + suggestedString + '"> ' + suggestedString + '</a>');
+                      jQuery('#spell').show();
                     }
                   }
                 }
