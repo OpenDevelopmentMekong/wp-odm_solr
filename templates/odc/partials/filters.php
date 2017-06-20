@@ -3,7 +3,6 @@
 <div class="search-input adv-nav-input three columns">
   <label for="search_field"><?php _e('Text search', 'wp-odm_solr'); ?></label>
   <input id="search_field" name="<?php echo $query_var_name; ?>" type="text" value="<?php echo $param_query?>" placeholder="<?php _e("Search datasets, topics, news articles...",'wp-odm_solr'); ?>" data-solr-host="<?php echo $GLOBALS['wp_odm_solr_options']->get_option('wp_odm_solr_setting_solr_host'); ?>" data-solr-scheme="<?php echo $GLOBALS['wp_odm_solr_options']->get_option('wp_odm_solr_setting_solr_scheme'); ?>" data-solr-path="<?php echo $GLOBALS['wp_odm_solr_options']->get_option('wp_odm_solr_setting_solr_path'); ?>" data-solr-core-unified="<?php echo $GLOBALS['wp_odm_solr_options']->get_option('wp_odm_solr_setting_solr_core_unified'); ?>"></input>
-  <p id="spell"><b><?php _e("Did you mean?","wp-odm_solr");?></b></p>
 </div>
 
 <!-- TAXONOMY FILTER -->
