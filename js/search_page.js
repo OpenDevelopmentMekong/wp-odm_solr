@@ -17,21 +17,21 @@ jQuery(document).ready(function() {
         jsonpCallback: 'callback',
         contentType: "application/json",
         success: function( data ) {
-          console.log("unified autocompletion suggestions: " + JSON.stringify(data));
-          var options = [];
+          var titles = new Array();
           if (data){
-            if(data.spellcheck){
-              var spellcheck = data.spellcheck;
-              if (spellcheck.suggestions){
-                var suggestions = spellcheck.suggestions;
-                if (suggestions[1]){
-                  var suggestionObject = suggestions[1];
-                  options = suggestionObject.suggestion;
+            if(data.response){
+              var dataResponse = data.response;
+              if (dataResponse.docs){
+                var docs = dataResponse.docs;
+                for (var i = 0; i < docs.length; i ++) {
+                  if (docs[i].title){
+                    titles.push(docs[i].title);
+                  }
                 }
               }
             }
           }
-          response( options );
+          response( titles );
         }
       });
     },
@@ -54,8 +54,6 @@ jQuery(document).ready(function() {
     jsonpCallback: 'callback',
     contentType: "application/json",
     success: function( data ) {
-      console.log("unified autocompletion spell: " + JSON.stringify(data));
-      var options = [];
       if (data){
         if(data.spellcheck){
           var spellcheck = data.spellcheck;
