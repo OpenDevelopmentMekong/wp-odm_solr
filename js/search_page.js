@@ -11,20 +11,16 @@ jQuery(document).ready(function() {
 
   jQuery('#search_field').autocomplete({
     source: function( request, response ) {
-      var dataSuggestions = null;
+      var dataSuggestions = dataSuggestions = {
+        'wt':'json',
+        'q':request.term,
+        'json.wrf': 'callback'
+      };
       if (currentCountry != 'mekong'){
-        dataSuggestions = {
-          'wt':'json',
-          'q':request.term,
-          'json.wrf': 'callback',
-          'fq': 'extras_odm_language:' + currentLang + '+extras_odm_spatial_range:' + currentCountry
-        };
-      }else{
-        dataSuggestions = {
-          'wt':'json',
-          'q':request.term,
-          'json.wrf': 'callback'
-        };
+        dataSuggestions['fq'] = {
+          'extras_odm_language': currentLang,
+          'extras_odm_spatial_range': currentCountry
+        }
       }
 
       var suggestionsUrl = scheme + "://" + host  + path + coreUnified + "/suggestions";
