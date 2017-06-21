@@ -193,7 +193,7 @@
         if ($value['type'] != 'unified'):
           $attrs["dataset_type"] = $key;
         endif;
-        
+
         $result = WP_Odm_Solr_UNIFIED_Manager()->query($param_query,$attrs,$control_attrs);
 
         $results[$key] = $result["resultset"];
@@ -255,7 +255,7 @@
                 <input type="hidden" name="type" value="<?php echo $param_type;?>"></input>
                 <?php include plugin_dir_path(__FILE__). 'partials/filters.php'; ?>
               </div>
-              
+
               <div class="row">
                 <div class="sixteen columns">
                   <div class="content-type-tabs-odc">
@@ -268,7 +268,7 @@
             <div class="row">
               <div class="eleven columns">
                 <h4>
-                <?php 
+                <?php
                   $type_title = $param_type == "all"  ? __("Records","wp-odm_solr") : $all_search_types[$param_type]["title"];
                   echo $content_resultcount . ' '
                             . $type_title
@@ -335,8 +335,10 @@
             endif;
           endif; ?>
       </section> <!-- end of container -->
-    	
-      <?php 
+
+      <?php
+        wp_register_script('search-page-utils-js', plugins_url('wp-odm_solr/js/utils.js'));
+        wp_enqueue_script('search-page-utils-js');
         wp_register_script('search-page-js', plugins_url('wp-odm_solr/js/search_page.js'), array('jquery'));
         wp_enqueue_script('search-page-js'); ?>
 
