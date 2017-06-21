@@ -122,7 +122,7 @@ class WP_Odm_Solr_UNIFIED_Manager {
       if ( $current_country != "mekong" && !array_key_exists("extras_odm_spatial_range",$attrs)):
         $current_country_code = odm_country_manager()->get_current_country_code();
   			$query->createFilterQuery('extras_odm_spatial_range')->setQuery('extras_odm_spatial_range: ("mekong" OR "' . $current_country_code . '")');
-        $text = $text + " " + odm_country_manager()->get_current_country_code();
+        $text = $text + " " + odm_country_manager()->get_current_country();
   		endif;
 
       if (!empty($text)):
