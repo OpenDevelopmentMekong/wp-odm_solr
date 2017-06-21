@@ -53,7 +53,7 @@ jQuery(document).ready(function() {
     }
   }).autocomplete( "instance" )._renderItem = function( ul, item ) {
     return $( "<li>" )
-      .append( "<a href=\"" + item.permalink + "\"><i class=\"fa fa-folder-o\"" + item.title"</div>" )
+      .append( "<a href=\"" + item.permalink + "\"><i class=\"fa fa-folder-o\"" + item.title + "</div>" )
       .appendTo( ul );
   };
 
