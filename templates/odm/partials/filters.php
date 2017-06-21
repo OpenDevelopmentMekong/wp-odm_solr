@@ -3,7 +3,7 @@
 <!-- TAXONOMY FILTER -->
 <div class="single-filter">
   <label for="taxonomy"><?php _e('Topic', 'wp-odm_solr'); ?></label>
-  <select id="taxonomy" name="taxonomy" class="filter_box" data-placeholder="<?php _e('Select term', 'wp-odm_solr'); ?>">
+  <select id="taxonomy" name="taxonomy" class="full-width filter_box" data-placeholder="<?php _e('Select term', 'wp-odm_solr'); ?>">
     <option value="all" <?php if (isset($param_taxonomy) || $param_taxonomy == 'all') echo 'selected'; ?>><?php _e('All','wp-odm_solr') ?></option>
       <?php
       if (array_key_exists("vocab_taxonomy",$facets[$param_type])):
@@ -41,7 +41,7 @@
 <?php if (odm_country_manager()->get_current_country() == 'mekong'): ?>
 <div class="single-filter">
   <label for="country"><?php _e('Country', 'wp-odm_solr'); ?></label>
-  <select multiple id="country" name="country[]" class="filter_box" data-placeholder="<?php _e('Select country', 'wp-odm_solr'); ?>">
+  <select multiple id="country" name="country[]" class="full-width filter_box" data-placeholder="<?php _e('Select country', 'wp-odm_solr'); ?>">
     <?php
       foreach($country_codes_iso2 as $country_code):
         if (array_key_exists("extras_odm_spatial_range",$facets[$param_type])):
@@ -72,7 +72,7 @@
 <!-- LANGUAGE FILTER -->
 <div class="single-filter">
   <label for="language"><?php _e('Language', 'wp-odm_solr'); ?></label>
-  <select multiple id="language" name="language[]" class="filter_box" data-placeholder="<?php _e('Select language', 'wp-odm_solr'); ?>">
+  <select multiple id="language" name="language[]" class="full-width filter_box" data-placeholder="<?php _e('Select language', 'wp-odm_solr'); ?>">
     <?php
       foreach($languages as $key => $value):
         if (array_key_exists("extras_odm_language",$facets[$param_type])):
@@ -100,7 +100,7 @@
 <!-- LICENSE FILTER -->
 <div class="single-filter">
   <label for="license"><?php _e('License', 'wp-odm_solr'); ?></label>
-  <select multiple id="license" name="license[]" class="filter_box" data-placeholder="<?php _e('Select license', 'wp-odm_solr'); ?>">
+  <select multiple id="license" name="license[]" class="full-width filter_box" data-placeholder="<?php _e('Select license', 'wp-odm_solr'); ?>">
     <?php
       foreach($license_list as $license):
         if (array_key_exists("license_id",$facets[$param_type])):
@@ -129,7 +129,7 @@
 <h3><i class="fa fa-sort"></i> <?php _e('Sorting','wp-odm_solr'); ?></h3>
 <div class="single-filter">
   <label for="sorting"><?php _e('Sort by', 'wp-odm_solr'); ?></label>
-  <select id="sorting" name="sorting" class="filter_box" data-placeholder="<?php _e('Sort by', 'wp-odm_solr'); ?>">
+  <select id="sorting" name="sorting" class="full-width filter_box" data-placeholder="<?php _e('Sort by', 'wp-odm_solr'); ?>">
     <option <?php if($param_sorting == "score") echo 'selected'; ?> value="score"><?php _e('Relevance','wp-odm_solr') ?></option>
   	<option <?php if($param_sorting == "metadata_created") echo 'selected'; ?> value="metadata_created"><?php _e('Creation date','wp-odm_solr') ?></option>
     <option <?php if($param_sorting == "metadata_modified") echo 'selected'; ?> value="metadata_modified"><?php _e('Modification date','wp-odm_solr') ?></option>
@@ -137,6 +137,6 @@
 </div>
 <!-- END OF LICENSE FILTER -->
 
-<div class="single-filter">
+<div class="full-width single-filter">
   <input class="button" type="submit" value="<?php _e('Search Filter', 'wp-odm_solr'); ?>"/>
 </div>
