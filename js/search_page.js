@@ -63,11 +63,14 @@ jQuery(document).ready(function() {
   var spellUrl = scheme + "://" + host  + path + coreUnified + "/spell";
   var dataSpell = {
     'wt':'json',
-    'q':enteredQuery,
+    'q': enteredQuery,
     'json.wrf': 'callback'
   };
   if (currentCountry != 'mekong'){
-    dataSpell['fq'] = 'extras_odm_language:' + currentLang + '+extras_odm_spatial_range:' + currentCountry;
+    dataSpell['fq'] = {
+      'extras_odm_language': currentLang,
+      'extras_odm_spatial_range': currentCountry
+    }
   }
   jQuery.ajax({
     url: spellUrl,
