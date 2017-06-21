@@ -11,14 +11,22 @@ jQuery(document).ready(function() {
 
   jQuery('#search_field').autocomplete({
     source: function( request, response ) {
-      var dataSuggestions = {
-        'wt':'json',
-        'q':request.term,
-        'json.wrf': 'callback'
-      };
+      var dataSuggestions = null;
       if (currentCountry != 'mekong'){
-        dataSuggestions['fq'] = 'extras_odm_language:' + currentLang + '+extras_odm_spatial_range:' + currentCountry;
+        dataSuggestions = {
+          'wt':'json',
+          'q':request.term,
+          'json.wrf': 'callback',
+          'fq': 'extras_odm_language:' + currentLang + '+extras_odm_spatial_range:' + currentCountry
+        };
+      }else{
+        dataSuggestions = {
+          'wt':'json',
+          'q':request.term,
+          'json.wrf': 'callback'
+        };
       }
+
       var suggestionsUrl = scheme + "://" + host  + path + coreUnified + "/suggestions";
       jQuery.ajax({
         url: suggestionsUrl,
