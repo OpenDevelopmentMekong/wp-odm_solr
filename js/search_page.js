@@ -90,8 +90,8 @@ jQuery(document).ready(function() {
                 queryTerms[wrongTerm]["isCorrect"] = false;
                 for (var j = 0; j < suggestion.length; j++) {
                   queryTerms[wrongTerm]["suggestions"].push(suggestion[j]);
-                  if (j > maxNumSuggestions){
-                    maxNumSuggestions = j;
+                  if (j >= maxNumSuggestions ){
+                    maxNumSuggestions = j + 1 ;
                   }
                 }
               }
