@@ -106,7 +106,7 @@ jQuery(document).ready(function() {
                   }else{
                     suggestedString += term["suggestions"][k];
                   }
-                  if (k < maxNumSuggestions - 1){
+                  if (l < splittedQuery.length - 1){
                     suggestedString += " "
                   }
                 }
