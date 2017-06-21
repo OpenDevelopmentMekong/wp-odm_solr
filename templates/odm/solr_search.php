@@ -3,7 +3,7 @@
     <?php
       include_once dirname(dirname(plugin_dir_path(__FILE__))).'/utils/solr-wp-manager.php';
       include_once dirname(dirname(plugin_dir_path(__FILE__))).'/utils/solr-ckan-manager.php';
-      
+
       global $post;
       $is_search_page = false;
 
@@ -31,7 +31,7 @@
     	$param_sorting = isset($_GET['sorting']) ? $_GET['sorting'] : 'score';
       $param_metadata_modified = isset($_GET['metadata_modified']) ? $_GET['metadata_modified'] : 'all';
       $param_metadata_created = isset($_GET['metadata_created']) ? $_GET['metadata_created'] : 'all';
-      
+
       //================ Filter Values ===================== //
 
       $taxonomy_list = odm_taxonomy_manager()->get_taxonomy_list();
@@ -193,7 +193,7 @@
         if ($value['type'] != 'unified'):
           $attrs["dataset_type"] = $key;
         endif;
-        
+
         $result = WP_Odm_Solr_UNIFIED_Manager()->query($param_query,$attrs,$control_attrs);
 
         $results[$key] = $result["resultset"];
@@ -308,18 +308,18 @@
                     endif;
 
                     $query_var_name = $is_search_page ? 'query' : 's'; ?>
-                    <input id="search_field" name="<?php echo $query_var_name; ?>" type="text" class="full-width-search-box search_field" value="<?php echo $param_query?>" placeholder="<?php _e("Search datasets, topics, news articles...",'wp-odm_solr'); ?>" data-solr-host="<?php echo $GLOBALS['wp_odm_solr_options']->get_option('wp_odm_solr_setting_solr_host'); ?>" data-solr-scheme="<?php echo $GLOBALS['wp_odm_solr_options']->get_option('wp_odm_solr_setting_solr_scheme'); ?>" data-solr-path="<?php echo $GLOBALS['wp_odm_solr_options']->get_option('wp_odm_solr_setting_solr_path'); ?>" data-solr-core-unified="<?php echo $GLOBALS['wp_odm_solr_options']->get_option('wp_odm_solr_setting_solr_core_unified'); ?>"></input>
+                    <input id="search_field" name="<?php echo $query_var_name; ?>" type="text" class="full-width-search-box search_field" value="<?php echo $param_query?>" placeholder="<?php _e("Search datasets, topics, news articles...",'wp-odm_solr'); ?>" data-solr-host="<?php echo $GLOBALS['wp_odm_solr_options']->get_option('wp_odm_solr_setting_solr_host'); ?>" data-solr-scheme="<?php echo $GLOBALS['wp_odm_solr_options']->get_option('wp_odm_solr_setting_solr_scheme'); ?>"  data-solr-path="<?php echo $GLOBALS['wp_odm_solr_options']->get_option('wp_odm_solr_setting_solr_path'); ?>" data-solr-core-unified="<?php echo $GLOBALS['wp_odm_solr_options']->get_option('wp_odm_solr_setting_solr_core_unified'); ?>" data-odm-current-lang="<?php echo odm_language_manager()->get_current_language(); ?>" data-odm-current-country="<?php echo odm_country_manager()->get_current_country_code(); ?>"></input>
                   </form>
 
                   <?php
                   $content_resultset = array_key_exists($param_type,$results) ? $results[$param_type] : null;
                   $content_resultcount = ($content_resultset) ? $content_resultset->getNumFound() : 0;
                   ?>
-                  
+
                   <p id="spell"><b><?php _e("Did you mean?","wp-odm_solr");?></b></p>
 
                   <h4>
-                  <?php 
+                  <?php
                     $type_title = $param_type == "all"  ? __("Records","wp-odm_solr") : $all_search_types[$param_type]["title"];
                     echo $content_resultcount . ' '
                               . $type_title
@@ -376,8 +376,8 @@
       <?php
           endif; ?>
       </section> <!-- end of container -->
-    	
-      <?php 
+
+      <?php
         wp_register_script('search-page-js', plugins_url('wp-odm_solr/js/search_page.js'), array('jquery'));
         wp_enqueue_script('search-page-js'); ?>
 

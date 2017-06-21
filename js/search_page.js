@@ -1,18 +1,28 @@
 jQuery(document).ready(function() {
 
   jQuery( ".filter_box" ).select2();
-  
+
   var host = jQuery('#search_field').data("solr-host");
   var scheme = jQuery('#search_field').data("solr-scheme");
   var path = jQuery('#search_field').data("solr-path");
   var core_unified = jQuery('#search_field').data("solr-core-unified");
-  
+  var currentLang = jQuery('#search_field').data("odm-current-lang");
+  var currentCountry = jQuery('#search_field').data("odm-current-country");
+
   jQuery('#search_field').autocomplete({
     source: function( request, response ) {
+      var dataSuggestions = {
+        'wt':'json',
+        'q':request.term,
+        'json.wrf': 'callback'
+      };
+      if (currentCountry != 'mekong'){
+        dataSuggestions['fq'] = 'extras_odm_language:' + currentLang + '+extras_odm_spatial_range:' + currentCountry;
+      }
       var suggestions_url = scheme + "://" + host  + path + core_unified + "/suggestions";
       jQuery.ajax({
         url: suggestions_url,
-        data: {'wt':'json', 'q':request.term, 'json.wrf': 'callback'},
+        data: dataSuggestions,
         dataType: "jsonp",
         jsonpCallback: 'callback',
         contentType: "application/json",
@@ -44,12 +54,20 @@ jQuery(document).ready(function() {
       return false;
     }
   });
-  
-  var entered_query = jQuery('#search_field').val();
-  var spell_url = scheme + "://" + host  + path + core_unified + "/spell";
+
+  var enteredQuery = jQuery('#search_field').val();
+  var spellUrl = scheme + "://" + host  + path + core_unified + "/spell";
+  var dataSpell = {
+    'wt':'json',
+    'q':enteredQuery,
+    'json.wrf': 'callback'
+  };
+  if (currentCountry != 'mekong'){
+    dataSpell['fq'] = 'extras_odm_language:' + currentLang + '+extras_odm_spatial_range:' + currentCountry;
+  }
   jQuery.ajax({
-    url: spell_url,
-    data: {'wt':'json', 'q':entered_query, 'json.wrf': 'callback'},
+    url: spellUrl,
+    data: dataSpell,
     dataType: "jsonp",
     jsonpCallback: 'callback',
     contentType: "application/json",
@@ -80,5 +98,5 @@ jQuery(document).ready(function() {
       }
     }
   });
-  
+
 });
