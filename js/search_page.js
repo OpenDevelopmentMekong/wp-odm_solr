@@ -32,7 +32,8 @@ jQuery(document).ready(function() {
                     titles.push({
                       'id': docs[i].index_id,
                       'title': docs[i].title,
-                      'permalink': docs[i].permalink
+                      'permalink': docs[i].permalink,
+                      'dataset_type': docs[i].dataset_type
                     });
                   }
                 }
@@ -53,7 +54,7 @@ jQuery(document).ready(function() {
     }
   }).autocomplete( "instance" )._renderItem = function( ul, item ) {
     return $( "<li>" )
-      .append( "<h5><a href=\"" + item.permalink + "\"><i class=\"fa fa-folder-o\">" + item.title + "</div></h5>" )
+      .append( "<h5><a href=\"" + item.permalink + "\"><i class=\"" + get_post_type_icon_class(item.dataset_type)+ "\"> " + item.title + "</div></h5>" )
       .appendTo( ul );
   };
 

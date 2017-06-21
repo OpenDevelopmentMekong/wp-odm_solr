@@ -378,6 +378,8 @@
       </section> <!-- end of container -->
 
       <?php
+        wp_register_script('search-page-utils-js', plugins_url('wp-odm_solr/js/utils.js'));
+        wp_enqueue_script('search-page-utils-js');
         wp_register_script('search-page-js', plugins_url('wp-odm_solr/js/search_page.js'), array('jquery'));
         wp_enqueue_script('search-page-js'); ?>
 
