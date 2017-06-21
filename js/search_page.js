@@ -49,6 +49,7 @@ jQuery(document).ready(function() {
     }
   });
 
+  var enteredQuery = jQuery('#search_field').val();
   var spellUrl = scheme + "://" + host  + path + coreUnified + "/spell/?q=" + enteredQuery + "&wt=json&json.wrf=callback";
   if (currentCountry != 'mekong'){
     spellUrl += "&fq=extras_odm_language:" + currentLang + "+extras_odm_spatial_range:" + currentCountry;
