@@ -111,6 +111,9 @@ jQuery(document).ready(function() {
                   }
                 }
                 jQuery('#spell').append('<a href="/?s=' + suggestedString + '"> ' + suggestedString + '</a>');
+                if (k < maxNumSuggestions - 1){
+                  jQuery('#spell').append(',');
+                }
               }
               jQuery('#spell').show();
             }
