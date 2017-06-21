@@ -5,7 +5,7 @@ jQuery(document).ready(function() {
   var host = jQuery('#search_field').data("solr-host");
   var scheme = jQuery('#search_field').data("solr-scheme");
   var path = jQuery('#search_field').data("solr-path");
-  var core_unified = jQuery('#search_field').data("solr-core-unified");
+  var coreUnified = jQuery('#search_field').data("solr-core-unified");
   var currentLang = jQuery('#search_field').data("odm-current-lang");
   var currentCountry = jQuery('#search_field').data("odm-current-country");
 
@@ -19,9 +19,9 @@ jQuery(document).ready(function() {
       if (currentCountry != 'mekong'){
         dataSuggestions['fq'] = 'extras_odm_language:' + currentLang + '+extras_odm_spatial_range:' + currentCountry;
       }
-      var suggestions_url = scheme + "://" + host  + path + core_unified + "/suggestions";
+      var suggestionsUrl = scheme + "://" + host  + path + coreUnified + "/suggestions";
       jQuery.ajax({
-        url: suggestions_url,
+        url: suggestionsUrl,
         data: dataSuggestions,
         dataType: "jsonp",
         jsonpCallback: 'callback',
@@ -56,7 +56,7 @@ jQuery(document).ready(function() {
   });
 
   var enteredQuery = jQuery('#search_field').val();
-  var spellUrl = scheme + "://" + host  + path + core_unified + "/spell";
+  var spellUrl = scheme + "://" + host  + path + coreUnified + "/spell";
   var dataSpell = {
     'wt':'json',
     'q':enteredQuery,
