@@ -91,9 +91,7 @@ class WP_Odm_Solr_UNIFIED_Manager {
     try {
 
       $query = $this->client->createSelect();
-      if (!empty($text)):
-        $query->setQuery($text);
-      endif;
+
 
       if (isset($control_attrs["page"]) && isset($control_attrs["limit"])):
         $start = $control_attrs["page"] * $control_attrs["limit"];
@@ -124,7 +122,12 @@ class WP_Odm_Solr_UNIFIED_Manager {
       if ( $current_country != "mekong" && !array_key_exists("extras_odm_spatial_range",$attrs)):
         $current_country_code = odm_country_manager()->get_current_country_code();
   			$query->createFilterQuery('extras_odm_spatial_range')->setQuery('extras_odm_spatial_range: ("mekong" OR "' . $current_country_code . '")');
+        $text = $text + " " + odm_country_manager()->get_current_country_code();
   		endif;
+
+      if (!empty($text)):
+        $query->setQuery($text);
+      endif;
 
       if (!empty($text)):
         $fields_to_query = 'extras_odm_keywords^6 vocab_taxonomy^5 title^2 extras_title_translated^2 extras_notes_translated^1 notes^1 extras_odm_spatial_range^1 extras_odm_province^1';
