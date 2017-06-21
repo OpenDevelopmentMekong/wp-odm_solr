@@ -29,7 +29,7 @@ jQuery(document).ready(function() {
                 var docs = dataResponse.docs;
                 for (var i = 0; i < docs.length; i ++) {
                   if (docs[i].title){
-                    titles.push(docs[i].title);
+                    titles.push(docs[i]);
                   }
                 }
               }
@@ -47,7 +47,11 @@ jQuery(document).ready(function() {
       this.value = terms.join( " " );
       return false;
     }
-  });
+  }).autocomplete( "instance" )._renderItem = function( ul, item ) {
+    return $( "<li>" )
+      .append( "<div>" + item.label + "<br>" + item.desc + "</div>" )
+      .appendTo( ul );
+  };
 
   var enteredQuery = jQuery('#search_field').val();
   var spellUrl = scheme + "://" + host  + path + coreUnified + "/spell/?q=" + enteredQuery + "&wt=json&json.wrf=callback";
