@@ -29,7 +29,11 @@ jQuery(document).ready(function() {
                 var docs = dataResponse.docs;
                 for (var i = 0; i < docs.length; i ++) {
                   if (docs[i].title){
-                    titles.push(docs[i]);
+                    titles.push({
+                      'id': docs[i].index_id,
+                      'title': docs[i].title,
+                      'permalink': docs[i].permalink
+                    );
                   }
                 }
               }
@@ -49,7 +53,7 @@ jQuery(document).ready(function() {
     }
   }).autocomplete( "instance" )._renderItem = function( ul, item ) {
     return $( "<li>" )
-      .append( "<div>" + item.label + "<br>" + item.desc + "</div>" )
+      .append( "<a href=\"" + item.permalink + "\"><i class=\"fa fa-folder-o\"" + item.title"</div>" )
       .appendTo( ul );
   };
 
