@@ -17,7 +17,6 @@ jQuery(document).ready(function() {
       }
       jQuery.ajax({
         url: suggestionsUrl,
-        data: dataSuggestions,
         dataType: "jsonp",
         jsonpCallback: 'callback',
         contentType: "application/json",
