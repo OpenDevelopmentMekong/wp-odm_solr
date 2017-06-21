@@ -11,19 +11,10 @@ jQuery(document).ready(function() {
 
   jQuery('#search_field').autocomplete({
     source: function( request, response ) {
-      var dataSuggestions = dataSuggestions = {
-        'wt':'json',
-        'q':request.term,
-        'json.wrf': 'callback'
-      };
+      var suggestionsUrl = scheme + "://" + host  + path + coreUnified + "/suggestions/?q=" + request.term + "&wt=json&json.wrf=callback";
       if (currentCountry != 'mekong'){
-        dataSuggestions['fq'] = {
-          'extras_odm_language': currentLang,
-          'extras_odm_spatial_range': currentCountry
-        }
+        suggestionsUrl += "&fq=extras_odm_language:" + currentLang + "+extras_odm_spatial_range:" + currentCountry;
       }
-
-      var suggestionsUrl = scheme + "://" + host  + path + coreUnified + "/suggestions";
       jQuery.ajax({
         url: suggestionsUrl,
         data: dataSuggestions,
@@ -59,22 +50,12 @@ jQuery(document).ready(function() {
     }
   });
 
-  var enteredQuery = jQuery('#search_field').val();
-  var spellUrl = scheme + "://" + host  + path + coreUnified + "/spell";
-  var dataSpell = {
-    'wt':'json',
-    'q': enteredQuery,
-    'json.wrf': 'callback'
-  };
+  var spellUrl = scheme + "://" + host  + path + coreUnified + "/spell/?q=" + enteredQuery + "&wt=json&json.wrf=callback";
   if (currentCountry != 'mekong'){
-    dataSpell['fq'] = {
-      'extras_odm_language': currentLang,
-      'extras_odm_spatial_range': currentCountry
-    }
+    spellUrl += "&fq=extras_odm_language:" + currentLang + "+extras_odm_spatial_range:" + currentCountry;
   }
   jQuery.ajax({
     url: spellUrl,
-    data: dataSpell,
     dataType: "jsonp",
     jsonpCallback: 'callback',
     contentType: "application/json",
