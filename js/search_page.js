@@ -86,7 +86,7 @@ jQuery(document).ready(function() {
             for (var i = 1; i < suggestions.length; i += 2) {
               if (suggestions[i].suggestion){
                 var suggestion = suggestions[i].suggestion;
-                var wrongTerm = suggestions[i--];
+                var wrongTerm = suggestions[i-1];
                 queryTerms[wrongTerm]["isCorrect"] = false;
                 for (var j = 0; j < suggestion.length; j++) {
                   queryTerms[wrongTerm]["suggestions"].push(suggestion[j]);
