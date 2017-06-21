@@ -33,7 +33,7 @@ jQuery(document).ready(function() {
                       'id': docs[i].index_id,
                       'title': docs[i].title,
                       'permalink': docs[i].permalink
-                    );
+                    });
                   }
                 }
               }
