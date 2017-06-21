@@ -169,5 +169,5 @@ select#sorting{
 #spell{
 	float:right;
 	display: none;
+	max-width: 400px;
 }
-

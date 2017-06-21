@@ -59,6 +59,14 @@ jQuery(document).ready(function() {
   };
 
   var enteredQuery = jQuery('#search_field').val();
+  var splittedQuery = enteredQuery.split(" ");
+  var queryTerms = {};
+  for (var i = 0; i < splittedQuery.length; i ++) {
+    queryTerms[splittedQuery[i]] = {
+      "isCorrect": true,
+      "suggestions": []
+    };
+  }
   var spellUrl = scheme + "://" + host  + path + coreUnified + "/spell/?q=" + enteredQuery + "&wt=json&json.wrf=callback";
   if (currentCountry != 'mekong'){
     spellUrl += "&fq=extras_odm_language:" + currentLang + "+extras_odm_spatial_range:" + currentCountry;
@@ -71,23 +79,42 @@ jQuery(document).ready(function() {
     success: function( data ) {
       if (data){
         if(data.spellcheck){
+          var maxNumSuggestions = 0;
           var spellcheck = data.spellcheck;
           if (spellcheck.suggestions){
             var suggestions = spellcheck.suggestions;
-            var suggestedString = "";
             for (var i = 1; i < suggestions.length; i += 2) {
               if (suggestions[i].suggestion){
                 var suggestion = suggestions[i].suggestion;
-                if (suggestion[0]){
-                  suggestedString += suggestion[0];
-                  if (i < suggestions.length - 1){
-                    suggestedString += " "
+                var wrongTerm = suggestions[i-1];
+                queryTerms[wrongTerm]["isCorrect"] = false;
+                for (var j = 0; j < suggestion.length; j++) {
+                  queryTerms[wrongTerm]["suggestions"].push(suggestion[j]);
+                  if (j >= maxNumSuggestions ){
+                    maxNumSuggestions = j + 1 ;
                   }
                 }
               }
             }
-            if (suggestedString !== ""){
-              jQuery('#spell').append('<a href="/?s=' + suggestedString + '"> ' + suggestedString + '</a>');
+            if (maxNumSuggestions > 0){
+              for (var k = 0; k< maxNumSuggestions; k++){
+                var suggestedString = "";
+                for (var l = 0; l< splittedQuery.length; l++){
+                  var term = queryTerms[splittedQuery[l]];
+                  if (term["isCorrect"]){
+                    suggestedString += splittedQuery[l];
+                  }else{
+                    suggestedString += term["suggestions"][k];
+                  }
+                  if (l < splittedQuery.length - 1){
+                    suggestedString += " "
+                  }
+                }
+                jQuery('#spell').append('<a href="/?s=' + suggestedString + '"> ' + suggestedString + '</a>');
+                if (k < maxNumSuggestions - 1){
+                  jQuery('#spell').append(',');
+                }
+              }
               jQuery('#spell').show();
             }
           }
