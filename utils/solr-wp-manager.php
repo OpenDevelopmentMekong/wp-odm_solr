@@ -102,6 +102,7 @@ class WP_Odm_Solr_WP_Manager {
 
   		$doc = $update->createDocument();
   		$doc->id = $post->ID;
+      $doc->index_id = $post->ID;
   		$doc->blogid = get_current_blog_id();
       $doc->country_site = odm_country_manager()->get_current_country();
       $doc->odm_spatial_range = odm_country_manager()->get_current_country_code();
