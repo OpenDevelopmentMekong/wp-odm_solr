@@ -92,7 +92,6 @@ class WP_Odm_Solr_UNIFIED_Manager {
 
       $query = $this->client->createSelect();
 
-
       if (isset($control_attrs["page"]) && isset($control_attrs["limit"])):
         $start = $control_attrs["page"] * $control_attrs["limit"];
         $rows = $control_attrs["limit"];
