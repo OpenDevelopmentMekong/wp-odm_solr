@@ -13,7 +13,7 @@ jQuery(document).ready(function() {
     source: function( request, response ) {
       var suggestionsUrl = scheme + "://" + host  + path + coreUnified + "/suggestions/?q=" + request.term + "&wt=json&json.wrf=callback";
       if (currentCountry != 'mekong'){
-        suggestionsUrl += "&fq=extras_odm_language:" + currentLang + "+extras_odm_spatial_range:" + currentCountry;
+        suggestionsUrl += "&fq=extras_odm_language:" + currentLang + "+extras_odm_spatial_range: (\"mekong\" OR \"" + currentCountry + "\")";
       }
       jQuery.ajax({
         url: suggestionsUrl,
@@ -69,7 +69,7 @@ jQuery(document).ready(function() {
   }
   var spellUrl = scheme + "://" + host  + path + coreUnified + "/spell/?q=" + enteredQuery + "&wt=json&json.wrf=callback";
   if (currentCountry != 'mekong'){
-    spellUrl += "&fq=extras_odm_language:" + currentLang + "+extras_odm_spatial_range:" + currentCountry;
+    spellUrl += "&fq=extras_odm_language:" + currentLang + "+extras_odm_spatial_range: (\"mekong\" OR \"" + currentCountry + "\")";
   }
   jQuery.ajax({
     url: spellUrl,
