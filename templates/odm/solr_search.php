@@ -25,9 +25,6 @@
       $param_page = isset($_GET['page']) ? (int)$_GET['page'] : 0;
       $param_page_solr = (isset($_GET['page']) && (int)$_GET['page'] > 0) ? ((int)$_GET['page'] -1) : 0;
       $param_country = odm_country_manager()->get_current_country() == 'mekong' && isset($_GET['country']) ? $_GET['country'] : array();
-      if (empty($param_country) && odm_country_manager()->get_current_country() != 'mekong'):
-        $param_country = array(odm_country_manager()->get_current_country_code());
-      endif;
     	$param_sorting = isset($_GET['sorting']) ? $_GET['sorting'] : 'score';
       $param_metadata_modified = isset($_GET['metadata_modified']) ? $_GET['metadata_modified'] : 'all';
       $param_metadata_created = isset($_GET['metadata_created']) ? $_GET['metadata_created'] : 'all';
@@ -169,7 +166,7 @@
         }
 
         // Country
-        if (!empty($param_country) && $param_country != 'mekong' && $param_country != 'all') {
+        if (!empty($param_country)) {
           $attrs["extras_odm_spatial_range"] = $param_country;
         }
 
