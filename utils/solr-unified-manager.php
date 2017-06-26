@@ -112,7 +112,7 @@ class WP_Odm_Solr_UNIFIED_Manager {
             if (is_array($value)):
               $value = "(\"" . implode("\" AND \"", $value) . "\")";
             endif;
-          endif;  
+          endif;
           $query->createFilterQuery($key)->setQuery($key . ':' . $value);
         endforeach;
       endif;
@@ -122,6 +122,11 @@ class WP_Odm_Solr_UNIFIED_Manager {
         $current_country_code = odm_country_manager()->get_current_country_code();
   			$query->createFilterQuery('extras_odm_spatial_range')->setQuery('extras_odm_spatial_range: ("mekong" OR "' . $current_country_code . '")');
         $text = $text . " " . $current_country;
+  		endif;
+
+      if ( $current_country != "mekong" && !array_key_exists("extras_odm_language",$attrs)):
+        $local_language_code = odm_language_manager()->get_the_language_code_by_site();
+  			$query->createFilterQuery('extras_odm_language')->setQuery('extras_odm_language: ("en" OR "' . $local_language_code . '")');
   		endif;
 
       if (!empty($text)):
