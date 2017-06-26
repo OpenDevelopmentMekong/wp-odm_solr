@@ -125,7 +125,7 @@ class WP_Odm_Solr_CKAN_Manager {
   		endif;
 
       if ( $current_country != "mekong" && !array_key_exists("extras_odm_language",$attrs)):
-        $local_language_code = odm_language_manager()->get_the_language_by_site();
+        $local_language_code = odm_language_manager()->get_the_language_code_by_site();
   			$query->createFilterQuery('extras_odm_language')->setQuery('extras_odm_language: ("en" OR "' . $local_language_code . '")');
   		endif;
 
