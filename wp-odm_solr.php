@@ -3,7 +3,7 @@
  * Plugin Name: wp-odm_solr
  * Plugin URI: http://github.com/OpenDevelopmentMekong/wp-odm_solr
  * Description: ODI Internal Wordpress plugin for indexing created/updated WP contents automatically into a solr index
- * Version: 2.2.29
+ * Version: 2.2.30
  * Author: Alex Corbi (mail@lifeformapps.com)
  * Author URI: http://www.lifeformapps.com
  * License: GPLv3
@@ -160,11 +160,12 @@ if (!class_exists('WpOdmSolr')) {
             register_setting('wp_odm_solr-group', 'wp_odm_solr_setting_solr_core_unified');
             register_setting('wp_odm_solr-group', 'wp_odm_solr_setting_solr_schema');
             register_setting('wp_odm_solr-group', 'wp_odm_solr_setting_solr_user');
-            register_setting('wp_odm_solr-group', 'wp_odm_solr_setting_solr_pwd');
+            register_setting('wp_odm_solr-group', 'wp_odm_solr_setting_solr_pwd');            
             register_setting('wp_odm_solr-group', 'wp_odm_solr_setting_solr_scheme');
+            register_setting('wp_odm_solr-group', 'wp_odm_solr_setting_regional_contents_enabled');
             register_setting('wp_odm_solr-group', 'wp_odm_solr_setting_log_path');
             register_setting('wp_odm_solr-group', 'wp_odm_solr_setting_template');
-            register_setting('wp_odm_solr-group', 'wp_odm_solr_setting_log_enabled');
+            register_setting('wp_odm_solr-group', 'wp_odm_solr_setting_log_enabled');            
         }
 
         /**

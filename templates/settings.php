@@ -12,6 +12,7 @@
         $solr_core_wp = $GLOBALS['wp_odm_solr_options']->get_option('wp_odm_solr_setting_solr_core_wp');
         $solr_core_ckan = $GLOBALS['wp_odm_solr_options']->get_option('wp_odm_solr_setting_solr_core_ckan');
         $solr_core_unified = $GLOBALS['wp_odm_solr_options']->get_option('wp_odm_solr_setting_solr_core_unified');
+        $regional_contents_enabled = $GLOBALS['wp_odm_solr_options']->get_option('wp_odm_solr_setting_regional_contents_enabled');
         $solr_user = $GLOBALS['wp_odm_solr_options']->get_option('wp_odm_solr_setting_solr_user');
         $solr_pwd = $GLOBALS['wp_odm_solr_options']->get_option('wp_odm_solr_setting_solr_pwd');
         $logging_path = $GLOBALS['wp_odm_solr_options']->get_option('wp_odm_solr_setting_log_path');
@@ -87,6 +88,16 @@
               <p class="description"><?php _e('Password for authentication','wp-odm_solr') ?>.</p>
             </td>
         </tr>
+        <?php 
+          if (odm_country_manager()->get_current_country() !== "mekong"): ?>
+          <tr valign="top">
+            <th scope="row"><label for="wp_odm_solr_setting_regional_contents_enabled"><?php _e('Show regional contents on results','wp_odm_solr') ?></label></th>
+            <td>
+              <input type="checkbox" name="wp_odm_solr_setting_regional_contents_enabled" id="wp_odm_solr_setting_regional_contents_enabled" <?php if ($regional_contents_enabled)  echo 'checked="true"'; ?>/>
+            </td>
+          </tr>
+        <?php
+          endif; ?>      
         <!-- Connection status -->
         <?php
           if (WP_ODM_SOLR_CHECK_REQS): ?>
