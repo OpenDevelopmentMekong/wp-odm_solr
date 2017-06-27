@@ -156,6 +156,13 @@ class WP_Odm_Solr_UNIFIED_Manager {
         $dismax->setQueryFields($fields_to_query);
       endif;
 
+      if (!isset($attrs["dataset_type"])):
+        if (!isset($dismax)):
+          $dismax = $query->getDisMax();
+        endif;
+        $dismax->setBoostQuery('dataset_type:"news-article"^-6');
+      endif;
+
       $facetSet = $query->getFacetSet();
       foreach ($result["facets"] as $key => $objects):
         $facetSet->createFacetField($key)->setField($key);
