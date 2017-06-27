@@ -138,5 +138,5 @@
 <!-- END OF LICENSE FILTER -->
 
 <div class="full-width single-filter">
-  <input class="button" type="submit" value="<?php _e('Search Filter', 'wp-odm_solr'); ?>"/>
+  <input class="button" type="submit" value="<?php _e('Search Filter', 'wp-odm_solr'); ?>"></input>
 </div>

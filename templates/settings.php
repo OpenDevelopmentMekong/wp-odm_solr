@@ -28,76 +28,76 @@
         <tr valign="top">
             <th scope="row"><label for="wp_odm_solr_setting_solr_host"><?php _e('Host','wp-odm_solr') ?></label></th>
             <td>
-              <input class="full-width" type="text" name="wp_odm_solr_setting_solr_host" id="wp_odm_solr_setting_solr_host" value="<?php echo $solr_host ?>"/>
+              <input class="full-width" type="text" name="wp_odm_solr_setting_solr_host" id="wp_odm_solr_setting_solr_host" value="<?php echo $solr_host ?>"></input>
               <p class="description"><?php _e('Specify host without protocol, just domain. example: solr.opendevelopmentmekong.net ','wp-odm_solr') ?>.</p>
             </td>
         </tr>
         <tr valign="top">
             <th scope="row"><label for="wp_odm_solr_setting_solr_port"><?php _e('Port','wp-odm_solr') ?></label></th>
             <td>
-              <input class="full-width" type="text" name="wp_odm_solr_setting_solr_port" id="wp_odm_solr_setting_solr_port" value="<?php echo $solr_port ?>"/>
+              <input class="full-width" type="text" name="wp_odm_solr_setting_solr_port" id="wp_odm_solr_setting_solr_port" value="<?php echo $solr_port ?>"></input>
               <p class="description"><?php _e('Specify the port under which the solr instance is available','wp-odm_solr') ?>.</p>
             </td>
         </tr>
         <tr valign="top">
             <th scope="row"><label for="wp_odm_solr_setting_solr_scheme"><?php _e('Scheme','wp-odm_solr') ?></label></th>
             <td>
-              <input class="full-width" type="text" name="wp_odm_solr_setting_solr_scheme" id="wp_odm_solr_setting_solr_scheme" value="<?php echo $solr_scheme ?>"/>
+              <input class="full-width" type="text" name="wp_odm_solr_setting_solr_scheme" id="wp_odm_solr_setting_solr_scheme" value="<?php echo $solr_scheme ?>"></input>
               <p class="description"><?php _e('http or https','wp-odm_solr') ?>.</p>
             </td>
         </tr>
         <tr valign="top">
             <th scope="row"><label for="wp_odm_solr_setting_solr_path"><?php _e('Path','wp-odm_solr') ?></label></th>
             <td>
-              <input class="full-width" type="text" name="wp_odm_solr_setting_solr_path" id="wp_odm_solr_setting_solr_path" value="<?php echo $solr_path ?>"/>
+              <input class="full-width" type="text" name="wp_odm_solr_setting_solr_path" id="wp_odm_solr_setting_solr_path" value="<?php echo $solr_path ?>"></input>
               <p class="description"><?php _e('Usually /solr/','wp-odm_solr') ?>.</p>
             </td>
         </tr>
         <tr valign="top">
             <th scope="row"><label for="wp_odm_solr_setting_solr_core_wp"><?php _e('Core WP','wp-odm_solr') ?></label></th>
             <td>
-              <input class="full-width" type="text" name="wp_odm_solr_setting_solr_core_wp" id="wp_odm_solr_setting_solr_core_wp" value="<?php echo $solr_core_wp ?>"/>
+              <input class="full-width" type="text" name="wp_odm_solr_setting_solr_core_wp" id="wp_odm_solr_setting_solr_core_wp" value="<?php echo $solr_core_wp ?>"></input>
               <p class="description"><?php _e('Example: wordpress_content','wp-odm_solr') ?>.</p>
             </td>
         </tr>
         <tr valign="top">
             <th scope="row"><label for="wp_odm_solr_setting_solr_core"><?php _e('Core CKAN','wp-odm_solr') ?></label></th>
             <td>
-              <input class="full-width" type="text" name="wp_odm_solr_setting_solr_core_ckan" id="wp_odm_solr_setting_solr_core_ckan" value="<?php echo $solr_core_ckan ?>"/>
+              <input class="full-width" type="text" name="wp_odm_solr_setting_solr_core_ckan" id="wp_odm_solr_setting_solr_core_ckan" value="<?php echo $solr_core_ckan ?>"></input>
               <p class="description"><?php _e('Example: collection1','wp-odm_solr') ?>.</p>
             </td>
         </tr>
         <tr valign="top">
             <th scope="row"><label for="wp_odm_solr_setting_solr_core_unified"><?php _e('Core unified','wp-odm_solr') ?></label></th>
             <td>
-              <input class="full-width" type="text" name="wp_odm_solr_setting_solr_core_unified" id="wp_odm_solr_setting_solr_core_unified" value="<?php echo $solr_core_unified ?>"/>
+              <input class="full-width" type="text" name="wp_odm_solr_setting_solr_core_unified" id="wp_odm_solr_setting_solr_core_unified" value="<?php echo $solr_core_unified ?>"></input>
               <p class="description"><?php _e('Example: unified','wp-odm_solr') ?>.</p>
             </td>
         </tr>
         <tr valign="top">
             <th scope="row"><label for="wp_odm_solr_setting_solr_user"><?php _e('User','wp-odm_solr') ?></label></th>
             <td>
-              <input class="full-width" type="text" name="wp_odm_solr_setting_solr_user" id="wp_odm_solr_setting_solr_user" value="<?php echo $solr_user ?>"/>
+              <input class="full-width" type="text" name="wp_odm_solr_setting_solr_user" id="wp_odm_solr_setting_solr_user" value="<?php echo $solr_user ?>"></input>
               <p class="description"><?php _e('Username for authentication','wp-odm_solr') ?>.</p>
             </td>
         </tr>
         <tr valign="top">
             <th scope="row"><label for="wp_odm_solr_setting_solr_pwd"><?php _e('Password','wp-odm_solr') ?></label></th>
             <td>
-              <input class="full-width" type="password" name="wp_odm_solr_setting_solr_pwd" id="wp_odm_solr_setting_solr_pwd" value="<?php echo $solr_pwd ?>"/>
+              <input class="full-width" type="password" name="wp_odm_solr_setting_solr_pwd" id="wp_odm_solr_setting_solr_pwd" value="<?php echo $solr_pwd ?>"></input>
               <p class="description"><?php _e('Password for authentication','wp-odm_solr') ?>.</p>
             </td>
         </tr>
-        <?php 
+        <?php
           if (odm_country_manager()->get_current_country() !== "mekong"): ?>
           <tr valign="top">
             <th scope="row"><label for="wp_odm_solr_setting_regional_contents_enabled"><?php _e('Show regional contents on results','wp_odm_solr') ?></label></th>
             <td>
-              <input type="checkbox" name="wp_odm_solr_setting_regional_contents_enabled" id="wp_odm_solr_setting_regional_contents_enabled" <?php if ($regional_contents_enabled)  echo 'checked="true"'; ?>/>
+              <input type="checkbox" name="wp_odm_solr_setting_regional_contents_enabled" id="wp_odm_solr_setting_regional_contents_enabled" <?php if ($regional_contents_enabled)  echo 'checked="true"'; ?>></input>
             </td>
           </tr>
         <?php
-          endif; ?>      
+          endif; ?>
         <!-- Connection status -->
         <?php
           if (WP_ODM_SOLR_CHECK_REQS): ?>
@@ -128,13 +128,13 @@
         <tr valign="top">
           <th scope="row"><label for="wp_odm_solr_setting_log_enabled"><?php _e('Enable log','wp_odm_solr') ?></label></th>
           <td>
-            <input type="checkbox" name="wp_odm_solr_setting_log_enabled" id="wp_odm_solr_setting_log_enabled" <?php if ($logging_enabled)  echo 'checked="true"'; ?>/>
+            <input type="checkbox" name="wp_odm_solr_setting_log_enabled" id="wp_odm_solr_setting_log_enabled" <?php if ($logging_enabled)  echo 'checked="true"'; ?>></input>
           </td>
         </tr>
         <tr valign="top">
           <th scope="row"><label for="wp_odm_solr_setting_log_path"><?php _e('Log file path','wp_odm_solr') ?></label></th>
           <td>
-            <input type="text" name="wp_odm_solr_setting_log_path" id="wp_odm_solr_setting_log_path" value="<?php echo $logging_path ?>"/>
+            <input type="text" name="wp_odm_solr_setting_log_path" id="wp_odm_solr_setting_log_path" value="<?php echo $logging_path ?>"></input>
             <p class="description"><?php _e('Path where logs are going to be stored. Mind permissions.','wp_odm_solr') ?></p>
           </td>
         </tr>
