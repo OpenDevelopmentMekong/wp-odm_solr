@@ -17,6 +17,7 @@ class WP_Odm_Solr_UNIFIED_Manager {
 
   var $client = null;
   var $server_config = null;
+  var $show_regional_contents = false;
 
 	function __construct() {
 
@@ -29,6 +30,7 @@ class WP_Odm_Solr_UNIFIED_Manager {
     $solr_core_unified = $GLOBALS['wp_odm_solr_options']->get_option('wp_odm_solr_setting_solr_core_unified');
     $solr_user = $GLOBALS['wp_odm_solr_options']->get_option('wp_odm_solr_setting_solr_user');
     $solr_pwd = $GLOBALS['wp_odm_solr_options']->get_option('wp_odm_solr_setting_solr_pwd');
+    $this->show_regional_contents = $GLOBALS['wp_odm_solr_options']->get_option('wp_odm_solr_setting_regional_contents_enabled');
 
     $this->server_config = array(
       'endpoint' => array(
@@ -118,13 +120,17 @@ class WP_Odm_Solr_UNIFIED_Manager {
       endif;
 
       $current_country = odm_country_manager()->get_current_country();
-      if ( $current_country != "mekong" && !array_key_exists("extras_odm_spatial_range",$attrs)):
+      if ( $current_country !== "mekong" && !array_key_exists("extras_odm_spatial_range",$attrs)):
         $current_country_code = odm_country_manager()->get_current_country_code();
-  			$query->createFilterQuery('extras_odm_spatial_range')->setQuery('extras_odm_spatial_range: ("mekong" OR "' . $current_country_code . '")');
-        $text = $text . " " . $current_country;
+        if ($this->show_regional_contents):
+          $query->createFilterQuery('extras_odm_spatial_range')->setQuery('extras_odm_spatial_range:("mekong" OR "' . $current_country_code . '")');
+          $text = $text . " " . $current_country;
+        else:
+          $query->createFilterQuery('extras_odm_spatial_range')->setQuery('extras_odm_spatial_range:' . $current_country_code);
+        endif;
   		endif;
 
-      if ( $current_country != "mekong" && !array_key_exists("extras_odm_language",$attrs)):
+      if ( $current_country !== "mekong" && !array_key_exists("extras_odm_language",$attrs)):
         $local_language_code = odm_language_manager()->get_the_language_code_by_site();
   			$query->createFilterQuery('extras_odm_language')->setQuery('extras_odm_language: ("en" OR "' . $local_language_code . '")');
   		endif;
