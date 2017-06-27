@@ -24,7 +24,7 @@
       $param_language = isset($_GET['language']) ? $_GET['language'] : array();
       $param_page = isset($_GET['page']) ? (int)$_GET['page'] : 0;
       $param_page_solr = (isset($_GET['page']) && (int)$_GET['page'] > 0) ? ((int)$_GET['page'] -1) : 0;
-      $param_country = odm_country_manager()->get_current_country() == 'mekong' && isset($_GET['country']) ? $_GET['country'] : array();      
+      $param_country = odm_country_manager()->get_current_country() == 'mekong' && isset($_GET['country']) ? $_GET['country'] : array();
     	$param_sorting = isset($_GET['sorting']) ? $_GET['sorting'] : 'score';
       $param_metadata_modified = isset($_GET['metadata_modified']) ? $_GET['metadata_modified'] : 'all';
       $param_metadata_created = isset($_GET['metadata_created']) ? $_GET['metadata_created'] : 'all';
@@ -52,73 +52,61 @@
         'all' => array(
           'title' => 'All',
           'icon' => 'fa fa-asterisk',
-          'type' => 'unified',
           'archive_url' => null
         ),
         'dataset' => array(
           'title' => 'Datasets',
           'icon' => 'fa fa-database',
-          'type' => 'ckan',
           'archive_url' => '/data'
         ),
         'library_record' => array(
           'title' =>'Library publications',
           'icon' => 'fa fa-book',
-          'type' => 'ckan',
           'archive_url' => null
         ),
         'laws_record' => array(
           'title' =>'Laws',
           'icon' => 'fa fa-gavel',
-          'type' => 'ckan',
           'archive_url' => null
         ),
         'agreement' => array(
           'title' =>'Agreements',
           'icon' => 'fa fa-handshake-o',
-          'type' => 'ckan',
           'archive_url' => null
         ),
         'map-layer' => array(
           'title' => 'Maps',
           'icon' => 'fa fa-map-marker',
-          'type' => 'wp',
           'archive_url' => '/layers'
         ),
         'news-article' => array(
           'title' => 'News articles',
           'icon' => 'fa fa-newspaper-o',
-          'type' => 'wp',
           'archive_url' => '/news'
         ),
         'topic' => array(
           'title' => 'Topics',
           'icon' => 'fa fa-list',
-          'type' => 'wp',
           'archive_url' => '/topics'
         ),
         'profiles' => array(
           'title' => 'Profiles',
           'icon' => 'fa fa-briefcase',
-          'type' => 'wp',
           'archive_url' => '/profiles'
         ),
         'story' => array(
           'title' => 'Stories',
           'icon' => 'fa fa-lightbulb-o',
-          'type' => 'wp',
           'archive_url' => '/story'
         ),
         'announcement' => array(
           'title' => 'Announcements',
           'icon' => 'fa fa-bullhorn',
-          'type' => 'wp',
           'archive_url' => '/announcements'
         )/*,
         'site-update' => array(
           'title' => 'Site updates',
           'icon' => 'fa fa-flag',
-          'type' => 'wp',
           'archive_url' => '/updates'
         )*/
       );
@@ -187,7 +175,7 @@
 
         $attrs["capacity"] = "public";
 
-        if ($value['type'] != 'unified'):
+        if ($key != 'all'):
           $attrs["dataset_type"] = $key;
         endif;
 
