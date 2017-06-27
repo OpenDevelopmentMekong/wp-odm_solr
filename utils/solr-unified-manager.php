@@ -154,13 +154,11 @@ class WP_Odm_Solr_UNIFIED_Manager {
 
         $dismax = $query->getDisMax();
         $dismax->setQueryFields($fields_to_query);
-      endif;
 
-      if (!isset($attrs["dataset_type"])):
-        if (!isset($dismax)):
-          $dismax = $query->getDisMax();
+        if (!isset($attrs["dataset_type"])):
+          $dismax->setBoostQuery('dataset_type:"news-article"^0.2');
         endif;
-        $dismax->setBoostQuery('dataset_type:"news-article"^0.2');
+
       endif;
 
       $facetSet = $query->getFacetSet();
