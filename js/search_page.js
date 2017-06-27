@@ -8,12 +8,18 @@ jQuery(document).ready(function() {
   var coreUnified = jQuery('#search_field').data("solr-core-unified");
   var currentLang = jQuery('#search_field').data("odm-current-lang");
   var currentCountry = jQuery('#search_field').data("odm-current-country");
+  var showRegionalContents = jQuery('#search_field').data("odm-show-regional-contents");
 
   jQuery('#search_field').autocomplete({
     source: function( request, response ) {
       var suggestionsUrl = scheme + "://" + host  + path + coreUnified + "/suggestions/?q=" + request.term + "&wt=json&json.wrf=callback";
       if (currentCountry != 'mekong'){
-        suggestionsUrl += "&fq=extras_odm_language:" + currentLang + "+extras_odm_spatial_range:(\"mekong\" OR \"" + currentCountry + "\")";
+        suggestionsUrl += "&fq=extras_odm_language:" + currentLang;
+        if (showRegionalContents){
+          suggestionsUrl += "+extras_odm_spatial_range:(\"mekong\" OR \"" + currentCountry + "\")";
+        }else{
+          suggestionsUrl += "+extras_odm_spatial_range:" + currentCountry;
+        }
       }
       jQuery.ajax({
         url: suggestionsUrl,
