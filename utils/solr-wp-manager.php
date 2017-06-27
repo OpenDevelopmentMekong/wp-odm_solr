@@ -103,6 +103,7 @@ class WP_Odm_Solr_WP_Manager {
       endif;
 
   		$doc = $update->createDocument();
+      $doc->capacity = "public";
   		$doc->id = $post->ID;
       $doc->index_id = $post->ID;
   		$doc->blogid = get_current_blog_id();
