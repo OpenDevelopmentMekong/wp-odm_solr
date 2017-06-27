@@ -15,7 +15,7 @@ jQuery(document).ready(function() {
       var suggestionsUrl = scheme + "://" + host  + path + coreUnified + "/suggestions/?q=" + request.term + "&wt=json&json.wrf=callback";
       if (currentCountry != 'mekong'){
         suggestionsUrl += "&fq=extras_odm_language:" + currentLang;
-        if (showRegionalContents){
+        if (showRegionalContents == "on"){
           suggestionsUrl += "+extras_odm_spatial_range:(\"mekong\" OR \"" + currentCountry + "\")";
         }else{
           suggestionsUrl += "+extras_odm_spatial_range:" + currentCountry;
