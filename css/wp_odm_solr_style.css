@@ -87,12 +87,12 @@
 }
 
 .content-type-tabs-odc .result_link_list a:hover{
-	border-bottom: 2px #97D320;
+	border-bottom: 2px #000;
 	font-size: 16px;
 }
 
 .content-type-tabs-odc .result_link_list a:active{
-	border-bottom: 2px #97D320;
+	border-bottom: 2px #000;
 	font-size: 16px;
 }
 
@@ -103,7 +103,7 @@
 }
 
 .content-type-tabs-odc .result_link_list.data-number-results-medium a{
-		border-bottom: 2px solid #97D320;
+		border-bottom: 2px solid #000;
 }
 
 .tooltip{
@@ -148,12 +148,12 @@
 }
 
 .content-type-tabs-category .result_link_list a:hover{
-	border-bottom: 2px #97D320;
+	border-bottom: 2px #000;
 	font-size: 14px;
 }
 
 .content-type-tabs-category .result_link_list a:active{
-	border-bottom: 2px #97D320;
+	border-bottom: 2px #000;
 	font-size: 14px;
 }
 
