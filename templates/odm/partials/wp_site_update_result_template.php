@@ -1,12 +1,12 @@
 <?php
-  
+
   $meta_fields = odm_country_manager()->get_current_country() == "mekong" ? array("language","country","date","categories","tags") : array("language","date","categories","tags");
-  
+
   if (function_exists("switch_to_blog")):
     switch_to_blog($document->blogid);
   endif;
 
-  $fetched_post = get_post($document->id);
+  $fetched_post = get_post($document->index_id);
   odm_get_template('post-list-single-2-cols',array(
 		"post" => $fetched_post,
     "show_post_type" => true,

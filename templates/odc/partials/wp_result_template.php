@@ -1,91 +1,33 @@
-<div class="solr_result_two_cols single_result_container eight columns">
-  <?php
-    $title = wp_odm_solr_parse_multilingual_wp_content($document->title,odm_language_manager()->get_current_language(),$document->title);
-    $title = wp_odm_solr_highlight_search_words($s,$title);
-   ?>
-  <h4 class="data_title">
-    <a target="_blank" href="<?php echo $document->permalink ?>">
-      <?php echo $title ?>
-    </a>
-  </h4>
-  <?php
-    $description = wp_odm_solr_parse_multilingual_wp_content($document->content,odm_language_manager()->get_current_language(),$document->content);
-    $description = strip_shortcodes($description);
-    $description = strip_tags($description);
-    $description = substr($description,0,400);
-    $description = wp_odm_solr_highlight_search_words($s,$description);
-   ?>
-  <p class="data_description">
-    <?php
-    echo $description;
-    if (strlen($description) >= 400):
-      echo "...";
-    endif;
-    ?>
-  </p>
-  <div class="data_meta_wrapper sixteen columns">
-    <!-- Language -->
-    <?php if (!empty($document->odm_language)): ?>
-      <div class="data_languages data_meta">
-        <span>
-          <?php
-          foreach ($document->odm_language as $lang):
-            $path_to_flag = odm_language_manager()->get_path_to_flag_image($lang);
-            if (!empty($path_to_flag)): ?>
-            <img class="lang_flag" alt="<?php echo $lang ?>" src="<?php echo $path_to_flag; ?>"></img>
-          <?php
-            endif;
-          endforeach; ?>
-        </span>
-      </div>
-    <?php endif; ?>
-    <!-- Country -->
-    <?php if (odm_country_manager()->get_current_country() == "mekong" && !empty($document->odm_spatial_range)): ?>
-      <div class="country_indicator data_meta">
-        <i class="fa fa-globe"></i>
-        <span>
-          <?php
-            $countries = (array) $document->odm_spatial_range;
-            foreach ($countries as $country_code):
-              $country_name = odm_country_manager()->get_country_name_by_country_code($country_code);
-              if (!empty($country_name)):
-                _e($country_name, 'wp-odm_solr');
-                if ($country_code !== end($countries)):
-                  echo ', ';
-                endif;
-              endif;
-            endforeach; ?>
-        </span>
-      </div>
-    <?php
-      endif;
-      if (!empty($document->categories)): ?>
-        <i class="fa fa-folder-o"></i>
-        <span>
-          <?php
-            $categories = (array) $document->categories;
-            foreach ($categories as $category):
-              _e($category, 'wp-odm_solr') ;
-              if ($category !== end($categories)):
-                echo ", ";
-              endif;
-            endforeach;?>
-        </span>
-    <?php
-      endif;
-      if (!empty($document->tags)): ?>
-        <i class="fa fa-tags"></i>
-        <span>
-          <?php
-            $tags = (array) $document->tags;
-            foreach ($tags as $tag):
-              _e($tag, 'wp-odm_solr') ;
-              if ($tag !== end($tags)):
-                echo ", ";
-              endif;
-            endforeach;?>
-        </span>
-    <?php
-      endif;?>
-  </div>
-</div>
+<?php
+
+  $meta_fields = odm_country_manager()->get_current_country() == "mekong" ? array("language","country","date","categories","tags") : array("language","date","categories","tags");
+
+  if (function_exists("switch_to_blog")):
+    switch_to_blog($document->blogid);
+  endif;
+
+  $fetched_post = get_post($document->index_id);
+  odm_get_template('post-list-single-2-cols',array(
+    "post" => $fetched_post,
+    "show_post_type" => true,
+  	"show_meta" => true,
+    "meta_fields" => $meta_fields,
+    "max_num_topics" => 5,
+    "max_num_tags" => 5,
+  	"show_source_meta" => true,
+  	"show_thumbnail" => true,
+  	"show_excerpt" => true,
+  	"show_summary_translated_by_odc_team" => true,
+    "show_solr_meta" => false,
+    "highlight_words_query" => $param_query,
+    "solr_search_result" => $document,
+  	"header_tag" => true,
+    "extra_classes" => "solr_result_two_cols",
+    "order" => $param_sorting
+	),true);
+
+  if (function_exists("restore_current_blog")):
+    restore_current_blog();
+  endif;
+
+?>

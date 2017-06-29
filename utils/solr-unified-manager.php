@@ -13,7 +13,7 @@
  * Solr Manager
  */
 
-class WP_Odm_Solr_WP_Manager {
+class WP_Odm_Solr_UNIFIED_Manager {
 
   var $client = null;
   var $server_config = null;
@@ -21,13 +21,13 @@ class WP_Odm_Solr_WP_Manager {
 
 	function __construct() {
 
-    wp_odm_solr_log('solr-wp-manager __construct');
+    wp_odm_solr_log('solr-unified-manager __construct');
 
     $solr_host = $GLOBALS['wp_odm_solr_options']->get_option('wp_odm_solr_setting_solr_host');
     $solr_port = $GLOBALS['wp_odm_solr_options']->get_option('wp_odm_solr_setting_solr_port');
     $solr_scheme = $GLOBALS['wp_odm_solr_options']->get_option('wp_odm_solr_setting_solr_scheme');
     $solr_path = $GLOBALS['wp_odm_solr_options']->get_option('wp_odm_solr_setting_solr_path');
-    $solr_core_wp = $GLOBALS['wp_odm_solr_options']->get_option('wp_odm_solr_setting_solr_core_wp');
+    $solr_core_unified = $GLOBALS['wp_odm_solr_options']->get_option('wp_odm_solr_setting_solr_core_unified');
     $solr_user = $GLOBALS['wp_odm_solr_options']->get_option('wp_odm_solr_setting_solr_user');
     $solr_pwd = $GLOBALS['wp_odm_solr_options']->get_option('wp_odm_solr_setting_solr_pwd');
     $this->show_regional_contents = $GLOBALS['wp_odm_solr_options']->get_option('wp_odm_solr_setting_regional_contents_enabled');
@@ -38,7 +38,7 @@ class WP_Odm_Solr_WP_Manager {
               'host' => $solr_host,
               'port' => $solr_port,
               'path' => $solr_path,
-  						'core' => $solr_core_wp,
+  						'core' => $solr_core_unified,
   						'scheme' => $solr_scheme,
               'username' => $solr_user,
               'password' => $solr_pwd
@@ -47,16 +47,16 @@ class WP_Odm_Solr_WP_Manager {
   	);
 
     try {
-  		$this->client = new \Solarium\Client($this->server_config);
+      $this->client = new \Solarium\Client($this->server_config);
     } catch (HttpException $e) {
-      wp_odm_solr_log('solr-wp-manager __construct Error: ' . $e);
+      wp_odm_solr_log('solr-unified-manager __construct Error: ' . $e);
     }
 
 	}
 
   function ping_server(){
 
-    wp_odm_solr_log('solr-wp-manager ping_server');
+    wp_odm_solr_log('solr-unified-manager ping_server');
 
     if (!isset($this->client)):
       return false;
@@ -66,129 +66,24 @@ class WP_Odm_Solr_WP_Manager {
       $ping = $this->client->createPing();
       $result = $this->client->ping($ping);
     } catch (HttpException $e) {
-      wp_odm_solr_log('solr-wp-manager ping_server Error: ' . $e);
+      wp_odm_solr_log('solr-unified-manager ping_server Error: ' . $e);
       return false;
     }
 
     return true;
   }
 
-	function index_post($post){
-
-    wp_odm_solr_log('solr-wp-manager index_post ' . serialize($post));
-
-    $result = null;
-
-    try {
-      $update = $this->client->createUpdate();
-
-      $languages = array("en");
-      // if (strpos($post->post_content,"<!--:en-->") > -1 || strpos($post->post_content,"[:en]") > -1):
-      //   array_push($languages,"en");
-      // endif;
-      if (strpos($post->post_content,"<!--:km-->") > -1 || strpos($post->post_content,"[:km]") > -1):
-        array_push($languages,"km");
-      endif;
-      if (strpos($post->post_content,"<!--:my-->") > -1 || strpos($post->post_content,"[:my]") > -1):
-        array_push($languages,"my");
-      endif;
-      if (strpos($post->post_content,"<!--:la-->") > -1 || strpos($post->post_content,"[:la]") > -1):
-        array_push($languages,"la");
-      endif;
-      if (strpos($post->post_content,"<!--:th-->") > -1 || strpos($post->post_content,"[:th]") > -1):
-        array_push($languages,"th");
-      endif;
-      if (strpos($post->post_content,"<!--:vi-->") > -1 || strpos($post->post_content,"[:vi]") > -1):
-        array_push($languages,"vi");
-      endif;
-
-  		$doc = $update->createDocument();
-      $doc->capacity = "public";
-  		$doc->id = $post->ID;
-      $doc->index_id = $post->ID;
-  		$doc->blogid = get_current_blog_id();
-      $doc->country_site = odm_country_manager()->get_current_country();
-      $doc->odm_spatial_range = odm_country_manager()->get_current_country_code();
-      $doc->extras_odm_spatial_range = odm_country_manager()->get_current_country_code();
-      $doc->odm_language = $languages;
-      $doc->extras_odm_language = $languages;
-      $doc->license_id = "CC-BY-4.0";
-  		$doc->blogdomain = get_site_url();
-  		$doc->title = $post->post_title;
-  		$doc->permalink = get_permalink($post);
-  		$doc->author = $post->post_author;
-  		$doc->content = $post->post_content;
-      $doc->notes = $post->post_content;
-  		$doc->excerpt = $post->post_excerpt;
-  		$doc->type = $post->post_type;
-      $doc->dataset_type = $post->post_type;
-  		$doc->categories = wp_get_post_categories($post->ID, array('fields' => 'names'));
-      $doc->vocab_taxonomy = wp_get_post_categories($post->ID, array('fields' => 'names'));
-  		$doc->tags = wp_get_post_tags($post->ID, array('fields' => 'names'));
-      $doc->extras_odm_keywords = wp_get_post_tags($post->ID, array('fields' => 'names'));
-  		$date = new DateTime($post->post_date);
-  		$doc->date = $date->format('Y-m-d\TH:i:s\Z');
-      $doc->metadata_created = $date->format('Y-m-d\TH:i:s\Z');
-  		$modified = new DateTime($post->post_modified);
-  		$doc->modified = $modified->format('Y-m-d\TH:i:s\Z');
-      $doc->metadata_modified = $modified->format('Y-m-d\TH:i:s\Z');
-  		$update->addDocument($doc);
-  		$update->addCommit();
-  		$result = $this->client->update($update);
-    } catch (HttpException $e) {
-      wp_odm_solr_log('solr-wp-manager index_post Error: ' . $e);
-    }
-
-    return $result;
-  }
-
-	function clear_index(){
-
-    wp_odm_solr_log('solr-wp-manager clear_index');
-
-    $result = null;
-
-    try {
-  		$update = $this->client->createUpdate();
-  		$update->addDeleteQuery('title:*');
-  		$update->addCommit();
-  		$result = $this->client->update($update);
-    } catch (HttpException $e) {
-      wp_odm_solr_log('solr-wp-manager clear_index Error: ' . $e);
-    }
-
-		return $result;
-  }
-
-  function delete_post($post_id){
-
-    wp_odm_solr_log('solr-wp-manager delete_post');
-
-    $result = null;
-
-    try {
-  		$update = $this->client->createUpdate();
-  		$update->addDeleteQuery('id:' . $post_id);
-  		$update->addCommit();
-  		$result = $this->client->update($update);
-    } catch (HttpException $e) {
-      wp_odm_solr_log('solr-wp-manager delete_post Error: ' . $e);
-    }
-
-		return $result;
-  }
-
 	function query($text, $attrs = null, $control_attrs = null){
 
-    wp_odm_solr_log('solr-wp-manager query: ' . $text . " attrs: " . serialize($attrs)  . " control_attrs: " . serialize($control_attrs));
+    wp_odm_solr_log('solr-unified-manager query: ' . $text . " attrs: " . serialize($attrs) . " control_attrs: " . serialize($control_attrs));
 
     $result = array(
       "resultset" => null,
       "facets" => array(
-        "categories" => array(),
-        "tags" => array(),
-        "odm_spatial_range" => array(),
-        "odm_language" => array(),
+        "vocab_taxonomy" => array(),
+        "extras_odm_keywords" => array(),
+        "extras_odm_spatial_range" => array(),
+        "extras_odm_language" => array(),
         "license_id" => array(),
         "metadata_created" => array(),
         "metadata_modified" => array()
@@ -210,7 +105,7 @@ class WP_Odm_Solr_WP_Manager {
           if ($key == "metadata_modified" || $key == "metadata_created"):
             $value = "[ " . $value . "-01-01T00:00:00Z TO " . $value . "-12-31T23:59:59Z]";
           endif;
-          if ($key == "categories"):
+          if ($key == "vocab_taxonomy"):
             $taxonomy_top_tier = odm_taxonomy_manager()->get_taxonomy_top_tier();
             if (array_key_exists($value,$taxonomy_top_tier)):
               $value = "(\"" . implode("\" OR \"", $taxonomy_top_tier[$value]) . "\")";
@@ -245,9 +140,25 @@ class WP_Odm_Solr_WP_Manager {
       endif;
 
       if (!empty($text)):
-        $fields_to_query = 'tags^6 categories^5 title^2 content^1';
+        $fields_to_query = 'extras_odm_keywords^6 vocab_taxonomy^5 title^2 extras_title_translated^2 extras_notes_translated^1 notes^1 extras_odm_spatial_range^1 extras_odm_province^1';
+        if (isset($attrs["dataset_type"])):
+          $typeFilter = $attrs["dataset_type"];
+          if ($typeFilter == 'library_record'):
+            $fields_to_query .= ' extras_document_type^4 extras_extras_marc21_260c^4 extras_marc21_020^4 extras_marc21_022^4';
+          elseif ($typeFilter == 'laws_record'):
+            $fields_to_query .= ' extras_odm_document_type^4 extras_odm_promulgation_date^4';
+          elseif ($typeFilter == 'agreement'):
+            $fields_to_query .= ' extras_odm_agreement_signature_date^4';
+          endif;
+        endif;
+
         $dismax = $query->getDisMax();
         $dismax->setQueryFields($fields_to_query);
+
+        if (!isset($attrs["dataset_type"])):
+          $dismax->setBoostQuery('dataset_type:("dataset" OR "library_record" OR "laws_record" OR "agreement" OR "map-layer" OR "topic" OR "profiles")^20');
+        endif;
+
       endif;
 
       $facetSet = $query->getFacetSet();
@@ -259,7 +170,7 @@ class WP_Odm_Solr_WP_Manager {
         $query->addSort($control_attrs["sorting"], 'desc');
       endif;
 
-      wp_odm_solr_log('solr-wp-manager executing query: ' . serialize($query));
+      wp_odm_solr_log('solr-unified-manager executing query: ' . serialize($query));
 
   		$resultset = $this->client->select($query);
       $result["resultset"] = $resultset;
@@ -284,18 +195,36 @@ class WP_Odm_Solr_WP_Manager {
       endforeach;
 
     } catch (HttpException $e) {
-      wp_odm_solr_log('solr-wp-manager query Error: ' . $e);
+      wp_odm_solr_log('solr-unified-manager query Error: ' . $e);
     }
 
 		return $result;
 	}
 
+  function delete_dataset($dataset_id){
+
+    wp_odm_solr_log('solr-unified-manager delete_dataset');
+
+    $result = null;
+
+    try {
+  		$update = $this->client->createUpdate();
+  		$update->addDeleteQuery('id:' . $post_id);
+  		$update->addCommit();
+  		$result = $this->client->update($update);
+    } catch (HttpException $e) {
+      wp_odm_solr_log('solr-unified-manager delete_dataset Error: ' . $e);
+    }
+
+		return $result;
+  }
+
 }
 
-$GLOBALS['WP_Odm_Solr_WP_Manager'] = new WP_Odm_Solr_WP_Manager();
+$GLOBALS['WP_Odm_Solr_UNIFIED_Manager'] = new WP_Odm_Solr_UNIFIED_Manager();
 
-function WP_Odm_Solr_WP_Manager() {
-	return $GLOBALS['WP_Odm_Solr_WP_Manager'];
+function WP_Odm_Solr_UNIFIED_Manager() {
+	return $GLOBALS['WP_Odm_Solr_UNIFIED_Manager'];
 }
 
 ?>

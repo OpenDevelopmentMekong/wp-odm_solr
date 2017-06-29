@@ -4,8 +4,8 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"POT-Creation-Date: 2017-06-11 23:57+0200\n"
-"PO-Revision-Date: 2017-06-11 23:57+0200\n"
+"POT-Creation-Date: 2017-06-19 20:28+0200\n"
+"PO-Revision-Date: 2017-06-19 20:28+0200\n"
 "Last-Translator: ChandaraKhun <chandara@opendevcam.net>, 2017\n"
 "Language-Team: Khmer (https://www.transifex.com/open-development-mekong/teams/27158/km/)\n"
 "Language: km\n"
@@ -26,11 +26,11 @@ msgstr ""
 msgid "Datasets"
 msgstr "សំណុំទិន្នន័យ"
 
-#: i18n/additional-localization.php:3 templates/default/partials/filters.php:20
+#: i18n/additional-localization.php:3
 msgid "Library publications"
 msgstr "ធនធានបណ្ណា​ល័យ"
 
-#: i18n/additional-localization.php:4 templates/default/partials/filters.php:21
+#: i18n/additional-localization.php:4
 msgid "Laws"
 msgstr "ច្បាប់"
 
@@ -38,7 +38,7 @@ msgstr "ច្បាប់"
 msgid "Agreements"
 msgstr "កិច្ចព្រមព្រៀង"
 
-#: i18n/additional-localization.php:6 templates/default/partials/filters.php:23
+#: i18n/additional-localization.php:6
 msgid "Maps"
 msgstr "ផែនទី"
 
@@ -46,11 +46,11 @@ msgstr "ផែនទី"
 msgid "News articles"
 msgstr "អត្ថបទសារព័ត៌មាន"
 
-#: i18n/additional-localization.php:8 templates/default/partials/filters.php:25
+#: i18n/additional-localization.php:8
 msgid "Topics"
 msgstr "ប្រធានបទ"
 
-#: i18n/additional-localization.php:9 templates/default/partials/filters.php:26
+#: i18n/additional-localization.php:9
 msgid "Profiles"
 msgstr "ព័ត៌មានទិន្នន័យ"
 
@@ -58,11 +58,11 @@ msgstr "ព័ត៌មានទិន្នន័យ"
 msgid "Story"
 msgstr "ដំណើរ​រឿង"
 
-#: i18n/additional-localization.php:11 templates/default/partials/filters.php:27
+#: i18n/additional-localization.php:11
 msgid "Announcements"
 msgstr "សេចក្តីប្រកាស"
 
-#: i18n/additional-localization.php:12 templates/default/partials/filters.php:28
+#: i18n/additional-localization.php:12
 msgid "Site updates"
 msgstr "ការធ្វើបច្ចុប្បន្នភាពលើគេហទំព័រ"
 
@@ -110,11 +110,8 @@ msgstr "ភាសាថៃ"
 msgid "Burmese"
 msgstr "ភាសាភូមា"
 
-#: i18n/additional-localization.php:28 templates/default/partials/filters.php:18
-#: templates/default/partials/filters.php:36 templates/default/partials/filters.php:59
-#: templates/default/partials/filters.php:87 templates/default/partials/filters.php:109
-#: templates/odc/partials/filters.php:12 templates/odc/partials/filters.php:105
-#: templates/odm/partials/filters.php:7
+#: i18n/additional-localization.php:28 templates/odc/partials/filters.php:12
+#: templates/odc/partials/filters.php:105 templates/odm/partials/filters.php:7
 msgid "All"
 msgstr "ទាំងអស់"
 
@@ -187,92 +184,49 @@ msgstr ""
 msgid "Choose template layout"
 msgstr ""
 
-#: templates/category-page/partials/ckan_result_template.php:129
-#: templates/odc/partials/ckan_result_template.php:135
+#: templates/category-page/partials/ckan_result_template.php:138
+#: templates/odc/partials/ckan_result_template.php:145
 msgid "Download:"
 msgstr ""
 
-#: templates/category-page/solr_search.php:219 templates/default/solr_search.php:155
-#: templates/odc/solr_search.php:231 templates/odm/solr_search.php:231
+#: templates/category-page/solr_search.php:197 templates/odc/solr_search.php:209
+#: templates/odm/solr_search.php:210
 msgid ""
 "wp-odm_solr plugin is not properly configured. Please contact the system's administrator"
 msgstr ""
 "Plugin សម្រាប់ wp-odm_solr plugin មិនត្រូវបានរៀបចំឲ្យបានត្រឹមត្រូវ។ សូមទំនាក់ទំនងមកកាន់អ្នកគ្រប់គ្រងប្រព័ន្ធកុំព្យូទ័រ"
 
-#: templates/default/partials/filters.php:9 templates/odc/partials/filters.php:4
+#: templates/odc/partials/filters.php:4
 msgid "Text search"
 msgstr "ស្វែងរកអត្ថបទ"
 
-#: templates/default/partials/filters.php:10 templates/odc/partials/filters.php:5
-#: templates/odm/solr_search.php:332
+#: templates/odc/partials/filters.php:5 templates/odm/solr_search.php:311
 msgid "Search datasets, topics, news articles..."
 msgstr "ស្វែងរកសំណុំទិន្នន័យ ប្រធានបទ អត្ថបទសារព័ត៌មាន ..."
 
-#: templates/default/partials/filters.php:16
-msgid "Content type"
-msgstr "ប្រភេទអត្ថបទ"
-
-#: templates/default/partials/filters.php:17
-msgid "Select type"
-msgstr "ជ្រើសយកប្រភេទ"
-
-#: templates/default/partials/filters.php:19
-msgid "Dataset"
-msgstr "សំណុំទិន្នន័យ"
-
-#: templates/default/partials/filters.php:22
-msgid "Agreement"
-msgstr "កិច្ចព្រមព្រៀង"
-
-#: templates/default/partials/filters.php:24
-msgid "News"
-msgstr "ព័ត៌មាន​"
-
-#: templates/default/partials/filters.php:34 templates/odc/partials/filters.php:10
-#: templates/odm/partials/filters.php:5
+#: templates/odc/partials/filters.php:10 templates/odm/partials/filters.php:5
 msgid "Topic"
 msgstr "ប្រធានបទ"
 
-#: templates/default/partials/filters.php:35 templates/odc/partials/filters.php:11
-#: templates/odm/partials/filters.php:6
+#: templates/odc/partials/filters.php:11 templates/odm/partials/filters.php:6
 msgid "Select term"
 msgstr "ជ្រើសរើសពាក្យ"
 
-#: templates/default/partials/filters.php:57 templates/odm/partials/filters.php:43
-msgid "Country"
-msgstr "ប្រទេស"
-
-#: templates/default/partials/filters.php:58 templates/odm/partials/filters.php:44
-msgid "Select country"
-msgstr "ជ្រើសរើសប្រទេស"
-
-#: templates/default/partials/filters.php:85 templates/odc/partials/filters.php:47
-#: templates/odm/partials/filters.php:74
+#: templates/odc/partials/filters.php:47 templates/odm/partials/filters.php:74
 msgid "Language"
 msgstr "ភាសា"
 
-#: templates/default/partials/filters.php:86 templates/odc/partials/filters.php:48
-#: templates/odm/partials/filters.php:75
+#: templates/odc/partials/filters.php:48 templates/odm/partials/filters.php:75
 msgid "Select language"
 msgstr "ជ្រើសរើសភាសា"
 
-#: templates/default/partials/filters.php:107 templates/odc/partials/filters.php:75
-#: templates/odm/partials/filters.php:102
+#: templates/odc/partials/filters.php:75 templates/odm/partials/filters.php:102
 msgid "License"
 msgstr "អាជ្ញាប័ណ្ណ"
 
-#: templates/default/partials/filters.php:108 templates/odc/partials/filters.php:76
-#: templates/odm/partials/filters.php:103
+#: templates/odc/partials/filters.php:76 templates/odm/partials/filters.php:103
 msgid "Select license"
 msgstr "ជ្រើសរើសអាជ្ញាប័ណ្ណ"
-
-#: templates/default/partials/filters.php:128 templates/odm/partials/filters.php:141
-msgid "Search Filter"
-msgstr "ស្វែងរកការជ្រើសរើស"
-
-#: templates/default/solr_search.php:176 templates/default/solr_search.php:190
-msgid "No result found"
-msgstr "មិនមានលទ្ធផល"
 
 #: templates/odc/partials/filters.php:103
 msgid "Year"
@@ -290,158 +244,211 @@ msgstr ""
 msgid "Clear"
 msgstr ""
 
-#: templates/odc/solr_search.php:293 templates/odm/solr_search.php:343
+#: templates/odc/solr_search.php:272 templates/odm/solr_search.php:321
+msgid "Records"
+msgstr ""
+
+#: templates/odc/solr_search.php:275 templates/odm/solr_search.php:324
 msgid " found for"
 msgstr "រកឃើញសម្រាប់"
 
-#: templates/odc/solr_search.php:299 templates/odc/solr_search.php:300
+#: templates/odc/solr_search.php:281 templates/odc/solr_search.php:282
 #: templates/odm/partials/filters.php:131 templates/odm/partials/filters.php:132
 msgid "Sort by"
 msgstr "តម្រៀបតាម"
 
-#: templates/odc/solr_search.php:301 templates/odm/partials/filters.php:133
+#: templates/odc/solr_search.php:283 templates/odm/partials/filters.php:133
 msgid "Relevance"
 msgstr "ភាពទាក់ទង"
 
-#: templates/odc/solr_search.php:302 templates/odm/partials/filters.php:134
+#: templates/odc/solr_search.php:284 templates/odm/partials/filters.php:134
 msgid "Creation date"
 msgstr ""
 
-#: templates/odc/solr_search.php:303 templates/odm/partials/filters.php:135
+#: templates/odc/solr_search.php:285 templates/odm/partials/filters.php:135
 msgid "Modification date"
 msgstr ""
+
+#: templates/odm/partials/filters.php:43
+msgid "Country"
+msgstr "ប្រទេស"
+
+#: templates/odm/partials/filters.php:44
+msgid "Select country"
+msgstr "ជ្រើសរើសប្រទេស"
 
 #: templates/odm/partials/filters.php:129
 msgid "Sorting"
 msgstr "តម្រៀប"
 
-#: templates/odm/solr_search.php:272
-msgid "Search Results"
-msgstr "លទ្ធផលស្វែងរក"
+#: templates/odm/partials/filters.php:141
+msgid "Search Filter"
+msgstr "ស្វែងរកការជ្រើសរើស"
 
-#: templates/odm/solr_search.php:305
+#: templates/odm/solr_search.php:251
+msgid "Search Results for"
+msgstr ""
+
+#: templates/odm/solr_search.php:284
 msgid "Explore more"
 msgstr "រុករកបន្ថែម"
 
-#: templates/settings.php:25
+#: templates/settings.php:26
 msgid "Connecting to Solr"
 msgstr "ភ្ជាប់ទៅនឹង Solr"
 
-#: templates/settings.php:27
+#: templates/settings.php:28
 msgid "Host"
 msgstr "កន្លែងដាក់ផ្សាយ"
 
-#: templates/settings.php:30
+#: templates/settings.php:31
 msgid "Specify host without protocol, just domain. example: solr.opendevelopmentmekong.net "
 msgstr "បញ្ជាក់ពីកន្លែងដាក់ផ្សាយជាមួយវិស័យ ដោយមិនមានប្រូតូកូល។ ឧទាហរណ៍៖  solr.opendevelopmentmekong.net "
 
-#: templates/settings.php:34
+#: templates/settings.php:35
 msgid "Port"
 msgstr "កន្លែងតភ្ជាប់"
 
-#: templates/settings.php:37
+#: templates/settings.php:38
 msgid "Specify the port under which the solr instance is available"
 msgstr "បញ្ជាក់ពីកន្លែងតភ្ជាប់ ដែលមាន solr instance"
 
-#: templates/settings.php:41
+#: templates/settings.php:42
 msgid "Scheme"
 msgstr "គ្រោងការណ៍"
 
-#: templates/settings.php:44
+#: templates/settings.php:45
 msgid "http or https"
 msgstr "http ឬ https "
 
-#: templates/settings.php:48
+#: templates/settings.php:49
 msgid "Path"
 msgstr "ផ្លូវ"
 
-#: templates/settings.php:51
+#: templates/settings.php:52
 msgid "Usually /solr/"
 msgstr "ជាធម្មតា /solr/ "
 
-#: templates/settings.php:55
+#: templates/settings.php:56
 msgid "Core WP"
 msgstr "Core WP "
 
-#: templates/settings.php:58
+#: templates/settings.php:59
 msgid "Example: wordpress_content"
 msgstr "ឧទាហរណ៍៖ wordpress_content "
 
-#: templates/settings.php:62
+#: templates/settings.php:63
 msgid "Core CKAN"
 msgstr "Core CKAN "
 
-#: templates/settings.php:65
+#: templates/settings.php:66
 msgid "Example: collection1"
 msgstr "ឧទាហរណ៍៖ collection1 "
 
-#: templates/settings.php:69
+#: templates/settings.php:70
+msgid "Core unified"
+msgstr ""
+
+#: templates/settings.php:73
+msgid "Example: unified"
+msgstr ""
+
+#: templates/settings.php:77
 msgid "User"
 msgstr "អ្នកប្រើប្រាស់"
 
-#: templates/settings.php:72
+#: templates/settings.php:80
 msgid "Username for authentication"
 msgstr "ឈ្មោះអ្នកប្រើប្រាស់សម្រាប់បញ្ជាក់ពីភាពពិតត្រឹមត្រូវ​"
 
-#: templates/settings.php:76
+#: templates/settings.php:84
 msgid "Password"
 msgstr "ពាក្យ​សម្ងាត់"
 
-#: templates/settings.php:79
+#: templates/settings.php:87
 msgid "Password for authentication"
 msgstr "ពាក្យ​សម្ងាត់សម្រាប់បញ្ជាក់ពីភាពពិតត្រឹមត្រូវ"
 
-#: templates/settings.php:86
+#: templates/settings.php:94
 msgid "Connection status"
 msgstr "ស្ថានភាពតភ្ជាប់"
 
-#: templates/settings.php:89
+#: templates/settings.php:97
+msgid "Ping to unified index succeded."
+msgstr ""
+
+#: templates/settings.php:99
+msgid "Problem connecting to unified index. Please, check the specified config."
+msgstr ""
+
+#: templates/settings.php:102
 msgid "Ping to WP index succeded."
 msgstr ""
 "ការបញ្ជូនទៅសន្ទស្សន៍ WP ប្រព្រឹត្តទៅដោយជោគ\n"
 "ជ័យ"
 
-#: templates/settings.php:91
+#: templates/settings.php:104
 msgid "Problem connecting to WP index. Please, check the specified config."
 msgstr "បញ្ហាជាមួយការតភ្ជាប់ទៅនឹងសន្ទស្សន៍ WP។ សូមពិនិត្យមើល config នោះ ។"
 
-#: templates/settings.php:94
+#: templates/settings.php:107
 msgid "Ping to CKAN index succeded."
 msgstr ""
 "ការបញ្ជូនទៅសន្ទស្សន៍ CKAN ប្រព្រឹត្តទៅដោយជោគ\n"
 "ជ័យ"
 
-#: templates/settings.php:96
+#: templates/settings.php:109
 msgid "Problem connecting to CKAN index. Please, check the specified config."
 msgstr "បញ្ហាជាមួយការតភ្ជាប់ទៅនឹងសន្ទស្សន៍ CKAN។ សូមពិនិត្យមើល config នោះ ។"
 
-#: templates/settings.php:103
+#: templates/settings.php:116
 msgid "Logging"
 msgstr "ការភ្ជាប់"
 
-#: templates/settings.php:105
+#: templates/settings.php:118
 msgid "Enable log"
 msgstr "ធ្វើឲ្យតភ្ជាប់ទៅបាន"
 
-#: templates/settings.php:111
+#: templates/settings.php:124
 msgid "Log file path"
 msgstr "ផ្លូវតភ្ជាប់"
 
-#: templates/settings.php:114
+#: templates/settings.php:127
 msgid "Path where logs are going to be stored. Mind permissions."
 msgstr "ផ្លូវដែលកំណត់ត្រាតភ្ជាប់ត្រូវបានរក្សាទុក។ សូមផ្តល់ការអនុញ្ញាត។"
 
-#: templates/settings.php:118
+#: templates/settings.php:131
 msgid "Templating"
 msgstr "ការផ្តល់ពុម្ពគំរូ"
 
-#: templates/settings.php:120
+#: templates/settings.php:133
 msgid "Select template"
 msgstr "ជ្រើសរើសពុម្ពគំរូ"
 
-#: wp-odm_solr.php:182
+#: wp-odm_solr.php:184
 msgid "You do not have sufficient permissions to access this page."
 msgstr "លោកអ្នក មិនមានការអនុញ្ញាតគ្រប់គ្រាន់ដើម្បីចូលអានទំព័រនេះទេ"
+
+#~ msgid "Content type"
+#~ msgstr "ប្រភេទអត្ថបទ"
+
+#~ msgid "Select type"
+#~ msgstr "ជ្រើសយកប្រភេទ"
+
+#~ msgid "Dataset"
+#~ msgstr "សំណុំទិន្នន័យ"
+
+#~ msgid "Agreement"
+#~ msgstr "កិច្ចព្រមព្រៀង"
+
+#~ msgid "News"
+#~ msgstr "ព័ត៌មាន​"
+
+#~ msgid "No result found"
+#~ msgstr "មិនមានលទ្ធផល"
+
+#~ msgid "Search Results"
+#~ msgstr "លទ្ធផលស្វែងរក"
 
 #~ msgid "Date modified"
 #~ msgstr "កាលបរិច្ឆេទកែប្រែ"

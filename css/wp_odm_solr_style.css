@@ -166,5 +166,8 @@ select#sorting{
 	margin-bottom: 0 !important;
 }
 
-
-
+#spell{
+	float:right;
+	display: none;
+	max-width: 400px;
+}

@@ -17,6 +17,7 @@ class WP_Odm_Solr_CKAN_Manager {
 
   var $client = null;
   var $server_config = null;
+  var $show_regional_contents = false;
 
 	function __construct() {
 
@@ -29,6 +30,7 @@ class WP_Odm_Solr_CKAN_Manager {
     $solr_core_ckan = $GLOBALS['wp_odm_solr_options']->get_option('wp_odm_solr_setting_solr_core_ckan');
     $solr_user = $GLOBALS['wp_odm_solr_options']->get_option('wp_odm_solr_setting_solr_user');
     $solr_pwd = $GLOBALS['wp_odm_solr_options']->get_option('wp_odm_solr_setting_solr_pwd');
+    $this->show_regional_contents = $GLOBALS['wp_odm_solr_options']->get_option('wp_odm_solr_setting_regional_contents_enabled');
 
     $this->server_config = array(
       'endpoint' => array(
@@ -91,9 +93,6 @@ class WP_Odm_Solr_CKAN_Manager {
     try {
 
       $query = $this->client->createSelect();
-      if (!empty($text)):
-        $query->setQuery($text);
-      endif;
 
       if (isset($control_attrs["page"]) && isset($control_attrs["limit"])):
         $start = $control_attrs["page"] * $control_attrs["limit"];
@@ -121,21 +120,35 @@ class WP_Odm_Solr_CKAN_Manager {
       endif;
 
       $current_country = odm_country_manager()->get_current_country();
-      if ( $current_country != "mekong" && !array_key_exists("extras_odm_spatial_range",$attrs)):
+      if ( $current_country !== "mekong" && !array_key_exists("extras_odm_spatial_range",$attrs)):
         $current_country_code = odm_country_manager()->get_current_country_code();
-  			$query->createFilterQuery('extras_odm_spatial_range')->setQuery('extras_odm_spatial_range:' . $current_country_code);
+        if ($this->show_regional_contents):
+          $query->createFilterQuery('extras_odm_spatial_range')->setQuery('extras_odm_spatial_range:("mekong" OR "' . $current_country_code . '")');
+          $text = $text . " " . $current_country;
+        else:
+          $query->createFilterQuery('extras_odm_spatial_range')->setQuery('extras_odm_spatial_range:' . $current_country_code);
+        endif;
   		endif;
+
+      if ( $current_country !== "mekong" && !array_key_exists("extras_odm_language",$attrs)):
+        $local_language_code = odm_language_manager()->get_the_language_code_by_site();
+  			$query->createFilterQuery('extras_odm_language')->setQuery('extras_odm_language: ("en" OR "' . $local_language_code . '")');
+  		endif;
+
+      if (!empty($text)):
+        $query->setQuery($text);
+      endif;
 
       if (!empty($text)):
         $fields_to_query = 'extras_odm_keywords^6 vocab_taxonomy^5 title^2 extras_title_translated^2 extras_notes_translated^1 notes^1 extras_odm_spatial_range^1 extras_odm_province^1';
         if (isset($attrs["dataset_type"])):
           $typeFilter = $attrs["dataset_type"];
           if ($typeFilter == 'library_record'):
-            $fields_to_query .= ' extras_document_type^1 extras_extras_marc21_260c^1 extras_marc21_020^1 extras_marc21_022^1';
+            $fields_to_query .= ' extras_document_type^4 extras_extras_marc21_260c^4 extras_marc21_020^4 extras_marc21_022^4';
           elseif ($typeFilter == 'laws_record'):
-            $fields_to_query .= ' extras_odm_document_type^1 extras_odm_promulgation_date^1';
+            $fields_to_query .= ' extras_odm_document_type^4 extras_odm_promulgation_date^4';
           elseif ($typeFilter == 'agreement'):
-            $fields_to_query .= ' extras_odm_agreement_signature_date^1';
+            $fields_to_query .= ' extras_odm_agreement_signature_date^4';
           endif;
         endif;
 
@@ -162,16 +175,16 @@ class WP_Odm_Solr_CKAN_Manager {
         if (isset($facet)):
           $result["facets"][$key] = [];
           foreach($facet as $value => $count) {
-                        
+
             if ($key == "metadata_modified" || $key == "metadata_created"):
               $value = wp_solr_print_date($value,"Y");
               if (!isset($result["facets"][$key][$value])):
                 $result["facets"][$key][$value] = 0;
-              endif;              
+              endif;
               $result["facets"][$key][$value] += $count;
             else:
               $result["facets"][$key][$value] = $count;
-            endif;   
+            endif;
           }
         endif;
       endforeach;
@@ -182,7 +195,7 @@ class WP_Odm_Solr_CKAN_Manager {
 
 		return $result;
 	}
-  
+
   function delete_dataset($dataset_id){
 
     wp_odm_solr_log('solr-ckan-manager delete_dataset');

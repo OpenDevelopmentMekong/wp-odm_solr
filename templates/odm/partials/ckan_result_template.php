@@ -2,7 +2,7 @@
   <?php
   $title = wp_odm_solr_parse_multilingual_ckan_content($document->extras_title_translated,odm_language_manager()->get_current_language(),$document->title);
   $title = wp_odm_solr_highlight_search_words($s,$title);
-  $link_to_dataset = wpckan_get_link_to_dataset($document->id);
+  $link_to_dataset = wpckan_get_link_to_dataset($document->id,$_SERVER['QUERY_STRING']);
   ?>
   <h4 class="data_title ten columns">
     <a target="_blank" href="<?php echo $link_to_dataset ?>">
@@ -17,7 +17,7 @@
       <span class="meta-label <?php echo strtolower($format); ?>"><a href="<?php echo $link_to_dataset ?>"><?php echo strtolower($format); ?></a></span>
     <?php endforeach ?>
   </div>
-  
+
   <div class="post-meta sixteen columns">
     <ul>
     <!-- Language -->
@@ -63,22 +63,40 @@
     <?php endif; ?>
     <!-- Date -->
     <li class="data_meta">
-      <?php if ($param_sorting == "metadata_modified"): 
+      <?php if ($param_sorting == "metadata_modified"):
         $metadata_date = $document->metadata_modified; ?>
-        <i class="fa fa-pencil"></i>        
-      <?php else: 
+        <i class="fa fa-pencil"></i>
+      <?php else:
         $metadata_date = $document->metadata_created; ?>
         <i class="fa fa-clock-o"></i>
       <?php endif; ?>
       <span>
-        <?php          
+        <?php
           if (odm_language_manager()->get_current_language() == 'km'):
-            $date = wp_solr_print_date($metadata_date,"d.M.Y"); 
+            $date = wp_solr_print_date($metadata_date,"d.M.Y");
 					  echo convert_date_to_kh_date($date);
 					else:
-            echo wp_solr_print_date($metadata_date); 
+            echo wp_solr_print_date($metadata_date);
 					endif; ?>
       </span>
+    </li>
+    <!-- Author (coorporate) -->
+    <li class="data_meta">
+      <?php 
+          if (!empty($document->extras_marc21_110)): ?>
+            <i class="fa fa-building-o"></i>
+        <?php 
+            echo $document->extras_marc21_110;
+          endif; ?>      
+    </li>
+    <!-- Author -->
+    <li class="data_meta">
+      <?php 
+          if (!empty($document->extras_marc21_100)): ?>
+            <i class="fa fa-user-circle-o"></i>
+        <?php 
+            echo $document->extras_marc21_100;
+          endif; ?>      
     </li>
     <!-- Topics -->
     <?php if (!empty($document->vocab_taxonomy)): ?>
@@ -89,7 +107,7 @@
             $topics = (array) $document->vocab_taxonomy;
             foreach ($topics as $topic): ?>
               <a href="<?php echo generate_link_to_category_from_name($topic) ?>"><?php _e($topic, 'wp-odm_solr'); ?></a>
-              <?php 
+              <?php
               if ($topic !== end($topics)):
                 echo ", ";
               endif;
@@ -113,15 +131,15 @@
     <?php endif; ?>
     </ul>
   </div>
-  
-  <div class="item-content sixteen columns">        
+
+  <div class="item-content sixteen columns">
     <p class="data_description">
-      
+
       <?php
-        $thumbnail_image_url = wp_solr_get_image_url_from_ckan_result($document); 
+        $thumbnail_image_url = wp_solr_get_image_url_from_ckan_result($document);
         if (isset($thumbnail_image_url)):?>
-          <img src="<?php echo $thumbnail_image_url ?>"></img> 
-      <?php 
+          <img src="<?php echo $thumbnail_image_url ?>"></img>
+      <?php
         endif; ?>
 
       <?php
@@ -136,5 +154,5 @@
         ?>
     </p>
   </div>
-  
+
 </div>

@@ -18,7 +18,7 @@ if (!class_exists('Odm_Solr_Pages_Post_Type')) {
 
       $template = get_post_meta($post->ID, '_solr_pages_attributes_template_layout', true);
       $template = isset($template) ? $template : 'odm';
-      
+
       if ($post->post_type == 'search-pages') {
         $single_template = dirname(plugin_dir_path(__FILE__)).'/templates/' . $template . '/solr_search.php';
       }
@@ -93,7 +93,7 @@ if (!class_exists('Odm_Solr_Pages_Post_Type')) {
         $supported_types = get_post_meta($post->ID, '_solr_pages_attributes_supported_types', true); ?>
 
 			  <h4><?php _e('Supported content types', 'wp-odm_solr');?></h4>
-			  <input class="full-width" type="text" id="_solr_pages_attributes_supported_types" name="_solr_pages_attributes_supported_types" placeholder="dataset, library_record, laws_record, agreement" value="<?php echo $supported_types; ?>" />
+			  <input class="full-width" type="text" id="_solr_pages_attributes_supported_types" name="_solr_pages_attributes_supported_types" placeholder="dataset, library_record, laws_record, agreement" value="<?php echo $supported_types; ?>"></input>
         <p class="description"><?php _e('Please add the document types that should be supported on this page', 'wp-odm_solr'); ?></p>
 
    <?php
