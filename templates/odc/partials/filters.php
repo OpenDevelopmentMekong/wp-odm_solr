@@ -107,7 +107,10 @@
     <?php
         if (array_key_exists("metadata_created",$facets[$param_type])):
           $year_facets = $facets[$param_type]["metadata_created"];
-          foreach ($year_facets as $year => $count):
+          $available_year_values = array_keys($year_facets);
+          sort($available_year_values,SORT_STRING);
+          foreach ($available_year_values as $year):
+            $year = $year_facets[$year];
             $selected = $year == $param_metadata_created; ?>
             <option value="<?php echo $year; ?>" <?php if($selected) echo 'selected'; ?>><?php echo $year . " (" . $count . ")"; ?></option>
         <?php
