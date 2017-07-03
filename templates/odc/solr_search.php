@@ -238,7 +238,13 @@
             <div class="advanced-nav-filters ">
               <div class="row panel">
                 <input type="hidden" name="type" value="<?php echo $param_type;?>"></input>
-                <?php include plugin_dir_path(__FILE__). 'partials/filters.php'; ?>
+                <?php
+                  if (odm_country_manager()->get_current_country() === "mekong"):
+                    include plugin_dir_path(__FILE__). 'partials/filters_regional.php'; 
+                  else:
+                    include plugin_dir_path(__FILE__). 'partials/filters.php';
+                  endif;
+                  ?>
               </div>
 
               <div class="row">
