@@ -7,7 +7,7 @@
 </div>
 
 <!-- TAXONOMY FILTER -->
-<div class="adv-nav-input three columns">
+<div class="search-input adv-nav-input two columns">
   <label for="taxonomy"><?php _e('Topic', 'wp-odm_solr'); ?></label>
   <select id="taxonomy" name="taxonomy" class="full-width filter_box" data-placeholder="<?php _e('Select term', 'wp-odm_solr'); ?>">
     <option value="all" <?php if (isset($param_taxonomy) || $param_taxonomy == 'all') echo 'selected'; ?>><?php _e('All','wp-odm_solr') ?></option>
@@ -44,7 +44,7 @@
 <!-- END OF TAXONOMY FILTER -->
 
 <!-- COUNTRY FILTER -->
-<div class="single-filter">
+<div class="search-input adv-nav-input two columns">
   <label for="country"><?php _e('Country', 'wp-odm_solr'); ?></label>
   <select multiple id="country" name="country[]" class="full-width filter_box" data-placeholder="<?php _e('Select country', 'wp-odm_solr'); ?>">
     <?php
@@ -74,7 +74,7 @@
 <!-- END OF COUNTRY FILTER  -->
 
 <!-- LANGUAGE FILTER -->
-<div class="adv-nav-input three columns">
+<div class="adv-nav-input two columns">
   <label for="language"><?php _e('Language', 'wp-odm_solr'); ?></label>
   <select multiple id="language" name="language[]" class="filter_box" data-placeholder="<?php _e('Select language', 'wp-odm_solr'); ?>"> -->
     <?php
@@ -102,7 +102,7 @@
 <!-- END OF LANGUAGE FILTER -->
 
 <!-- LICENSE FILTER -->
-<div class="adv-nav-input three columns">
+<div class="adv-nav-input two columns">
   <label for="license"><?php _e('License', 'wp-odm_solr'); ?></label>
   <select multiple id="license" name="license[]" class="full-width filter_box" data-placeholder="<?php _e('Select license', 'wp-odm_solr'); ?>">
     <?php
@@ -130,7 +130,7 @@
 <!-- END OF LICENSE FILTER -->
 
 <!-- YEAR FILTER -->
-<div class="adv-nav-input three columns">
+<div class="adv-nav-input two columns">
   <label for="metadata_created"><?php _e('Year', 'wp-odm_solr'); ?></label>
   <select id="metadata_created" name="metadata_created" class="full-width filter_box" data-placeholder="<?php _e('Select year', 'wp-odm_solr'); ?>">
     <option value="all" <?php if (isset($param_metadata_created) || $param_metadata_created == 'all') echo 'selected'; ?>><?php _e('All','wp-odm_solr') ?></option>
@@ -150,7 +150,7 @@
 </div>
 <!-- END OF YEAR FILTER -->
 
-<div class="four columns align-right">
+<div class="three columns align-right">
   <button class="full-width search-button" type="submit"><i class="fa fa-search" aria-hidden="true"></i> <?php _e('Search','wp-odm_solr') ?></button>
   <a href="?<?php echo $query_var_name ?>="><?php _e('Clear','wp-odm_solr') ?></a>
 </div>
