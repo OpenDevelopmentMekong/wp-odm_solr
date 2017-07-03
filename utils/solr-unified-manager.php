@@ -156,7 +156,8 @@ class WP_Odm_Solr_UNIFIED_Manager {
         $dismax->setQueryFields($fields_to_query);
 
         if (!isset($attrs["dataset_type"])):
-          $dismax->setBoostQuery('dataset_type:("dataset" OR "library_record" OR "laws_record" OR "agreement" OR "map-layer" OR "topic" OR "profiles")^40');
+          $dismax->setBoostQuery('dataset_type:("dataset" OR "library_record" OR "laws_record" OR "agreement")^10');
+          $dismax->setBoostQuery('dataset_type:("topic" OR "profiles")^12');
         endif;
 
       endif;
