@@ -5,7 +5,14 @@
 
   define("WP_ODM_SOLR_DEFAULT_LOG_PATH","/tmp/wp_odm_solr.log");
   define("WP_ODM_SOLR_CHECK_REQS",True);
-
+  
+  function wp_odm_solr_parse_query_from_string($param_string) {
+    $query = parse_url($param_string, PHP_URL_QUERY);
+    parse_str($query, $parts);
+        
+    return $parts["s"];
+  }
+  
   function wp_odm_solr_parse_attrs_from_string($param_string) {
     $query = parse_url($param_string, PHP_URL_QUERY);
     parse_str($query, $parts);

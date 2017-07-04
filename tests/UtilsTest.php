@@ -125,6 +125,13 @@ class UtilsTest extends PHPUnit_Framework_TestCase
     $this->assertEquals($result["sorting"],"metadata_created");
     $this->assertEquals($result["page"],1);
   }
+  
+  public function testParseQueryFromStringCorrect(){
+    $to_parse = '?s=land&sorting=metadata_created&page=1';
+    $result = wp_odm_solr_parse_query_from_string($to_parse);
+    $this->assertFalse(is_array($result));
+    $this->assertEquals($result,"land");
+  }
 
 
 }
