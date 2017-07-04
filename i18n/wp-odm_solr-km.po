@@ -8,19 +8,19 @@ msgstr ""
 "PO-Revision-Date: 2017-06-19 20:28+0200\n"
 "Last-Translator: ChandaraKhun <chandara@opendevcam.net>, 2017\n"
 "Language-Team: Khmer (https://www.transifex.com/open-development-mekong/teams/27158/km/)\n"
-"Language: km\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Language: km\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Poedit 1.8.7.1\n"
 "X-Poedit-Basepath: ..\n"
 "X-Poedit-KeywordsList: _;_e;__;_n:1,2;_x:1,2c;_ex:1,2c\n"
-"X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-SearchPath-0: i18n\n"
 "X-Poedit-SearchPath-1: .\n"
 "X-Poedit-SearchPathExcluded-0: components\n"
 "X-Poedit-SearchPathExcluded-1: vendor\n"
+"X-Poedit-SourceCharset: UTF-8\n"
 
 #: i18n/additional-localization.php:2
 msgid "Datasets"
@@ -189,12 +189,14 @@ msgstr ""
 msgid "Download:"
 msgstr ""
 
-#: templates/category-page/solr_search.php:197 templates/odc/solr_search.php:209
-#: templates/odm/solr_search.php:210
+#: templates/category-page/solr_search.php:197
+#: templates/odc/solr_search.php:209 templates/odm/solr_search.php:210
 msgid ""
-"wp-odm_solr plugin is not properly configured. Please contact the system's administrator"
+"wp-odm_solr plugin is not properly configured. Please contact the system's "
+"administrator"
 msgstr ""
-"Plugin សម្រាប់ wp-odm_solr plugin មិនត្រូវបានរៀបចំឲ្យបានត្រឹមត្រូវ។ សូមទំនាក់ទំនងមកកាន់អ្នកគ្រប់គ្រងប្រព័ន្ធកុំព្យូទ័រ"
+"Plugin សម្រាប់ wp-odm_solr plugin មិនត្រូវបានរៀបចំឲ្យបានត្រឹមត្រូវ។ "
+"សូមទំនាក់ទំនងមកកាន់អ្នកគ្រប់គ្រងប្រព័ន្ធកុំព្យូទ័រ"
 
 #: templates/odc/partials/filters.php:4
 msgid "Text search"
@@ -220,11 +222,13 @@ msgstr "ភាសា"
 msgid "Select language"
 msgstr "ជ្រើសរើសភាសា"
 
-#: templates/odc/partials/filters.php:75 templates/odm/partials/filters.php:102
+#: templates/odc/partials/filters.php:75
+#: templates/odm/partials/filters.php:102
 msgid "License"
 msgstr "អាជ្ញាប័ណ្ណ"
 
-#: templates/odc/partials/filters.php:76 templates/odm/partials/filters.php:103
+#: templates/odc/partials/filters.php:76
+#: templates/odm/partials/filters.php:103
 msgid "Select license"
 msgstr "ជ្រើសរើសអាជ្ញាប័ណ្ណ"
 
@@ -253,7 +257,8 @@ msgid " found for"
 msgstr "រកឃើញសម្រាប់"
 
 #: templates/odc/solr_search.php:281 templates/odc/solr_search.php:282
-#: templates/odm/partials/filters.php:131 templates/odm/partials/filters.php:132
+#: templates/odm/partials/filters.php:131
+#: templates/odm/partials/filters.php:132
 msgid "Sort by"
 msgstr "តម្រៀបតាម"
 
@@ -302,8 +307,12 @@ msgid "Host"
 msgstr "កន្លែងដាក់ផ្សាយ"
 
 #: templates/settings.php:31
-msgid "Specify host without protocol, just domain. example: solr.opendevelopmentmekong.net "
-msgstr "បញ្ជាក់ពីកន្លែងដាក់ផ្សាយជាមួយវិស័យ ដោយមិនមានប្រូតូកូល។ ឧទាហរណ៍៖  solr.opendevelopmentmekong.net "
+msgid ""
+"Specify host without protocol, just domain. example: "
+"solr.opendevelopmentmekong.net "
+msgstr ""
+"បញ្ជាក់ពីកន្លែងដាក់ផ្សាយជាមួយវិស័យ ដោយមិនមានប្រូតូកូល។ ឧទាហរណ៍៖  "
+"solr.opendevelopmentmekong.net "
 
 #: templates/settings.php:35
 msgid "Port"
@@ -378,7 +387,8 @@ msgid "Ping to unified index succeded."
 msgstr ""
 
 #: templates/settings.php:99
-msgid "Problem connecting to unified index. Please, check the specified config."
+msgid ""
+"Problem connecting to unified index. Please, check the specified config."
 msgstr ""
 
 #: templates/settings.php:102
@@ -428,30 +438,3 @@ msgstr "ជ្រើសរើសពុម្ពគំរូ"
 #: wp-odm_solr.php:184
 msgid "You do not have sufficient permissions to access this page."
 msgstr "លោកអ្នក មិនមានការអនុញ្ញាតគ្រប់គ្រាន់ដើម្បីចូលអានទំព័រនេះទេ"
-
-#~ msgid "Content type"
-#~ msgstr "ប្រភេទអត្ថបទ"
-
-#~ msgid "Select type"
-#~ msgstr "ជ្រើសយកប្រភេទ"
-
-#~ msgid "Dataset"
-#~ msgstr "សំណុំទិន្នន័យ"
-
-#~ msgid "Agreement"
-#~ msgstr "កិច្ចព្រមព្រៀង"
-
-#~ msgid "News"
-#~ msgstr "ព័ត៌មាន​"
-
-#~ msgid "No result found"
-#~ msgstr "មិនមានលទ្ធផល"
-
-#~ msgid "Search Results"
-#~ msgstr "លទ្ធផលស្វែងរក"
-
-#~ msgid "Date modified"
-#~ msgstr "កាលបរិច្ឆេទកែប្រែ"
-
-#~ msgid "results"
-#~ msgstr "លទ្ធផល"
