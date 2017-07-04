@@ -296,7 +296,7 @@ class WP_Odm_Solr_WP_Manager {
     $attrs = wp_odm_solr_parse_attrs_from_string($param_string);
     $control_attrs = wp_odm_solr_parse_control_attrs_from_string($param_string);
 
-    return query($query, $attrs, $control_attrs);
+    return $this->query($query, $attrs, $control_attrs);
   }
 
 }
