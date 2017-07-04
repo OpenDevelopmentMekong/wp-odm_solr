@@ -204,7 +204,7 @@ class WP_Odm_Solr_UNIFIED_Manager {
 
   function query_by_params($param_string){
     
-    $parts = parse_url($param_string);
+    $parts = wp_odm_solr_parse_query_from_string($param_string);
     $attrs = wp_odm_solr_parse_attrs_from_string($param_string);
     $control_attrs = wp_odm_solr_parse_control_attrs_from_string($param_string);
 
