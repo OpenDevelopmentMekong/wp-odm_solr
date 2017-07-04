@@ -202,6 +202,44 @@ class WP_Odm_Solr_UNIFIED_Manager {
 		return $result;
 	}
 
+  function query_by_params($param_string){
+
+    $parts = parse_url($param_string);
+
+    $attrs = array();
+    if (isset($parts["type"])):
+      $attrs["dataset_type"] = $parts["type"];
+    endif;
+    if (isset($parts["license"])):
+      $attrs["license_id"] = $parts["license"];
+    endif;
+    if (isset($parts["taxonomy"])):
+      $attrs["vocab_taxonomy"] = $parts["taxonomy"];
+    endif;
+    if (isset($parts["language"])):
+      $attrs["extras_odm_language"] = $parts["language"];
+    endif;
+    if (isset($parts["country"])):
+      $attrs["extras_odm_spatial_range"] = $parts["country"];
+    endif;
+    if (isset($parts["metadata_created"])):
+      $attrs["metadata_created"] = $parts["metadata_created"];
+    endif;
+    if (isset($parts["metadata_modified"])):
+      $attrs["metadata_modified"] = $parts["metadata_modified"];
+    endif;
+
+    $control_attrs = array();
+    if (isset($parts["page"])):
+      $control_attrs["page"] = $parts["page"];
+    endif;
+    if (isset($parts["sorting"])):
+      $control_attrs["sorting"] = $parts["sorting"];
+    endif;
+
+    return query($parts["s"], $attrs, $control_attrs);
+  }
+
   function delete_dataset($dataset_id){
 
     wp_odm_solr_log('solr-unified-manager delete_dataset');
