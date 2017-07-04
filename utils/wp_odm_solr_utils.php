@@ -6,6 +6,49 @@
   define("WP_ODM_SOLR_DEFAULT_LOG_PATH","/tmp/wp_odm_solr.log");
   define("WP_ODM_SOLR_CHECK_REQS",True);
 
+  function wp_odm_solr_parse_attrs_from_string($param_string) {
+    $query = parse_url($param_string, PHP_URL_QUERY);
+    parse_str($query, $parts);
+    $attrs = array();
+    
+    if (isset($parts["type"])):
+      $attrs["dataset_type"] = $parts["type"];
+    endif;
+    if (isset($parts["license"])):
+      $attrs["license_id"] = $parts["license"];
+    endif;
+    if (isset($parts["taxonomy"])):
+      $attrs["vocab_taxonomy"] = $parts["taxonomy"];
+    endif;
+    if (isset($parts["language"])):
+      $attrs["extras_odm_language"] = $parts["language"];
+    endif;
+    if (isset($parts["country"])):
+      $attrs["extras_odm_spatial_range"] = $parts["country"];
+    endif;
+    if (isset($parts["metadata_created"])):
+      $attrs["metadata_created"] = $parts["metadata_created"];
+    endif;
+    if (isset($parts["metadata_modified"])):
+      $attrs["metadata_modified"] = $parts["metadata_modified"];
+    endif;
+    return $attrs;
+  }
+  
+  function wp_odm_solr_parse_control_attrs_from_string($param_string) {
+    $query = parse_url($param_string, PHP_URL_QUERY);
+    parse_str($query, $parts);
+    $control_attrs = array();
+    
+    if (isset($parts["page"])):
+      $control_attrs["page"] = $parts["page"];
+    endif;
+    if (isset($parts["sorting"])):
+      $control_attrs["sorting"] = $parts["sorting"];
+    endif;
+    return $control_attrs;
+  }
+  
   function wp_odm_solr_parse_multilingual_wp_content($to_parse,$lang,$fallback) {
 
     $to_return = $to_parse;

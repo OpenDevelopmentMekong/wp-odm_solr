@@ -195,6 +195,15 @@ class WP_Odm_Solr_CKAN_Manager {
 
 		return $result;
 	}
+  
+  function query_by_params($param_string){
+    
+    $parts = parse_url($param_string);
+    $attrs = wp_odm_solr_parse_attrs_from_string($param_string);
+    $control_attrs = wp_odm_solr_parse_control_attrs_from_string($param_string);
+
+    return query($parts["s"], $attrs, $control_attrs);
+  }
 
   function delete_dataset($dataset_id){
 
