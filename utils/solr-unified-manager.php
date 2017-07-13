@@ -102,7 +102,7 @@ class WP_Odm_Solr_UNIFIED_Manager {
 
       if (isset($attrs)):
         foreach ($attrs as $key => $value):
-          if ($key == "metadata_modified" || $key == "metadata_created"):
+          if (($key == "metadata_modified" || $key == "metadata_created") && isset($value) && $value !== "all"):
             $value = "[ " . $value . "-01-01T00:00:00Z TO " . $value . "-12-31T23:59:59Z]";
           endif;
           if ($key == "vocab_taxonomy"):
