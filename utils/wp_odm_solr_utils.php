@@ -125,7 +125,6 @@
 
   function wp_solr_print_date($date_string, $format = "Y-m-d"){
 
-
     try {
       $date = new \DateTime($date_string);
       return $date->format($format);
@@ -134,14 +133,14 @@
     }
 
     try {
-      $date = date($format,(float)$date_string);
+      $date = DateTime::createFromFormat('u',(float)$date_string);
+      $date->format($format);
       return $date;
     } catch (\Exception $e) {
       wp_odm_solr_log($e->getMessage());
     }
 
     return null;
-
 
   }
 
