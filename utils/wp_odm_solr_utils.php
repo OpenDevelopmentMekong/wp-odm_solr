@@ -21,22 +21,22 @@
     if (isset($parts["type"])):
       $attrs["dataset_type"] = $parts["type"];
     endif;
-    if (isset($parts["license"])):
+    if (isset($parts["license"]) && $parts["license"] !== "all"):
       $attrs["license_id"] = $parts["license"];
     endif;
     if (isset($parts["taxonomy"])):
       $attrs["vocab_taxonomy"] = $parts["taxonomy"];
     endif;
-    if (isset($parts["language"])):
+    if (isset($parts["language"]) && $parts["language"] !== "all"):
       $attrs["extras_odm_language"] = $parts["language"];
     endif;
-    if (isset($parts["country"])):
+    if (isset($parts["country"]) && $parts["country"] !== "all"):
       $attrs["extras_odm_spatial_range"] = $parts["country"];
     endif;
-    if (isset($parts["metadata_created"])):
+    if (isset($parts["metadata_created"]) && $parts["metadata_created"] !== "all"):
       $attrs["metadata_created"] = $parts["metadata_created"];
     endif;
-    if (isset($parts["metadata_modified"])):
+    if (isset($parts["metadata_modified"]) && $parts["metadata_modified"] !== "all"):
       $attrs["metadata_modified"] = $parts["metadata_modified"];
     endif;
     return $attrs;

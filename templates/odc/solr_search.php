@@ -164,12 +164,12 @@
         }
 
         //metadata_modified
-        if (isset($param_metadata_modified) && $param_metadata_modified != 'all'){
+        if (isset($param_metadata_modified) && $param_metadata_modified !== 'all'){
           $attrs['metadata_modified'] = $param_metadata_modified;
         }
 
         //metadata_created
-        if (isset($param_metadata_created) && $param_metadata_created != 'all'){
+        if (isset($param_metadata_created) && $param_metadata_created !== 'all'){
           $attrs['metadata_created'] = $param_metadata_created;
         }
 
@@ -240,7 +240,7 @@
                 <input type="hidden" name="type" value="<?php echo $param_type;?>"></input>
                 <?php
                   if (odm_country_manager()->get_current_country() === "mekong"):
-                    include plugin_dir_path(__FILE__). 'partials/filters_regional.php'; 
+                    include plugin_dir_path(__FILE__). 'partials/filters_regional.php';
                   else:
                     include plugin_dir_path(__FILE__). 'partials/filters.php';
                   endif;
