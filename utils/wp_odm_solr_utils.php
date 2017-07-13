@@ -133,7 +133,8 @@
     }
 
     try {
-      $date = DateTime::createFromFormat('U',(float)$date_string);
+      $microseconds = round((float)$date_string * 1000);
+      $date = DateTime::createFromFormat('u',$microseconds);
       $date->format($format);
       return $date;
     } catch (\Exception $e) {
