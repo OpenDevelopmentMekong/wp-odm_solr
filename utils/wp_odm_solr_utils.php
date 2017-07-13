@@ -125,6 +125,8 @@
 
   function wp_solr_print_date($date_string, $format = "Y-m-d"){
 
+    $date_string = str_replace("&#8203;","",$date_string);
+
     try {
       $date = new \DateTime($date_string);
       return $date->format($format);
@@ -133,7 +135,6 @@
     }
 
     try {
-      $date_string = str_replace("","",$date_string);
       $microseconds = round((float)$date_string * 1000);
       $date = DateTime::createFromFormat('u',$microseconds);
       return $date->format($format);;
