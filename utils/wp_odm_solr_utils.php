@@ -136,8 +136,7 @@
       $date_string = str_replace("","",$date_string);
       $microseconds = round((float)$date_string * 1000);
       $date = DateTime::createFromFormat('u',$microseconds);
-      $date->format($format);
-      return $date;
+      return $date->format($format);;
     } catch (\Exception $e) {
       wp_odm_solr_log($e->getMessage());
     }
