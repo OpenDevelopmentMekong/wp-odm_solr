@@ -128,6 +128,7 @@
       $date = new \DateTime($date_string);
       return $date->format($format);
     } catch (\Exception $e) {
+      wp_odm_solr_log($e->getMessage());
       return null;
     }
   }
