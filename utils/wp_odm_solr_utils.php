@@ -133,7 +133,7 @@
     }
 
     try {
-      $date = DateTime::createFromFormat('u',(float)$date_string);
+      $date = DateTime::createFromFormat('U',(float)$date_string);
       $date->format($format);
       return $date;
     } catch (\Exception $e) {
