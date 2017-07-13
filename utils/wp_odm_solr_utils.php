@@ -124,13 +124,25 @@
   }
 
   function wp_solr_print_date($date_string, $format = "Y-m-d"){
+
+
     try {
       $date = new \DateTime($date_string);
       return $date->format($format);
     } catch (\Exception $e) {
       wp_odm_solr_log($e->getMessage());
-      return null;
     }
+
+    try {
+      $date = date($format,(float)$date_string);
+      return $date;
+    } catch (\Exception $e) {
+      wp_odm_solr_log($e->getMessage());
+    }
+
+    return null;
+
+
   }
 
   function wp_solr_get_image_url_from_ckan_result($document){
