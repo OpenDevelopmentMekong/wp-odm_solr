@@ -71,12 +71,12 @@
         <i class="fa fa-clock-o"></i>
       <?php endif; ?>
       <span>
-        <?php
+        <?php          
           if (odm_language_manager()->get_current_language() == 'km'):
-            $date = wp_solr_print_date($metadata_date,"d.M.Y");
+            $date = wp_solr_print_date($metadata_date,"j.M.Y"); 
 					  echo convert_date_to_kh_date($date);
 					else:
-            echo wp_solr_print_date($metadata_date);
+            echo wp_solr_print_date($metadata_date,"j F Y"); 
 					endif; ?>
       </span>
     </li>
