@@ -98,11 +98,9 @@ class UtilsTest extends PHPUnit_Framework_TestCase
     $this->assertArrayHasKey('dataset_type',$result);
     $this->assertArrayHasKey('vocab_taxonomy',$result);
     $this->assertArrayHasKey('extras_odm_spatial_range',$result);
-    $this->assertArrayHasKey('extras_odm_language',$result);
     $this->assertArrayHasKey('license_id',$result);
     $this->assertEquals($result["dataset_type"],"topic");
     $this->assertEquals($result["vocab_taxonomy"],"Land");
-    $this->assertEquals($result["extras_odm_language"],"all");
     $this->assertEquals($result["extras_odm_spatial_range"],"km");
     $this->assertEquals($result["license_id"],"CC-BY-SA-4.0");
   }
