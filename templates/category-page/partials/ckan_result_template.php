@@ -2,7 +2,7 @@
   <?php
   $title = wp_odm_solr_parse_multilingual_ckan_content($document->extras_title_translated,odm_language_manager()->get_current_language(),$document->title);
   $title = wp_odm_solr_highlight_search_words($s,$title);
-  $link_to_dataset = wpckan_get_link_to_dataset($document->id);
+  $link_to_dataset = wpckan_get_link_to_dataset($document->name);
   ?>
   <h4 class="data_title sixteen columns">
     <a target="_blank" href="<?php echo $link_to_dataset ?>">
@@ -54,37 +54,45 @@
         </span>
       </li>
     <?php endif; ?>
-    <!-- Date -->    
+    <!-- Date -->
     <li class="data_meta">
-      <i class="fa fa-clock-o"></i>
+      <?php if ($param_sorting == "metadata_modified"):
+        $metadata_date = $document->metadata_modified; ?>
+        <i class="fa fa-pencil"></i>
+      <?php else:
+        $metadata_date = $document->metadata_created; ?>
+        <i class="fa fa-clock-o"></i>
+      <?php endif; ?>
       <span>
         <?php          
           if (odm_language_manager()->get_current_language() == 'km'):
-            $date = wp_solr_print_date($document->metadata_created,"d.M.Y"); 
+            $date = wp_solr_print_date($metadata_date,"j.M.Y"); 
 					  echo convert_date_to_kh_date($date);
 					else:
-            echo wp_solr_print_date($document->metadata_created); 
+            echo wp_solr_print_date($metadata_date,"j F Y"); 
 					endif; ?>
       </span>
     </li>
-    <!-- Author (coorporate) -->
-    <li class="data_meta">
+    <!-- Author (coorporate) -->    
+    <?php 
+      if (!empty($document->extras_marc21_110)): ?>
+        <li class="data_meta">
+          <i class="fa fa-building-o"></i>
+    <?php 
+        echo $document->extras_marc21_110; ?>
+        </li>
+    <?php
+      endif; ?>      
+    <!-- Author -->    
+    <?php 
+      if (!empty($document->extras_marc21_100)): ?>
+        <li class="data_meta">
+          <i class="fa fa-user-circle-o"></i>
       <?php 
-          if (!empty($document->extras_marc21_110)): ?>
-            <i class="fa fa-building-o"></i>
-        <?php 
-            echo $document->extras_marc21_110;
-          endif; ?>      
-    </li>
-    <!-- Author -->
-    <li class="data_meta">
-      <?php 
-          if (!empty($document->extras_marc21_100)): ?>
-            <i class="fa fa-user-circle-o"></i>
-        <?php 
-            echo $document->extras_marc21_100;
-          endif; ?>      
-    </li>
+          echo $document->extras_marc21_100; ?>
+        </li>
+    <?php
+      endif; ?>
     <!-- Topics -->
     <?php if (!empty($document->vocab_taxonomy)): ?>
       <li class="data_meta">

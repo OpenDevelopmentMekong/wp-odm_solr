@@ -164,12 +164,12 @@
         }
 
         //metadata_modified
-        if (isset($param_metadata_modified) && $param_metadata_modified != 'all'){
+        if (isset($param_metadata_modified) && $param_metadata_modified !== 'all'){
           $attrs['metadata_modified'] = $param_metadata_modified;
         }
 
         //metadata_created
-        if (isset($param_metadata_created) && $param_metadata_created != 'all'){
+        if (isset($param_metadata_created) && $param_metadata_created !== 'all'){
           $attrs['metadata_created'] = $param_metadata_created;
         }
 
