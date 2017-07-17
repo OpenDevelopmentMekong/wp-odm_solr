@@ -25,7 +25,7 @@ msgid "Datasets"
 msgstr ""
 
 #: i18n/additional-localization.php:3
-msgid "Library publications"
+msgid "Publications"
 msgstr ""
 
 #: i18n/additional-localization.php:4
@@ -41,7 +41,7 @@ msgid "Maps"
 msgstr ""
 
 #: i18n/additional-localization.php:7
-msgid "News articles"
+msgid "News"
 msgstr ""
 
 #: i18n/additional-localization.php:8
@@ -199,7 +199,7 @@ msgid "Text search"
 msgstr ""
 
 #: templates/odc/partials/filters.php:5 templates/odm/solr_search.php:311
-msgid "Search datasets, topics, news articles..."
+msgid "Search datasets, topics, News..."
 msgstr ""
 
 #: templates/odc/partials/filters.php:10 templates/odm/partials/filters.php:5

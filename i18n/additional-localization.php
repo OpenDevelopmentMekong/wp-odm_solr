@@ -1,10 +1,10 @@
 <?php
   echo _("Datasets");
-  echo _("Library publications");
+  echo _("Publications");
   echo _("Laws");
   echo _("Agreements");
   echo _("Maps");
-  echo _("News articles");
+  echo _("News");
   echo _("Topics");
   echo _("Profiles");
   echo _("Story");
