@@ -9,7 +9,7 @@
 
       if (isset($post)):
         $configured_supported_types = get_post_meta($post->ID, '_solr_pages_attributes_supported_types', true);
-        $supported_types_override =  !empty($configured_supported_types) ? explode(",",$configured_supported_types) : null;
+        $supported_types_override =  !empty($configured_supported_types) ? explode(",",$configured_supported_types) : null;        
         $is_search_page = get_post_type($post->ID) == 'search-pages';
       endif;
 
@@ -18,7 +18,7 @@
         $param_query = !empty($_GET['query']) ? $_GET['query'] : null;
       endif;
 
-      $param_type = isset($_GET['type']) ? $_GET['type'] : 'all';
+      $param_type = isset($_GET['type']) ? $_GET['type'] : null;
       $param_license = isset($_GET['license']) ? $_GET['license'] : array();
       $param_taxonomy = isset($_GET['taxonomy']) ? $_GET['taxonomy'] : 'all';
       $param_language = isset($_GET['language']) ? $_GET['language'] : array();
