@@ -18,7 +18,7 @@
         $param_query = !empty($_GET['query']) ? $_GET['query'] : null;
       endif;
 
-      $param_type = isset($_GET['type']) ? $_GET['type'] : 'all';
+      $param_type = isset($_GET['type']) ? $_GET['type'] : null;
       $param_license = isset($_GET['license']) ? $_GET['license'] : array();
       $param_taxonomy = isset($_GET['taxonomy']) ? $_GET['taxonomy'] : 'all';
       $param_language = isset($_GET['language']) ? $_GET['language'] : array();
