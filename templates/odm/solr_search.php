@@ -10,6 +10,7 @@
       if (isset($post)):
         $configured_supported_types = get_post_meta($post->ID, '_solr_pages_attributes_supported_types', true);
         $supported_types_override =  !empty($configured_supported_types) ? explode(",",$configured_supported_types) : null;
+        array_unshift($supported_types_override,"all");
         $is_search_page = get_post_type($post->ID) == 'search-pages';
       endif;
 
