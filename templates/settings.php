@@ -147,6 +147,7 @@
               <option value="default" <?php if (!isset($template) || $template == 'default')  echo 'selected'; ?>>2.0</option>
               <option value="odm" <?php if ($template == 'odm')  echo 'selected'; ?>>ODM 2.2</option>
               <option value="odc" <?php if ($template == 'odc')  echo 'selected'; ?>>ODC 2.2</option>
+              <option value="odc_1_col" <?php if ($template == 'odc_1_col')  echo 'selected'; ?>>ODC 2.2 - 1 Col</option>
             </select>
           </td>
         </tr>

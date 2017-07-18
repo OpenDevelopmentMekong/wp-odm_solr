@@ -22,6 +22,7 @@
     "highlight_words_query" => $param_query,
     "solr_search_result" => $document,
 		"header_tag" => true,
+    "extra_classes" => "solr_result_two_cols",
     "order" => $param_sorting
 	),true);
 

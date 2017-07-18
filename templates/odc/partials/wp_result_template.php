@@ -7,7 +7,7 @@
   endif;
 
   $fetched_post = get_post($document->index_id);
-  odm_get_template('post-list-single-1-cols',array(
+  odm_get_template('post-list-single-2-cols',array(
     "post" => $fetched_post,
     "show_post_type" => true,
   	"show_meta" => true,
@@ -22,6 +22,7 @@
     "highlight_words_query" => $param_query,
     "solr_search_result" => $document,
   	"header_tag" => true,
+    "extra_classes" => "solr_result_two_cols",
     "order" => $param_sorting
 	),true);
 
