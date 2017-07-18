@@ -3,7 +3,7 @@
  * Plugin Name: wp-odm_solr
  * Plugin URI: http://github.com/OpenDevelopmentMekong/wp-odm_solr
  * Description: ODI Internal Wordpress plugin for indexing created/updated WP contents automatically into a solr index
- * Version: 2.3.3
+ * Version: 2.3.4
  * Author: Alex Corbi (mail@lifeformapps.com)
  * Author URI: http://www.lifeformapps.com
  * License: GPLv3
@@ -54,11 +54,20 @@ if (!class_exists('WpOdmSolr')) {
             add_filter('template_include',array($this,'wp_odm_solr_search_template'));
             add_action('export_wp', array($this,'wp_odm_solr_increase_export_memory_limit'));
             add_shortcode( 'admin_scripts_reindex_wp_contents', array($this,'reindex_wp_contents'));
+            add_shortcode( 'admin_scripts_search_ckan_records', array($this,'search_ckan_records'));
         }
 
         function reindex_wp_contents() {
           ob_start();
           include( dirname(__FILE__) . '/admin-scripts/reindex-wp-contents.php' );
+          $output = ob_get_contents();
+          ob_end_clean();
+          return $output;
+        }
+        
+        function search_ckan_records() {
+          ob_start();
+          include( dirname(__FILE__) . '/admin-scripts/search-ckan-records.php' );
           $output = ob_get_contents();
           ob_end_clean();
           return $output;
