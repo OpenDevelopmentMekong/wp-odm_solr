@@ -9,7 +9,7 @@
 
       if (isset($post)):
         $configured_supported_types = get_post_meta($post->ID, '_solr_pages_attributes_supported_types', true);
-        $supported_types_override =  !empty($configured_supported_types) ? explode(",",$configured_supported_types) : null;        
+        $supported_types_override =  !empty($configured_supported_types) ? explode(",",$configured_supported_types) : null;
         $is_search_page = get_post_type($post->ID) == 'search-pages';
       endif;
 
@@ -42,7 +42,7 @@
       $attrs = [];
       $control_attrs = array(
         "sorting" => $param_sorting,
-        "limit" => 12,
+        "limit" => 20,
         "page" => $param_page_solr
       );
 
@@ -60,7 +60,7 @@
           'archive_url' => '/data'
         ),
         'library_record' => array(
-          'title' =>'Publications',
+          'title' =>'Library publications',
           'icon' => 'fa fa-book',
           'archive_url' => null
         ),
@@ -80,7 +80,7 @@
           'archive_url' => '/layers'
         ),
         'news-article' => array(
-          'title' => 'News',
+          'title' => 'News articles',
           'icon' => 'fa fa-newspaper-o',
           'archive_url' => '/news'
         ),
@@ -186,7 +186,6 @@
       endforeach; ?>
 
     <section class="container">
-
       <?php
         if (!WP_Odm_Solr_UNIFIED_Manager()->ping_server()):  ?>
           <div class="row">
@@ -230,135 +229,101 @@
             endforeach;
           endif; ?>
 
-      		<div class="row">
-            <div class="four columns">
-              <div class="result_links">
-              <h4><?php _e('Search Results for','wp-odm_solr'); ?> "<?php _e($param_query,'wp-odm_solr'); ?>"</h4>
-              <?php
-                foreach ($all_search_types as $key => $value):
-                  $count = ($results[$key]) ? $results[$key]->getNumFound() : 0;
-                  if ($count > 0): ?>
+          <?php
+          $content_resultset = array_key_exists($param_type,$results) ? $results[$param_type] : null;
+          $content_resultcount = ($content_resultset) ? $content_resultset->getNumFound() : 0;
+          ?>
 
-                  <div class="result_link_list <?php if ($param_type == $key) echo "data-number-results-medium" ?>">
-                    <?php
-                      $new_url = construct_url($_SERVER['REQUEST_URI'], 'type', $key);
-                      $new_url = construct_url($new_url, 'page', 0);
-                      ?>
-                    <a href="<?php echo $new_url ?>">
-                      <i class="<?php echo $value['icon']; ?>"></i>
-                      <?php echo __($value['title'],'wp-odm_solr') . " (".$count.")"; ?>
-                    </a>
-                  </div>
-
-              <?php
-                  endif;
-                endforeach
-              ?>
-              </div>
-              <div class="data-advanced-filters">
-                <form>
+          <form>
+            <div class="advanced-nav-filters ">
+              <div class="row panel">
                 <input type="hidden" name="type" value="<?php echo $param_type;?>"></input>
-                <?php include plugin_dir_path(__FILE__). 'partials/filters.php'; ?>
-              </div>
-
-              <?php
-                if (isset($param_type) && isset($all_search_types[$param_type])):
-
-                  if (isset($supported_type['archive_url'])): ?>
-                    <div class="result_links hideOnMobile">
-                      <a href="<?php echo $supported_type['archive_url'] ?>"><h4><?php _e("Explore more",'wp-odm_solr') ?> <?php _e($supported_type['title'],'wp-odm_solr') ?></h4></a>
-                    </div>
-              <?php
+                <?php
+                  if (odm_country_manager()->get_current_country() === "mekong"):
+                    include plugin_dir_path(__FILE__). 'partials/filters_regional.php';
+                  else:
+                    include plugin_dir_path(__FILE__). 'partials/filters.php';
                   endif;
-                endif;
-               ?>
-        		</div>
-            <!-- ============== Search input ============= -->
-      			<div class="twelve columns">
+                  ?>
+              </div>
 
               <div class="row">
-                <div class="sixteen columns solr_results search-results">
-                  <?php
-
-                    if ($is_search_page):
-                      if (have_posts()):
-                        $content = apply_filters('the_content', $post->post_content);
-                      endif; ?>
-
-                      <div class="search-page-content">
-                        <?php echo $content; ?>
-                      </div>
-
-                  <?php
-                    endif;
-
-                    $query_var_name = $is_search_page ? 'query' : 's'; ?>
-                    <input id="search_field" name="<?php echo $query_var_name; ?>" type="text" class="full-width-search-box search_field" value="<?php echo $param_query?>" placeholder="<?php _e("Search datasets, topics, News...",'wp-odm_solr'); ?>" data-solr-host="<?php echo $GLOBALS['wp_odm_solr_options']->get_option('wp_odm_solr_setting_solr_host'); ?>" data-solr-scheme="<?php echo $GLOBALS['wp_odm_solr_options']->get_option('wp_odm_solr_setting_solr_scheme'); ?>"  data-solr-path="<?php echo $GLOBALS['wp_odm_solr_options']->get_option('wp_odm_solr_setting_solr_path'); ?>" data-solr-core-unified="<?php echo $GLOBALS['wp_odm_solr_options']->get_option('wp_odm_solr_setting_solr_core_unified'); ?>" data-odm-current-lang="<?php echo odm_language_manager()->get_current_language(); ?>" data-odm-current-country="<?php echo odm_country_manager()->get_current_country_code(); ?>" data-odm-show-regional-contents="<?php echo $GLOBALS['wp_odm_solr_options']->get_option('wp_odm_solr_setting_regional_contents_enabled'); ?>"></input>
-                  </form>
-
-                  <?php
-                  $content_resultset = array_key_exists($param_type,$results) ? $results[$param_type] : null;
-                  $content_resultcount = ($content_resultset) ? $content_resultset->getNumFound() : 0;
-                  ?>
-
-                  <p id="spell"><b><?php _e("Did you mean?","wp-odm_solr");?></b></p>
-
-                  <h4>
-                  <?php
-                    $type_title = $param_type == "all"  ? __("Records","wp-odm_solr") : $all_search_types[$param_type]["title"];
-                    echo $content_resultcount . ' '
-                              . $type_title
-                              . __(' found for','wp-odm_solr') . ' "' . $param_query. '"'; ?>
-                  </h4>
-
-                  <?php
-                  if (isset($content_resultset) && $content_resultcount > 0):
-                    foreach ($content_resultset as $document):
-                      if(in_array($document->dataset_type,array("dataset","library_record","laws_record","agreement"))):
-                        include plugin_dir_path(__FILE__). 'partials/ckan_result_template.php';
-                      elseif ($document->dataset_type == 'map-layer' && $param_type != "all"):
-                        include plugin_dir_path(__FILE__). 'partials/wp_map_layer_result_template.php';
-                      elseif ($document->dataset_type == 'news-article' && $param_type != "all"):
-                        include plugin_dir_path(__FILE__). 'partials/wp_news_article_result_template.php';
-                      elseif ($document->dataset_type == 'topic' && $param_type != "all"):
-                        include plugin_dir_path(__FILE__). 'partials/wp_topic_result_template.php';
-                      elseif ($document->dataset_type == 'profiles' && $param_type != "all"):
-                        include plugin_dir_path(__FILE__). 'partials/wp_profiles_result_template.php';
-                      elseif ($document->dataset_type == 'story' && $param_type != "all"):
-                        include plugin_dir_path(__FILE__). 'partials/wp_story_result_template.php';
-                      elseif ($document->dataset_type == 'announcement' && $param_type != "all"):
-                        include plugin_dir_path(__FILE__). 'partials/wp_announcement_result_template.php';
-                      elseif ($document->dataset_type == 'site-update' && $param_type != "all"):
-                        include plugin_dir_path(__FILE__). 'partials/wp_site_update_result_template.php';
-                      else:
-                        include plugin_dir_path(__FILE__). 'partials/wp_result_template.php';
-                      endif;
-                    endforeach;
-                  endif; ?>
+                <div class="sixteen columns">
+                  <div class="content-type-tabs-odc">
+                    <?php include plugin_dir_path(__FILE__). 'partials/content-types.php'; ?>
+                  </div>
                 </div>
               </div>
+            </div>
 
-              <?php
-                if (isset($content_resultset) && $content_resultcount > 0):
-                  $total_pages = ceil($content_resultset->getNumFound()/$control_attrs['limit']);
-                  if ($total_pages > 1): ?>
-                    <div class="row">
-                      <div class="pagination sixteen columns">
-                        <?php
-                          odm_get_template('pagination_solr', array(
-                                    "current_page" => $param_page,
-                                    "total_pages" => $total_pages
-                                  ),true); ?>
-                      </div>
-                    </div>
+            <div class="row">
+              <div class="eleven columns">
+                <h4>
                 <?php
-                  endif;
-                endif; ?>
+                  $type_title = $param_type == "all"  ? __("Records","wp-odm_solr") : $all_search_types[$param_type]["title"];
+                  echo $content_resultcount . ' '
+                            . $type_title
+                            . __(' found for','wp-odm_solr') . ' "' . $param_query. '"'; ?>
+                </h4>
+              </div>
 
-      			</div> <!-- end of twelve columns -->
-      		</div> <!-- end of row -->
+              <div class="five columns">
+                <div class="align-right">
+                  <label class="left-label" for="sorting"><?php _e('Sort by', 'wp-odm_solr'); ?> </label>
+                  <select id="sorting" name="sorting" data-placeholder="<?php _e('Sort by', 'wp-odm_solr'); ?>" onchange="this.form.submit()">
+                    <option <?php if($param_sorting == "score") echo 'selected'; ?> value="score"><?php _e('Relevance','wp-odm_solr') ?></option>
+                    <option <?php if($param_sorting == "metadata_created") echo 'selected'; ?> value="metadata_created"><?php _e('Creation date','wp-odm_solr') ?></option>
+                    <option <?php if($param_sorting == "metadata_modified") echo 'selected'; ?> value="metadata_modified"><?php _e('Modification date','wp-odm_solr') ?></option>
+                  </select>
+                </div>
+              </div>
+            </div>
 
-      <?php
+          </form>
+
+          <div class="row solr_results search-results">
+            <?php
+            if (isset($content_resultset) && $content_resultcount > 0):
+              foreach ($content_resultset as $document):
+                if(in_array($document->dataset_type,array("dataset","library_record","laws_record","agreement"))):
+                  include plugin_dir_path(__FILE__). 'partials/ckan_result_template.php';
+                elseif ($document->dataset_type == 'map-layer' && $param_type != "all"):
+                  include plugin_dir_path(__FILE__). 'partials/wp_map_layer_result_template.php';
+                elseif ($document->dataset_type == 'news-article' && $param_type != "all"):
+                  include plugin_dir_path(__FILE__). 'partials/wp_news_article_result_template.php';
+                elseif ($document->dataset_type == 'topic' && $param_type != "all"):
+                  include plugin_dir_path(__FILE__). 'partials/wp_topic_result_template.php';
+                elseif ($document->dataset_type == 'profiles' && $param_type != "all"):
+                  include plugin_dir_path(__FILE__). 'partials/wp_profiles_result_template.php';
+                elseif ($document->dataset_type == 'story' && $param_type != "all"):
+                  include plugin_dir_path(__FILE__). 'partials/wp_story_result_template.php';
+                elseif ($document->dataset_type == 'announcement' && $param_type != "all"):
+                  include plugin_dir_path(__FILE__). 'partials/wp_announcement_result_template.php';
+                elseif ($document->dataset_type == 'site-update' && $param_type != "all"):
+                  include plugin_dir_path(__FILE__). 'partials/wp_site_update_result_template.php';
+                else:
+                  include plugin_dir_path(__FILE__). 'partials/wp_result_template.php';
+                endif;
+              endforeach;
+            endif; ?>
+          </div>
+
+          <?php
+            if (isset($content_resultset) && $content_resultcount > 0):
+              $total_pages = ceil($content_resultset->getNumFound()/$control_attrs['limit']);
+              if ($total_pages > 1): ?>
+                <div class="row">
+                  <div class="pagination sixteen columns">
+                    <?php
+                    odm_get_template('pagination_solr', array(
+                                  "current_page" => $param_page,
+                                  "total_pages" => $total_pages
+                                ),true); ?>
+                  </div>
+                </div>
+            <?php
+              endif;
+            endif;
           endif; ?>
       </section> <!-- end of container -->
 

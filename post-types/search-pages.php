@@ -107,6 +107,7 @@ if (!class_exists('Odm_Solr_Pages_Post_Type')) {
          <select id="_solr_pages_attributes_template_layout" name="_solr_pages_attributes_template_layout">
             <option value="default" <?php if ($template == "default"): echo "selected"; endif; ?>>Default</option>
             <option value="odc" <?php if ($template == "odc"): echo "selected"; endif; ?>>ODC 2.2</option>
+            <option value="odc_1_col" <?php if ($template == "odc_1_col"): echo "selected"; endif; ?>>ODC 2.2 -  1col</option>
             <option value="odm" <?php if ($template == "odm"): echo "selected"; endif; ?>>ODM 2.2</option>
           </select>
         </div>

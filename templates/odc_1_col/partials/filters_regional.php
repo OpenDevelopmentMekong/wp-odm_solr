@@ -1,13 +1,13 @@
 <?php $query_var_name = $is_search_page ? 'query' : 's'; ?>
 
-<div class="adv-nav-input three columns">
+<div class="full-width adv-nav-input three columns">
   <label for="search_field"><?php _e('Text search', 'wp-odm_solr'); ?></label>
-  <input id="search_field" name="<?php echo $query_var_name; ?>" type="text" class="full-width" value="<?php echo $param_query?>" placeholder="<?php _e("Search datasets, topics, News...",'wp-odm_solr'); ?>" data-solr-host="<?php echo $GLOBALS['wp_odm_solr_options']->get_option('wp_odm_solr_setting_solr_host'); ?>" data-solr-scheme="<?php echo $GLOBALS['wp_odm_solr_options']->get_option('wp_odm_solr_setting_solr_scheme'); ?>"  data-solr-path="<?php echo $GLOBALS['wp_odm_solr_options']->get_option('wp_odm_solr_setting_solr_path'); ?>" data-solr-core-unified="<?php echo $GLOBALS['wp_odm_solr_options']->get_option('wp_odm_solr_setting_solr_core_unified'); ?>" data-odm-current-lang="<?php echo odm_language_manager()->get_current_language(); ?>" data-odm-current-country="<?php echo odm_country_manager()->get_current_country_code(); ?>" data-odm-show-regional-contents="<?php echo $GLOBALS['wp_odm_solr_options']->get_option('wp_odm_solr_setting_regional_contents_enabled'); ?>"></input>
+  <input id="search_field" name="<?php echo $query_var_name; ?>" type="text" class="full-width" value="<?php echo $param_query?>" placeholder="<?php _e("Search datasets, topics, news articles...",'wp-odm_solr'); ?>" data-solr-host="<?php echo $GLOBALS['wp_odm_solr_options']->get_option('wp_odm_solr_setting_solr_host'); ?>" data-solr-scheme="<?php echo $GLOBALS['wp_odm_solr_options']->get_option('wp_odm_solr_setting_solr_scheme'); ?>"  data-solr-path="<?php echo $GLOBALS['wp_odm_solr_options']->get_option('wp_odm_solr_setting_solr_path'); ?>" data-solr-core-unified="<?php echo $GLOBALS['wp_odm_solr_options']->get_option('wp_odm_solr_setting_solr_core_unified'); ?>" data-odm-current-lang="<?php echo odm_language_manager()->get_current_language(); ?>" data-odm-current-country="<?php echo odm_country_manager()->get_current_country_code(); ?>" data-odm-show-regional-contents="<?php echo $GLOBALS['wp_odm_solr_options']->get_option('wp_odm_solr_setting_regional_contents_enabled'); ?>"></input>
   <div id="spell"><b><?php _e("Did you mean?","wp-odm_solr");?></b></div>
 </div>
 
 <!-- TAXONOMY FILTER -->
-<div class="adv-nav-input three columns">
+<div class="adv-nav-input two columns">
   <label for="taxonomy"><?php _e('Topic', 'wp-odm_solr'); ?></label>
   <select id="taxonomy" name="taxonomy" class="full-width filter_box" data-placeholder="<?php _e('Select term', 'wp-odm_solr'); ?>">
     <option value="all" <?php if (isset($param_taxonomy) || $param_taxonomy == 'all') echo 'selected'; ?>><?php _e('All','wp-odm_solr') ?></option>
@@ -43,11 +43,41 @@
 </div>
 <!-- END OF TAXONOMY FILTER -->
 
+<!-- COUNTRY FILTER -->
+<div class="adv-nav-input two columns">
+  <label for="country"><?php _e('Country', 'wp-odm_solr'); ?></label>
+  <select multiple id="country" name="country[]" class="full-width filter_box" data-placeholder="<?php _e('Select country', 'wp-odm_solr'); ?>">
+    <?php
+      foreach($country_codes_iso2 as $country_code):
+        if (array_key_exists("extras_odm_spatial_range",$facets[$param_type])):
+          $spatial_range_facets = $facets[$param_type]["extras_odm_spatial_range"];
+          if (array_key_exists($country_code,$spatial_range_facets)):
+            $available_records = $spatial_range_facets[$country_code];
+            if ($available_records > 0):
+              $country_name = odm_country_manager()->get_country_name_by_country_code($country_code);
+              $selected = in_array($country_code,$param_country); ?>
+              <option value="<?php echo $country_code; ?>" <?php if($selected) echo 'selected'; ?>>
+                <?php
+                  _e($country_name,'wp-odm_solr');
+                  if (!$selected):
+                    echo " (" . $available_records . ")";
+                  endif; ?>
+              </option>
+            <?php
+            endif;
+          endif;
+        endif; ?>
+        <?php
+      endforeach; ?>
+  </select>
+</div>
+<!-- END OF COUNTRY FILTER  -->
+
 <!-- LANGUAGE FILTER -->
-<!-- <div class="adv-nav-input three columns">
+<div class="adv-nav-input two columns">
   <label for="language"><?php _e('Language', 'wp-odm_solr'); ?></label>
   <select multiple id="language" name="language[]" class="full-width filter_box" data-placeholder="<?php _e('Select language', 'wp-odm_solr'); ?>"> -->
-    <?php /*
+    <?php
       foreach($languages as $key => $value):
         if (array_key_exists("extras_odm_language",$facets[$param_type])):
           $language_facets = $facets[$param_type]["extras_odm_language"];
@@ -66,13 +96,13 @@
             endif;
           endif;
         endif;
-      endforeach; */?>
-  <!-- </select>
-</div> -->
+      endforeach; ?>
+  </select>
+</div>
 <!-- END OF LANGUAGE FILTER -->
 
 <!-- LICENSE FILTER -->
-<div class="adv-nav-input three columns">
+<div class="sadv-nav-input two columns">
   <label for="license"><?php _e('License', 'wp-odm_solr'); ?></label>
   <select multiple id="license" name="license[]" class="full-width filter_box" data-placeholder="<?php _e('Select license', 'wp-odm_solr'); ?>">
     <?php
@@ -100,7 +130,7 @@
 <!-- END OF LICENSE FILTER -->
 
 <!-- YEAR FILTER -->
-<div class="adv-nav-input three columns">
+<div class="adv-nav-input two columns">
   <label for="metadata_created"><?php _e('Year', 'wp-odm_solr'); ?></label>
   <select id="metadata_created" name="metadata_created" class="full-width filter_box" data-placeholder="<?php _e('Select year', 'wp-odm_solr'); ?>">
     <option value="all" <?php if (isset($param_metadata_created) || $param_metadata_created == 'all') echo 'selected'; ?>><?php _e('All','wp-odm_solr') ?></option>
@@ -120,7 +150,7 @@
 </div>
 <!-- END OF YEAR FILTER -->
 
-<div class="four columns align-right">
+<div class="three columns align-right">
   <button class="full-width search-button" type="submit"><i class="fa fa-search" aria-hidden="true"></i> <?php _e('Search','wp-odm_solr') ?></button>
   <a href="?<?php echo $query_var_name ?>="><?php _e('Clear','wp-odm_solr') ?></a>
 </div>
