@@ -13,6 +13,7 @@ jQuery(document).ready(function() {
   jQuery('#search_field').autocomplete({
     source: function( request, response ) {
       var suggestionsUrl = scheme + "://" + host  + path + coreUnified + "/suggestions/?q=" + request.term + "&wt=json&json.wrf=callback";
+      suggestionsUrl += '&fq=dataset_type:("dataset" OR "library_record" Or "laws_record" OR "agreement")';
       
       jQuery.ajax({
         url: suggestionsUrl,
@@ -29,7 +30,7 @@ jQuery(document).ready(function() {
                 var docs = dataResponse.docs;
                 for (var i = 0; i < docs.length; i ++) {
                   if (docs[i].title){
-                    $("#search_results").append('<p><a target="_blank" href="'  + docs[i].permalink + '">' + docs[i].title + '</a></p>');
+                    $("#search_results").append('<p><a target="_blank" href="'  + docs[i].permalink + '">[' + docs[i].dataset_type + '] [' + docs[i].capacity + '] ' + docs[i].title + '</a></p>');
                     /*titles.push({
                       'id': docs[i].index_id,
                       'title': docs[i].title,
