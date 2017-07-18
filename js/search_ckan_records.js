@@ -12,8 +12,8 @@ jQuery(document).ready(function() {
 
   jQuery('#search_field').autocomplete({
     source: function( request, response ) {
-      var suggestionsUrl = scheme + "://" + host  + path + coreUnified + "/suggestions/?q=" + request.term + "&wt=json&json.wrf=callback";
-      suggestionsUrl += '&fq=dataset_type:("dataset" OR "library_record" OR "laws_record" OR "agreement")';
+      var suggestionsUrl = scheme + "://" + host  + path + coreUnified + "/suggestions/?q=" + request.term + "&fq=dataset_type:(\"dataset\" OR \"library_record\" OR \"laws_record\" OR \"agreement\")&wt=json&json.wrf=callback";
+      console.log("Pulling suggestions from: " + suggestionsUrl);
       
       jQuery.ajax({
         url: suggestionsUrl,
