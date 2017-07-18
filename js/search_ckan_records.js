@@ -13,7 +13,7 @@ jQuery(document).ready(function() {
   jQuery('#search_field').autocomplete({
     source: function( request, response ) {
       var suggestionsUrl = scheme + "://" + host  + path + coreUnified + "/suggestions/?q=" + request.term + "&wt=json&json.wrf=callback";
-      suggestionsUrl += '&fq=dataset_type:("dataset" OR "library_record" Or "laws_record" OR "agreement")';
+      suggestionsUrl += '&fq=dataset_type:("dataset" OR "library_record" OR "laws_record" OR "agreement")';
       
       jQuery.ajax({
         url: suggestionsUrl,
