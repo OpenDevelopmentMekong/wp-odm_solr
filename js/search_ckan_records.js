@@ -23,12 +23,13 @@ jQuery(document).ready(function() {
           var titles = new Array();
           if (data){
             if(data.response){
+              $("#search_results").html("");
               var dataResponse = data.response;
               if (dataResponse.docs){
                 var docs = dataResponse.docs;
                 for (var i = 0; i < docs.length; i ++) {
                   if (docs[i].title){
-                    $("#search_results").append("<p>" + docs[i].title + "</p>");
+                    $("#search_results").append('<p><a target="_blank" href="'  + docs[i].permalink '">' + docs[i].title + "</a></p>");
                     /*titles.push({
                       'id': docs[i].index_id,
                       'title': docs[i].title,
