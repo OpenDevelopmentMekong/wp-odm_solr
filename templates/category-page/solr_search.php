@@ -48,7 +48,7 @@
       'archive_url' => '/data'
     ),
     'library_record' => array(
-      'title' =>'Library publications',
+      'title' =>'Publications',
       'icon' => 'fa fa-book',
       'archive_url' => null
     ),
@@ -68,7 +68,7 @@
       'archive_url' => '/layers'
     ),
     'news-article' => array(
-      'title' => 'News articles',
+      'title' => 'News',
       'icon' => 'fa fa-newspaper-o',
       'archive_url' => '/news'
     ),
