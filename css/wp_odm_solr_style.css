@@ -7,7 +7,7 @@
 }
 
 .solr_result_two_cols:nth-child(2n+1) {
-    clear: left;
+  clear: left;
 }
 
 .search-button{
@@ -60,6 +60,10 @@
 	margin: 5px 10px 5px 0;
 	border: 1px solid #c8c8c8;
 	padding: 5px;
+}
+
+#search_field{
+	margin-bottom: 0px;
 }
 
 /* ODC */
