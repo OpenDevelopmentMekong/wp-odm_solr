@@ -249,8 +249,11 @@
 
               <div class="row">
                 <div class="sixteen columns">
-                  <div class="content-type-tabs-odc">
+                  <div class="content-type-tabs-odc hideOnMobile">
                     <?php include plugin_dir_path(__FILE__). 'partials/content-types.php'; ?>
+                  </div>
+                  <div class="content-type-tabs-odc-mobile hideOnDesktopAndTablet">
+                    <?php include plugin_dir_path(__FILE__). 'partials/content-types-mobile.php'; ?>
                   </div>
                 </div>
               </div>
