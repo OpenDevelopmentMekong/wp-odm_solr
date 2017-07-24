@@ -12,6 +12,7 @@ jQuery(document).ready(function() {
 
   jQuery('#search_field').autocomplete({
     source: function( request, response ) {
+      $("#search_field").addClass("loading_icon");
       var suggestionsUrl = scheme + "://" + host  + path + coreUnified + "/suggestions/?q=" + request.term + "&wt=json&json.wrf=callback";
       if (currentCountry != 'mekong'){
         suggestionsUrl += "&fq=extras_odm_language:" + currentLang;
@@ -46,6 +47,7 @@ jQuery(document).ready(function() {
               }
             }
           }
+          $("#search_field").removeClass("loading_icon");
           response( titles );
         }
       });
