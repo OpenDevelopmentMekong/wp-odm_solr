@@ -96,7 +96,10 @@
     <!-- Source -->
     <?php
       $source = wp_odm_solr_parse_multilingual_ckan_content($document->extras_odm_source,odm_language_manager()->get_current_language(),"");
-      if (!empty($source)): ?>
+      if (!empty($source)):
+        if (strlen($source) > 40):
+          $source = substr($source) . " ...";
+        endif; ?>
         <li class="data_meta">
           <b><?php _e('Source:','wp-odm_solr') ?></b> <?php echo $source; ?>
         </li>
