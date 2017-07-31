@@ -94,6 +94,14 @@
         </li>
     <?php
       endif; ?>
+    <!-- Source -->
+    <?php
+      if (!empty($document->extras_odm_source)): ?>
+        <li class="data_meta">
+          <b><?php _e('Source:','wp-odm_solr') ?></b> <?php echo $document->extras_odm_source; ?>
+        </li>
+    <?php
+      endif; ?>
     <!-- Topics -->
     <?php if (!empty($document->vocab_taxonomy)): ?>
       <li class="data_meta">

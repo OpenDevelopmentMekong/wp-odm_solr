@@ -65,32 +65,40 @@
         <i class="fa fa-clock-o"></i>
       <?php endif; ?>
       <span>
-        <?php          
+        <?php
           if (odm_language_manager()->get_current_language() == 'km'):
-            $date = wp_solr_print_date($metadata_date,"j.M.Y"); 
+            $date = wp_solr_print_date($metadata_date,"j.M.Y");
 					  echo convert_date_to_kh_date($date);
 					else:
-            echo wp_solr_print_date($metadata_date,"j F Y"); 
+            echo wp_solr_print_date($metadata_date,"j F Y");
 					endif; ?>
       </span>
     </li>
-    <!-- Author (coorporate) -->    
-    <?php 
+    <!-- Author (coorporate) -->
+    <?php
       if (!empty($document->extras_marc21_110)): ?>
         <li class="data_meta">
           <i class="fa fa-building-o"></i>
-    <?php 
+    <?php
         echo $document->extras_marc21_110; ?>
         </li>
     <?php
-      endif; ?>      
-    <!-- Author -->    
-    <?php 
+      endif; ?>
+    <!-- Author -->
+    <?php
       if (!empty($document->extras_marc21_100)): ?>
         <li class="data_meta">
           <i class="fa fa-user-circle-o"></i>
-      <?php 
+      <?php
           echo $document->extras_marc21_100; ?>
+        </li>
+    <?php
+      endif; ?>
+    <!-- Source -->
+    <?php
+      if (!empty($document->extras_odm_source)): ?>
+        <li class="data_meta">
+          <b><?php _e('Source:','wp-odm_solr') ?></b> <?php echo $document->extras_odm_source; ?>
         </li>
     <?php
       endif; ?>
