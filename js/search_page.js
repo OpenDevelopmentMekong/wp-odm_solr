@@ -36,7 +36,7 @@ jQuery(document).ready(function() {
                 var docs = dataResponse.docs;
                 for (var i = 0; i < docs.length; i ++) {
                   if (docs[i].title){
-                    var link = docs[i].permalink ? docs[i].permalink : "/dataset/?id=" + docs[i].index_id;
+                    var link = docs[i].permalink ? docs[i].permalink : "/dataset/?id=" + docs[i].id;
                     titles.push({
                       'id': docs[i].index_id,
                       'title': docs[i].title,
