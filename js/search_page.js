@@ -36,10 +36,11 @@ jQuery(document).ready(function() {
                 var docs = dataResponse.docs;
                 for (var i = 0; i < docs.length; i ++) {
                   if (docs[i].title){
+                    var link = docs[i].permalink !== "undefined" ? docs[i].permalink : "/dataset/?id=" + docs[i].index_id;
                     titles.push({
                       'id': docs[i].index_id,
                       'title': docs[i].title,
-                      'permalink': docs[i].permalink,
+                      'permalink': link,
                       'dataset_type': docs[i].dataset_type
                     });
                   }
