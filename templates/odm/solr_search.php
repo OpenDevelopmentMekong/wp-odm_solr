@@ -9,7 +9,7 @@
 
       if (isset($post)):
         $configured_supported_types = get_post_meta($post->ID, '_solr_pages_attributes_supported_types', true);
-        $supported_types_override =  !empty($configured_supported_types) ? explode(",",$configured_supported_types) : null;        
+        $supported_types_override =  !empty($configured_supported_types) ? explode(",",$configured_supported_types) : null;
         $is_search_page = get_post_type($post->ID) == 'search-pages';
       endif;
 
@@ -20,6 +20,7 @@
 
       $param_type = isset($_GET['type']) ? $_GET['type'] : null;
       $param_license = isset($_GET['license']) ? $_GET['license'] : array();
+      $param_organization = isset($_GET['organization']) ? $_GET['organization'] : array();
       $param_taxonomy = isset($_GET['taxonomy']) ? $_GET['taxonomy'] : 'all';
       $param_language = isset($_GET['language']) ? $_GET['language'] : array();
       $param_page = isset($_GET['page']) ? (int)$_GET['page'] : 0;
@@ -35,6 +36,7 @@
       $country_codes_iso2 = odm_country_manager()->get_country_codes_iso2_list();
       $languages = odm_language_manager()->get_supported_languages();
       $license_list = wpckan_get_license_list();
+      $organization_list = wpckan_get_organization_for_user();
       $top_tier_taxonomic_terms = odm_taxonomy_manager()->get_taxonomy_top_tier();
 
       //================ Build query attributes ===================== //
