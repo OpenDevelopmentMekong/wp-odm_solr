@@ -8,11 +8,7 @@
  include_once plugin_dir_path(__FILE__).'wp_odm_solr_options.php';
 
  $GLOBALS['wp_odm_solr_options'] = new WpOdmSolr_Options();
-/*
- * OpenDev
- * Solr Manager
- */
-
+ 
 class WP_Odm_Solr_WP_Manager {
 
   var $client = null;

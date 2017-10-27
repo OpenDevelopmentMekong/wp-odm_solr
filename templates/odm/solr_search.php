@@ -137,7 +137,8 @@
         "extras_odm_keywords" => "extras_odm_keywords",
         "license_id" => "license_id",
         "metadata_modified" => "metadata_modified",
-        "metadata_created" => "metadata_created"
+        "metadata_created" => "metadata_created",
+        "organization" => "organization"
       );
 
       // -------------- Get all results --------------- //
@@ -164,6 +165,11 @@
         if (!empty($param_license)) {
           $attrs['license_id'] = $param_license;
         }
+        
+        //organization
+        if (!empty($param_organization)){
+          $attrs['organization'] = $param_organization;
+        }
 
         //metadata_modified
         if (isset($param_metadata_modified) && $param_metadata_modified !== 'all'){
@@ -173,6 +179,11 @@
         //metadata_created
         if (isset($param_metadata_created) && $param_metadata_created !== 'all'){
           $attrs['metadata_created'] = $param_metadata_created;
+        }
+        
+        //metadata_modified
+        if (isset($param_metadata_modified) && $param_metadata_modified !== 'all'){
+          $attrs['metadata_modified'] = $param_metadata_modified;
         }
 
         $attrs["capacity"] = "public";
@@ -281,7 +292,7 @@
               <div class="row">
                 <div class="sixteen columns solr_results search-results">
                   <?php
-
+                  
                     if ($is_search_page):
                       if (have_posts()):
                         $content = apply_filters('the_content', $post->post_content);

@@ -134,13 +134,13 @@
       foreach($organization_list as $organization):
         if (array_key_exists("organization",$facets[$param_type])):
           $organization_facets = $facets[$param_type]["organization"];
-          if (array_key_exists($organization->id,$organization_facets)):
-            $available_records = $organization_facets[$organization->id];
+          if (array_key_exists($organization["name"],$organization_facets)):
+            $available_records = $organization_facets[$organization["name"]];
             if ($available_records > 0):
-              $selected = in_array($organization->id,$param_organization); ?>
-              <option value="<?php echo $organization->id; ?>" <?php if($selected) echo 'selected'; ?>>
+              $selected = in_array($organization["name"],$param_organization); ?>
+              <option value="<?php echo $organization["name"]; ?>" <?php if($selected) echo 'selected'; ?>>
                 <?php
-                  _e($organization->display_name,'wp-odm_solr');
+                  _e($organization["display_name"],'wp-odm_solr');
                   if (!$selected):
                     echo " (" . $available_records . ")";
                   endif; ?>
