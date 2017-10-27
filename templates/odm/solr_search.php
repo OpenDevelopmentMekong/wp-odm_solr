@@ -9,7 +9,7 @@
 
       if (isset($post)):
         $configured_supported_types = get_post_meta($post->ID, '_solr_pages_attributes_supported_types', true);
-        $supported_types_override =  !empty($configured_supported_types) ? explode(",",$configured_supported_types) : null;        
+        $supported_types_override =  !empty($configured_supported_types) ? explode(",",$configured_supported_types) : null;
         $is_search_page = get_post_type($post->ID) == 'search-pages';
       endif;
 
@@ -20,6 +20,7 @@
 
       $param_type = isset($_GET['type']) ? $_GET['type'] : null;
       $param_license = isset($_GET['license']) ? $_GET['license'] : array();
+      $param_organization = isset($_GET['organization']) ? $_GET['organization'] : array();
       $param_taxonomy = isset($_GET['taxonomy']) ? $_GET['taxonomy'] : 'all';
       $param_language = isset($_GET['language']) ? $_GET['language'] : array();
       $param_page = isset($_GET['page']) ? (int)$_GET['page'] : 0;
@@ -35,6 +36,7 @@
       $country_codes_iso2 = odm_country_manager()->get_country_codes_iso2_list();
       $languages = odm_language_manager()->get_supported_languages();
       $license_list = wpckan_get_license_list();
+      $organization_list = wpckan_get_organization_for_user();
       $top_tier_taxonomic_terms = odm_taxonomy_manager()->get_taxonomy_top_tier();
 
       //================ Build query attributes ===================== //
@@ -135,7 +137,8 @@
         "extras_odm_keywords" => "extras_odm_keywords",
         "license_id" => "license_id",
         "metadata_modified" => "metadata_modified",
-        "metadata_created" => "metadata_created"
+        "metadata_created" => "metadata_created",
+        "organization" => "organization"
       );
 
       // -------------- Get all results --------------- //
@@ -162,6 +165,11 @@
         if (!empty($param_license)) {
           $attrs['license_id'] = $param_license;
         }
+        
+        //organization
+        if (!empty($param_organization)){
+          $attrs['organization'] = $param_organization;
+        }
 
         //metadata_modified
         if (isset($param_metadata_modified) && $param_metadata_modified !== 'all'){
@@ -171,6 +179,11 @@
         //metadata_created
         if (isset($param_metadata_created) && $param_metadata_created !== 'all'){
           $attrs['metadata_created'] = $param_metadata_created;
+        }
+        
+        //metadata_modified
+        if (isset($param_metadata_modified) && $param_metadata_modified !== 'all'){
+          $attrs['metadata_modified'] = $param_metadata_modified;
         }
 
         $attrs["capacity"] = "public";
@@ -279,7 +292,7 @@
               <div class="row">
                 <div class="sixteen columns solr_results search-results">
                   <?php
-
+                  
                     if ($is_search_page):
                       if (have_posts()):
                         $content = apply_filters('the_content', $post->post_content);
