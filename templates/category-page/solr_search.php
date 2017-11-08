@@ -24,9 +24,7 @@
   $country_codes_iso2 = odm_country_manager()->get_country_codes_iso2_list();
   $languages = odm_language_manager()->get_supported_languages();
   $license_list = wpckan_get_license_list();
-  $organization_list = wpckan_get_organization_list(wpckan_get_ckan_domain(), array(
-    "all_fields" => true)
-  );
+  $organization_list = wpckan_get_organization_list(wpckan_get_ckan_domain());
   $top_tier_taxonomic_terms = odm_taxonomy_manager()->get_taxonomy_top_tier();
 
   //================ Build query attributes ===================== //
