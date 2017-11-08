@@ -10,7 +10,7 @@
     $query = parse_url($param_string, PHP_URL_QUERY);
     parse_str($query, $parts);
 
-    return $parts["s"];
+    return isset($parts["s"]) ? $parts["s"] : $parts["query"] ;
   }
 
   function wp_odm_solr_parse_attrs_from_string($param_string) {
