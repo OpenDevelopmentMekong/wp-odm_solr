@@ -8,10 +8,6 @@
  include_once plugin_dir_path(__FILE__).'wp_odm_solr_options.php';
 
  $GLOBALS['wp_odm_solr_options'] = new WpOdmSolr_Options();
-/*
- * OpenDev
- * Solr Manager
- */
 
 class WP_Odm_Solr_CKAN_Manager {
 
@@ -86,7 +82,8 @@ class WP_Odm_Solr_CKAN_Manager {
         "extras_odm_language" => array(),
         "license_id" => array(),
         "metadata_created" => array(),
-        "metadata_modified" => array()
+        "metadata_modified" => array(),
+        "organization" => array()
       ),
     );
 

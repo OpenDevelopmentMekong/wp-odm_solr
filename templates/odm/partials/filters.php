@@ -125,6 +125,37 @@
 </div>
 <!-- END OF LICENSE FILTER -->
 
+<!-- DATA PARTNERS FILTER -->
+<?php if (odm_country_manager()->get_current_country() == 'mekong'): ?>
+<div class="single-filter">
+  <label for="organization"><?php _e('Data partner', 'wp-odm_solr'); ?></label>
+  <select multiple id="organization" name="organization[]" class="full-width filter_box" data-placeholder="<?php _e('Select partner organisations who contribute data to ODM', 'wp-odm_solr'); ?>">
+    <?php
+      foreach($organization_list as $organization):
+        if (array_key_exists("organization",$facets[$param_type])):
+          $organization_facets = $facets[$param_type]["organization"];
+          if (array_key_exists($organization["name"],$organization_facets)):
+            $available_records = $organization_facets[$organization["name"]];
+            if ($available_records > 0):
+              $selected = in_array($organization["name"],$param_organization); ?>
+              <option value="<?php echo $organization["name"]; ?>" <?php if($selected) echo 'selected'; ?>>
+                <?php
+                  _e($organization["display_name"],'wp-odm_solr');
+                  if (!$selected):
+                    echo " (" . $available_records . ")";
+                  endif; ?>
+              </option>
+            <?php
+            endif;
+          endif;
+        endif; ?>
+        <?php
+      endforeach; ?>
+  </select>
+</div>
+<?php endif; ?>
+<!-- END OF DATA PARTNERS FILTER  -->
+
 <!-- SORTING FUNCTION -->
 <h3><i class="fa fa-sort"></i> <?php _e('Sorting','wp-odm_solr'); ?></h3>
 <div class="single-filter">

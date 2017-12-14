@@ -22,6 +22,7 @@
       $param_license = isset($_GET['license']) ? $_GET['license'] : array();
       $param_taxonomy = isset($_GET['taxonomy']) ? $_GET['taxonomy'] : 'all';
       $param_language = isset($_GET['language']) ? $_GET['language'] : array();
+      $param_organization = isset($_GET['organization']) ? $_GET['organization'] : array();
       $param_page = isset($_GET['page']) ? (int)$_GET['page'] : 0;
       $param_page_solr = (isset($_GET['page']) && (int)$_GET['page'] > 0) ? ((int)$_GET['page'] -1) : 0;
       $param_country = odm_country_manager()->get_current_country() == 'mekong' && isset($_GET['country']) ? $_GET['country'] : array();
@@ -35,6 +36,7 @@
       $country_codes_iso2 = odm_country_manager()->get_country_codes_iso2_list();
       $languages = odm_language_manager()->get_supported_languages();
       $license_list = wpckan_get_license_list();
+      $organization_list = wpckan_get_organization_list(wpckan_get_ckan_domain());
       $top_tier_taxonomic_terms = odm_taxonomy_manager()->get_taxonomy_top_tier();
 
       //================ Build query attributes ===================== //
@@ -135,7 +137,8 @@
         "extras_odm_keywords" => "extras_odm_keywords",
         "license_id" => "license_id",
         "metadata_modified" => "metadata_modified",
-        "metadata_created" => "metadata_created"
+        "metadata_created" => "metadata_created",
+        "organization" => "organization"
       );
 
       // -------------- Get all results --------------- //
@@ -161,6 +164,11 @@
         //License
         if (!empty($param_license)) {
           $attrs['license_id'] = $param_license;
+        }
+        
+        //organization
+        if (!empty($param_organization)){
+          $attrs['organization'] = $param_organization;
         }
 
         //metadata_modified
