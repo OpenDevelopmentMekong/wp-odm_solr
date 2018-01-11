@@ -158,13 +158,13 @@ class WP_Odm_Solr_WP_Manager {
 
   function delete_post($post_id){
 
-    wp_odm_solr_log('solr-wp-manager delete_post');
+    wp_odm_solr_log('solr-wp-manager delete_post: ' . $post_id);
 
     $result = null;
 
     try {
   		$update = $this->client->createUpdate();
-  		$update->addDeleteQuery('id:' . $post_id);
+  		$update->addDeleteQuery('index_id:' . $post_id);
   		$update->addCommit();
   		$result = $this->client->update($update);
     } catch (HttpException $e) {
