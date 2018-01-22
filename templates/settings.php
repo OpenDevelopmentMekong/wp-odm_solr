@@ -21,6 +21,7 @@
         endif;
         $logging_enabled = $GLOBALS['wp_odm_solr_options']->get_option('wp_odm_solr_setting_log_enabled');
         $template = $GLOBALS['wp_odm_solr_options']->get_option('wp_odm_solr_setting_template');
+        $only_en_local_lang = $GLOBALS['wp_odm_solr_options']->get_option('wp_odm_solr_setting_only_en_and_local_lang');
       ?>
 
       <table class="form-table">
@@ -149,6 +150,12 @@
               <option value="odc" <?php if ($template == 'odc')  echo 'selected'; ?>>ODC 2.2</option>
               <option value="odc_1_col" <?php if ($template == 'odc_1_col')  echo 'selected'; ?>>ODC 2.2 - 1 Col</option>
             </select>
+          </td>
+        </tr>
+        <tr valign="top">
+          <th scope="row"><label for="wp_odm_solr_setting_only_en_and_local_lang"><?php _e('Show only results available both in English and local language','wp_odm_solr') ?></label></th>
+          <td>
+            <input type="checkbox" name="wp_odm_solr_setting_only_en_and_local_lang" id="wp_odm_solr_setting_only_en_and_local_lang" <?php if ($only_en_local_lang)  echo 'checked="true"'; ?>></input>
           </td>
         </tr>
       </table>
