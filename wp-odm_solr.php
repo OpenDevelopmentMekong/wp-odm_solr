@@ -172,7 +172,7 @@ if (!class_exists('WpOdmSolr')) {
             register_setting('wp_odm_solr-group', 'wp_odm_solr_setting_solr_pwd');
             register_setting('wp_odm_solr-group', 'wp_odm_solr_setting_solr_scheme');
             register_setting('wp_odm_solr-group', 'wp_odm_solr_setting_regional_contents_enabled');
-            register_setting('wp_odm_solr-group', 'wp_odm_solr_setting_regional_contents_enabled');
+            register_setting('wp_odm_solr-group', 'wp_odm_solr_setting_only_en_and_local_lang');
             register_setting('wp_odm_solr-group', 'wp_odm_solr_setting_log_path');
             register_setting('wp_odm_solr-group', 'wp_odm_solr_setting_template');
             register_setting('wp_odm_solr-group', 'wp_odm_solr_setting_log_enabled');
