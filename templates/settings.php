@@ -97,14 +97,14 @@
               <input type="checkbox" name="wp_odm_solr_setting_regional_contents_enabled" id="wp_odm_solr_setting_regional_contents_enabled" <?php if ($regional_contents_enabled)  echo 'checked="true"'; ?>></input>
             </td>
           </tr>
+          <tr valign="top">
+            <th scope="row"><label for="wp_odm_solr_setting_only_en_and_local_lang"><?php _e('Show only results available both in English and local language','wp_odm_solr') ?></label></th>
+            <td>
+              <input type="checkbox" name="wp_odm_solr_setting_only_en_and_local_lang" id="wp_odm_solr_setting_only_en_and_local_lang" <?php if ($only_en_local_lang)  echo 'checked="true"'; ?>></input>
+            </td>
+          </tr>
         <?php
           endif; ?>
-        <tr valign="top">
-          <th scope="row"><label for="wp_odm_solr_setting_only_en_and_local_lang"><?php _e('Show only results available both in English and local language','wp_odm_solr') ?></label></th>
-          <td>
-            <input type="checkbox" name="wp_odm_solr_setting_only_en_and_local_lang" id="wp_odm_solr_setting_only_en_and_local_lang" <?php if ($only_en_local_lang)  echo 'checked="true"'; ?>></input>
-          </td>
-        </tr>
         <!-- Connection status -->
         <?php
           if (WP_ODM_SOLR_CHECK_REQS): ?>
