@@ -21,6 +21,7 @@
         endif;
         $logging_enabled = $GLOBALS['wp_odm_solr_options']->get_option('wp_odm_solr_setting_log_enabled');
         $template = $GLOBALS['wp_odm_solr_options']->get_option('wp_odm_solr_setting_template');
+        $only_en_local_lang = $GLOBALS['wp_odm_solr_options']->get_option('wp_odm_solr_setting_only_en_and_local_lang');
       ?>
 
       <table class="form-table">
@@ -94,6 +95,12 @@
             <th scope="row"><label for="wp_odm_solr_setting_regional_contents_enabled"><?php _e('Show regional contents on results','wp_odm_solr') ?></label></th>
             <td>
               <input type="checkbox" name="wp_odm_solr_setting_regional_contents_enabled" id="wp_odm_solr_setting_regional_contents_enabled" <?php if ($regional_contents_enabled)  echo 'checked="true"'; ?>></input>
+            </td>
+          </tr>
+          <tr valign="top">
+            <th scope="row"><label for="wp_odm_solr_setting_only_en_and_local_lang"><?php _e('Show only results available both in English and local language','wp_odm_solr') ?></label></th>
+            <td>
+              <input type="checkbox" name="wp_odm_solr_setting_only_en_and_local_lang" id="wp_odm_solr_setting_only_en_and_local_lang" <?php if ($only_en_local_lang)  echo 'checked="true"'; ?>></input>
             </td>
           </tr>
         <?php

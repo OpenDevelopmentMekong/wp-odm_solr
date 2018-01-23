@@ -14,6 +14,7 @@ class WP_Odm_Solr_CKAN_Manager {
   var $client = null;
   var $server_config = null;
   var $show_regional_contents = false;
+  var $only_en_local_lang = false;
 
 	function __construct() {
 
@@ -27,7 +28,8 @@ class WP_Odm_Solr_CKAN_Manager {
     $solr_user = $GLOBALS['wp_odm_solr_options']->get_option('wp_odm_solr_setting_solr_user');
     $solr_pwd = $GLOBALS['wp_odm_solr_options']->get_option('wp_odm_solr_setting_solr_pwd');
     $this->show_regional_contents = $GLOBALS['wp_odm_solr_options']->get_option('wp_odm_solr_setting_regional_contents_enabled');
-
+    $this->only_en_local_lang = $GLOBALS['wp_odm_solr_options']->get_option('wp_odm_solr_setting_only_en_and_local_lang');
+    
     $this->server_config = array(
       'endpoint' => array(
           $solr_host => array(
@@ -129,7 +131,11 @@ class WP_Odm_Solr_CKAN_Manager {
 
       if ( $current_country !== "mekong" && !array_key_exists("extras_odm_language",$attrs)):
         $local_language_code = odm_language_manager()->get_the_language_code_by_site();
-  			$query->createFilterQuery('extras_odm_language')->setQuery('extras_odm_language: ("en" OR "' . $local_language_code . '")');
+        if ($this->only_en_local_lang):
+          $query->createFilterQuery('extras_odm_language')->setQuery('extras_odm_language: ("en" AND "' . $local_language_code . '")');
+        else:
+          $query->createFilterQuery('extras_odm_language')->setQuery('extras_odm_language: ("en" OR "' . $local_language_code . '")');
+        endif;
   		endif;
 
       if (!empty($text)):
