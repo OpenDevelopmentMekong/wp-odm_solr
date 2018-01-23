@@ -13,6 +13,7 @@
         $solr_core_ckan = $GLOBALS['wp_odm_solr_options']->get_option('wp_odm_solr_setting_solr_core_ckan');
         $solr_core_unified = $GLOBALS['wp_odm_solr_options']->get_option('wp_odm_solr_setting_solr_core_unified');
         $regional_contents_enabled = $GLOBALS['wp_odm_solr_options']->get_option('wp_odm_solr_setting_regional_contents_enabled');
+        $only_en_local_lang = $GLOBALS['wp_odm_solr_options']->get_option('wp_odm_solr_setting_only_en_and_local_lang');
         $solr_user = $GLOBALS['wp_odm_solr_options']->get_option('wp_odm_solr_setting_solr_user');
         $solr_pwd = $GLOBALS['wp_odm_solr_options']->get_option('wp_odm_solr_setting_solr_pwd');
         $logging_path = $GLOBALS['wp_odm_solr_options']->get_option('wp_odm_solr_setting_log_path');
@@ -21,7 +22,6 @@
         endif;
         $logging_enabled = $GLOBALS['wp_odm_solr_options']->get_option('wp_odm_solr_setting_log_enabled');
         $template = $GLOBALS['wp_odm_solr_options']->get_option('wp_odm_solr_setting_template');
-        $only_en_local_lang = $GLOBALS['wp_odm_solr_options']->get_option('wp_odm_solr_setting_only_en_and_local_lang');
       ?>
 
       <table class="form-table">
