@@ -6,8 +6,8 @@
     switch_to_blog($document->blogid);
   endif;
   
-  if ( FALSE !== get_post_status( $document->index_id ) ):
-    $fetched_post = get_post($document->index_id);
+  if ( FALSE !== get_post_status( $document->wp_id ) ):
+    $fetched_post = get_post($document->wp_id);
     odm_get_template('post-list-single-2-cols',array(
   		"post" => $fetched_post,
       "show_post_type" => true,
