@@ -78,6 +78,11 @@ class WP_Odm_Solr_WP_Manager {
     $result = null;
 
     try {
+      
+      // First delete the record previously indexed via its ID, if available
+      $this->delete_post($post->ID);
+      
+      // then create the new one, based on guid
       $update = $this->client->createUpdate();
 
       $languages = array("en");
