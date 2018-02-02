@@ -22,7 +22,6 @@ foreach ( $posts as $post):
 
   // First delete the record previously indexed via its ID, if available
   WP_Odm_Solr_WP_Manager()->delete_post($post->ID);
-  WP_Odm_Solr_UNIFIED_Manager()->delete_post($post->ID);
 
 	WP_Odm_Solr_WP_Manager()->index_post($post);
 endforeach;
