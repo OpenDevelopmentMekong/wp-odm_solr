@@ -109,7 +109,7 @@ class WP_Odm_Solr_WP_Manager {
         $doc->capacity = "public";
     		$doc->id = md5($post->guid);
         $doc->index_id = md5($post->guid);
-        $doc->wp_id = $post->ID;
+        //$doc->wp_id = $post->ID;
     		$doc->blogid = get_current_blog_id();
         $doc->country_site = odm_country_manager()->get_current_country();
         $doc->odm_spatial_range = odm_country_manager()->get_current_country_code();
