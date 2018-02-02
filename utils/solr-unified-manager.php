@@ -71,6 +71,42 @@ class WP_Odm_Solr_UNIFIED_Manager {
     return true;
   }
 
+  function clear_index(){
+
+    wp_odm_solr_log('solr-unified-manager clear_index');
+
+    $result = null;
+
+    try {
+  		$update = $this->client->createUpdate();
+  		$update->addDeleteQuery('title:*');
+  		$update->addCommit();
+  		$result = $this->client->update($update);
+    } catch (HttpException $e) {
+      wp_odm_solr_log('solr-unfified-manager clear_index Error: ' . $e);
+    }
+
+		return $result;
+  }
+
+  function delete_post($post_id){
+
+    wp_odm_solr_log('solr-unified-manager delete_post: ' . $post_id);
+
+    $result = null;
+
+    try {
+  		$update = $this->client->createUpdate();
+  		$update->addDeleteQuery('index_id:' . $post_id);
+  		$update->addCommit();
+  		$result = $this->client->update($update);
+    } catch (HttpException $e) {
+      wp_odm_solr_log('solr-unified-manager delete_post Error: ' . $e);
+    }
+
+		return $result;
+  }
+
 	function query($text, $attrs = null, $control_attrs = null){
 
     wp_odm_solr_log('solr-unified-manager query: ' . $text . " attrs: " . serialize($attrs) . " control_attrs: " . serialize($control_attrs));
