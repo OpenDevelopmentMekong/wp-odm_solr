@@ -17,8 +17,6 @@ $posts = get_posts($args);
 
 echo("Batch of " . count($posts) . nl2br("\n"));
 
-WP_Odm_Solr_WP_Manager()->clear_index();
-
 foreach ( $posts as $post):
 	echo("Indexing post with ID: " . $post->ID ." and title:" . $post->post_title . " and type " . $post->post_type . nl2br("\n"));
 
