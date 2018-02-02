@@ -6,7 +6,7 @@ $meta_fields = odm_country_manager()->get_current_country() == "mekong" ? array(
     switch_to_blog($document->blogid);
   endif;
 
-  $post_id = $document->wp_id;
+  $post_id = isset($document->wp_id) ? $document->wp_id : $document->index_id;
   if ( 'publish' === get_post_status($post_id)):
     $fetched_post = get_post($post_id);
     odm_get_template('post-list-single-1-cols',array(
