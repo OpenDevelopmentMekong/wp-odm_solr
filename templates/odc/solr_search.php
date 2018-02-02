@@ -296,6 +296,7 @@
             <?php
             if (isset($content_resultset) && $content_resultcount > 0):
               foreach ($content_resultset as $document):
+
                 if(in_array($document->dataset_type,array("dataset","library_record","laws_record","agreement"))):
                   include plugin_dir_path(__FILE__). 'partials/ckan_result_template.php';
                 elseif ($document->dataset_type == 'map-layer' && $param_type != "all"):
