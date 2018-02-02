@@ -73,12 +73,12 @@ class WP_Odm_Solr_WP_Manager {
 
 	function index_post($post){
 
-    wp_odm_solr_log('solr-wp-manager index_post ' . serialize($post));
+    wp_odm_solr_log('solr-wp-manager index_post ' . serialize($post) . ' new index_id will be ' . md5($post->guid));
 
     $result = null;
 
     try {
-      
+
       // then create the new one, based on guid
       $update = $this->client->createUpdate();
 
@@ -104,8 +104,8 @@ class WP_Odm_Solr_WP_Manager {
 
   		$doc = $update->createDocument();
       $doc->capacity = "public";
-  		$doc->id = $post->guid;
-      $doc->index_id = $post->guid;
+  		$doc->id = md5($post->guid);
+      $doc->index_id = md5($post->guid);
       $doc->wp_id = $post->ID;
   		$doc->blogid = get_current_blog_id();
       $doc->country_site = odm_country_manager()->get_current_country();
