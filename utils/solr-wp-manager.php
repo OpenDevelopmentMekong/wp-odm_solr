@@ -8,7 +8,7 @@
  include_once plugin_dir_path(__FILE__).'wp_odm_solr_options.php';
 
  $GLOBALS['wp_odm_solr_options'] = new WpOdmSolr_Options();
- 
+
 class WP_Odm_Solr_WP_Manager {
 
   var $client = null;
@@ -78,9 +78,6 @@ class WP_Odm_Solr_WP_Manager {
     $result = null;
 
     try {
-      
-      // First delete the record previously indexed via its ID, if available
-      $this->delete_post($post->ID);
       
       // then create the new one, based on guid
       $update = $this->client->createUpdate();

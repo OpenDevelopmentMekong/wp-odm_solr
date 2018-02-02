@@ -1,6 +1,7 @@
 <?php
 
 include_once dirname(dirname(__FILE__)).'/utils/solr-wp-manager.php';
+include_once dirname(dirname(__FILE__)).'/utils/solr-unified-manager.php';
 
 $num_posts = isset($_GET["num_posts"]) ? $_GET["num_posts"] : 500;
 $supported_post_types = array('news-article','topic','dashboard','dataviz','profiles','tabular','announcement','site-update','story','map-layer');
@@ -18,6 +19,11 @@ echo("Batch of " . count($posts) . nl2br("\n"));
 
 foreach ( $posts as $post):
 	echo("Indexing post with ID: " . $post->ID ." and title:" . $post->post_title . " and type " . $post->post_type . nl2br("\n"));
+
+  // First delete the record previously indexed via its ID, if available
+  WP_Odm_Solr_WP_Manager()->delete_post($post->ID);
+  WP_Odm_Solr_UNIFIED_Manager()->delete_post($post->ID);
+
 	WP_Odm_Solr_WP_Manager()->index_post($post);
 endforeach;
 
