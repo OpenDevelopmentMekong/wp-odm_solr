@@ -179,6 +179,7 @@ class WP_Odm_Solr_UNIFIED_Manager {
       endif;
 
       if (!empty($text)):
+
         $fields_to_query = 'extras_odm_keywords^6 vocab_taxonomy^5 title^2 extras_title_translated^2 extras_notes_translated^1 notes^1 extras_odm_spatial_range^1 extras_odm_province^1';
         if (isset($attrs["dataset_type"])):
           $typeFilter = $attrs["dataset_type"];
@@ -199,6 +200,10 @@ class WP_Odm_Solr_UNIFIED_Manager {
           $dismax->setBoostQuery('dataset_type:("topic" OR "profiles")^12');
         endif;
 
+      endif;
+
+      if (isset($attrs["dataset_type"]) && wp_solr_is_wp_dataset_type($attrs["dataset_type"])):
+        $query->createFilterQuery('wp_id')->setQuery('*');
       endif;
 
       $facetSet = $query->getFacetSet();
