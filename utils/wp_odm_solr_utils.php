@@ -157,6 +157,10 @@
       return $a->score > $b->score ? -1 : 1;
   }
 
+  function wp_solr_is_wp_dataset_type($type){
+    return $type === 'map-layer' || $type === 'news-article' || $type === 'topic' || $type === 'profiles' || $type === 'story' || $type === 'announcement';
+  }
+
   /**
    * Construct Url
    *
