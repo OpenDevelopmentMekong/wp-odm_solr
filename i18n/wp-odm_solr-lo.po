@@ -1,0 +1,510 @@
+# 
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"POT-Creation-Date: 2017-07-27 23:56+0200\n"
+"PO-Revision-Date: 2017-07-27 23:56+0200\n"
+"Language-Team: Lao (https://www.transifex.com/open-development-mekong/teams/27158/lo/)\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: lo\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: Poedit 1.8.7.1\n"
+"X-Poedit-Basepath: ..\n"
+"X-Poedit-KeywordsList: _;_e;__;_n:1,2;_x:1,2c;_ex:1,2c\n"
+"X-Poedit-SearchPath-0: i18n\n"
+"X-Poedit-SearchPath-1: .\n"
+"X-Poedit-SearchPathExcluded-0: components\n"
+"X-Poedit-SearchPathExcluded-1: vendor\n"
+"X-Poedit-SourceCharset: UTF-8\n"
+
+#: admin-scripts/search-ckan-records.php:21
+#: templates/odc/partials/filters.php:5
+#: templates/odc/partials/filters_regional.php:5
+#: templates/odm/solr_search.php:296
+msgid "Search datasets, topics, News..."
+msgstr ""
+
+#: i18n/additional-localization.php:2
+msgid "Datasets"
+msgstr ""
+
+#: i18n/additional-localization.php:3
+msgid "Publications"
+msgstr ""
+
+#: i18n/additional-localization.php:4
+msgid "Laws"
+msgstr ""
+
+#: i18n/additional-localization.php:5
+msgid "Agreements"
+msgstr ""
+
+#: i18n/additional-localization.php:6
+msgid "Maps"
+msgstr ""
+
+#: i18n/additional-localization.php:7
+msgid "News"
+msgstr ""
+
+#: i18n/additional-localization.php:8
+msgid "Topics"
+msgstr ""
+
+#: i18n/additional-localization.php:9
+msgid "Profiles"
+msgstr ""
+
+#: i18n/additional-localization.php:10
+msgid "Story"
+msgstr ""
+
+#: i18n/additional-localization.php:11
+msgid "Announcements"
+msgstr ""
+
+#: i18n/additional-localization.php:12
+msgid "Site updates"
+msgstr ""
+
+#: i18n/additional-localization.php:14
+msgid "Cambodia"
+msgstr ""
+
+#: i18n/additional-localization.php:15
+msgid "Vietnam"
+msgstr ""
+
+#: i18n/additional-localization.php:16
+msgid "Laos"
+msgstr ""
+
+#: i18n/additional-localization.php:17
+msgid "Thailand"
+msgstr ""
+
+#: i18n/additional-localization.php:18
+msgid "Myanmar"
+msgstr ""
+
+#: i18n/additional-localization.php:20
+msgid "English"
+msgstr ""
+
+#: i18n/additional-localization.php:21
+msgid "Khmer"
+msgstr ""
+
+#: i18n/additional-localization.php:22
+msgid "Vietnamese"
+msgstr ""
+
+#: i18n/additional-localization.php:23
+msgid "Lao"
+msgstr ""
+
+#: i18n/additional-localization.php:24
+msgid "Thai"
+msgstr ""
+
+#: i18n/additional-localization.php:25
+msgid "Burmese"
+msgstr ""
+
+#: i18n/additional-localization.php:28 templates/odc/partials/filters.php:13
+#: templates/odc/partials/filters.php:106
+#: templates/odc/partials/filters_regional.php:13
+#: templates/odc/partials/filters_regional.php:136
+#: templates/odc_1_col/partials/filters.php:13
+#: templates/odc_1_col/partials/filters.php:106
+#: templates/odc_1_col/partials/filters_regional.php:13
+#: templates/odc_1_col/partials/filters_regional.php:136
+#: templates/odm/partials/filters.php:7
+msgid "All"
+msgstr ""
+
+#: post-types/search-pages.php:32 post-types/search-pages.php:34
+#: post-types/search-pages.php:35
+msgid "Search pages"
+msgstr ""
+
+#: post-types/search-pages.php:33
+msgid "Search page"
+msgstr ""
+
+#: post-types/search-pages.php:36
+msgid "Add new"
+msgstr ""
+
+#: post-types/search-pages.php:37
+msgid "Add new search page"
+msgstr ""
+
+#: post-types/search-pages.php:38
+msgid "New search page"
+msgstr ""
+
+#: post-types/search-pages.php:39
+msgid "Edit search page"
+msgstr ""
+
+#: post-types/search-pages.php:40
+msgid "View search page"
+msgstr ""
+
+#: post-types/search-pages.php:41
+msgid "All search pages"
+msgstr ""
+
+#: post-types/search-pages.php:42
+msgid "Search search pages"
+msgstr ""
+
+#: post-types/search-pages.php:43
+msgid "Parent search pages:"
+msgstr ""
+
+#: post-types/search-pages.php:44
+msgid "No search page found."
+msgstr ""
+
+#: post-types/search-pages.php:45
+msgid "No search page found in trash."
+msgstr ""
+
+#: post-types/search-pages.php:73
+msgid "Option for search pages"
+msgstr ""
+
+#: post-types/search-pages.php:82
+msgid "Template layout"
+msgstr ""
+
+#: post-types/search-pages.php:95
+msgid "Supported content types"
+msgstr ""
+
+#: post-types/search-pages.php:97
+msgid "Please add the document types that should be supported on this page"
+msgstr ""
+
+#: post-types/search-pages.php:106
+msgid "Choose template layout"
+msgstr ""
+
+#: templates/category-page/partials/ckan_result_template.php:155
+#: templates/odc/partials/ckan_result_template.php:156
+#: templates/odc_1_col/partials/ckan_result_template.php:156
+msgid "Download:"
+msgstr ""
+
+#: templates/category-page/solr_search.php:182
+#: templates/odc/solr_search.php:194 templates/odc_1_col/solr_search.php:194
+#: templates/odm/solr_search.php:195
+msgid ""
+"wp-odm_solr plugin is not properly configured. Please contact the system's "
+"administrator"
+msgstr ""
+
+#: templates/odc/partials/content-types-mobile.php:1
+msgid "Content type:"
+msgstr ""
+
+#: templates/odc/partials/filters.php:4
+#: templates/odc/partials/filters_regional.php:4
+#: templates/odc_1_col/partials/filters.php:4
+#: templates/odc_1_col/partials/filters_regional.php:4
+msgid "Text search"
+msgstr ""
+
+#: templates/odc/partials/filters.php:6
+#: templates/odc/partials/filters_regional.php:6
+#: templates/odc_1_col/partials/filters.php:6
+#: templates/odc_1_col/partials/filters_regional.php:6
+#: templates/odm/solr_search.php:304
+msgid "Did you mean?"
+msgstr ""
+
+#: templates/odc/partials/filters.php:11
+#: templates/odc/partials/filters_regional.php:11
+#: templates/odc_1_col/partials/filters.php:11
+#: templates/odc_1_col/partials/filters_regional.php:11
+#: templates/odm/partials/filters.php:5
+msgid "Topic"
+msgstr ""
+
+#: templates/odc/partials/filters.php:12
+#: templates/odc/partials/filters_regional.php:12
+#: templates/odc_1_col/partials/filters.php:12
+#: templates/odc_1_col/partials/filters_regional.php:12
+#: templates/odm/partials/filters.php:6
+msgid "Select term"
+msgstr ""
+
+#: templates/odc/partials/filters.php:48
+#: templates/odc/partials/filters_regional.php:78
+#: templates/odc_1_col/partials/filters.php:48
+#: templates/odc_1_col/partials/filters_regional.php:78
+#: templates/odm/partials/filters.php:74
+msgid "Language"
+msgstr ""
+
+#: templates/odc/partials/filters.php:49
+#: templates/odc/partials/filters_regional.php:79
+#: templates/odc_1_col/partials/filters.php:49
+#: templates/odc_1_col/partials/filters_regional.php:79
+#: templates/odm/partials/filters.php:75
+msgid "Select language"
+msgstr ""
+
+#: templates/odc/partials/filters.php:76
+#: templates/odc/partials/filters_regional.php:106
+#: templates/odc_1_col/partials/filters.php:76
+#: templates/odc_1_col/partials/filters_regional.php:106
+#: templates/odm/partials/filters.php:102
+msgid "License"
+msgstr ""
+
+#: templates/odc/partials/filters.php:77
+#: templates/odc/partials/filters_regional.php:107
+#: templates/odc_1_col/partials/filters.php:77
+#: templates/odc_1_col/partials/filters_regional.php:107
+#: templates/odm/partials/filters.php:103
+msgid "Select license"
+msgstr ""
+
+#: templates/odc/partials/filters.php:104
+#: templates/odc/partials/filters_regional.php:134
+#: templates/odc_1_col/partials/filters.php:104
+#: templates/odc_1_col/partials/filters_regional.php:134
+msgid "Year"
+msgstr ""
+
+#: templates/odc/partials/filters.php:105
+#: templates/odc/partials/filters_regional.php:135
+#: templates/odc_1_col/partials/filters.php:105
+#: templates/odc_1_col/partials/filters_regional.php:135
+msgid "Select year"
+msgstr ""
+
+#: templates/odc/partials/filters.php:124
+#: templates/odc/partials/filters_regional.php:154
+#: templates/odc_1_col/partials/filters.php:124
+#: templates/odc_1_col/partials/filters_regional.php:154
+msgid "Search"
+msgstr ""
+
+#: templates/odc/partials/filters.php:125
+#: templates/odc/partials/filters_regional.php:155
+#: templates/odc_1_col/partials/filters.php:125
+#: templates/odc_1_col/partials/filters_regional.php:155
+msgid "Clear"
+msgstr ""
+
+#: templates/odc/partials/filters_regional.php:48
+#: templates/odc_1_col/partials/filters_regional.php:48
+#: templates/odm/partials/filters.php:43
+msgid "Country"
+msgstr ""
+
+#: templates/odc/partials/filters_regional.php:49
+#: templates/odc_1_col/partials/filters_regional.php:49
+#: templates/odm/partials/filters.php:44
+msgid "Select country"
+msgstr ""
+
+#: templates/odc/solr_search.php:266 templates/odc_1_col/solr_search.php:263
+#: templates/odm/solr_search.php:308
+msgid "Records"
+msgstr ""
+
+#: templates/odc/solr_search.php:269 templates/odc_1_col/solr_search.php:266
+#: templates/odm/solr_search.php:311
+msgid " found for"
+msgstr ""
+
+#: templates/odc/solr_search.php:275 templates/odc/solr_search.php:276
+#: templates/odc_1_col/solr_search.php:272
+#: templates/odc_1_col/solr_search.php:273
+#: templates/odm/partials/filters.php:131
+#: templates/odm/partials/filters.php:132
+msgid "Sort by"
+msgstr ""
+
+#: templates/odc/solr_search.php:277 templates/odc_1_col/solr_search.php:274
+#: templates/odm/partials/filters.php:133
+msgid "Relevance"
+msgstr ""
+
+#: templates/odc/solr_search.php:278 templates/odc_1_col/solr_search.php:275
+#: templates/odm/partials/filters.php:134
+msgid "Creation date"
+msgstr ""
+
+#: templates/odc/solr_search.php:279 templates/odc_1_col/solr_search.php:276
+#: templates/odm/partials/filters.php:135
+msgid "Modification date"
+msgstr ""
+
+#: templates/odc_1_col/partials/filters.php:5
+#: templates/odc_1_col/partials/filters_regional.php:5
+msgid "Search datasets, topics, news articles..."
+msgstr ""
+
+#: templates/odm/partials/filters.php:129
+msgid "Sorting"
+msgstr ""
+
+#: templates/odm/partials/filters.php:141
+msgid "Search Filter"
+msgstr ""
+
+#: templates/odm/solr_search.php:236
+msgid "Search Results for"
+msgstr ""
+
+#: templates/odm/solr_search.php:269
+msgid "Explore more"
+msgstr ""
+
+#: templates/settings.php:27
+msgid "Connecting to Solr"
+msgstr ""
+
+#: templates/settings.php:29
+msgid "Host"
+msgstr ""
+
+#: templates/settings.php:32
+msgid ""
+"Specify host without protocol, just domain. example: "
+"solr.opendevelopmentmekong.net "
+msgstr ""
+
+#: templates/settings.php:36
+msgid "Port"
+msgstr ""
+
+#: templates/settings.php:39
+msgid "Specify the port under which the solr instance is available"
+msgstr ""
+
+#: templates/settings.php:43
+msgid "Scheme"
+msgstr ""
+
+#: templates/settings.php:46
+msgid "http or https"
+msgstr ""
+
+#: templates/settings.php:50
+msgid "Path"
+msgstr ""
+
+#: templates/settings.php:53
+msgid "Usually /solr/"
+msgstr ""
+
+#: templates/settings.php:57
+msgid "Core WP"
+msgstr ""
+
+#: templates/settings.php:60
+msgid "Example: wordpress_content"
+msgstr ""
+
+#: templates/settings.php:64
+msgid "Core CKAN"
+msgstr ""
+
+#: templates/settings.php:67
+msgid "Example: collection1"
+msgstr ""
+
+#: templates/settings.php:71
+msgid "Core unified"
+msgstr ""
+
+#: templates/settings.php:74
+msgid "Example: unified"
+msgstr ""
+
+#: templates/settings.php:78
+msgid "User"
+msgstr ""
+
+#: templates/settings.php:81
+msgid "Username for authentication"
+msgstr ""
+
+#: templates/settings.php:85
+msgid "Password"
+msgstr ""
+
+#: templates/settings.php:88
+msgid "Password for authentication"
+msgstr ""
+
+#: templates/settings.php:94
+msgid "Show regional contents on results"
+msgstr ""
+
+#: templates/settings.php:105
+msgid "Connection status"
+msgstr ""
+
+#: templates/settings.php:108
+msgid "Ping to unified index succeded."
+msgstr ""
+
+#: templates/settings.php:110
+msgid ""
+"Problem connecting to unified index. Please, check the specified config."
+msgstr ""
+
+#: templates/settings.php:113
+msgid "Ping to WP index succeded."
+msgstr ""
+
+#: templates/settings.php:115
+msgid "Problem connecting to WP index. Please, check the specified config."
+msgstr ""
+
+#: templates/settings.php:118
+msgid "Ping to CKAN index succeded."
+msgstr ""
+
+#: templates/settings.php:120
+msgid "Problem connecting to CKAN index. Please, check the specified config."
+msgstr ""
+
+#: templates/settings.php:127
+msgid "Logging"
+msgstr ""
+
+#: templates/settings.php:129
+msgid "Enable log"
+msgstr ""
+
+#: templates/settings.php:135
+msgid "Log file path"
+msgstr ""
+
+#: templates/settings.php:138
+msgid "Path where logs are going to be stored. Mind permissions."
+msgstr ""
+
+#: templates/settings.php:142
+msgid "Templating"
+msgstr ""
+
+#: templates/settings.php:144
+msgid "Select template"
+msgstr ""
+
+#: wp-odm_solr.php:194
+msgid "You do not have sufficient permissions to access this page."
+msgstr ""

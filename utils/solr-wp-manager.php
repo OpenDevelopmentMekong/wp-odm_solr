@@ -264,6 +264,10 @@ class WP_Odm_Solr_WP_Manager {
         $dismax->setQueryFields($fields_to_query);
       endif;
 
+      if (isset($attrs["dataset_type"]) && wp_solr_is_wp_dataset_type($attrs["dataset_type"])):
+        $query->createFilterQuery('wp_id')->setQuery('*');
+      endif;
+
       $facetSet = $query->getFacetSet();
       foreach ($result["facets"] as $key => $objects):
         $facetSet->createFacetField($key)->setField($key);
