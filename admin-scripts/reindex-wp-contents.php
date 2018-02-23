@@ -20,10 +20,8 @@ echo("Batch of " . count($posts) . nl2br("\n"));
 foreach ( $posts as $post):
 	echo("Indexing post with ID: " . $post->ID ." and title:" . $post->post_title . " and type " . $post->post_type . nl2br("\n"));
 
-  // First delete the record previously indexed via its ID, if available
-  WP_Odm_Solr_WP_Manager()->delete_post($post->ID);
-
 	WP_Odm_Solr_WP_Manager()->index_post($post);
+
 endforeach;
 
 wp_reset_postdata();
