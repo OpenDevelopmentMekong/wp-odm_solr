@@ -1,6 +1,6 @@
 <?php
 
-include_once dirname(dirname(__FILE__)).'/utils/solr-wp-content-manager.php';
+include_once dirname(dirname(__FILE__)).'/utils/solr-wp-manager.php';
 include_once dirname(dirname(__FILE__)).'/utils/solr-unified-manager.php';
 
 $num_posts = isset($_GET["num_posts"]) ? $_GET["num_posts"] : 500;
@@ -20,7 +20,8 @@ echo("Batch of " . count($posts) . nl2br("\n"));
 foreach ( $posts as $post):
 	echo("Indexing post with ID: " . $post->ID ." and title:" . $post->post_title . " and type " . $post->post_type . nl2br("\n"));
 
-	WP_Odm_Solr_WP_Content_Manager()->index_post($post);
+	WP_Odm_Solr_WP_Manager()->index_post($post);
+
 endforeach;
 
 wp_reset_postdata();
