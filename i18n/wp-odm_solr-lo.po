@@ -1,9 +1,11 @@
-# 
+# Translators:
+# prustar <data.opendevmekong@gmail.com>, 2018
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "POT-Creation-Date: 2017-07-27 23:56+0200\n"
 "PO-Revision-Date: 2017-07-27 23:56+0200\n"
+"Last-Translator: prustar <data.opendevmekong@gmail.com>, 2018\n"
 "Language-Team: Lao (https://www.transifex.com/open-development-mekong/teams/27158/lo/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -40,19 +42,19 @@ msgstr ""
 
 #: i18n/additional-localization.php:5
 msgid "Agreements"
-msgstr ""
+msgstr "ຂໍ້ຕົກລົງ"
 
 #: i18n/additional-localization.php:6
 msgid "Maps"
-msgstr ""
+msgstr "ແຜນທີ່"
 
 #: i18n/additional-localization.php:7
 msgid "News"
-msgstr ""
+msgstr "ຂ່າວ"
 
 #: i18n/additional-localization.php:8
 msgid "Topics"
-msgstr ""
+msgstr "ຫົວຂໍ້"
 
 #: i18n/additional-localization.php:9
 msgid "Profiles"
@@ -72,47 +74,47 @@ msgstr ""
 
 #: i18n/additional-localization.php:14
 msgid "Cambodia"
-msgstr ""
+msgstr "ກຳປູເຈຍ"
 
 #: i18n/additional-localization.php:15
 msgid "Vietnam"
-msgstr ""
+msgstr "ຫວຽດນາມ"
 
 #: i18n/additional-localization.php:16
 msgid "Laos"
-msgstr ""
+msgstr "ລາວ"
 
 #: i18n/additional-localization.php:17
 msgid "Thailand"
-msgstr ""
+msgstr "ໄທ"
 
 #: i18n/additional-localization.php:18
 msgid "Myanmar"
-msgstr ""
+msgstr "ພະມ້າ"
 
 #: i18n/additional-localization.php:20
 msgid "English"
-msgstr ""
+msgstr "ພາສາອັງກິດ"
 
 #: i18n/additional-localization.php:21
 msgid "Khmer"
-msgstr ""
+msgstr "ພາສາຂະແມ"
 
 #: i18n/additional-localization.php:22
 msgid "Vietnamese"
-msgstr ""
+msgstr "ຫວຽດນາມ"
 
 #: i18n/additional-localization.php:23
 msgid "Lao"
-msgstr ""
+msgstr "ພາສາລາວ"
 
 #: i18n/additional-localization.php:24
 msgid "Thai"
-msgstr ""
+msgstr "ພາສາໄທ"
 
 #: i18n/additional-localization.php:25
 msgid "Burmese"
-msgstr ""
+msgstr "ພາສາພະມ້າ"
 
 #: i18n/additional-localization.php:28 templates/odc/partials/filters.php:13
 #: templates/odc/partials/filters.php:106
@@ -124,7 +126,7 @@ msgstr ""
 #: templates/odc_1_col/partials/filters_regional.php:136
 #: templates/odm/partials/filters.php:7
 msgid "All"
-msgstr ""
+msgstr "ທັງໝົດ"
 
 #: post-types/search-pages.php:32 post-types/search-pages.php:34
 #: post-types/search-pages.php:35
@@ -250,7 +252,7 @@ msgstr ""
 #: templates/odc_1_col/partials/filters_regional.php:78
 #: templates/odm/partials/filters.php:74
 msgid "Language"
-msgstr ""
+msgstr "ພາສາ"
 
 #: templates/odc/partials/filters.php:49
 #: templates/odc/partials/filters_regional.php:79
@@ -266,7 +268,7 @@ msgstr ""
 #: templates/odc_1_col/partials/filters_regional.php:106
 #: templates/odm/partials/filters.php:102
 msgid "License"
-msgstr ""
+msgstr "ການອະນຸຍາດ"
 
 #: templates/odc/partials/filters.php:77
 #: templates/odc/partials/filters_regional.php:107
@@ -454,7 +456,7 @@ msgstr ""
 
 #: templates/settings.php:105
 msgid "Connection status"
-msgstr ""
+msgstr "ສະຖານະການເຊື່ອມຕໍ່"
 
 #: templates/settings.php:108
 msgid "Ping to unified index succeded."
@@ -507,4 +509,4 @@ msgstr ""
 
 #: wp-odm_solr.php:194
 msgid "You do not have sufficient permissions to access this page."
-msgstr ""
+msgstr "ທ່ານບໍ່ມີການອະນຸຍາດພຽງພໍໃນການເຂົ້າເຖິງໜ້ານີ້"
