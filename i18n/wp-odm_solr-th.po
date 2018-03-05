@@ -1,119 +1,121 @@
+# Translators:
+# Pattaraporn Tejo <pattrp.tejo@gmail.com>, 2018
+# prustar <data.opendevmekong@gmail.com>, 2018
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
-"POT-Creation-Date: 2018-01-23 11:25+0100\n"
-"PO-Revision-Date: 2018-01-23 11:25+0100\n"
-"Last-Translator: \n"
-"Language-Team: \n"
-"Language: th\n"
+"POT-Creation-Date: 2017-07-27 23:56+0200\n"
+"PO-Revision-Date: 2017-07-27 23:56+0200\n"
+"Last-Translator: prustar <data.opendevmekong@gmail.com>, 2018\n"
+"Language-Team: Thai (https://www.transifex.com/open-development-mekong/teams/27158/th/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
+"Language: th\n"
+"Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Poedit 1.8.7.1\n"
 "X-Poedit-Basepath: ..\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-KeywordsList: _;_e;__;_n:1,2;_x:1,2c;_ex:1,2c\n"
-"X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-SearchPath-0: i18n\n"
 "X-Poedit-SearchPath-1: .\n"
 "X-Poedit-SearchPathExcluded-0: components\n"
 "X-Poedit-SearchPathExcluded-1: vendor\n"
+"X-Poedit-SourceCharset: UTF-8\n"
 
 #: admin-scripts/search-ckan-records.php:21
 #: templates/odc/partials/filters.php:5
 #: templates/odc/partials/filters_regional.php:5
-#: templates/odm/solr_search.php:309
+#: templates/odm/solr_search.php:296
 msgid "Search datasets, topics, News..."
-msgstr ""
+msgstr "ค้นหา ชุดข้อมูล หัวข้อ ข่าว..."
 
 #: i18n/additional-localization.php:2
 msgid "Datasets"
-msgstr ""
+msgstr "ชุดข้อมูล"
 
 #: i18n/additional-localization.php:3
 msgid "Publications"
-msgstr ""
+msgstr "สิ่งพิมพ์"
 
 #: i18n/additional-localization.php:4
 msgid "Laws"
-msgstr ""
+msgstr "กฎหมาย"
 
 #: i18n/additional-localization.php:5
 msgid "Agreements"
-msgstr ""
+msgstr "ข้อตกลง"
 
 #: i18n/additional-localization.php:6
 msgid "Maps"
-msgstr ""
+msgstr "แผนที่"
 
 #: i18n/additional-localization.php:7
 msgid "News"
-msgstr ""
+msgstr "ข่าว"
 
 #: i18n/additional-localization.php:8
 msgid "Topics"
-msgstr ""
+msgstr "บทความ"
 
 #: i18n/additional-localization.php:9
 msgid "Profiles"
-msgstr ""
+msgstr "ข้อมูลประวัติ"
 
 #: i18n/additional-localization.php:10
 msgid "Story"
-msgstr ""
+msgstr "เรื่องราว"
 
 #: i18n/additional-localization.php:11
 msgid "Announcements"
-msgstr ""
+msgstr "ประกาศ"
 
 #: i18n/additional-localization.php:12
 msgid "Site updates"
-msgstr ""
+msgstr "ข่าวอัพเดท"
 
 #: i18n/additional-localization.php:14
 msgid "Cambodia"
-msgstr ""
+msgstr "กัมพูชา"
 
 #: i18n/additional-localization.php:15
 msgid "Vietnam"
-msgstr ""
+msgstr "เวียดนาม"
 
 #: i18n/additional-localization.php:16
 msgid "Laos"
-msgstr ""
+msgstr "ลาว"
 
 #: i18n/additional-localization.php:17
 msgid "Thailand"
-msgstr ""
+msgstr "ไทย"
 
 #: i18n/additional-localization.php:18
 msgid "Myanmar"
-msgstr ""
+msgstr "พม่า"
 
 #: i18n/additional-localization.php:20
 msgid "English"
-msgstr ""
+msgstr "ภาษาอังกฤษ"
 
 #: i18n/additional-localization.php:21
 msgid "Khmer"
-msgstr ""
+msgstr "ภาษาเขมร"
 
 #: i18n/additional-localization.php:22
 msgid "Vietnamese"
-msgstr ""
+msgstr "ภาษาเวียดนาม"
 
 #: i18n/additional-localization.php:23
 msgid "Lao"
-msgstr ""
+msgstr "ภาษาลาว"
 
 #: i18n/additional-localization.php:24
 msgid "Thai"
-msgstr ""
+msgstr "ภาษาไทย"
 
 #: i18n/additional-localization.php:25
 msgid "Burmese"
-msgstr ""
+msgstr "ภาษาพม่า"
 
 #: i18n/additional-localization.php:28 templates/odc/partials/filters.php:13
 #: templates/odc/partials/filters.php:106
@@ -125,116 +127,111 @@ msgstr ""
 #: templates/odc_1_col/partials/filters_regional.php:136
 #: templates/odm/partials/filters.php:7
 msgid "All"
-msgstr ""
+msgstr "ทั้งหมด"
 
 #: post-types/search-pages.php:32 post-types/search-pages.php:34
 #: post-types/search-pages.php:35
 msgid "Search pages"
-msgstr ""
+msgstr "ค้นหาหน้าเว็บ"
 
 #: post-types/search-pages.php:33
 msgid "Search page"
-msgstr ""
+msgstr "หน้าค้นหา"
 
 #: post-types/search-pages.php:36
 msgid "Add new"
-msgstr ""
+msgstr "เพิ่มใหม่"
 
 #: post-types/search-pages.php:37
 msgid "Add new search page"
-msgstr ""
+msgstr "เพิ่มหน้าค้นหาใหม่"
 
 #: post-types/search-pages.php:38
 msgid "New search page"
-msgstr ""
+msgstr "หน้าค้นหาใหม่"
 
 #: post-types/search-pages.php:39
 msgid "Edit search page"
-msgstr ""
+msgstr "แก้ไขหน้าค้นหา"
 
 #: post-types/search-pages.php:40
 msgid "View search page"
-msgstr ""
+msgstr "ดูหน้าค้นหา"
 
 #: post-types/search-pages.php:41
 msgid "All search pages"
-msgstr ""
+msgstr "ดูหน้าค้นหาทั้งหมด"
 
 #: post-types/search-pages.php:42
 msgid "Search search pages"
-msgstr ""
+msgstr "ค้นหาใน หน้าค้นหา"
 
 #: post-types/search-pages.php:43
 msgid "Parent search pages:"
-msgstr ""
+msgstr "หน้าค้นหาต้นฉบับ:"
 
 #: post-types/search-pages.php:44
 msgid "No search page found."
-msgstr ""
+msgstr "ไม่พบหน้าที่ค้นหา"
 
 #: post-types/search-pages.php:45
 msgid "No search page found in trash."
-msgstr ""
+msgstr "ไม่พบหน้าที่ค้นหา ในถังขยะ"
 
 #: post-types/search-pages.php:73
 msgid "Option for search pages"
-msgstr ""
+msgstr "ตัวเลือกสำหรับการค้นหาหน้าเว็บ"
 
 #: post-types/search-pages.php:82
 msgid "Template layout"
-msgstr ""
+msgstr "การจัดวางแม่แบบ"
 
 #: post-types/search-pages.php:95
 msgid "Supported content types"
-msgstr ""
+msgstr "ประเภทเนื้อหาที่สนับสนุน"
 
 #: post-types/search-pages.php:97
 msgid "Please add the document types that should be supported on this page"
-msgstr ""
+msgstr "โปรดเพิ่มประเภทของเอกสาร ที่หน้าเว็บนี้สนับสนุน"
 
 #: post-types/search-pages.php:106
 msgid "Choose template layout"
-msgstr ""
+msgstr "เลือกการจัดวางแม่แบบ"
 
-#: templates/category-page/partials/ckan_result_template.php:106
-#: templates/odc/partials/ckan_result_template.php:106
-#: templates/odc_1_col/partials/ckan_result_template.php:106
-#: templates/odm/partials/ckan_result_template.php:112
-msgid "Source:"
-msgstr ""
-
-#: templates/category-page/partials/ckan_result_template.php:169
-#: templates/odc/partials/ckan_result_template.php:169
-#: templates/odc_1_col/partials/ckan_result_template.php:169
+#: templates/category-page/partials/ckan_result_template.php:155
+#: templates/odc/partials/ckan_result_template.php:156
+#: templates/odc_1_col/partials/ckan_result_template.php:156
 msgid "Download:"
-msgstr ""
+msgstr "ดาวน์โหลด:"
 
-#: templates/category-page/solr_search.php:190
-#: templates/odc/solr_search.php:202 templates/odc_1_col/solr_search.php:202
-#: templates/odm/solr_search.php:208
+#: templates/category-page/solr_search.php:182
+#: templates/odc/solr_search.php:194 templates/odc_1_col/solr_search.php:194
+#: templates/odm/solr_search.php:195
 msgid ""
 "wp-odm_solr plugin is not properly configured. Please contact the system's "
 "administrator"
 msgstr ""
+"wp-odm_solr plugin is not properly configured. Please contact the system's "
+"administrator"
 
 #: templates/odc/partials/content-types-mobile.php:1
 msgid "Content type:"
-msgstr ""
+msgstr "ประเภทของเนื้ิอหา:"
 
 #: templates/odc/partials/filters.php:4
 #: templates/odc/partials/filters_regional.php:4
 #: templates/odc_1_col/partials/filters.php:4
 #: templates/odc_1_col/partials/filters_regional.php:4
 msgid "Text search"
-msgstr ""
+msgstr "ค้นหาข้อความ"
 
 #: templates/odc/partials/filters.php:6
 #: templates/odc/partials/filters_regional.php:6
 #: templates/odc_1_col/partials/filters.php:6
 #: templates/odc_1_col/partials/filters_regional.php:6
-#: templates/odm/solr_search.php:317
+#: templates/odm/solr_search.php:304
 msgid "Did you mean?"
-msgstr ""
+msgstr "คุณหมายถึงอะไร?"
 
 #: templates/odc/partials/filters.php:11
 #: templates/odc/partials/filters_regional.php:11
@@ -242,7 +239,7 @@ msgstr ""
 #: templates/odc_1_col/partials/filters_regional.php:11
 #: templates/odm/partials/filters.php:5
 msgid "Topic"
-msgstr ""
+msgstr "หัวข้อ"
 
 #: templates/odc/partials/filters.php:12
 #: templates/odc/partials/filters_regional.php:12
@@ -250,7 +247,7 @@ msgstr ""
 #: templates/odc_1_col/partials/filters_regional.php:12
 #: templates/odm/partials/filters.php:6
 msgid "Select term"
-msgstr ""
+msgstr "เลือกเงื่อนไข"
 
 #: templates/odc/partials/filters.php:48
 #: templates/odc/partials/filters_regional.php:78
@@ -258,7 +255,7 @@ msgstr ""
 #: templates/odc_1_col/partials/filters_regional.php:78
 #: templates/odm/partials/filters.php:74
 msgid "Language"
-msgstr ""
+msgstr "ภาษา"
 
 #: templates/odc/partials/filters.php:49
 #: templates/odc/partials/filters_regional.php:79
@@ -266,7 +263,7 @@ msgstr ""
 #: templates/odc_1_col/partials/filters_regional.php:79
 #: templates/odm/partials/filters.php:75
 msgid "Select language"
-msgstr ""
+msgstr "เลือกภาษา"
 
 #: templates/odc/partials/filters.php:76
 #: templates/odc/partials/filters_regional.php:106
@@ -274,7 +271,7 @@ msgstr ""
 #: templates/odc_1_col/partials/filters_regional.php:106
 #: templates/odm/partials/filters.php:102
 msgid "License"
-msgstr ""
+msgstr "ใบอนุญาต"
 
 #: templates/odc/partials/filters.php:77
 #: templates/odc/partials/filters_regional.php:107
@@ -282,249 +279,240 @@ msgstr ""
 #: templates/odc_1_col/partials/filters_regional.php:107
 #: templates/odm/partials/filters.php:103
 msgid "Select license"
-msgstr ""
+msgstr "เลือกใบอนุญาต"
 
 #: templates/odc/partials/filters.php:104
 #: templates/odc/partials/filters_regional.php:134
 #: templates/odc_1_col/partials/filters.php:104
 #: templates/odc_1_col/partials/filters_regional.php:134
 msgid "Year"
-msgstr ""
+msgstr "ปี"
 
 #: templates/odc/partials/filters.php:105
 #: templates/odc/partials/filters_regional.php:135
 #: templates/odc_1_col/partials/filters.php:105
 #: templates/odc_1_col/partials/filters_regional.php:135
 msgid "Select year"
-msgstr ""
+msgstr "เลือกปี"
 
 #: templates/odc/partials/filters.php:124
 #: templates/odc/partials/filters_regional.php:154
 #: templates/odc_1_col/partials/filters.php:124
 #: templates/odc_1_col/partials/filters_regional.php:154
 msgid "Search"
-msgstr ""
+msgstr "ค้นหา"
 
 #: templates/odc/partials/filters.php:125
 #: templates/odc/partials/filters_regional.php:155
 #: templates/odc_1_col/partials/filters.php:125
 #: templates/odc_1_col/partials/filters_regional.php:155
 msgid "Clear"
-msgstr ""
+msgstr "ล้าง"
 
 #: templates/odc/partials/filters_regional.php:48
 #: templates/odc_1_col/partials/filters_regional.php:48
 #: templates/odm/partials/filters.php:43
 msgid "Country"
-msgstr ""
+msgstr "ประเทศ"
 
 #: templates/odc/partials/filters_regional.php:49
 #: templates/odc_1_col/partials/filters_regional.php:49
 #: templates/odm/partials/filters.php:44
 msgid "Select country"
-msgstr ""
+msgstr "เลือกประเทศ"
 
-#: templates/odc/solr_search.php:274 templates/odc_1_col/solr_search.php:271
-#: templates/odm/solr_search.php:321
+#: templates/odc/solr_search.php:266 templates/odc_1_col/solr_search.php:263
+#: templates/odm/solr_search.php:308
 msgid "Records"
-msgstr ""
+msgstr "ข้อมูลบันทึก"
+
+#: templates/odc/solr_search.php:269 templates/odc_1_col/solr_search.php:266
+#: templates/odm/solr_search.php:311
+msgid " found for"
+msgstr "พบสำหรับ"
+
+#: templates/odc/solr_search.php:275 templates/odc/solr_search.php:276
+#: templates/odc_1_col/solr_search.php:272
+#: templates/odc_1_col/solr_search.php:273
+#: templates/odm/partials/filters.php:131
+#: templates/odm/partials/filters.php:132
+msgid "Sort by"
+msgstr "จัดเรียง"
 
 #: templates/odc/solr_search.php:277 templates/odc_1_col/solr_search.php:274
-#: templates/odm/solr_search.php:324
-msgid " found for"
-msgstr ""
-
-#: templates/odc/solr_search.php:283 templates/odc/solr_search.php:284
-#: templates/odc_1_col/solr_search.php:280
-#: templates/odc_1_col/solr_search.php:281
-#: templates/odm/partials/filters.php:162
-#: templates/odm/partials/filters.php:163
-msgid "Sort by"
-msgstr ""
-
-#: templates/odc/solr_search.php:285 templates/odc_1_col/solr_search.php:282
-#: templates/odm/partials/filters.php:164
+#: templates/odm/partials/filters.php:133
 msgid "Relevance"
-msgstr ""
+msgstr "ความสัมพันธ์"
 
-#: templates/odc/solr_search.php:286 templates/odc_1_col/solr_search.php:283
-#: templates/odm/partials/filters.php:165
+#: templates/odc/solr_search.php:278 templates/odc_1_col/solr_search.php:275
+#: templates/odm/partials/filters.php:134
 msgid "Creation date"
-msgstr ""
+msgstr "วันที่สร้าง"
 
-#: templates/odc/solr_search.php:287 templates/odc_1_col/solr_search.php:284
-#: templates/odm/partials/filters.php:166
+#: templates/odc/solr_search.php:279 templates/odc_1_col/solr_search.php:276
+#: templates/odm/partials/filters.php:135
 msgid "Modification date"
-msgstr ""
+msgstr "วันที่ทำการแก้ไข"
 
 #: templates/odc_1_col/partials/filters.php:5
 #: templates/odc_1_col/partials/filters_regional.php:5
 msgid "Search datasets, topics, news articles..."
-msgstr ""
+msgstr "ค้นหา ชุดข้อมูล หัวข้อ ข่าว..."
 
-#: templates/odm/partials/filters.php:131
-msgid "Data partner"
-msgstr ""
-
-#: templates/odm/partials/filters.php:132
-msgid "Select partner organisations who contribute data to ODM"
-msgstr ""
-
-#: templates/odm/partials/filters.php:160
+#: templates/odm/partials/filters.php:129
 msgid "Sorting"
-msgstr ""
+msgstr "การจัดเรียง"
 
-#: templates/odm/partials/filters.php:172
+#: templates/odm/partials/filters.php:141
 msgid "Search Filter"
-msgstr ""
+msgstr "ค้นหาตัวกรอง"
 
-#: templates/odm/solr_search.php:249
+#: templates/odm/solr_search.php:236
 msgid "Search Results for"
-msgstr ""
+msgstr "ค้นหาผลลัพธ์สำหรับ"
 
-#: templates/odm/solr_search.php:282
+#: templates/odm/solr_search.php:269
 msgid "Explore more"
-msgstr ""
+msgstr "ค้นหาเพิ่มเติม"
 
-#: templates/settings.php:28
+#: templates/settings.php:27
 msgid "Connecting to Solr"
-msgstr ""
+msgstr "กำลังเชื่อมต่อกับ Solr"
 
-#: templates/settings.php:30
+#: templates/settings.php:29
 msgid "Host"
-msgstr ""
+msgstr "โฮสต์"
 
-#: templates/settings.php:33
+#: templates/settings.php:32
 msgid ""
-"Specify host without protocol, just domain. example: solr."
-"opendevelopmentmekong.net "
+"Specify host without protocol, just domain. example: "
+"solr.opendevelopmentmekong.net "
 msgstr ""
+"ระบุโฮสต์โดยไม่มีโปรโตคอล เฉพาะโดเมน ตัวอย่าง: "
+"solr.opendevelopmentmekong.net "
 
-#: templates/settings.php:37
+#: templates/settings.php:36
 msgid "Port"
-msgstr ""
+msgstr "ช่องทาง"
 
-#: templates/settings.php:40
+#: templates/settings.php:39
 msgid "Specify the port under which the solr instance is available"
-msgstr ""
+msgstr "ระบุช่องทาง ดังที่ตัวอย่าง solr สามารถใช้ได้"
 
-#: templates/settings.php:44
+#: templates/settings.php:43
 msgid "Scheme"
-msgstr ""
+msgstr "แผนผัง"
 
-#: templates/settings.php:47
+#: templates/settings.php:46
 msgid "http or https"
-msgstr ""
+msgstr "http or https"
 
-#: templates/settings.php:51
+#: templates/settings.php:50
 msgid "Path"
-msgstr ""
+msgstr "เส้นทาง"
 
-#: templates/settings.php:54
+#: templates/settings.php:53
 msgid "Usually /solr/"
-msgstr ""
+msgstr "โดยปกติ /solr/"
 
-#: templates/settings.php:58
+#: templates/settings.php:57
 msgid "Core WP"
-msgstr ""
+msgstr "ใจความสำคัญ WP"
 
-#: templates/settings.php:61
+#: templates/settings.php:60
 msgid "Example: wordpress_content"
-msgstr ""
+msgstr "ตัวอย่าง: เวิร์ดเพรส_เนื้อหา"
 
-#: templates/settings.php:65
+#: templates/settings.php:64
 msgid "Core CKAN"
-msgstr ""
+msgstr "ใจความสำคัญ CKAN"
 
-#: templates/settings.php:68
+#: templates/settings.php:67
 msgid "Example: collection1"
-msgstr ""
+msgstr "ตัวอย่าง: การเก็บรวบรวม1"
 
-#: templates/settings.php:72
+#: templates/settings.php:71
 msgid "Core unified"
-msgstr ""
+msgstr "ใจความสำคัญ รวมเข้าด้วยกัน"
 
-#: templates/settings.php:75
+#: templates/settings.php:74
 msgid "Example: unified"
-msgstr ""
+msgstr "ตัวอย่าง: รวมเข้าด้วยกัน"
 
-#: templates/settings.php:79
+#: templates/settings.php:78
 msgid "User"
-msgstr ""
+msgstr "ชื่อผู้ใช้"
 
-#: templates/settings.php:82
+#: templates/settings.php:81
 msgid "Username for authentication"
-msgstr ""
+msgstr "ชื่อผู้ใช้ สำหรับการตรวจสอบสิทธิ์"
 
-#: templates/settings.php:86
+#: templates/settings.php:85
 msgid "Password"
-msgstr ""
+msgstr "รหัสผ่าน"
 
-#: templates/settings.php:89
+#: templates/settings.php:88
 msgid "Password for authentication"
-msgstr ""
+msgstr "รหัสผ่าน สำหรับการตรวจสอบสิทธิ์"
 
-#: templates/settings.php:95
+#: templates/settings.php:94
 msgid "Show regional contents on results"
-msgstr ""
+msgstr "Show regional contents on results"
 
-#: templates/settings.php:103
-msgid "Show only results available both in English and local language"
-msgstr ""
-
-#: templates/settings.php:112
+#: templates/settings.php:105
 msgid "Connection status"
-msgstr ""
+msgstr "สถานะการเชื่อมต่อ"
 
-#: templates/settings.php:115
+#: templates/settings.php:108
 msgid "Ping to unified index succeded."
-msgstr ""
+msgstr "Ping to unified index succeded."
 
-#: templates/settings.php:117
+#: templates/settings.php:110
 msgid ""
 "Problem connecting to unified index. Please, check the specified config."
 msgstr ""
+"Problem connecting to unified index. Please, check the specified config."
+
+#: templates/settings.php:113
+msgid "Ping to WP index succeded."
+msgstr "Ping to WP index succeded."
+
+#: templates/settings.php:115
+msgid "Problem connecting to WP index. Please, check the specified config."
+msgstr "ปัญหาในการเชื่อมต่อ WP index โปรดตรวจสอบ config ที่ระบุ"
+
+#: templates/settings.php:118
+msgid "Ping to CKAN index succeded."
+msgstr "Ping to CKAN index succeded."
 
 #: templates/settings.php:120
-msgid "Ping to WP index succeded."
-msgstr ""
-
-#: templates/settings.php:122
-msgid "Problem connecting to WP index. Please, check the specified config."
-msgstr ""
-
-#: templates/settings.php:125
-msgid "Ping to CKAN index succeded."
-msgstr ""
+msgid "Problem connecting to CKAN index. Please, check the specified config."
+msgstr "ปัญหาในการเชื่อมต่อ CKAN โปรดตรวจสอบ config ที่ระบุ"
 
 #: templates/settings.php:127
-msgid "Problem connecting to CKAN index. Please, check the specified config."
-msgstr ""
-
-#: templates/settings.php:134
 msgid "Logging"
-msgstr ""
+msgstr "Logging"
 
-#: templates/settings.php:136
+#: templates/settings.php:129
 msgid "Enable log"
-msgstr ""
+msgstr "เปิดการบันทึก"
 
-#: templates/settings.php:142
+#: templates/settings.php:135
 msgid "Log file path"
-msgstr ""
+msgstr "เส้นทางแฟ้มบันทึก"
 
-#: templates/settings.php:145
+#: templates/settings.php:138
 msgid "Path where logs are going to be stored. Mind permissions."
 msgstr ""
 
-#: templates/settings.php:149
+#: templates/settings.php:142
 msgid "Templating"
-msgstr ""
+msgstr "Templating"
 
-#: templates/settings.php:151
+#: templates/settings.php:144
 msgid "Select template"
-msgstr ""
+msgstr "เลือกแม่แบบ"
 
 #: wp-odm_solr.php:194
 msgid "You do not have sufficient permissions to access this page."
-msgstr ""
+msgstr "คุณไม่มีสิทธิ์เพียงพอในการเข้าถึงหน้านี้"
