@@ -29,7 +29,7 @@ class WP_Odm_Solr_CKAN_Manager {
     $solr_pwd = $GLOBALS['wp_odm_solr_options']->get_option('wp_odm_solr_setting_solr_pwd');
     $this->show_regional_contents = $GLOBALS['wp_odm_solr_options']->get_option('wp_odm_solr_setting_regional_contents_enabled');
     $this->only_en_local_lang = $GLOBALS['wp_odm_solr_options']->get_option('wp_odm_solr_setting_only_en_and_local_lang');
-    
+
     $this->server_config = array(
       'endpoint' => array(
           $solr_host => array(
@@ -139,7 +139,7 @@ class WP_Odm_Solr_CKAN_Manager {
   		endif;
 
       if (!empty($text)):
-        $query->setQuery($text);
+        $query->setQuery(sanitize_query($text));
       endif;
 
       if (!empty($text)):

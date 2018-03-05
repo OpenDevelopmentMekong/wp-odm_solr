@@ -184,4 +184,18 @@
 
   }
 
+  /**
+   * Sanitizes a query before sending it to SOLR
+   *
+   * @return string
+   * @author
+   **/
+  function sanitize_query($query) {
+
+    $query = trim($query);
+    $query = str_replace('-','',$query);
+    return $query;
+
+  }
+
 ?>
