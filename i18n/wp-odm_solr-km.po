@@ -1,12 +1,13 @@
 # Translators:
 # Alex Corbi <a.corbi@gmail.com>, 2017
 # ChandaraKhun <chandara@opendevcam.net>, 2017
+# Huy Eng Heng <huyeng_heng@yahoo.com>, 2018
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "POT-Creation-Date: 2017-07-27 23:56+0200\n"
-"PO-Revision-Date: 2017-07-27 23:56+0200\n"
-"Last-Translator: ChandaraKhun <chandara@opendevcam.net>, 2017\n"
+"PO-Revision-Date: 2017-07-27 23:56+0200\n" 
+"Last-Translator: Huy Eng Heng <huyeng_heng@yahoo.com>, 2018\n" 
 "Language-Team: Khmer (https://www.transifex.com/open-development-mekong/teams/27158/km/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -34,8 +35,8 @@ msgid "Datasets"
 msgstr "សំណុំទិន្នន័យ"
 
 #: i18n/additional-localization.php:3
-msgid "Publications"
-msgstr ""
+msgid "Publications" 
+msgstr "ឯកសារបោះពុម្ភ" 
 
 #: i18n/additional-localization.php:4
 msgid "Laws"
@@ -50,8 +51,8 @@ msgid "Maps"
 msgstr "ផែនទី"
 
 #: i18n/additional-localization.php:7
-msgid "News"
-msgstr ""
+msgid "News" 
+msgstr "ព័ត៌មាន" 
 
 #: i18n/additional-localization.php:8
 msgid "Topics"
@@ -132,39 +133,39 @@ msgstr "ទាំងអស់"
 #: post-types/search-pages.php:32 post-types/search-pages.php:34
 #: post-types/search-pages.php:35
 msgid "Search pages"
-msgstr ""
+msgstr "ទំព័រស្វែងរក"
 
 #: post-types/search-pages.php:33
 msgid "Search page"
-msgstr ""
+msgstr "ទំព័រស្វែងរក"
 
 #: post-types/search-pages.php:36
 msgid "Add new"
-msgstr ""
+msgstr "បញ្ចូលថ្មី"
 
 #: post-types/search-pages.php:37
 msgid "Add new search page"
-msgstr ""
+msgstr "បញ្ចូលទំព័រស្វែងរកថ្មី"
 
 #: post-types/search-pages.php:38
 msgid "New search page"
-msgstr ""
+msgstr "ទំព័រស្វែងរកថ្មី"
 
 #: post-types/search-pages.php:39
 msgid "Edit search page"
-msgstr ""
+msgstr "កែប្រែទំព័រស្វែងរក"
 
 #: post-types/search-pages.php:40
 msgid "View search page"
-msgstr ""
+msgstr "មើលទំព័រស្វែងរក"
 
 #: post-types/search-pages.php:41
 msgid "All search pages"
-msgstr ""
+msgstr "ទំព័រស្វែងរកទាំងអស់"
 
 #: post-types/search-pages.php:42
 msgid "Search search pages"
-msgstr ""
+msgstr "វែងរកទំព័រស្វែងរក"
 
 #: post-types/search-pages.php:43
 msgid "Parent search pages:"
@@ -172,7 +173,7 @@ msgstr ""
 
 #: post-types/search-pages.php:44
 msgid "No search page found."
-msgstr ""
+msgstr "ទំព័រស្វែងរកពុំមាន"
 
 #: post-types/search-pages.php:45
 msgid "No search page found in trash."
@@ -202,7 +203,7 @@ msgstr ""
 #: templates/odc/partials/ckan_result_template.php:156
 #: templates/odc_1_col/partials/ckan_result_template.php:156
 msgid "Download:"
-msgstr ""
+msgstr "ទាញយក៖"
 
 #: templates/category-page/solr_search.php:182
 #: templates/odc/solr_search.php:194 templates/odc_1_col/solr_search.php:194
@@ -216,7 +217,7 @@ msgstr ""
 
 #: templates/odc/partials/content-types-mobile.php:1
 msgid "Content type:"
-msgstr ""
+msgstr "ប្រភេទអត្ថបទ៖"
 
 #: templates/odc/partials/filters.php:4
 #: templates/odc/partials/filters_regional.php:4
@@ -231,7 +232,7 @@ msgstr "ស្វែងរកអត្ថបទ"
 #: templates/odc_1_col/partials/filters_regional.php:6
 #: templates/odm/solr_search.php:304
 msgid "Did you mean?"
-msgstr ""
+msgstr "តើអ្នកចង់មានន័យបែបនេះឬ?"
 
 #: templates/odc/partials/filters.php:11
 #: templates/odc/partials/filters_regional.php:11
@@ -286,28 +287,28 @@ msgstr "ជ្រើសរើសអាជ្ញាប័ណ្ណ"
 #: templates/odc_1_col/partials/filters.php:104
 #: templates/odc_1_col/partials/filters_regional.php:134
 msgid "Year"
-msgstr ""
+msgstr "ឆ្នាំ"
 
 #: templates/odc/partials/filters.php:105
 #: templates/odc/partials/filters_regional.php:135
 #: templates/odc_1_col/partials/filters.php:105
 #: templates/odc_1_col/partials/filters_regional.php:135
 msgid "Select year"
-msgstr ""
+msgstr "ជ្រើសរើសឆ្នាំ"
 
 #: templates/odc/partials/filters.php:124
 #: templates/odc/partials/filters_regional.php:154
 #: templates/odc_1_col/partials/filters.php:124
 #: templates/odc_1_col/partials/filters_regional.php:154
 msgid "Search"
-msgstr ""
+msgstr "ស្វែងរក"
 
 #: templates/odc/partials/filters.php:125
 #: templates/odc/partials/filters_regional.php:155
 #: templates/odc_1_col/partials/filters.php:125
 #: templates/odc_1_col/partials/filters_regional.php:155
 msgid "Clear"
-msgstr ""
+msgstr "សំអាត"
 
 #: templates/odc/partials/filters_regional.php:48
 #: templates/odc_1_col/partials/filters_regional.php:48
@@ -324,7 +325,7 @@ msgstr "ជ្រើសរើសប្រទេស"
 #: templates/odc/solr_search.php:266 templates/odc_1_col/solr_search.php:263
 #: templates/odm/solr_search.php:308
 msgid "Records"
-msgstr ""
+msgstr "កំណត់ត្រា"
 
 #: templates/odc/solr_search.php:269 templates/odc_1_col/solr_search.php:266
 #: templates/odm/solr_search.php:311
@@ -347,12 +348,12 @@ msgstr "ភាពទាក់ទង"
 #: templates/odc/solr_search.php:278 templates/odc_1_col/solr_search.php:275
 #: templates/odm/partials/filters.php:134
 msgid "Creation date"
-msgstr ""
+msgstr "កាលបរិច្ឆេទ​បង្កើត"
 
 #: templates/odc/solr_search.php:279 templates/odc_1_col/solr_search.php:276
 #: templates/odm/partials/filters.php:135
 msgid "Modification date"
-msgstr ""
+msgstr "កាលបរិច្ឆេទ​កែប្រែ"
 
 #: templates/odc_1_col/partials/filters.php:5
 #: templates/odc_1_col/partials/filters_regional.php:5
@@ -369,7 +370,7 @@ msgstr "ស្វែងរកការជ្រើសរើស"
 
 #: templates/odm/solr_search.php:236
 msgid "Search Results for"
-msgstr ""
+msgstr "លទ្ធផលស្វែងរកសម្រាប់ "
 
 #: templates/odm/solr_search.php:269
 msgid "Explore more"
