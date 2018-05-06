@@ -152,4 +152,13 @@ class UtilsTest extends PHPUnit_Framework_TestCase
     $this->assertEquals($result,"land");
   }
 
+  public function testIsWpDatasetTypeCorrect(){
+    $result = wp_solr_is_wp_dataset_type('news-article');
+    $this->assertTrue($result);
+  }
+
+  public function testIsWpDatasetTypeWrong(){
+    $result = wp_solr_is_wp_dataset_type('wrong-type');
+    $this->assertFalse($result);
+  }
 }

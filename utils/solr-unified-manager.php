@@ -71,6 +71,42 @@ class WP_Odm_Solr_UNIFIED_Manager {
     return true;
   }
 
+  function clear_index(){
+
+    wp_odm_solr_log('solr-unified-manager clear_index');
+
+    $result = null;
+
+    try {
+  		$update = $this->client->createUpdate();
+  		$update->addDeleteQuery('title:*');
+  		$update->addCommit();
+  		$result = $this->client->update($update);
+    } catch (HttpException $e) {
+      wp_odm_solr_log('solr-unfified-manager clear_index Error: ' . $e);
+    }
+
+		return $result;
+  }
+
+  function delete_post($post_id){
+
+    wp_odm_solr_log('solr-unified-manager delete_post: ' . $post_id);
+
+    $result = null;
+
+    try {
+  		$update = $this->client->createUpdate();
+  		$update->addDeleteQuery('index_id:' . $post_id);
+  		$update->addCommit();
+  		$result = $this->client->update($update);
+    } catch (HttpException $e) {
+      wp_odm_solr_log('solr-unified-manager delete_post Error: ' . $e);
+    }
+
+		return $result;
+  }
+
 	function query($text, $attrs = null, $control_attrs = null){
 
     wp_odm_solr_log('solr-unified-manager query: ' . $text . " attrs: " . serialize($attrs) . " control_attrs: " . serialize($control_attrs));
@@ -143,6 +179,7 @@ class WP_Odm_Solr_UNIFIED_Manager {
       endif;
 
       if (!empty($text)):
+
         $fields_to_query = 'extras_odm_keywords^6 vocab_taxonomy^5 title^2 extras_title_translated^2 extras_notes_translated^1 notes^1 extras_odm_spatial_range^1 extras_odm_province^1';
         if (isset($attrs["dataset_type"])):
           $typeFilter = $attrs["dataset_type"];
@@ -163,6 +200,10 @@ class WP_Odm_Solr_UNIFIED_Manager {
           $dismax->setBoostQuery('dataset_type:("topic" OR "profiles")^12');
         endif;
 
+      endif;
+
+      if (isset($attrs["dataset_type"]) && wp_solr_is_wp_dataset_type($attrs["dataset_type"])):
+        $query->createFilterQuery('wp_id')->setQuery('*');
       endif;
 
       $facetSet = $query->getFacetSet();

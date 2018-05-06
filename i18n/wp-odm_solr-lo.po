@@ -1,12 +1,12 @@
 # Translators:
-# prustar <data.opendevmekong@gmail.com>, 2018
-# Maniphet Phengsavatdy <m.phengsavatdy@gmail.com>, 2018
+# prustar <data.opendevmekong@gmail.com>, 2018 
+# Maniphet Phengsavatdy <m.phengsavatdy@gmail.com>, 2018 
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "POT-Creation-Date: 2017-07-27 23:56+0200\n"
-"PO-Revision-Date: 2017-07-27 23:56+0200\n"
-"Last-Translator: Maniphet Phengsavatdy <m.phengsavatdy@gmail.com>, 2018\n"
+"PO-Revision-Date: 2017-07-27 23:56+0200\n" 
+"Last-Translator: Maniphet Phengsavatdy <m.phengsavatdy@gmail.com>, 2018\n" 
 "Language-Team: Lao (https://www.transifex.com/open-development-mekong/teams/27158/lo/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -26,7 +26,7 @@ msgstr ""
 #: templates/odc/partials/filters.php:5
 #: templates/odc/partials/filters_regional.php:5
 #: templates/odm/solr_search.php:296
-msgid "Search datasets, topics, News..."
+msgid "Search datasets, topics, News..." 
 msgstr "ຄົ້ນຫາຊຸດຂໍ້ມູນ, ຫົວຂໍ້, ຂ່າວ..."
 
 #: i18n/additional-localization.php:2
@@ -39,7 +39,7 @@ msgstr "ສິ່ງພິມ"
 
 #: i18n/additional-localization.php:4
 msgid "Laws"
-msgstr "ກົດໝາຍ"
+msgstr "ກົດໝາຍ" 
 
 #: i18n/additional-localization.php:5
 msgid "Agreements"
@@ -58,7 +58,7 @@ msgid "Topics"
 msgstr "ຫົວຂໍ້"
 
 #: i18n/additional-localization.php:9
-msgid "Profiles"
+msgid "Profiles" 
 msgstr "ຂໍ້ມູນປະຫວັດ"
 
 #: i18n/additional-localization.php:10
@@ -71,7 +71,7 @@ msgstr "ປະກາດ"
 
 #: i18n/additional-localization.php:12
 msgid "Site updates"
-msgstr "ຂ່າວອັບເດດ"
+msgstr "ຂ່າວອັບເດດ" 
 
 #: i18n/additional-localization.php:14
 msgid "Cambodia"
@@ -94,12 +94,12 @@ msgid "Myanmar"
 msgstr "ພະມ້າ"
 
 #: i18n/additional-localization.php:20
-msgid "English"
+msgid "English" 
 msgstr "ອັງກິດ"
 
 #: i18n/additional-localization.php:21
 msgid "Khmer"
-msgstr "ຂະແມ"
+msgstr "ຂະແມ" 
 
 #: i18n/additional-localization.php:22
 msgid "Vietnamese"
@@ -131,7 +131,7 @@ msgstr "ທັງໝົດ"
 
 #: post-types/search-pages.php:32 post-types/search-pages.php:34
 #: post-types/search-pages.php:35
-msgid "Search pages"
+msgid "Search pages" 
 msgstr "ຄົ້ນຫາໜ້າເວບໄຊ"
 
 #: post-types/search-pages.php:33
@@ -196,13 +196,13 @@ msgstr "ກະລຸນາເພີ່ມປະເພດເອກະສານທ
 
 #: post-types/search-pages.php:106
 msgid "Choose template layout"
-msgstr "ເລືອກການຈັດວາງແມ່ແບບ"
+msgstr "ເລືອກການຈັດວາງແມ່ແບບ" 
 
 #: templates/category-page/partials/ckan_result_template.php:155
 #: templates/odc/partials/ckan_result_template.php:156
 #: templates/odc_1_col/partials/ckan_result_template.php:156
-msgid "Download:"
-msgstr "ດາວໂຫຼດ:"
+msgid "Download:" 
+msgstr "ດາວໂຫຼດ:" 
 
 #: templates/category-page/solr_search.php:182
 #: templates/odc/solr_search.php:194 templates/odc_1_col/solr_search.php:194
@@ -213,39 +213,39 @@ msgid ""
 msgstr ""
 
 #: templates/odc/partials/content-types-mobile.php:1
-msgid "Content type:"
-msgstr "ປະເພດເນື້ອຫາ:"
+msgid "Content type:" 
+msgstr "ປະເພດເນື້ອຫາ:" 
 
 #: templates/odc/partials/filters.php:4
 #: templates/odc/partials/filters_regional.php:4
 #: templates/odc_1_col/partials/filters.php:4
 #: templates/odc_1_col/partials/filters_regional.php:4
-msgid "Text search"
-msgstr "ຄົ້ນຫາຂໍ້ຄວາມ"
+msgid "Text search" 
+msgstr "ຄົ້ນຫາຂໍ້ຄວາມ" 
 
 #: templates/odc/partials/filters.php:6
 #: templates/odc/partials/filters_regional.php:6
 #: templates/odc_1_col/partials/filters.php:6
 #: templates/odc_1_col/partials/filters_regional.php:6
 #: templates/odm/solr_search.php:304
-msgid "Did you mean?"
-msgstr "ທ່ານໝາຍຄວາມວ່າຫຍັງ?"
+msgid "Did you mean?" 
+msgstr "ທ່ານໝາຍຄວາມວ່າຫຍັງ?" 
 
 #: templates/odc/partials/filters.php:11
 #: templates/odc/partials/filters_regional.php:11
 #: templates/odc_1_col/partials/filters.php:11
 #: templates/odc_1_col/partials/filters_regional.php:11
 #: templates/odm/partials/filters.php:5
-msgid "Topic"
-msgstr "ຫົວຂໍ້"
+msgid "Topic" 
+msgstr "ຫົວຂໍ້" 
 
 #: templates/odc/partials/filters.php:12
 #: templates/odc/partials/filters_regional.php:12
 #: templates/odc_1_col/partials/filters.php:12
 #: templates/odc_1_col/partials/filters_regional.php:12
 #: templates/odm/partials/filters.php:6
-msgid "Select term"
-msgstr "ເລືອກເງື່ອນໄຂ"
+msgid "Select term" 
+msgstr "ເລືອກເງື່ອນໄຂ" 
 
 #: templates/odc/partials/filters.php:48
 #: templates/odc/partials/filters_regional.php:78
@@ -260,8 +260,8 @@ msgstr "ພາສາ"
 #: templates/odc_1_col/partials/filters.php:49
 #: templates/odc_1_col/partials/filters_regional.php:79
 #: templates/odm/partials/filters.php:75
-msgid "Select language"
-msgstr "ເລືອກພາສາ"
+msgid "Select language" 
+msgstr "ເລືອກພາສາ" 
 
 #: templates/odc/partials/filters.php:76
 #: templates/odc/partials/filters_regional.php:106
@@ -276,85 +276,85 @@ msgstr "ການອະນຸຍາດ"
 #: templates/odc_1_col/partials/filters.php:77
 #: templates/odc_1_col/partials/filters_regional.php:107
 #: templates/odm/partials/filters.php:103
-msgid "Select license"
-msgstr "ເລືອກໃບອະນຸຍາດ"
+msgid "Select license" 
+msgstr "ເລືອກໃບອະນຸຍາດ" 
 
 #: templates/odc/partials/filters.php:104
 #: templates/odc/partials/filters_regional.php:134
 #: templates/odc_1_col/partials/filters.php:104
 #: templates/odc_1_col/partials/filters_regional.php:134
-msgid "Year"
-msgstr "ປີ"
+msgid "Year" 
+msgstr "ປີ" 
 
 #: templates/odc/partials/filters.php:105
 #: templates/odc/partials/filters_regional.php:135
 #: templates/odc_1_col/partials/filters.php:105
 #: templates/odc_1_col/partials/filters_regional.php:135
-msgid "Select year"
-msgstr "ເລືອກປີ"
+msgid "Select year" 
+msgstr "ເລືອກປີ" 
 
 #: templates/odc/partials/filters.php:124
 #: templates/odc/partials/filters_regional.php:154
 #: templates/odc_1_col/partials/filters.php:124
 #: templates/odc_1_col/partials/filters_regional.php:154
-msgid "Search"
-msgstr "ຄົ້ນຫາ"
+msgid "Search" 
+msgstr "ຄົ້ນຫາ" 
 
 #: templates/odc/partials/filters.php:125
 #: templates/odc/partials/filters_regional.php:155
 #: templates/odc_1_col/partials/filters.php:125
 #: templates/odc_1_col/partials/filters_regional.php:155
-msgid "Clear"
-msgstr "ລຶບລ້າງ"
+msgid "Clear" 
+msgstr "ລຶບລ້າງ" 
 
 #: templates/odc/partials/filters_regional.php:48
 #: templates/odc_1_col/partials/filters_regional.php:48
 #: templates/odm/partials/filters.php:43
-msgid "Country"
-msgstr "ປະເທດ"
+msgid "Country" 
+msgstr "ປະເທດ" 
 
 #: templates/odc/partials/filters_regional.php:49
 #: templates/odc_1_col/partials/filters_regional.php:49
 #: templates/odm/partials/filters.php:44
-msgid "Select country"
-msgstr "ເລືອກປະເທດ"
+msgid "Select country" 
+msgstr "ເລືອກປະເທດ" 
 
 #: templates/odc/solr_search.php:266 templates/odc_1_col/solr_search.php:263
 #: templates/odm/solr_search.php:308
-msgid "Records"
-msgstr "ຂໍ້ມູນບັນທຶກ"
+msgid "Records" 
+msgstr "ຂໍ້ມູນບັນທຶກ" 
 
 #: templates/odc/solr_search.php:269 templates/odc_1_col/solr_search.php:266
 #: templates/odm/solr_search.php:311
-msgid " found for"
-msgstr "ຊອກຫາສຳລັບ"
+msgid " found for" 
+msgstr "ຊອກຫາສຳລັບ" 
 
 #: templates/odc/solr_search.php:275 templates/odc/solr_search.php:276
 #: templates/odc_1_col/solr_search.php:272
 #: templates/odc_1_col/solr_search.php:273
 #: templates/odm/partials/filters.php:131
 #: templates/odm/partials/filters.php:132
-msgid "Sort by"
-msgstr "ຈັດຮຽງໂດຍ"
+msgid "Sort by" 
+msgstr "ຈັດຮຽງໂດຍ" 
 
 #: templates/odc/solr_search.php:277 templates/odc_1_col/solr_search.php:274
 #: templates/odm/partials/filters.php:133
-msgid "Relevance"
-msgstr "ຄວາມກ່ຽວຂ້ອງ"
+msgid "Relevance" 
+msgstr "ຄວາມກ່ຽວຂ້ອງ" 
 
 #: templates/odc/solr_search.php:278 templates/odc_1_col/solr_search.php:275
 #: templates/odm/partials/filters.php:134
-msgid "Creation date"
-msgstr "ມື້ທີ່ສ້າງ"
+msgid "Creation date" 
+msgstr "ມື້ທີ່ສ້າງ" 
 
 #: templates/odc/solr_search.php:279 templates/odc_1_col/solr_search.php:276
 #: templates/odm/partials/filters.php:135
-msgid "Modification date"
-msgstr "ວັນທີທີ່ດັດແປງ"
+msgid "Modification date" 
+msgstr "ວັນທີທີ່ດັດແປງ" 
 
 #: templates/odc_1_col/partials/filters.php:5
 #: templates/odc_1_col/partials/filters_regional.php:5
-msgid "Search datasets, topics, news articles..."
+msgid "Search datasets, topics, news articles..." 
 msgstr "ຄົ້ນຫາຊຸດຂໍ້ມູນ, ຫົວຂໍ້, ຫົວຂໍ້ຂ່າວ..."
 
 #: templates/odm/partials/filters.php:129
@@ -379,13 +379,13 @@ msgstr "ເຊື່ອມຕໍ່ກັບ Solr"
 
 #: templates/settings.php:29
 msgid "Host"
-msgstr "ໂຮສ"
+msgstr "ໂຮສ" 
 
 #: templates/settings.php:32
 msgid ""
 "Specify host without protocol, just domain. example: "
 "solr.opendevelopmentmekong.net "
-msgstr ""
+msgstr "" 
 "ກຳໜົດໂຮສໂດຍບໍ່ມີໂປຣໂຕຄອລ, ມີແຕ່ໂດເມນ. ຕົວຢ່າງ: "
 "solr.opendevelopmentmekong.net "
 
@@ -456,7 +456,7 @@ msgstr "ລະຫັດຜ່ານສຳລັບການກວດສອບ"
 #: templates/settings.php:94
 msgid "Show regional contents on results"
 msgstr "ສະແດງຂໍ້ມູນໃນຂົງເຂດກ່ຽວກັບຜົນໄດ້ຮັບ"
-
+ 
 #: templates/settings.php:105
 msgid "Connection status"
 msgstr "ສະຖານະການເຊື່ອມຕໍ່"
@@ -467,48 +467,48 @@ msgstr ""
 
 #: templates/settings.php:110
 msgid ""
-"Problem connecting to unified index. Please, check the specified config."
-msgstr "ມີບັນຫາໃນການເຊື່ອມຕໍ່ກັບ unified index. ກະລຸນາກວດສອບ config ທີ່ລະບຸ."
+"Problem connecting to unified index. Please, check the specified config." 
+msgstr "ມີບັນຫາໃນການເຊື່ອມຕໍ່ກັບ unified index. ກະລຸນາກວດສອບ config ທີ່ລະບຸ." 
 
 #: templates/settings.php:113
 msgid "Ping to WP index succeded."
 msgstr ""
 
 #: templates/settings.php:115
-msgid "Problem connecting to WP index. Please, check the specified config."
-msgstr "ມີບັນຫາໃນການເຊື່ອມຕໍ່ກັບ WP index. ກະລຸນາກວດສອບ config ທີ່ລະບຸ."
+msgid "Problem connecting to WP index. Please, check the specified config." 
+msgstr "ມີບັນຫາໃນການເຊື່ອມຕໍ່ກັບ WP index. ກະລຸນາກວດສອບ config ທີ່ລະບຸ." 
 
 #: templates/settings.php:118
 msgid "Ping to CKAN index succeded."
 msgstr ""
 
 #: templates/settings.php:120
-msgid "Problem connecting to CKAN index. Please, check the specified config."
-msgstr "ມີບັນຫາໃນການເຊື່ອມຕໍ່ກັບ CKAN index. ກະລຸນາກວດສອບ config ທີ່ລະບຸ."
+msgid "Problem connecting to CKAN index. Please, check the specified config." 
+msgstr "ມີບັນຫາໃນການເຊື່ອມຕໍ່ກັບ CKAN index. ກະລຸນາກວດສອບ config ທີ່ລະບຸ." 
 
 #: templates/settings.php:127
 msgid "Logging"
 msgstr ""
 
 #: templates/settings.php:129
-msgid "Enable log"
+msgid "Enable log" 
 msgstr "ເປີດການບັນທຶກ"
 
 #: templates/settings.php:135
 msgid "Log file path"
-msgstr "ເສັ້ນທາງໄຟລບັນທຶກ"
+msgstr "ເສັ້ນທາງໄຟລບັນທຶກ" 
 
 #: templates/settings.php:138
 msgid "Path where logs are going to be stored. Mind permissions."
 msgstr ""
 
 #: templates/settings.php:142
-msgid "Templating"
+msgid "Templating" 
 msgstr "ການສ້າງແມ່ແບບ"
 
 #: templates/settings.php:144
 msgid "Select template"
-msgstr "ເລືອກແມ່ແບບ"
+msgstr "ເລືອກແມ່ແບບ" 
 
 #: wp-odm_solr.php:194
 msgid "You do not have sufficient permissions to access this page."

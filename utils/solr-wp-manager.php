@@ -8,7 +8,7 @@
  include_once plugin_dir_path(__FILE__).'wp_odm_solr_options.php';
 
  $GLOBALS['wp_odm_solr_options'] = new WpOdmSolr_Options();
- 
+
 class WP_Odm_Solr_WP_Manager {
 
   var $client = null;
@@ -73,71 +73,83 @@ class WP_Odm_Solr_WP_Manager {
 
 	function index_post($post){
 
-    wp_odm_solr_log('solr-wp-manager index_post ' . serialize($post));
+    wp_odm_solr_log('solr-wp-manager index_post ' . serialize($post) . ' new index_id will be ' . md5($post->guid));
 
-    $result = null;
 
-    try {
-      $update = $this->client->createUpdate();
+    if ( 'publish' === get_post_status( $post->ID ) ):
 
-      $languages = array("en");
-      // if (strpos($post->post_content,"<!--:en-->") > -1 || strpos($post->post_content,"[:en]") > -1):
-      //   array_push($languages,"en");
-      // endif;
-      if (strpos($post->post_content,"<!--:km-->") > -1 || strpos($post->post_content,"[:km]") > -1):
-        array_push($languages,"km");
-      endif;
-      if (strpos($post->post_content,"<!--:my-->") > -1 || strpos($post->post_content,"[:my]") > -1):
-        array_push($languages,"my");
-      endif;
-      if (strpos($post->post_content,"<!--:la-->") > -1 || strpos($post->post_content,"[:la]") > -1):
-        array_push($languages,"la");
-      endif;
-      if (strpos($post->post_content,"<!--:th-->") > -1 || strpos($post->post_content,"[:th]") > -1):
-        array_push($languages,"th");
-      endif;
-      if (strpos($post->post_content,"<!--:vi-->") > -1 || strpos($post->post_content,"[:vi]") > -1):
-        array_push($languages,"vi");
-      endif;
+      $result = null;
 
-  		$doc = $update->createDocument();
-      $doc->capacity = "public";
-  		$doc->id = $post->ID;
-      $doc->index_id = $post->ID;
-  		$doc->blogid = get_current_blog_id();
-      $doc->country_site = odm_country_manager()->get_current_country();
-      $doc->odm_spatial_range = odm_country_manager()->get_current_country_code();
-      $doc->extras_odm_spatial_range = odm_country_manager()->get_current_country_code();
-      $doc->odm_language = $languages;
-      $doc->extras_odm_language = $languages;
-      $doc->license_id = "CC-BY-4.0";
-  		$doc->blogdomain = get_site_url();
-  		$doc->title = $post->post_title;
-  		$doc->permalink = get_permalink($post);
-  		$doc->author = $post->post_author;
-  		$doc->content = $post->post_content;
-      $doc->notes = $post->post_content;
-  		$doc->excerpt = $post->post_excerpt;
-  		$doc->type = $post->post_type;
-      $doc->dataset_type = $post->post_type;
-  		$doc->categories = wp_get_post_categories($post->ID, array('fields' => 'names'));
-      $doc->vocab_taxonomy = wp_get_post_categories($post->ID, array('fields' => 'names'));
-  		$doc->tags = wp_get_post_tags($post->ID, array('fields' => 'names'));
-      $doc->extras_odm_keywords = wp_get_post_tags($post->ID, array('fields' => 'names'));
-  		$date = new DateTime($post->post_date);
-  		$doc->date = $date->format('Y-m-d\TH:i:s\Z');
-      $doc->metadata_created = $date->format('Y-m-d\TH:i:s\Z');
-  		$modified = new DateTime($post->post_modified);
-  		$doc->modified = $modified->format('Y-m-d\TH:i:s\Z');
-      $doc->metadata_modified = $modified->format('Y-m-d\TH:i:s\Z');
-  		$update->addDocument($doc);
-  		$update->addCommit();
-  		$result = $this->client->update($update);
-    } catch (HttpException $e) {
-      wp_odm_solr_log('solr-wp-manager index_post Error: ' . $e);
-    }
+      try {
 
-    return $result;
+        // then create the new one, based on guid
+        $update = $this->client->createUpdate();
+
+        $languages = array("en");
+        // if (strpos($post->post_content,"<!--:en-->") > -1 || strpos($post->post_content,"[:en]") > -1):
+        //   array_push($languages,"en");
+        // endif;
+        if (strpos($post->post_content,"<!--:km-->") > -1 || strpos($post->post_content,"[:km]") > -1):
+          array_push($languages,"km");
+        endif;
+        if (strpos($post->post_content,"<!--:my-->") > -1 || strpos($post->post_content,"[:my]") > -1):
+          array_push($languages,"my");
+        endif;
+        if (strpos($post->post_content,"<!--:la-->") > -1 || strpos($post->post_content,"[:la]") > -1):
+          array_push($languages,"la");
+        endif;
+        if (strpos($post->post_content,"<!--:th-->") > -1 || strpos($post->post_content,"[:th]") > -1):
+          array_push($languages,"th");
+        endif;
+        if (strpos($post->post_content,"<!--:vi-->") > -1 || strpos($post->post_content,"[:vi]") > -1):
+          array_push($languages,"vi");
+        endif;
+
+    		$doc = $update->createDocument();
+        $doc->capacity = "public";
+    		$doc->id = md5($post->guid);
+        $doc->index_id = md5($post->guid);
+        $doc->wp_id = $post->ID;
+        $doc->site_id = get_current_blog_id();
+    		$doc->blogid = get_current_blog_id();
+        $doc->country_site = odm_country_manager()->get_current_country();
+        $doc->odm_spatial_range = odm_country_manager()->get_current_country_code();
+        $doc->extras_odm_spatial_range = odm_country_manager()->get_current_country_code();
+        $doc->odm_language = $languages;
+        $doc->extras_odm_language = $languages;
+        $doc->license_id = "CC-BY-4.0";
+    		$doc->blogdomain = get_site_url();
+    		$doc->title = $post->post_title;
+    		$doc->permalink = get_permalink($post);
+    		$doc->author = $post->post_author;
+    		$doc->content = $post->post_content;
+        $doc->notes = $post->post_content;
+    		$doc->excerpt = $post->post_excerpt;
+    		$doc->type = $post->post_type;
+        $doc->dataset_type = $post->post_type;
+    		$doc->categories = wp_get_post_categories($post->ID, array('fields' => 'names'));
+        $doc->vocab_taxonomy = wp_get_post_categories($post->ID, array('fields' => 'names'));
+    		$doc->tags = wp_get_post_tags($post->ID, array('fields' => 'names'));
+        $doc->extras_odm_keywords = wp_get_post_tags($post->ID, array('fields' => 'names'));
+    		$date = new DateTime($post->post_date);
+    		$doc->date = $date->format('Y-m-d\TH:i:s\Z');
+        $doc->metadata_created = $date->format('Y-m-d\TH:i:s\Z');
+    		$modified = new DateTime($post->post_modified);
+    		$doc->modified = $modified->format('Y-m-d\TH:i:s\Z');
+        $doc->metadata_modified = $modified->format('Y-m-d\TH:i:s\Z');
+    		$update->addDocument($doc);
+    		$update->addCommit();
+    		$result = $this->client->update($update);
+      } catch (HttpException $e) {
+        wp_odm_solr_log('solr-wp-manager index_post Error: ' . $e);
+      }
+
+      return $result;
+
+    endif;
+
+    wp_odm_solr_log('solr-wp-manager post is not pusblished, skipping.');
+
   }
 
 	function clear_index(){
@@ -250,6 +262,10 @@ class WP_Odm_Solr_WP_Manager {
         $fields_to_query = 'tags^6 categories^5 title^2 content^1';
         $dismax = $query->getDisMax();
         $dismax->setQueryFields($fields_to_query);
+      endif;
+
+      if (isset($attrs["dataset_type"]) && wp_solr_is_wp_dataset_type($attrs["dataset_type"])):
+        $query->createFilterQuery('wp_id')->setQuery('*');
       endif;
 
       $facetSet = $query->getFacetSet();

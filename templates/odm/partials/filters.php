@@ -126,7 +126,6 @@
 <!-- END OF LICENSE FILTER -->
 
 <!-- DATA PARTNERS FILTER -->
-<?php if (odm_country_manager()->get_current_country() == 'mekong'): ?>
 <div class="single-filter">
   <label for="organization"><?php _e('Data partner', 'wp-odm_solr'); ?></label>
   <select multiple id="organization" name="organization[]" class="full-width filter_box" data-placeholder="<?php _e('Select partner organisations who contribute data to ODM', 'wp-odm_solr'); ?>">
@@ -153,7 +152,6 @@
       endforeach; ?>
   </select>
 </div>
-<?php endif; ?>
 <!-- END OF DATA PARTNERS FILTER  -->
 
 <!-- SORTING FUNCTION -->
