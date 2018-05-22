@@ -48,7 +48,7 @@
           $spatial_range_facets = $facets[$param_type]["extras_odm_spatial_range"];
           if (array_key_exists($country_code,$spatial_range_facets)):
             $available_records = $spatial_range_facets[$country_code];
-            if ($available_records > 0):
+            if ($available_records >= 0):
               $country_name = odm_country_manager()->get_country_name_by_country_code($country_code);
               $selected = in_array($country_code,$param_country); ?>
               <option value="<?php echo $country_code; ?>" <?php if($selected) echo 'selected'; ?>>
@@ -135,7 +135,7 @@
           $organization_facets = $facets[$param_type]["organization"];
           if (array_key_exists($organization["name"],$organization_facets)):
             $available_records = $organization_facets[$organization["name"]];
-            if ($available_records > 0):
+            if ($available_records >= 0):
               $selected = in_array($organization["name"],$param_organization); ?>
               <option value="<?php echo $organization["name"]; ?>" <?php if($selected) echo 'selected'; ?>>
                 <?php
