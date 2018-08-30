@@ -6,37 +6,38 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "POT-Creation-Date: 2017-07-27 23:56+0200\n"
-"PO-Revision-Date: 2017-07-27 23:56+0200\n" 
-"Last-Translator: Huy Eng Heng <huyeng_heng@yahoo.com>, 2018\n" 
-"Language-Team: Khmer (https://www.transifex.com/open-development-mekong/teams/27158/km/)\n"
+"PO-Revision-Date: 2018-08-30 14:26+0700\n"
+"Last-Translator: Huy Eng Heng <huyeng_heng@yahoo.com>, 2018\n"
+"Language-Team: Khmer (https://www.transifex.com/open-development-mekong/"
+"teams/27158/km/)\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Language: km\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Poedit 1.8.7.1\n"
+"X-Generator: Poedit 2.1.1\n"
 "X-Poedit-Basepath: ..\n"
 "X-Poedit-KeywordsList: _;_e;__;_n:1,2;_x:1,2c;_ex:1,2c\n"
+"X-Poedit-SourceCharset: UTF-8\n"
 "X-Poedit-SearchPath-0: i18n\n"
 "X-Poedit-SearchPath-1: .\n"
 "X-Poedit-SearchPathExcluded-0: components\n"
 "X-Poedit-SearchPathExcluded-1: vendor\n"
-"X-Poedit-SourceCharset: UTF-8\n"
 
 #: admin-scripts/search-ckan-records.php:21
 #: templates/odc/partials/filters.php:5
 #: templates/odc/partials/filters_regional.php:5
 #: templates/odm/solr_search.php:296
 msgid "Search datasets, topics, News..."
-msgstr ""
+msgstr "ស្វែងរកសំណុំទិន្នន័យ ប្រធានបទ អត្ថបទសារព័ត៌មាន ..."
 
 #: i18n/additional-localization.php:2
 msgid "Datasets"
 msgstr "សំណុំទិន្នន័យ"
 
 #: i18n/additional-localization.php:3
-msgid "Publications" 
-msgstr "ឯកសារបោះពុម្ភ" 
+msgid "Publications"
+msgstr "ឯកសារបោះពុម្ភ"
 
 #: i18n/additional-localization.php:4
 msgid "Laws"
@@ -51,8 +52,8 @@ msgid "Maps"
 msgstr "ផែនទី"
 
 #: i18n/additional-localization.php:7
-msgid "News" 
-msgstr "ព័ត៌មាន" 
+msgid "News"
+msgstr "ព័ត៌មាន​"
 
 #: i18n/additional-localization.php:8
 msgid "Topics"
@@ -169,7 +170,7 @@ msgstr "វែងរកទំព័រស្វែងរក"
 
 #: post-types/search-pages.php:43
 msgid "Parent search pages:"
-msgstr ""
+msgstr "ទំព័រស្វែងរក៖"
 
 #: post-types/search-pages.php:44
 msgid "No search page found."
@@ -177,27 +178,27 @@ msgstr "ទំព័រស្វែងរកពុំមាន"
 
 #: post-types/search-pages.php:45
 msgid "No search page found in trash."
-msgstr ""
+msgstr "ពុំមានទំព័រស្វែងរកនៅក្នុងធុងសំរាម។"
 
 #: post-types/search-pages.php:73
 msgid "Option for search pages"
-msgstr ""
+msgstr "ជម្រើសសម្រាប់ទំព័រស្វែងរក"
 
 #: post-types/search-pages.php:82
 msgid "Template layout"
-msgstr ""
+msgstr "Template layout"
 
 #: post-types/search-pages.php:95
 msgid "Supported content types"
-msgstr ""
+msgstr "ប្រភេទមាតិកាដែលគាំទ្រ"
 
 #: post-types/search-pages.php:97
 msgid "Please add the document types that should be supported on this page"
-msgstr ""
+msgstr "សូមបន្ថែមប្រភេទឯកសារដែលគួរត្រូវបានគាំទ្រនៅលើទំព័រនេះ"
 
 #: post-types/search-pages.php:106
 msgid "Choose template layout"
-msgstr ""
+msgstr "ជ្រើសរើសគំរូទំព័រ"
 
 #: templates/category-page/partials/ckan_result_template.php:155
 #: templates/odc/partials/ckan_result_template.php:156
@@ -386,11 +387,11 @@ msgstr "កន្លែងដាក់ផ្សាយ"
 
 #: templates/settings.php:32
 msgid ""
-"Specify host without protocol, just domain. example: "
-"solr.opendevelopmentmekong.net "
+"Specify host without protocol, just domain. example: solr."
+"opendevelopmentmekong.net "
 msgstr ""
-"បញ្ជាក់ពីកន្លែងដាក់ផ្សាយជាមួយវិស័យ ដោយមិនមានប្រូតូកូល។ ឧទាហរណ៍៖  "
-"solr.opendevelopmentmekong.net "
+"បញ្ជាក់ពីកន្លែងដាក់ផ្សាយជាមួយវិស័យ ដោយមិនមានប្រូតូកូល។ ឧទាហរណ៍៖  solr."
+"opendevelopmentmekong.net "
 
 #: templates/settings.php:36
 msgid "Port"
@@ -434,11 +435,11 @@ msgstr "ឧទាហរណ៍៖ collection1 "
 
 #: templates/settings.php:71
 msgid "Core unified"
-msgstr ""
+msgstr "Core unified"
 
 #: templates/settings.php:74
 msgid "Example: unified"
-msgstr ""
+msgstr "ឧទាហរណ៍: unified"
 
 #: templates/settings.php:78
 msgid "User"
@@ -458,7 +459,7 @@ msgstr "ពាក្យ​សម្ងាត់សម្រាប់បញ្ជ
 
 #: templates/settings.php:94
 msgid "Show regional contents on results"
-msgstr ""
+msgstr "បង្ហាញមាតិការបស់ថ្នាក់តំបន់នៅក្នុងលទ្ធផល"
 
 #: templates/settings.php:105
 msgid "Connection status"
@@ -466,12 +467,13 @@ msgstr "ស្ថានភាពតភ្ជាប់"
 
 #: templates/settings.php:108
 msgid "Ping to unified index succeded."
-msgstr ""
+msgstr "Ping to unified index succeded."
 
 #: templates/settings.php:110
 msgid ""
 "Problem connecting to unified index. Please, check the specified config."
 msgstr ""
+"Problem connecting to unified index. Please, check the specified config."
 
 #: templates/settings.php:113
 msgid "Ping to WP index succeded."
