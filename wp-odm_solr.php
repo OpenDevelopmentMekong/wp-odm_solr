@@ -210,5 +210,5 @@ add_action('plugins_loaded', array('WpOdmSolr', 'get_instance'));
 
 if (class_exists('WP_CLI')) {
   include_once plugin_dir_path(__FILE__).'commands.php';
-  WP_CLI::add_command('odm-solr rebuild-index', 'odm_solr_index_posts');
+  WP_CLI::add_command('odm-solr', 'odm_solr_commands');
 }
