@@ -56,26 +56,6 @@
           'icon' => 'fa fa-asterisk',
           'archive_url' => null
         ),
-        'dataset' => array(
-          'title' => 'Datasets',
-          'icon' => 'fa fa-database',
-          'archive_url' => '/data'
-        ),
-        'library_record' => array(
-          'title' =>'Publications',
-          'icon' => 'fa fa-book',
-          'archive_url' => null
-        ),
-        'laws_record' => array(
-          'title' =>'Laws',
-          'icon' => 'fa fa-gavel',
-          'archive_url' => null
-        ),
-        'agreement' => array(
-          'title' =>'Agreements',
-          'icon' => 'fa fa-handshake-o',
-          'archive_url' => null
-        ),
         'map-layer' => array(
           'title' => 'Maps',
           'icon' => 'fa fa-map-marker',
@@ -187,7 +167,7 @@
           $attrs["dataset_type"] = $key;
         endif;
 
-        $result = WP_Odm_Solr_UNIFIED_Manager()->query($param_query,$attrs,$control_attrs);
+        $result = WP_Odm_Solr_WP_Manager()->query($param_query,$attrs,$control_attrs);
 
         $results[$key] = $result["resultset"];
         $facets[$key] = $result["facets"];
@@ -195,7 +175,7 @@
 
     <section class="container">
       <?php
-        if (!WP_Odm_Solr_UNIFIED_Manager()->ping_server()):  ?>
+        if (!WP_Odm_Solr_WP_Manager()->ping_server()):  ?>
           <div class="row">
             <div class="sixteen columns">
                 <p class="error">
