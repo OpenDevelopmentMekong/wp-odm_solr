@@ -28,10 +28,10 @@ class odm_solr_commands {
 
       $posts = get_posts($post_args);
 
-      WP_CLI::log("Batch of " . count($posts) . "\n");
+      WP_CLI::log("Batch of " . count($posts));
       foreach ($posts as $post) {
 	WP_CLI::log("Indexing post with ID: " . $post->ID ." and title:" 
-		    . $post->post_title . " and type " . $post->post_type . "\n");
+		    . $post->post_title . " and type " . $post->post_type);
 	WP_Odm_Solr_WP_Manager()->index_post($post);
       }
       return count($posts);
