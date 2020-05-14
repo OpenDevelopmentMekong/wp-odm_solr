@@ -2,7 +2,7 @@
   <h2>wp-odm_solr - A plugin for indexing WP content into solr</h2>
   <form method="post" action="options.php">
       <?php @settings_fields('wp_odm_solr-group'); ?>
-      <?php @do_settings_fields('wp_odm_solr-group'); ?>
+      <?php @do_settings_fields('wp_odm_solr-group', null); ?>
 
       <?php
         $solr_host = $GLOBALS['wp_odm_solr_options']->get_option('wp_odm_solr_setting_solr_host');
