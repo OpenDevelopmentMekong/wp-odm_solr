@@ -26,7 +26,7 @@
       $param_page = isset($_GET['page']) ? (int)$_GET['page'] : 0;
       $param_page_solr = (isset($_GET['page']) && (int)$_GET['page'] > 0) ? ((int)$_GET['page'] -1) : 0;
       $param_country = odm_country_manager()->get_current_country() == 'mekong' && isset($_GET['country']) ? $_GET['country'] : array();
-    	$param_sorting = isset($_GET['sorting']) ? $_GET['sorting'] : 'score';
+      $param_sorting = isset($_GET['sorting']) ? $_GET['sorting'] : 'score';
       $param_metadata_modified = isset($_GET['metadata_modified']) ? $_GET['metadata_modified'] : 'all';
       $param_metadata_created = isset($_GET['metadata_created']) ? $_GET['metadata_created'] : 'all';
 
@@ -165,7 +165,7 @@
         if (!empty($param_license)) {
           $attrs['license_id'] = $param_license;
         }
-        
+
         //organization
         if (!empty($param_organization)){
           $attrs['organization'] = $param_organization;
@@ -245,7 +245,7 @@
           <form>
             <div class="advanced-nav-filters ">
               <div class="row panel">
-                <input type="hidden" name="type" value="<?php echo $param_type;?>"></input>
+                <input type="hidden" name="type" value="<?php echo esc_attr($param_type);?>"></input>
                 <?php
                   if (odm_country_manager()->get_current_country() === "mekong"):
                     include plugin_dir_path(__FILE__). 'partials/filters_regional.php';
@@ -269,9 +269,9 @@
                 <h4>
                 <?php
                   $type_title = $param_type == "all"  ? __("Records","wp-odm_solr") : $all_search_types[$param_type]["title"];
-                  echo $content_resultcount . ' '
-                            . $type_title
-                            . __(' found for','wp-odm_solr') . ' "' . $param_query. '"'; ?>
+                  echo intval($content_resultcount) . ' '
+                      . $type_title
+                      . __(' found for','wp-odm_solr') . ' "' . esc_html($param_query). '"'; ?>
                 </h4>
               </div>
 

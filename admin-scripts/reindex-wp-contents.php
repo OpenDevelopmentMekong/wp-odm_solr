@@ -3,7 +3,7 @@
 include_once dirname(dirname(__FILE__)).'/utils/solr-wp-manager.php';
 include_once dirname(dirname(__FILE__)).'/utils/solr-unified-manager.php';
 
-$num_posts = isset($_GET["num_posts"]) ? $_GET["num_posts"] : 500;
+$num_posts = isset($_GET["num_posts"]) ? intval($_GET["num_posts"]) : 500;
 $supported_post_types = array('news-article','topic','dashboard','dataviz','profiles','tabular','announcement','site-update','story','map-layer');
 
 $args = array(
