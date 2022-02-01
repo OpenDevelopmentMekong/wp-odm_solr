@@ -4,3 +4,4 @@ components/
 composer.lock
 **.mo
 .remote-sync.json
+*~

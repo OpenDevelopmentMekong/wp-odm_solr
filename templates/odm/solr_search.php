@@ -26,7 +26,7 @@
       $param_page = isset($_GET['page']) ? (int)$_GET['page'] : 0;
       $param_page_solr = (isset($_GET['page']) && (int)$_GET['page'] > 0) ? ((int)$_GET['page'] -1) : 0;
       $param_country = odm_country_manager()->get_current_country() == 'mekong' && isset($_GET['country']) ? $_GET['country'] : array();
-    	$param_sorting = isset($_GET['sorting']) ? $_GET['sorting'] : 'score';
+      $param_sorting = isset($_GET['sorting']) ? $_GET['sorting'] : 'score';
       $param_metadata_modified = isset($_GET['metadata_modified']) ? $_GET['metadata_modified'] : 'all';
       $param_metadata_created = isset($_GET['metadata_created']) ? $_GET['metadata_created'] : 'all';
 
@@ -165,7 +165,7 @@
         if (!empty($param_license)) {
           $attrs['license_id'] = $param_license;
         }
-        
+
         //organization
         if (!empty($param_organization)){
           $attrs['organization'] = $param_organization;
@@ -180,7 +180,7 @@
         if (isset($param_metadata_created) && $param_metadata_created !== 'all'){
           $attrs['metadata_created'] = $param_metadata_created;
         }
-        
+
         //metadata_modified
         if (isset($param_metadata_modified) && $param_metadata_modified !== 'all'){
           $attrs['metadata_modified'] = $param_metadata_modified;
@@ -243,10 +243,10 @@
             endforeach;
           endif; ?>
 
-      		<div class="row">
+            <div class="row">
             <div class="four columns">
               <div class="result_links">
-              <h4><?php _e('Search Results for','wp-odm_solr'); ?> "<?php _e($param_query,'wp-odm_solr'); ?>"</h4>
+              <h4><?php _e('Search Results for','wp-odm_solr'); ?> "<?php _e(esc_html($param_query),'wp-odm_solr'); ?>"</h4>
               <?php
                 foreach ($all_search_types as $key => $value):
                   $count = ($results[$key]) ? $results[$key]->getNumFound() : 0;
@@ -259,7 +259,7 @@
                       ?>
                     <a href="<?php echo $new_url ?>">
                       <i class="<?php echo $value['icon']; ?>"></i>
-                      <?php echo __($value['title'],'wp-odm_solr') . " (".$count.")"; ?>
+                      <?php echo __($value['title'],'wp-odm_solr') . " (".intval($count).")"; ?>
                     </a>
                   </div>
 
@@ -270,7 +270,7 @@
               </div>
               <div class="data-advanced-filters">
                 <form>
-                <input type="hidden" name="type" value="<?php echo $param_type;?>"></input>
+                <input type="hidden" name="type" value="<?php echo esc_attr($param_type);?>"></input>
                 <?php include plugin_dir_path(__FILE__). 'partials/filters.php'; ?>
               </div>
 
@@ -285,14 +285,14 @@
                   endif;
                 endif;
                ?>
-        		</div>
+                </div>
             <!-- ============== Search input ============= -->
-      			<div class="twelve columns">
+                <div class="twelve columns">
 
               <div class="row">
                 <div class="sixteen columns solr_results search-results">
                   <?php
-                  
+
                     if ($is_search_page):
                       if (have_posts()):
                         $content = apply_filters('the_content', $post->post_content);
@@ -306,7 +306,7 @@
                     endif;
 
                     $query_var_name = $is_search_page ? 'query' : 's'; ?>
-                    <input id="search_field" name="<?php echo $query_var_name; ?>" type="text" class="full-width-search-box search_field" value="<?php echo $param_query?>" placeholder="<?php _e("Search topics, News...",'wp-odm_solr'); ?>" data-solr-host="<?php echo $GLOBALS['wp_odm_solr_options']->get_option('wp_odm_solr_setting_solr_host'); ?>" data-solr-scheme="<?php echo $GLOBALS['wp_odm_solr_options']->get_option('wp_odm_solr_setting_solr_scheme'); ?>"  data-solr-path="<?php echo $GLOBALS['wp_odm_solr_options']->get_option('wp_odm_solr_setting_solr_path'); ?>" data-solr-core-unified="<?php echo $GLOBALS['wp_odm_solr_options']->get_option('wp_odm_solr_setting_solr_core_unified'); ?>" data-odm-current-lang="<?php echo odm_language_manager()->get_current_language(); ?>" data-odm-current-country="<?php echo odm_country_manager()->get_current_country_code(); ?>" data-odm-show-regional-contents="<?php echo $GLOBALS['wp_odm_solr_options']->get_option('wp_odm_solr_setting_regional_contents_enabled'); ?>"></input>
+                    <input id="search_field" name="<?php echo $query_var_name; ?>" type="text" class="full-width-search-box search_field" value="<?php echo esc_attr($param_query)?>" placeholder="<?php _e("Search topics, News...",'wp-odm_solr'); ?>" data-solr-host="<?php echo $GLOBALS['wp_odm_solr_options']->get_option('wp_odm_solr_setting_solr_host'); ?>" data-solr-scheme="<?php echo $GLOBALS['wp_odm_solr_options']->get_option('wp_odm_solr_setting_solr_scheme'); ?>"  data-solr-path="<?php echo $GLOBALS['wp_odm_solr_options']->get_option('wp_odm_solr_setting_solr_path'); ?>" data-solr-core-unified="<?php echo $GLOBALS['wp_odm_solr_options']->get_option('wp_odm_solr_setting_solr_core_unified'); ?>" data-odm-current-lang="<?php echo odm_language_manager()->get_current_language(); ?>" data-odm-current-country="<?php echo odm_country_manager()->get_current_country_code(); ?>" data-odm-show-regional-contents="<?php echo $GLOBALS['wp_odm_solr_options']->get_option('wp_odm_solr_setting_regional_contents_enabled'); ?>"></input>
                   </form>
 
                   <?php
@@ -319,9 +319,9 @@
                   <h4>
                   <?php
                     $type_title = $param_type == "all"  ? __("Records","wp-odm_solr") : $all_search_types[$param_type]["title"];
-                    echo $content_resultcount . ' '
-                              . $type_title
-                              . __(' found for','wp-odm_solr') . ' "' . $param_query. '"'; ?>
+                    echo intval($content_resultcount) . ' '
+                        . $type_title
+                        . __(' found for','wp-odm_solr') . ' "' . esc_html($param_query). '"'; ?>
                   </h4>
 
                   <?php
@@ -368,8 +368,8 @@
                   endif;
                 endif; ?>
 
-      			</div> <!-- end of twelve columns -->
-      		</div> <!-- end of row -->
+                </div> <!-- end of twelve columns -->
+            </div> <!-- end of row -->
 
       <?php
           endif; ?>
