@@ -12,7 +12,7 @@
   <select id="taxonomy" name="taxonomy" class="full-width filter_box" data-placeholder="<?php _e('Select term', 'wp-odm_solr'); ?>">
     <option value="all" <?php if (isset($param_taxonomy) || $param_taxonomy == 'all') echo 'selected'; ?>><?php _e('All','wp-odm_solr') ?></option>
       <?php
-      if (array_key_exists("vocab_taxonomy",$facets[$param_type])):
+      if (array_key_exists("vocab_taxonomy",$facets[$param_type] ?? [])):
         $top_tier_taxonomic_terms_keys = array_keys($top_tier_taxonomic_terms);
         sort($top_tier_taxonomic_terms_keys,SORT_STRING);
         foreach($top_tier_taxonomic_terms_keys as $top_tier_term):
